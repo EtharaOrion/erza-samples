@@ -1,0 +1,90 @@
+{
+  "task_path": "dataset-run/d427488f-59b7-505a-bd03-bed97d147e38",
+  "agent": "claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "reasoning_effort": null,
+  "environment": "docker",
+  "environment_manifest": null,
+  "skill_mode": "no-skill",
+  "skill_source": "none",
+  "requested_skills_dir": null,
+  "effective_skills_dir": null,
+  "skills_sandbox_dir": null,
+  "include_task_skills": false,
+  "sandbox_user": "agent",
+  "sandbox_locked_paths": [
+    "/oracle",
+    "/solution",
+    "/verifier",
+    "/tests",
+    "/testbed_verify"
+  ],
+  "sandbox_setup_timeout": 120,
+  "skip_install": false,
+  "agent_install_timeout": 900,
+  "context_root": null,
+  "timeout_sec": 1800,
+  "concurrency": 4,
+  "agent_idle_timeout_sec": 600,
+  "started_at": "2026-07-20 13:05:28.333211",
+  "agent_env": {
+    "ANTHROPIC_API_BASE": "http://127.0.0.1:8765",
+    "BENCHFLOW_PROVIDER_MODEL": "claude-opus-4-8",
+    "ANTHROPIC_MODEL": "claude-opus-4-8",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "BENCHFLOW_DISALLOW_WEB_TOOLS": "1"
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "usage_tracking": {
+    "requested": "required"
+  },
+  "source": {
+    "type": "github",
+    "repo": "Ethara-Ai/erza-harness",
+    "requested_ref": "main",
+    "resolved_sha": "cc879bb01e910955e26d08f99ead927d2922e9d3",
+    "path": "dataset-run/d427488f-59b7-505a-bd03-bed97d147e38",
+    "dirty": true,
+    "file_hashes": {
+      "environment/Dockerfile": "sha256:b59b5e7ab3a60573b72cc77626e01ab2011b198f07223fd0669662865d5d6063",
+      "environment/data/measurements.json": "sha256:53b2668595aed939f5b79b7d5f83a1fd0ff01ccd622e495172505118d851977c",
+      "environment/data/question.json": "sha256:6f5174373fd7ad4a6dd7d9a2d3f6f8eae02719d375b761c1697cf004cc77241d",
+      "environment/skills/erza-rb1-robust-consensus/SKILL.md": "sha256:ba8ef2db4d49a581bf31345537dea53230e434c7c88ddc4ae93044b140d7475d",
+      "oracle/generate.py": "sha256:f2a073652038ec66ebaa610566c3a4381badb214809a54a0cbebccb9ce283967",
+      "oracle/solve.sh": "sha256:c4bc22234aacd3026c14370d8e3e7d18bdd0ae5cbe6f04666c7a4d961422a29c",
+      "task.md": "sha256:668048094120250fd16b6d7f0ef08728dd58527d135e69207536c88abe0fae8e",
+      "uuid_provenance.json": "sha256:5567397bffbf92b6e5ee88b411173a147947fac1c23f69d94ad36299e787d595",
+      "verifier/expected_values.json": "sha256:366e313c6acc11e47c7f0c631410134d47cc1490dd8a537c7f719abdb5e6c6be",
+      "verifier/test.sh": "sha256:15764c1d1ef06ebab270825b7d9c03b125bd1d81cff71bf86bc3525cfdf0acaf",
+      "verifier/test_outputs.py": "sha256:ef791e149d63607648a13ce265ab7eb39af5c83b8a84cd3cf9590987bc749f0a"
+    }
+  },
+  "task_digest": "sha256:b038267173bd910ef6184ea60fcb7d8273d176560ab5ef3a19855124871d34ad"
+}

@@ -1,0 +1,62 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.3.2"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 2,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1784534338.5068917,
+            "stop": 1784534338.5442982
+        },
+        "tests": [
+            {
+                "name": "::test_plausible",
+                "status": "passed",
+                "duration": 0.0006103750201873481,
+                "start": 1784534338.5286555,
+                "stop": 1784534338.5295012,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            },
+            {
+                "name": "::test_robust_scale",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00043191699660383165,
+                "start": 1784534338.529699,
+                "stop": 1784534338.5403223,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py",
+                "trace": "cfg = {'beta_of_c': 1.2288, 'control_gaps': {'huber_clamp_c1p5': {'note': 'WEAK/decorative lever; fails both outputs only ma...a_gap': 1.084229, 'zeta_gap_over_tol': 36.14}}, 'decoy_plain_mean_scale': 0.468704, 'decoy_standard_z': -0.109806, ...}\nres = {'robust_scale': 0.255886, 'zeta_prime': 0.42585}\n\n    def test_robust_scale(cfg, res):\n        ref = float(cfg[\"ref_robust_scale\"])\n        tol = float(cfg[\"tolerance_robust_scale_abs\"])\n        err = abs(res[\"robust_scale\"] - ref)\n>       assert err <= tol, f\"robust_scale {res['robust_scale']:.6f} off ref {ref:.6f} by {err:.6f} (tol {tol})\"\nE       AssertionError: robust_scale 0.255886 off ref 0.250368 by 0.005518 (tol 0.004)\nE       assert 0.005518000000000023 <= 0.004\n\n/verifier/test_outputs.py:53: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "::test_zeta_prime",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.000377874996047467,
+                "start": 1784534338.5405424,
+                "stop": 1784534338.5430508,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py",
+                "trace": "cfg = {'beta_of_c': 1.2288, 'control_gaps': {'huber_clamp_c1p5': {'note': 'WEAK/decorative lever; fails both outputs only ma...a_gap': 1.084229, 'zeta_gap_over_tol': 36.14}}, 'decoy_plain_mean_scale': 0.468704, 'decoy_standard_z': -0.109806, ...}\nres = {'robust_scale': 0.255886, 'zeta_prime': 0.42585}\n\n    def test_zeta_prime(cfg, res):\n        ref = float(cfg[\"ref_zeta_prime\"])\n        tol = float(cfg[\"tolerance_zeta_prime_abs\"])\n        err = abs(res[\"zeta_prime\"] - ref)\n>       assert err <= tol, f\"zeta_prime {res['zeta_prime']:.6f} off ref {ref:.6f} by {err:.6f} (tol {tol})\"\nE       AssertionError: zeta_prime 0.425850 off ref 1.690145 by 1.264295 (tol 0.03)\nE       assert 1.264295 <= 0.03\n\n/verifier/test_outputs.py:61: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "::test_isomorphic_invariance",
+                "status": "passed",
+                "duration": 0.0007860409677959979,
+                "start": 1784534338.5432603,
+                "stop": 1784534338.544226,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            }
+        ]
+    }
+}

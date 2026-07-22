@@ -1,0 +1,50 @@
+SCALE_RAW: got=0.255886 ref=0.250368 err=0.005518 tol=0.004 -> FAIL
+ZETA_RAW:  got=1.579871 ref=1.690145 err=0.110274 tol=0.03 -> FAIL
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.2, pluggy-1.6.0 -- /usr/local/bin/python3.11
+rootdir: /root
+configfile: ../dev/null
+plugins: json-ctrf-0.3.5
+collecting ... collected 4 items
+
+::test_plausible PASSED                                                  [ 25%]
+::test_robust_scale FAILED                                               [ 50%]
+::test_zeta_prime FAILED                                                 [ 75%]
+::test_isomorphic_invariance PASSED                                      [100%]
+
+=================================== FAILURES ===================================
+______________________________ test_robust_scale _______________________________
+
+cfg = {'beta_of_c': 1.2288, 'control_gaps': {'huber_clamp_c1p5': {'note': 'WEAK/decorative lever; fails both outputs only ma...a_gap': 1.084229, 'zeta_gap_over_tol': 36.14}}, 'decoy_plain_mean_scale': 0.468704, 'decoy_standard_z': -0.109806, ...}
+res = {'robust_scale': 0.255886, 'zeta_prime': 1.579871}
+
+    def test_robust_scale(cfg, res):
+        ref = float(cfg["ref_robust_scale"])
+        tol = float(cfg["tolerance_robust_scale_abs"])
+        err = abs(res["robust_scale"] - ref)
+>       assert err <= tol, f"robust_scale {res['robust_scale']:.6f} off ref {ref:.6f} by {err:.6f} (tol {tol})"
+E       AssertionError: robust_scale 0.255886 off ref 0.250368 by 0.005518 (tol 0.004)
+E       assert 0.005518000000000023 <= 0.004
+
+/verifier/test_outputs.py:53: AssertionError
+_______________________________ test_zeta_prime ________________________________
+
+cfg = {'beta_of_c': 1.2288, 'control_gaps': {'huber_clamp_c1p5': {'note': 'WEAK/decorative lever; fails both outputs only ma...a_gap': 1.084229, 'zeta_gap_over_tol': 36.14}}, 'decoy_plain_mean_scale': 0.468704, 'decoy_standard_z': -0.109806, ...}
+res = {'robust_scale': 0.255886, 'zeta_prime': 1.579871}
+
+    def test_zeta_prime(cfg, res):
+        ref = float(cfg["ref_zeta_prime"])
+        tol = float(cfg["tolerance_zeta_prime_abs"])
+        err = abs(res["zeta_prime"] - ref)
+>       assert err <= tol, f"zeta_prime {res['zeta_prime']:.6f} off ref {ref:.6f} by {err:.6f} (tol {tol})"
+E       AssertionError: zeta_prime 1.579871 off ref 1.690145 by 0.110274 (tol 0.03)
+E       assert 0.11027399999999998 <= 0.03
+
+/verifier/test_outputs.py:61: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ::test_plausible
+PASSED ::test_isomorphic_invariance
+FAILED ::test_robust_scale - AssertionError: robust_scale 0.255886 off ref 0....
+FAILED ::test_zeta_prime - AssertionError: zeta_prime 1.579871 off ref 1.6901...
+========================= 2 failed, 2 passed in 0.03s ==========================

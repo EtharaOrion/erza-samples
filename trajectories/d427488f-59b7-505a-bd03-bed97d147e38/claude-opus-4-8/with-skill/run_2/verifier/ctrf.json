@@ -1,0 +1,56 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.3.2"
+        },
+        "summary": {
+            "tests": 4,
+            "passed": 4,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1784534814.7689776,
+            "stop": 1784534814.7919629
+        },
+        "tests": [
+            {
+                "name": "::test_plausible",
+                "status": "passed",
+                "duration": 0.00037445800262503326,
+                "start": 1784534814.7895339,
+                "stop": 1784534814.7900853,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            },
+            {
+                "name": "::test_robust_scale",
+                "status": "passed",
+                "duration": 0.00024112500250339508,
+                "start": 1784534814.7902334,
+                "stop": 1784534814.790619,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            },
+            {
+                "name": "::test_zeta_prime",
+                "status": "passed",
+                "duration": 0.00017025001579895616,
+                "start": 1784534814.7907715,
+                "stop": 1784534814.7910736,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            },
+            {
+                "name": "::test_isomorphic_invariance",
+                "status": "passed",
+                "duration": 0.0005698750028386712,
+                "start": 1784534814.7912,
+                "stop": 1784534814.7919042,
+                "retries": 0,
+                "file_path": "../verifier/test_outputs.py"
+            }
+        ]
+    }
+}

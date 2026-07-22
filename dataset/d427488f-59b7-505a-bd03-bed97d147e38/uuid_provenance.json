@@ -1,0 +1,48 @@
+{
+  "recipe": "forge.task_id.v1",
+  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+  "canonical_content_hash": "c80c024feed46785b2f5fed9c7b9c8f8ebd9d87d123ca9fe3309c163a9777365",
+  "task_id": "d427488f-59b7-505a-bd03-bed97d147e38",
+  "manifest": [
+    {
+      "relpath": "environment/Dockerfile",
+      "sha256": "b59b5e7ab3a60573b72cc77626e01ab2011b198f07223fd0669662865d5d6063"
+    },
+    {
+      "relpath": "environment/data/measurements.json",
+      "sha256": "53b2668595aed939f5b79b7d5f83a1fd0ff01ccd622e495172505118d851977c"
+    },
+    {
+      "relpath": "environment/data/question.json",
+      "sha256": "6f5174373fd7ad4a6dd7d9a2d3f6f8eae02719d375b761c1697cf004cc77241d"
+    },
+    {
+      "relpath": "environment/skills/erza-rb1-robust-consensus/SKILL.md",
+      "sha256": "ba8ef2db4d49a581bf31345537dea53230e434c7c88ddc4ae93044b140d7475d"
+    },
+    {
+      "relpath": "oracle/generate.py",
+      "sha256": "f2a073652038ec66ebaa610566c3a4381badb214809a54a0cbebccb9ce283967"
+    },
+    {
+      "relpath": "oracle/solve.sh",
+      "sha256": "c4bc22234aacd3026c14370d8e3e7d18bdd0ae5cbe6f04666c7a4d961422a29c"
+    },
+    {
+      "relpath": "task.md",
+      "sha256": "668048094120250fd16b6d7f0ef08728dd58527d135e69207536c88abe0fae8e"
+    },
+    {
+      "relpath": "verifier/expected_values.json",
+      "sha256": "366e313c6acc11e47c7f0c631410134d47cc1490dd8a537c7f719abdb5e6c6be"
+    },
+    {
+      "relpath": "verifier/test.sh",
+      "sha256": "15764c1d1ef06ebab270825b7d9c03b125bd1d81cff71bf86bc3525cfdf0acaf"
+    },
+    {
+      "relpath": "verifier/test_outputs.py",
+      "sha256": "ef791e149d63607648a13ce265ab7eb39af5c83b8a84cd3cf9590987bc749f0a"
+    }
+  ]
+}

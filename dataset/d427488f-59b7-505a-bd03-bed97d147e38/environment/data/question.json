@@ -1,0 +1,17 @@
+{
+  "analyte": "copper mass fraction in a leaded-bronze certified reference material",
+  "units": "% (mass fraction)",
+  "n_labs": 22,
+  "replicates_per_lab": 5,
+  "nominated_lab": "L03",
+  "output_path": "/root/results.json",
+  "output_contract": {
+    "robust_scale": "the ERZA-RB1 robust between-laboratory scale s* for the round, in the analyte units, a single number",
+    "zeta_prime": "the ERZA-RB1 zeta-prime performance score for the nominated lab, dimensionless, a single number"
+  },
+  "decoy_reference": {
+    "note": "Quick classical interlaboratory summary provided for orientation ONLY. This is the naive plain-mean/standard-deviation route and is NOT the ERZA-RB1 answer; do not report these values.",
+    "plain_mean_scale": 0.468704,
+    "standard_z_nominated_lab": -0.109806
+  }
+}
