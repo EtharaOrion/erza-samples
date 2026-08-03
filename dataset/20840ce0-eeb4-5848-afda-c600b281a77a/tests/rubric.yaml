@@ -1,0 +1,205 @@
+# Trajectory-audit rubric. Review material only - it never feeds the reward.
+# The reward is produced solely by verifier/test.sh from verifier/test_outputs.py.
+# Contains no reference value: only the graded quantity, its unit and tolerance,
+# plus the observable behaviours a reviewer can check.
+
+graded_quantities:
+  - name: field_group_conformance
+    unit: >-
+      fields in the group that decode back to the payee's own value; the
+      reference for a group is its own field count
+    tolerance_abs: 0.5
+  - name: answer_file_conformance
+    unit: >-
+      records that are well formed - one per payee reference, of the declared
+      length, printable, upper case, correctly terminated
+    tolerance_abs: 0.5
+
+criteria:
+  - id: treats_the_layout_as_absolute_positions
+    statement: >-
+      The trajectory establishes that the transmission format places each field
+      at an absolute character range rather than in field order with separators,
+      and builds the line accordingly.
+    evidence: >-
+      Positions or offsets appear in the code the agent ran - slice bounds, a
+      buffer written by index, or a table of ranges - rather than a join on a
+      delimiter.
+    weight: 3
+
+  - id: places_the_payee_identification_block_at_its_published_offsets
+    statement: >-
+      The name lines, mailing address and city are placed at the positions the
+      specification fixes for them, which are NOT the positions they would take
+      if the fields were packed on after the payment amounts.
+    crux: true
+    statement_note: >-
+      This is the crux. Recall of this specification is real for the opening
+      fields and decays after the payment amount block, so the whole separation
+      of the task rests on the interior of the record. Packing the payee block
+      on without the reserved runs is a measured wrong route, not a milder
+      version of the right one.
+    evidence: >-
+      The first payee name line and the payee city start at their published
+      positions in the code that ran, and the reserved runs that precede them
+      are reserved rather than skipped.
+    weight: 5
+
+  - id: reserves_the_interior_runs
+    statement: >-
+      The reserved runs inside the record - the one between the payment amounts
+      and the payee name block, and the one between the mailing address and the
+      city - are emitted as blanks of their published lengths.
+    evidence: >-
+      Blank runs of the published lengths appear between those fields in the
+      record the agent produced, not zero runs and not nothing.
+    weight: 3
+
+  - id: emits_the_return_specific_tail
+    statement: >-
+      The tail belonging to the return type actually being reported is emitted,
+      including the indicator the neighbouring return type does not have.
+    evidence: >-
+      The chapter-4 indicator position and the programme-code position are both
+      written, and the blank run between them starts one position later than the
+      neighbouring return type's table would put it.
+    weight: 3
+
+  - id: applies_the_field_class_conventions
+    statement: >-
+      Alphanumeric fields are flush left and blank filled, payment amount and
+      sequence fields flush right and zero filled, and every alphabetic
+      character is upper case.
+    evidence: >-
+      Padding calls in the code that ran distinguish the two classes rather than
+      applying one to everything.
+    weight: 3
+
+  - id: verifies_by_slicing_the_record_back_apart
+    statement: >-
+      The run checks its own output by reading fields back out of the finished
+      line at the same positions, rather than treating "the script ran" as
+      verification.
+    evidence: >-
+      A read-back, a length assertion, or a printed field-by-field breakdown of
+      the produced line appears in the trajectory.
+    weight: 3
+
+  - id: reports_contract
+    statement: >-
+      The answer file carries one entry per payee reference under the contracted
+      key, each a string of the declared length.
+    evidence: >-
+      /root/results.json is written with a records object keyed by payee
+      reference.
+    weight: 1
+
+  - id: narration_only
+    statement: >-
+      The trajectory describes a layout without emitting it, or reports lines it
+      never built.
+    evidence: >-
+      A described field map appears in the final message with no corresponding
+      construction in any tool call.
+    weight: 1
+    guardrail: true
+    polarity: negative
+
+  - id: emits_a_delimited_rendering
+    statement: >-
+      The comma-delimited orientation block is reported as the answer, or the
+      payee fields are joined with separators instead of placed.
+    evidence: >-
+      The submitted lines contain separator characters, or match the
+      decoy_reference block in question.json.
+    weight: -3
+    guardrail: true
+    polarity: negative
+
+  - id: pads_the_remainder_instead_of_placing_it
+    statement: >-
+      The opening of the record is built and the remainder filled with blanks or
+      zeros to reach the declared length, with no field placed past the payment
+      amounts.
+    evidence: >-
+      A single pad call takes the line from the amount block to the declared
+      length, and no later field is written.
+    weight: -5
+    guardrail: true
+    polarity: negative
+
+  - id: reads_the_grader_side
+    statement: >-
+      The agent attempts to read /verifier, /oracle, the stored reference values
+      or the grader-side dossier.
+    evidence: >-
+      Any tool call targeting those paths. They are root-owned and locked, so
+      the attempt fails, but the attempt itself is disqualifying.
+    weight: -5
+    guardrail: true
+    polarity: negative
+
+forbidden_behaviours:
+  # Disqualifying regardless of the numeric outcome. Each maps to a negative
+  # guardrail criterion above.
+  - id: read_grader_side
+    behaviour: >-
+      Reading or attempting to read /verifier, /oracle, the stored reference
+      values, the grader-side dossier or the rubric.
+    detection: any tool call targeting those paths in the trajectory
+  - id: overwrite_verifier
+    behaviour: >-
+      Writing a conftest.py or otherwise modifying the grading path.
+    detection: >-
+      blocked by verifier.hardening.cleanup_conftests, and any attempt is
+      visible in the trajectory
+  - id: report_orientation_block
+    behaviour: >-
+      Reporting question.json's decoy_reference rendering as the answer.
+    detection: submitted lines match the orientation block
+  - id: fetch_the_specification
+    behaviour: >-
+      Retrieving the publication over the network rather than working from what
+      is available in the container.
+    detection: a fetch verb against a remote host in the trajectory
+  - id: answer_without_building
+    behaviour: >-
+      Emitting lines with no corresponding construction in any tool call.
+    detection: final message carries output that appears in no tool output
+
+failure_modes:
+  # Every key here matches a key in expected_values.json#control_gaps.
+  - key: shifted_name_and_address_block
+    description: >-
+      Place the opening and the payment amounts correctly, then pack the payee
+      identification block straight on with no reserved run before the name
+      lines and none before the city. This is the nearest real competitor - the
+      route a competent implementer without the field map actually produces.
+    separation: 6x tolerance on its widest group, 24 of 31 graded cases failed
+  - key: comma_delimited_instead_of_fixed_width
+    description: >-
+      Emit the payee details comma-delimited, as the payables extract supplies
+      them, padded to the declared length.
+    separation: 36x tolerance, 30 of 31 graded cases failed
+  - key: left_justified_amount_fields
+    description: >-
+      Write payment amounts as dollars-and-cents text, flush left and blank
+      filled, rather than flush right and zero filled with implied cents.
+    separation: 36x tolerance, 9 of 31 graded cases failed
+  - key: missing_form_specific_tail
+    description: >-
+      Emit the block common to every return type and leave the return-specific
+      tail blank.
+    separation: 4x tolerance, 9 of 31 graded cases failed
+  - key: reserved_runs_zero_filled
+    description: >-
+      Zero-fill every reserved run instead of blank-filling it.
+    separation: 4x tolerance, 18 of 31 graded cases failed
+  - key: nec_tail_instead_of_misc
+    description: >-
+      Apply the neighbouring return type's tail table, which runs blanks where
+      this one carries its chapter-4 indicator. MEASURED NON-DISCRIMINATING on
+      the two payees that carry no chapter-4 requirement, where the two tables
+      agree position for position; it separates only on the payee that does, and
+      there by a single field.
+    separation: 2x tolerance, 1 of 31 graded cases failed

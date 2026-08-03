@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="31" skipped="0" tests="41" time="1.797" timestamp="2026-07-29T13:39:52.998416+00:00" hostname="966f4321f020"><testcase classname="" name="test_graded_case[share-R-01]" time="0.001"><failure message="AssertionError: share-R-01: got 0.404000000, expected 0.342133776 (tol 0.002000)&#10;assert 0.06186622386643337 &lt;= 0.002&#10; +  where 0.06186622386643337 = abs((0.404 - 0.34213377613356666))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-01: got 0.404000000, expected 0.342133776 (tol 0.002000)
+E   assert 0.06186622386643337 &lt;= 0.002
+E    +  where 0.06186622386643337 = abs((0.404 - 0.34213377613356666))</failure></testcase><testcase classname="" name="test_graded_case[share-R-02]" time="0.001"><failure message="AssertionError: share-R-02: got 0.596000000, expected 0.611434163 (tol 0.002000)&#10;assert 0.015434162965622056 &lt;= 0.002&#10; +  where 0.015434162965622056 = abs((0.596 - 0.611434162965622))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-02: got 0.596000000, expected 0.611434163 (tol 0.002000)
+E   assert 0.015434162965622056 &lt;= 0.002
+E    +  where 0.015434162965622056 = abs((0.596 - 0.611434162965622))</failure></testcase><testcase classname="" name="test_graded_case[share-R-03]" time="0.001"><failure message="AssertionError: share-R-03: got 0.186000000, expected 0.065097266 (tol 0.002000)&#10;assert 0.12090273426289627 &lt;= 0.002&#10; +  where 0.12090273426289627 = abs((0.186 - 0.06509726573710373))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-03: got 0.186000000, expected 0.065097266 (tol 0.002000)
+E   assert 0.12090273426289627 &lt;= 0.002
+E    +  where 0.12090273426289627 = abs((0.186 - 0.06509726573710373))</failure></testcase><testcase classname="" name="test_graded_case[share-R-04]" time="0.000"><failure message="AssertionError: share-R-04: got 0.814000000, expected 0.887947556 (tol 0.002000)&#10;assert 0.07394755567885625 &lt;= 0.002&#10; +  where 0.07394755567885625 = abs((0.814 - 0.8879475556788562))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-04: got 0.814000000, expected 0.887947556 (tol 0.002000)
+E   assert 0.07394755567885625 &lt;= 0.002
+E    +  where 0.07394755567885625 = abs((0.814 - 0.8879475556788562))</failure></testcase><testcase classname="" name="test_graded_case[share-R-05]" time="0.001"><failure message="AssertionError: share-R-05: got 0.205000000, expected 0.387857202 (tol 0.002000)&#10;assert 0.1828572021588624 &lt;= 0.002&#10; +  where 0.1828572021588624 = abs((0.205 - 0.3878572021588624))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-05: got 0.205000000, expected 0.387857202 (tol 0.002000)
+E   assert 0.1828572021588624 &lt;= 0.002
+E    +  where 0.1828572021588624 = abs((0.205 - 0.3878572021588624))</failure></testcase><testcase classname="" name="test_graded_case[share-R-06]" time="0.001"><failure message="AssertionError: share-R-06: got 0.795000000, expected 0.644999314 (tol 0.002000)&#10;assert 0.15000068598501848 &lt;= 0.002&#10; +  where 0.15000068598501848 = abs((0.795 - 0.6449993140149816))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-06: got 0.795000000, expected 0.644999314 (tol 0.002000)
+E   assert 0.15000068598501848 &lt;= 0.002
+E    +  where 0.15000068598501848 = abs((0.795 - 0.6449993140149816))</failure></testcase><testcase classname="" name="test_graded_case[share-R-07]" time="0.001"><failure message="AssertionError: share-R-07: got 0.370000000, expected 0.594901139 (tol 0.002000)&#10;assert 0.2249011389406489 &lt;= 0.002&#10; +  where 0.2249011389406489 = abs((0.37 - 0.5949011389406489))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-07: got 0.370000000, expected 0.594901139 (tol 0.002000)
+E   assert 0.2249011389406489 &lt;= 0.002
+E    +  where 0.2249011389406489 = abs((0.37 - 0.5949011389406489))</failure></testcase><testcase classname="" name="test_graded_case[share-R-08]" time="0.001"><failure message="AssertionError: share-R-08: got 0.630000000, expected 0.928596903 (tol 0.002000)&#10;assert 0.2985969032189969 &lt;= 0.002&#10; +  where 0.2985969032189969 = abs((0.63 - 0.9285969032189969))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-08: got 0.630000000, expected 0.928596903 (tol 0.002000)
+E   assert 0.2985969032189969 &lt;= 0.002
+E    +  where 0.2985969032189969 = abs((0.63 - 0.9285969032189969))</failure></testcase><testcase classname="" name="test_graded_case[share-R-09]" time="0.001"><failure message="AssertionError: share-R-09: got 0.327000000, expected 0.432105228 (tol 0.002000)&#10;assert 0.10510522777401343 &lt;= 0.002&#10; +  where 0.10510522777401343 = abs((0.327 - 0.43210522777401345))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-09: got 0.327000000, expected 0.432105228 (tol 0.002000)
+E   assert 0.10510522777401343 &lt;= 0.002
+E    +  where 0.10510522777401343 = abs((0.327 - 0.43210522777401345))</failure></testcase><testcase classname="" name="test_graded_case[share-R-10]" time="0.001"><failure message="AssertionError: share-R-10: got 0.327000000, expected 0.322367414 (tol 0.002000)&#10;assert 0.004632585961318825 &lt;= 0.002&#10; +  where 0.004632585961318825 = abs((0.327 - 0.3223674140386812))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-10: got 0.327000000, expected 0.322367414 (tol 0.002000)
+E   assert 0.004632585961318825 &lt;= 0.002
+E    +  where 0.004632585961318825 = abs((0.327 - 0.3223674140386812))</failure></testcase><testcase classname="" name="test_graded_case[share-R-11]" time="0.001"><failure message="AssertionError: share-R-11: got 0.673000000, expected 0.661299589 (tol 0.002000)&#10;assert 0.011700410975606479 &lt;= 0.002&#10; +  where 0.011700410975606479 = abs((0.673 - 0.6612995890243936))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-11: got 0.673000000, expected 0.661299589 (tol 0.002000)
+E   assert 0.011700410975606479 &lt;= 0.002
+E    +  where 0.011700410975606479 = abs((0.673 - 0.6612995890243936))</failure></testcase><testcase classname="" name="test_graded_case[share-R-12]" time="0.000"><failure message="AssertionError: share-R-12: got 0.673000000, expected 0.772249790 (tol 0.002000)&#10;assert 0.09924978970756748 &lt;= 0.002&#10; +  where 0.09924978970756748 = abs((0.673 - 0.7722497897075675))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-12: got 0.673000000, expected 0.772249790 (tol 0.002000)
+E   assert 0.09924978970756748 &lt;= 0.002
+E    +  where 0.09924978970756748 = abs((0.673 - 0.7722497897075675))</failure></testcase><testcase classname="" name="test_graded_case[share-R-13]" time="0.000"><failure message="AssertionError: share-R-13: got 0.621000000, expected 0.585750138 (tol 0.002000)&#10;assert 0.035249861710963226 &lt;= 0.002&#10; +  where 0.035249861710963226 = abs((0.621 - 0.5857501382890368))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-13: got 0.621000000, expected 0.585750138 (tol 0.002000)
+E   assert 0.035249861710963226 &lt;= 0.002
+E    +  where 0.035249861710963226 = abs((0.621 - 0.5857501382890368))</failure></testcase><testcase classname="" name="test_graded_case[share-R-14]" time="0.000"><failure message="AssertionError: share-R-14: got 0.379000000, expected 0.472825840 (tol 0.002000)&#10;assert 0.09382583990061555 &lt;= 0.002&#10; +  where 0.09382583990061555 = abs((0.379 - 0.47282583990061555))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-14: got 0.379000000, expected 0.472825840 (tol 0.002000)
+E   assert 0.09382583990061555 &lt;= 0.002
+E    +  where 0.09382583990061555 = abs((0.379 - 0.47282583990061555))</failure></testcase><testcase classname="" name="test_graded_case[share-R-15]" time="0.000"><failure message="AssertionError: share-R-15: got 0.286000000, expected 0.228139175 (tol 0.002000)&#10;assert 0.05786082488212804 &lt;= 0.002&#10; +  where 0.05786082488212804 = abs((0.286 - 0.22813917511787193))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-15: got 0.286000000, expected 0.228139175 (tol 0.002000)
+E   assert 0.05786082488212804 &lt;= 0.002
+E    +  where 0.05786082488212804 = abs((0.286 - 0.22813917511787193))</failure></testcase><testcase classname="" name="test_graded_case[share-R-16]" time="0.000"><failure message="AssertionError: share-R-16: got 0.253000000, expected 0.285468807 (tol 0.002000)&#10;assert 0.03246880746952707 &lt;= 0.002&#10; +  where 0.03246880746952707 = abs((0.253 - 0.2854688074695271))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-16: got 0.253000000, expected 0.285468807 (tol 0.002000)
+E   assert 0.03246880746952707 &lt;= 0.002
+E    +  where 0.03246880746952707 = abs((0.253 - 0.2854688074695271))</failure></testcase><testcase classname="" name="test_graded_case[share-R-17]" time="0.000"><failure message="AssertionError: share-R-17: got 0.461000000, expected 0.509459763 (tol 0.002000)&#10;assert 0.048459763438972125 &lt;= 0.002&#10; +  where 0.048459763438972125 = abs((0.461 - 0.5094597634389721))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-17: got 0.461000000, expected 0.509459763 (tol 0.002000)
+E   assert 0.048459763438972125 &lt;= 0.002
+E    +  where 0.048459763438972125 = abs((0.461 - 0.5094597634389721))</failure></testcase><testcase classname="" name="test_graded_case[share-R-18]" time="0.000"><failure message="AssertionError: share-R-18: got 0.024000000, expected 0.013810982 (tol 0.002000)&#10;assert 0.01018901787105368 &lt;= 0.002&#10; +  where 0.01018901787105368 = abs((0.024 - 0.01381098212894632))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-18: got 0.024000000, expected 0.013810982 (tol 0.002000)
+E   assert 0.01018901787105368 &lt;= 0.002
+E    +  where 0.01018901787105368 = abs((0.024 - 0.01381098212894632))</failure></testcase><testcase classname="" name="test_graded_case[share-R-19]" time="0.000"><failure message="AssertionError: share-R-19: got 0.043000000, expected 0.073164173 (tol 0.002000)&#10;assert 0.030164173295595592 &lt;= 0.002&#10; +  where 0.030164173295595592 = abs((0.043 - 0.07316417329559559))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-19: got 0.043000000, expected 0.073164173 (tol 0.002000)
+E   assert 0.030164173295595592 &lt;= 0.002
+E    +  where 0.030164173295595592 = abs((0.043 - 0.07316417329559559))</failure></testcase><testcase classname="" name="test_graded_case[share-R-20]" time="0.000"><failure message="AssertionError: share-R-20: got 0.933000000, expected 0.974421362 (tol 0.002000)&#10;assert 0.0414213615635286 &lt;= 0.002&#10; +  where 0.0414213615635286 = abs((0.933 - 0.9744213615635287))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-20: got 0.933000000, expected 0.974421362 (tol 0.002000)
+E   assert 0.0414213615635286 &lt;= 0.002
+E    +  where 0.0414213615635286 = abs((0.933 - 0.9744213615635287))</failure></testcase><testcase classname="" name="test_graded_case[share-R-21]" time="0.000"><failure message="AssertionError: share-R-21: got 0.195000000, expected 0.462469761 (tol 0.002000)&#10;assert 0.267469760646628 &lt;= 0.002&#10; +  where 0.267469760646628 = abs((0.195 - 0.462469760646628))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-21: got 0.195000000, expected 0.462469761 (tol 0.002000)
+E   assert 0.267469760646628 &lt;= 0.002
+E    +  where 0.267469760646628 = abs((0.195 - 0.462469760646628))</failure></testcase><testcase classname="" name="test_graded_case[share-R-22]" time="0.000"><failure message="AssertionError: share-R-22: got 0.572000000, expected 0.406510147 (tol 0.002000)&#10;assert 0.16548985338542477 &lt;= 0.002&#10; +  where 0.16548985338542477 = abs((0.572 - 0.4065101466145752))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-22: got 0.572000000, expected 0.406510147 (tol 0.002000)
+E   assert 0.16548985338542477 &lt;= 0.002
+E    +  where 0.16548985338542477 = abs((0.572 - 0.4065101466145752))</failure></testcase><testcase classname="" name="test_graded_case[share-R-23]" time="0.000"><failure message="AssertionError: share-R-23: got 0.233000000, expected 0.357911771 (tol 0.002000)&#10;assert 0.12491177069145434 &lt;= 0.002&#10; +  where 0.12491177069145434 = abs((0.233 - 0.35791177069145436))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-23: got 0.233000000, expected 0.357911771 (tol 0.002000)
+E   assert 0.12491177069145434 &lt;= 0.002
+E    +  where 0.12491177069145434 = abs((0.233 - 0.35791177069145436))</failure></testcase><testcase classname="" name="test_graded_case[share-R-24]" time="0.000"><failure message="AssertionError: share-R-24: got 0.104000000, expected 0.057034510 (tol 0.002000)&#10;assert 0.04696548965271624 &lt;= 0.002&#10; +  where 0.04696548965271624 = abs((0.104 - 0.057034510347283754))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-24: got 0.104000000, expected 0.057034510 (tol 0.002000)
+E   assert 0.04696548965271624 &lt;= 0.002
+E    +  where 0.04696548965271624 = abs((0.104 - 0.057034510347283754))</failure></testcase><testcase classname="" name="test_graded_case[share-R-25]" time="0.000"><failure message="AssertionError: share-R-25: got 0.113000000, expected 0.039828071 (tol 0.002000)&#10;assert 0.07317192871098607 &lt;= 0.002&#10; +  where 0.07317192871098607 = abs((0.113 - 0.03982807128901394))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-25: got 0.113000000, expected 0.039828071 (tol 0.002000)
+E   assert 0.07317192871098607 &lt;= 0.002
+E    +  where 0.07317192871098607 = abs((0.113 - 0.03982807128901394))</failure></testcase><testcase classname="" name="test_graded_case[share-R-26]" time="0.000"><failure message="AssertionError: share-R-26: got 0.782000000, expected 0.790858507 (tol 0.002000)&#10;assert 0.008858507447119135 &lt;= 0.002&#10; +  where 0.008858507447119135 = abs((0.782 - 0.7908585074471192))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-26: got 0.782000000, expected 0.790858507 (tol 0.002000)
+E   assert 0.008858507447119135 &lt;= 0.002
+E    +  where 0.008858507447119135 = abs((0.782 - 0.7908585074471192))</failure></testcase><testcase classname="" name="test_graded_case[share-R-27]" time="0.001"><failure message="AssertionError: share-R-27: got 0.010000000, expected 0.021863595 (tol 0.002000)&#10;assert 0.011863595239867781 &lt;= 0.002&#10; +  where 0.011863595239867781 = abs((0.01 - 0.02186359523986778))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-27: got 0.010000000, expected 0.021863595 (tol 0.002000)
+E   assert 0.011863595239867781 &lt;= 0.002
+E    +  where 0.011863595239867781 = abs((0.01 - 0.02186359523986778))</failure></testcase><testcase classname="" name="test_graded_case[share-R-28]" time="0.000"><failure message="AssertionError: share-R-28: got 0.009000000, expected 0.004582381 (tol 0.002000)&#10;assert 0.004417619094955695 &lt;= 0.002&#10; +  where 0.004417619094955695 = abs((0.009 - 0.004582380905044305))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-28: got 0.009000000, expected 0.004582381 (tol 0.002000)
+E   assert 0.004417619094955695 &lt;= 0.002
+E    +  where 0.004417619094955695 = abs((0.009 - 0.004582380905044305))</failure></testcase><testcase classname="" name="test_graded_case[share-R-29]" time="0.001"><failure message="AssertionError: share-R-29: got 0.020000000, expected 0.088995638 (tol 0.002000)&#10;assert 0.06899563833883601 &lt;= 0.002&#10; +  where 0.06899563833883601 = abs((0.02 - 0.08899563833883602))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-29: got 0.020000000, expected 0.088995638 (tol 0.002000)
+E   assert 0.06899563833883601 &lt;= 0.002
+E    +  where 0.06899563833883601 = abs((0.02 - 0.08899563833883602))</failure></testcase><testcase classname="" name="test_graded_case[share-R-30]" time="0.001"><failure message="AssertionError: share-R-30: got 0.961000000, expected 0.965695275 (tol 0.002000)&#10;assert 0.004695275269360755 &lt;= 0.002&#10; +  where 0.004695275269360755 = abs((0.961 - 0.9656952752693607))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-30: got 0.961000000, expected 0.965695275 (tol 0.002000)
+E   assert 0.004695275269360755 &lt;= 0.002
+E    +  where 0.004695275269360755 = abs((0.961 - 0.9656952752693607))</failure></testcase><testcase classname="" name="test_graded_case[share-R-31]" time="0.000"><failure message="AssertionError: share-R-31: got 0.961000000, expected 0.982957274 (tol 0.002000)&#10;assert 0.021957273603470773 &lt;= 0.002&#10; +  where 0.021957273603470773 = abs((0.961 - 0.9829572736034707))">/verifier/test_outputs.py:85: in test_graded_case
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: share-R-31: got 0.961000000, expected 0.982957274 (tol 0.002000)
+E   assert 0.021957273603470773 &lt;= 0.002
+E    +  where 0.021957273603470773 = abs((0.961 - 0.9829572736034707))</failure></testcase><testcase classname="" name="test_frozen_reference_matches_independent_recompute" time="0.001" /><testcase classname="" name="test_published_table9_distribution_is_reproduced" time="1.316" /><testcase classname="" name="test_every_graded_case_is_decided_by_the_withheld_models" time="0.003" /><testcase classname="" name="test_shares_of_a_response_group_sum_to_one" time="0.001" /><testcase classname="" name="test_every_model_family_and_every_pair_is_exercised" time="0.000" /><testcase classname="" name="test_plausibility_envelope_and_guess_resistance" time="0.001" /><testcase classname="" name="test_orientation_block_fails_every_graded_case" time="0.001" /><testcase classname="" name="test_isomorphic_invariance_under_relabelling_and_reordering" time="0.002" /><testcase classname="" name="test_tolerances_are_positive_and_bind" time="0.000" /><testcase classname="" name="test_input_data_is_intact" time="0.001" /></testsuite></testsuites>

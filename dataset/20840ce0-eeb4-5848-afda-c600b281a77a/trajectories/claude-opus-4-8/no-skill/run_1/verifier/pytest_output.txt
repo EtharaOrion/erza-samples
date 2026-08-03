@@ -1,0 +1,101 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /root
+configfile: ../dev/null
+collecting ... collected 41 items
+
+::test_graded_case[R0001_head_1_54] PASSED                               [  2%]
+::test_graded_case[R0001_amounts_55_270] FAILED                          [  4%]
+::test_graded_case[R0001_reserved_and_first_name_271_327] FAILED         [  7%]
+::test_graded_case[R0001_second_name_and_address_328_407] PASSED         [  9%]
+::test_graded_case[R0001_reserved_and_city_408_487] PASSED               [ 12%]
+::test_graded_case[R0001_state_and_postal_488_498] PASSED                [ 14%]
+::test_graded_case[R0001_reserved_and_counter_499_543] PASSED            [ 17%]
+::test_graded_case[R0001_indicators_and_reserved_544_662] PASSED         [ 19%]
+::test_graded_case[R0001_free_text_and_state_withholding_663_734] PASSED [ 21%]
+::test_graded_case[R0001_local_withholding_and_program_code_735_750] PASSED [ 24%]
+::test_graded_case[R0002_head_1_54] PASSED                               [ 26%]
+::test_graded_case[R0002_amounts_55_270] FAILED                          [ 29%]
+::test_graded_case[R0002_reserved_and_first_name_271_327] FAILED         [ 31%]
+::test_graded_case[R0002_second_name_and_address_328_407] FAILED         [ 34%]
+::test_graded_case[R0002_reserved_and_city_408_487] PASSED               [ 36%]
+::test_graded_case[R0002_state_and_postal_488_498] PASSED                [ 39%]
+::test_graded_case[R0002_reserved_and_counter_499_543] PASSED            [ 41%]
+::test_graded_case[R0002_indicators_and_reserved_544_662] PASSED         [ 43%]
+::test_graded_case[R0002_free_text_and_state_withholding_663_734] PASSED [ 46%]
+::test_graded_case[R0002_local_withholding_and_program_code_735_750] PASSED [ 48%]
+::test_graded_case[R0003_head_1_54] PASSED                               [ 51%]
+::test_graded_case[R0003_amounts_55_270] FAILED                          [ 53%]
+::test_graded_case[R0003_reserved_and_first_name_271_327] FAILED         [ 56%]
+::test_graded_case[R0003_second_name_and_address_328_407] PASSED         [ 58%]
+::test_graded_case[R0003_reserved_and_city_408_487] PASSED               [ 60%]
+::test_graded_case[R0003_state_and_postal_488_498] PASSED                [ 63%]
+::test_graded_case[R0003_reserved_and_counter_499_543] PASSED            [ 65%]
+::test_graded_case[R0003_indicators_and_reserved_544_662] PASSED         [ 68%]
+::test_graded_case[R0003_free_text_and_state_withholding_663_734] PASSED [ 70%]
+::test_graded_case[R0003_local_withholding_and_program_code_735_750] PASSED [ 73%]
+::test_graded_case[answer_file_shape_and_charset] PASSED                 [ 75%]
+::test_field_table_is_contiguous_and_totals_750 PASSED                   [ 78%]
+::test_every_position_belongs_to_exactly_one_graded_group PASSED         [ 80%]
+::test_frozen_golden_records_decode_to_the_payee_data PASSED             [ 82%]
+::test_permitted_readings_of_the_specification_do_not_false_fail PASSED  [ 85%]
+::test_control_paths_are_measured_live_and_clear_the_tolerance PASSED    [ 87%]
+::test_plausibility_envelope_and_guess_resistance PASSED                 [ 90%]
+::test_no_assembled_record_reaches_the_agent PASSED                      [ 92%]
+::test_isomorphic_invariance_under_relabel_and_reindex PASSED            [ 95%]
+::test_amount_convention_alone_does_not_carry_the_task PASSED            [ 97%]
+::test_tolerances_are_positive_and_the_case_set_is_well_formed PASSED    [100%]
+
+=================================== FAILURES ===================================
+____________________ test_graded_case[R0001_amounts_55_270] ____________________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0001_amounts_55_270: 16 of 18 field(s) decode back to the payee record - amount_H a payment amount field must be all digits, got ' HERNANDEZ R'; amount_J a payment amount field must be all digits, got 'OSA M       '
+E   assert 2.0 <= 0.5
+E    +  where 2.0 = abs((16.0 - 18.0))
+___________ test_graded_case[R0001_reserved_and_first_name_271_327] ____________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0001_reserved_and_first_name_271_327: 2 of 3 field(s) decode back to the payee record - first_payee_name_line decodes to '', but the payee record carries 'HERNANDEZ ROSA M'
+E   assert 1.0 <= 0.5
+E    +  where 1.0 = abs((2.0 - 3.0))
+____________________ test_graded_case[R0002_amounts_55_270] ____________________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0002_amounts_55_270: 16 of 18 field(s) decode back to the payee record - amount_H a payment amount field must be all digits, got ' PINEHURST F'; amount_J a payment amount field must be all digits, got 'ARMS COOPERA'
+E   assert 2.0 <= 0.5
+E    +  where 2.0 = abs((16.0 - 18.0))
+___________ test_graded_case[R0002_reserved_and_first_name_271_327] ____________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0002_reserved_and_first_name_271_327: 1 of 3 field(s) decode back to the payee record - blank_271_286 reserved positions carry 'TIVE            ', not blanks; first_payee_name_line decodes to 'AND MIDLAND GRAIN PARTNERS LLC', but the payee record carries 'PINEHURST FARMS COOPERATIVE'
+E   assert 2.0 <= 0.5
+E    +  where 2.0 = abs((1.0 - 3.0))
+___________ test_graded_case[R0002_second_name_and_address_328_407] ____________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0002_second_name_and_address_328_407: 1 of 2 field(s) decode back to the payee record - second_payee_name_line decodes to '', but the payee record carries 'AND MIDLAND GRAIN PARTNERS LLC'
+E   assert 1.0 <= 0.5
+E    +  where 1.0 = abs((1.0 - 2.0))
+____________________ test_graded_case[R0003_amounts_55_270] ____________________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0003_amounts_55_270: 16 of 18 field(s) decode back to the payee record - amount_H a payment amount field must be all digits, got ' OKEEFE DANI'; amount_J a payment amount field must be all digits, got 'EL J        '
+E   assert 2.0 <= 0.5
+E    +  where 2.0 = abs((16.0 - 18.0))
+___________ test_graded_case[R0003_reserved_and_first_name_271_327] ____________
+/verifier/test_outputs.py:165: in test_graded_case
+    assert abs(got - ref) <= tol, \
+E   AssertionError: R0003_reserved_and_first_name_271_327: 2 of 3 field(s) decode back to the payee record - first_payee_name_line decodes to '', but the payee record carries 'OKEEFE DANIEL J'
+E   assert 1.0 <= 0.5
+E    +  where 1.0 = abs((2.0 - 3.0))
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+=========================== short test summary info ============================
+FAILED ::test_graded_case[R0001_amounts_55_270] - AssertionError: R0001_amoun...
+FAILED ::test_graded_case[R0001_reserved_and_first_name_271_327] - AssertionE...
+FAILED ::test_graded_case[R0002_amounts_55_270] - AssertionError: R0002_amoun...
+FAILED ::test_graded_case[R0002_reserved_and_first_name_271_327] - AssertionE...
+FAILED ::test_graded_case[R0002_second_name_and_address_328_407] - AssertionE...
+FAILED ::test_graded_case[R0003_amounts_55_270] - AssertionError: R0003_amoun...
+FAILED ::test_graded_case[R0003_reserved_and_first_name_271_327] - AssertionE...
+========================= 7 failed, 34 passed in 0.12s =========================

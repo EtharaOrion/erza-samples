@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "task": "bridged-race-population-estimates",
+  "task_id": "pending-freeze",
+  "doctrine": "PROMPT-AUTHOR-TO-30.md Stage-6 / 6.11: weight magnitudes strictly in {5,3,1,0}; guardrails negative; narration capped at 1; one test_<id> per deterministic criterion; every truth_ref resolves to a heading in the CURRENT TRUTH.md (enforced by verification/check_refs.py). Every weight carries a weight_evidence receipt naming either a measured control in ../expected_values.json:control_gaps or the structural role it guards.",
+  "gate_doctrine": "ONE criterion gates: d_applies_published_coefficients, the crux the task exists to measure. 6.11 objects that no shipped deliverable declares a gate, so a run that failed the load-bearing step still prints an uncapped number; score.py caps final at 0.5 and labels CRUX-FAILED when a gate scores 0. The honest caveat: gating properly wants a detector precision measured near 1 and no pilot has run yet. This detector is numeric - it requires at least eight distinct published coefficients from EACH of the two tables to appear, and at least one from each to appear where it can act - which is the tightest evidence available before a pilot, and it is exercised in both directions by verification/negative_fixtures_test.py. No judged criterion gates: panel noise disqualifies a judged criterion from a verdict-flipping role.",
+  "criteria": [
+    {"id": "d_reads_input", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Opened the baked input under /root/data (response_records.csv, area_profile.csv and/or question.json).",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: orientation precondition. Every graded share is a property of a specific record and a specific area profile, so a run that never opens them cannot be measuring the right thing. Hygiene tier (weight 1): low blast radius alone, but everything downstream depends on it."},
+
+    {"id": "d_writes_solver", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Authored a solver rather than assembling the 31 figures by hand.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: 31 records spread over 11 equation families, each needing a 14-term linear predictor, cannot be done reliably by inspection inside the budget. Hygiene tier (weight 1); it constrains how the work is done, not what is known."},
+
+    {"id": "d_executes_solver", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Executed the solver to produce the results rather than only drafting it.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: separates a produced artifact from an unrun draft. Hygiene tier (weight 1)."},
+
+    {"id": "d_applies_published_coefficients", "channel": "deterministic", "weight": 5, "is_positive": true, "is_gate": true,
+     "criterion": "CRUX. Applied the publisher's fitted constants - at least eight distinct coefficients from EACH of the two published tables appear, and at least one from each appears where it can act - rather than an arithmetic split or the country-wide averages.",
+     "truth_ref": "Step 3; The crux",
+     "weight_evidence": "Crux (TRUTH.md Step 3), and the Delta-lever in one criterion. Three measured controls sit under it and ALL THREE are enforced per graded case at build time rather than merely recorded: equal_split separates by at least 12.29x tolerance with 0 of 31 cases inside, proportional_to_area_single_category_counts by at least 3.62x with 0 of 31 inside, and flat_national_shares - the nearest real competitor, and the block question.json ships - by at least 2.21x with 0 of 31 inside (control_gaps). Every route reachable without the withheld coefficient set misses every graded case, by construction. Weight 5, and the only gate in this bundle."},
+
+    {"id": "d_selects_model_family_per_group", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "The response group decides which equation family is evaluated - the five composite groups are handled by the composite set and the six with their own equations are not.",
+     "truth_ref": "Step 2",
+     "weight_evidence": "Work product: model selection is the step before the crux and it is where a run that found one table goes wrong. Measured control composite_model_for_every_group - exactly this failure - separates the cases it alters by a large multiple of tolerance and lands inside tolerance on none of the graded set that it alters (control_gaps.composite_model_for_every_group). Weight 3 rather than 5: it is the precondition for the crux, and the crux itself is scored separately."},
+
+    {"id": "d_applies_footnoted_transforms", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Both footnoted covariate transforms are present: the logarithm of one area percentage in the equations that call for it, and the square of another in the equations that call for it.",
+     "truth_ref": "Step 3",
+     "weight_evidence": "Measured controls log_transform_of_percent_aian_omitted and square_of_percent_black_omitted, recorded separately in control_gaps with the cases each alters. The transforms are footnotes on the published tables rather than rows of them, which is exactly the kind of small print a run that has skimmed the table drops. Weight 3, not 5: each moves a named subset of the equations rather than the whole method."},
+
+    {"id": "d_rescales_composite_over_named_categories", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "The composite output is renormalised over the categories the response group actually named, rather than reported as the four-category share.",
+     "truth_ref": "Step 4",
+     "weight_evidence": "Measured control composite_shares_not_rescaled (control_gaps): it alters only the five composite groups and is identical to the correct route on the other six, which is why it is recorded with its scope rather than asserted to be fatal everywhere. It is the step the published method states in a separate sentence from the model itself. Weight 3 - a real and separately fatal method error on the cases it touches, but not the step the task exists to measure."},
+
+    {"id": "d_caps_age_at_69", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "The age variable is capped before it enters the equations, so records at 70 and over take the value the equations give at the capped age.",
+     "truth_ref": "Step 3",
+     "weight_evidence": "Measured control age_not_capped_at_69 (control_gaps): it alters only the graded cases at 70 and over. The graded set carries three such records by construction, so this is a real but narrow convention. Hygiene tier (weight 1) because the tier tracks what the criterion measures - a stated convention - not how many cases it happens to move."},
+
+    {"id": "d_reports_contract", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Emitted /root/results.json under the contracted top-level key assignment_share, keyed by record_id.",
+     "truth_ref": "Step 6",
+     "weight_evidence": "Structural role: a correct computation that misses the contract is unscoreable, so this guards measurability rather than knowledge. Hygiene tier (weight 1)."},
+
+    {"id": "d_g_arithmetic_split", "channel": "deterministic", "weight": -5, "is_positive": false,
+     "criterion": "GUARDRAIL: the response was split arithmetically - evenly, or in proportion to the area's own single-category percentages - with no fitted constant entering the run at all.",
+     "truth_ref": "Step 1; Delta-lever",
+     "weight_evidence": "Measured controls equal_split (at least 12.29x tolerance, 0 of 31 graded cases inside) and proportional_to_area_single_category_counts (at least 3.62x, 0 of 31 inside), both ENFORCED per graded case at build time (control_gaps). These are the two routes the unaided arm is expected to take. Guardrails are negative by design; magnitude 5 matches the crux tier it negates."},
+
+    {"id": "d_g_single_model_for_every_group", "channel": "deterministic", "weight": -5, "is_positive": false,
+     "criterion": "GUARDRAIL: one equation family was stretched over all eleven response groups - constants from exactly one of the two published tables are present.",
+     "truth_ref": "Step 2",
+     "weight_evidence": "Measured control composite_model_for_every_group (control_gaps), the simplification a reader makes on finding one table that covers everything. It is a distinct failure from the arithmetic split - the run DID find published constants - and it collapses the model-selection step the published method spends a paragraph on. Magnitude 5 matches the crux tier it negates; the detector stays quiet as soon as both tables are present, whatever they were named."},
+
+    {"id": "d_g_orientation_block_echoed", "channel": "deterministic", "weight": -3, "is_positive": false,
+     "criterion": "GUARDRAIL: question.json's orientation_flat_shares block was copied through into the answer.",
+     "truth_ref": "Where runs break",
+     "weight_evidence": "Measured control flat_national_shares, the NEAREST REAL COMPETITOR: at least 2.21x tolerance on its closest graded case and 0 of 31 inside, enforced per case at build time (control_gaps.flat_national_shares). The input labels the block honestly as not the answer. Magnitude 3 rather than 5: it is the same wrong dimension as d_g_arithmetic_split but attributable to a distinct behaviour - copying a labelled distractor rather than computing - and charging it at the crux tier would double-count one failure."},
+
+    {"id": "d_g_grader_path_access", "channel": "deterministic", "weight": -5, "is_positive": false,
+     "criterion": "GUARDRAIL: read or probed the grading surface - /verifier, /oracle, expected_values.json, anchor_table9.csv, cell_universe.npz, independent_bridging.py, bridging_models.py, truth.md, rubrics.json or build/.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural integrity: any hit invalidates the pair regardless of score. Containment is enforced by file ownership in the image and by sandbox_locked_paths; this criterion records whether it was tested. Magnitude matches the crux tier because a hit voids the measurement rather than degrading it."},
+
+    {"id": "d_g_network_egress", "channel": "deterministic", "weight": -3, "is_positive": false,
+     "criterion": "GUARDRAIL: attempted to fetch the published report, or to install a package, from the network.",
+     "truth_ref": "What cannot be done",
+     "weight_evidence": "Structural integrity, and here it is stronger than usual: the withheld object IS a published page, so a successful fetch is a leak of the answer rather than only a hygiene signal. It is charged at magnitude 3 rather than 5 because what makes the graded FIGURES unfetchable is the delabelled area set - there is no published table of shares keyed by anything the agent can see - so a fetch degrades the measurement without automatically deciding it. Recorded honestly in build_report.json:anonymisation, and the reason the pilot must run with the egress firewall enabled. Citing the report beside the numbers is not egress and the detector requires a fetch verb."},
+
+    {"id": "n_evaluates_the_published_equations", "channel": "non_deterministic", "weight": 3, "is_positive": true,
+     "criterion": "The reasoning shows the fitted constants being EVALUATED for a record, not merely held: a covariate vector assembled in the published order and paired one-to-one with the coefficients of the chosen equation, a linear predictor formed from that pairing, and that predictor turned into a share. Equivalent routes count - logistic on a single contrast, exponentiate-and-normalise over the named categories, or any algebraically identical statement. Quoting the constants, naming the tables, or asserting that the published models were applied earns nothing on its own.",
+     "truth_ref": "Step 3; The crux",
+     "weight_evidence": "REQUIRED JUDGED TWIN of the gate d_applies_published_coefficients (REQUIREMENTS.md:352, 'every deterministic gate has a judged twin'); the gate previously had none, and the three judged criteria sat on Step 2, Step 5 and Sources, leaving nothing judged on the crux. Separable from its twin by design and therefore exempt from mutual exclusivity (REQUIREMENTS.md:311-316): the deterministic gate reads the CODE and asks whether the constants reached a position where they could act, which a run can satisfy by pasting a correct table it then misuses; this asks whether the REASONING pairs those constants with the right covariates in the right order, which a run can satisfy while mistyping a constant. The pairing order is exactly what TRUTH.md Step 3 marks as the crux, and the covariate-order failure is the one the outcome verifier catches but no other process criterion sees. Weight 3, not 5: no judged criterion gates, because panel noise disqualifies a judged verdict from a verdict-flipping role (gate_doctrine above). Weight 3 rather than the narration tier because it asks for a reconstructable derivation - a work product - not for a claim about method; n_states_constant_source already holds the attribution question at weight 1 and n_group_specific_model_choice the family-choice claim, so neither is duplicated here."},
+
+    {"id": "n_group_specific_model_choice", "channel": "non_deterministic", "weight": 1, "is_positive": true, "kind": "narration",
+     "criterion": "The reasoning states that different response groups are governed by different equation families, and why - rather than treating the eleven groups as one problem with a shared rule.",
+     "truth_ref": "Step 2",
+     "weight_evidence": "Narration tier, capped at 1 by doctrine. It was drafted at 3 as the judged twin of d_selects_model_family_per_group, but what it asks the judge for is what the run SAYS about the groups, and a model can say it without doing it. The behaviour itself is already scored where it leaves a work product: d_selects_model_family_per_group carries weight 3 and tests it against the code. Re-tiering costs the instrument nothing and removes a double count. Deliberately NOT rephrased to keep weight 3: tuning a criterion's wording until it reads as behavioural is how a rubric drifts away from what it actually measures."},
+
+    {"id": "n_verification_that_can_disagree", "channel": "non_deterministic", "weight": 3, "is_positive": true,
+     "criterion": "The run checks its result against something that could actually have disagreed - confirming that the shares of a response group sum to one over the categories it named, comparing a value against the published range for its own series, recomputing by a second route, or an equivalent - rather than treating 'the script ran' as verification.",
+     "truth_ref": "Step 5",
+     "weight_evidence": "Behavioural: every failure route on this task returns a well-formed number between 0 and 1, so nothing about the output looks wrong and only a check that can disagree separates a correctly evaluated equation from a confidently mis-evaluated one. The sum-to-one check in particular catches the missed composite rescale, which the outcome channel penalises but which no other process criterion detects independently. Weight 3 (an executed check is a work product, not a claim)."},
+
+    {"id": "n_states_constant_source", "channel": "non_deterministic", "weight": 1, "is_positive": true,
+     "criterion": "The agent states which fitted constants it applied to which response group and where they came from.",
+     "truth_ref": "Sources",
+     "weight_evidence": "Narration tier: a speech act any style-tuned model can emit, capped at weight 1 by doctrine. Its value is attribution - it lets a reviewer bind a wrong answer to a named route instead of to an unexplained number, and it is what distinguishes a cited constant set from one the run produced from its own weights."}
+  ]
+}

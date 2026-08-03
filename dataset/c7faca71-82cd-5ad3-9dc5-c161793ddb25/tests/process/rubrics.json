@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "task": "flight-duty-period-legality",
+  "task_id": "pending-freeze",
+  "doctrine": "PROMPT-AUTHOR-TO-30.md Stage-6 / 6.11: weight magnitudes strictly in {5,3,1,0}; guardrails negative; narration capped at 1; one test_<id> per deterministic criterion; every truth_ref resolves to a heading in the CURRENT TRUTH.md (enforced by verification/check_refs.py). Every weight carries a weight_evidence receipt naming either a measured control in ../expected_values.json:control_gaps or the structural role it guards.",
+  "gate_doctrine": "ONE criterion gates: d_indexes_matrix_on_both_axes, the crux the task exists to measure. 6.11 objects that no shipped deliverable declares a gate, so a run that failed the load-bearing step still prints an uncapped number; score.py caps final at 0.5 and labels CRUX-FAILED when a gate scores 0. The detector is numeric - at least six distinct published cells written down, at least two of them half-hour values that no flat reading would produce, beside an index on both axes - which is the tightest evidence available before a pilot, and it is exercised in both directions by verification/negative_fixtures_test.py. The honest caveat: detector precision has not been measured on real runs, because no pilot has run. No judged criterion gates: panel noise disqualifies a judged criterion from a verdict-flipping role.",
+  "criteria": [
+    {"id": "d_reads_roster", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Opened the baked roster and contract under /root/data (pairings.csv and/or question.json).",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: orientation precondition. The roster is synthetic and the vocabulary of limit names is defined only in question.json, so a run that never opens them cannot report a scoreable name. Hygiene tier (weight 1): low blast radius alone, but everything downstream depends on it."},
+
+    {"id": "d_writes_solver", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Authored a solver rather than assembling the fifty-one figures by hand.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: seventeen pairings against seven limits is one hundred and nineteen comparisons, which is neither checkable nor reproducible by hand inside the budget. Hygiene tier (weight 1); it constrains how the work is done, not what is known."},
+
+    {"id": "d_executes_solver", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Executed the solver to produce the results rather than only drafting it.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural role: separates a produced artifact from an unrun draft. Hygiene tier (weight 1)."},
+
+    {"id": "d_normalises_to_one_clock", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Reduced every clock time and every duration to whole minutes, and treated a release time earlier on the clock than its report time as the next day - by a modulo, a conditional day addition, a timedelta or a date increment, indifferently. Nothing downstream compares a string.",
+     "truth_ref": "Step 1",
+     "weight_evidence": "COVERAGE (added 2026-08-03): TRUTH.md Step 1 was named by no truth_ref in any channel and carried no uncheckable declaration - instrument blindness on a step, which in a score artifact is indistinguishable from coverage (REQUIREMENTS.md:317-322). Hygiene tier (weight 1): both arms must do this to produce any number at all, so it does not discriminate between them, and TRUTH.md itself presents it as the precondition for the steps that do. It is nonetheless a real trap - the overnight wrap silently turns an elapsed period negative, and a string comparison of h:mm silently orders 9:00 after 10:00 - so it is worth observing rather than assuming. Deliberately route-open: the day is accepted as 1440, 24*60, 86400 or 24, and the wrap as a modulo, an addition, a timedelta or a named next-day flag, because no one of those spellings is more correct than another."},
+
+    {"id": "d_splits_augmented_regime", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Routed the pairings with more than the minimum crew and an onboard rest facility to their own matrix, on crew size and facility class.",
+     "truth_ref": "Step 2",
+     "weight_evidence": "Work product: the two regimes are governed by different tables with different report-time bands, so this is the join key for the crux on seven of the seventeen pairings. Measured control augmentation_ignored - exactly the failure of not splitting - reproduces none of the twenty-one graded cases it is scored over and separates by up to 360x tolerance (control_gaps.augmentation_ignored). Weight 3 rather than 5: it is the precondition for the crux, and the crux itself is scored separately."},
+
+    {"id": "d_indexes_matrix_on_both_axes", "channel": "deterministic", "weight": 5, "is_positive": true, "is_gate": true,
+     "criterion": "CRUX. Wrote down the published maximum-duty-period cells and selected one by BOTH the report-time band and the segment count (or, in the augmented regime, the facility class and pilot count) - not by one axis and not by a single flat figure.",
+     "truth_ref": "Step 4; The crux",
+     "weight_evidence": "Crux (TRUTH.md Step 4), and the Delta-lever in one criterion. Three measured controls sit under it: flat_14h_duty_day, the nearest real competitor, reproduces NONE of the fifty-one graded cases and separates by up to 330x tolerance; report_row_ignored by up to 240x; segment_column_ignored by up to 90x (control_gaps). The cells are arbitrary half hours over irregular bands with no generating relation and nothing in the roster pins one, so this criterion is the whole of what the skill supplies. Weight 5, and the only gate in this bundle."},
+
+    {"id": "d_applies_acclimation_reduction", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Reduced the matrix value by the published amount for the pairings whose crew is not acclimated to the theater the report time is expressed in.",
+     "truth_ref": "Step 4",
+     "weight_evidence": "Measured control unacclimated_reduction_skipped separates by 30x tolerance on every case it alters and reproduces four of the nine it is scored over (control_gaps.unacclimated_reduction_skipped). It is a real method error that costs a bounded number of cases rather than the step the task exists to measure, and it is the classic loss of an adjustment that lives in prose rather than in a cell. Weight 3."},
+
+    {"id": "d_tests_split_duty_conditions", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Tested the published conditions on a scheduled accommodation rest before excluding it from the duty period, and left the whole elapsed period on duty when any condition failed.",
+     "truth_ref": "Step 3",
+     "weight_evidence": "Two measured controls bracket it in both directions: split_duty_relief_skipped separates by 205x tolerance on the pairing it alters, and split_duty_relief_unconditional reproduces none of the nine cases it is scored over and separates by up to 190x (control_gaps). The conditions are a conjunction and the window runs across midnight, which is where both errors come from. Weight 3: an outcome-breaking conditional, not the withheld matrix."},
+
+    {"id": "d_enumerates_all_limits", "channel": "deterministic", "weight": 5, "is_positive": true,
+     "criterion": "Took a margin against every limit the part imposes on the pairing, including the rolling cumulative ceilings and both rest provisions - not the duty period alone. The seven codes may be typed out or read from the shipped question.json; what is required is that each one carries a computed margin.",
+     "truth_ref": "Step 6; The crux",
+     "weight_evidence": "Crux surface 2 (TRUTH.md 'The crux'). Measured control flight_duty_period_only uses the CORRECT matrix and fails purely on the enumeration: it misses twenty-four of fifty-one graded cases with a smallest separation of 10x tolerance, and cumulative_limits_ignored misses six with the same smallest separation (control_gaps). Neither leaves any trace in the shape of the answer - both produce well-formed signed minutes for every pairing. Weight 5. Not gated: it is scored on a name-vocabulary detector whose precision is the softer of the two crux detectors. ROUTE INDEPENDENCE (repaired 2026-08-03): the detector was a bare substring test for the seven code strings anywhere in the authored source, and it was backwards in BOTH directions. A run that echoed the prompt's vocabulary - the contract pasted into a comment, or `cat /root/data/question.json` shelled into the transcript - PASSED without computing a margin; and a run that read the same seven codes out of question.json, which ships limit_codes precisely so they need not be retyped, FAILED for not retyping them. The second is the case REQUIREMENTS.md:324-341 names outright: a criterion must not bind to a constant appearing inline where the same value may legitimately be loaded from a shipped file. Comments are now stripped, the codes must reach a position where each BINDS a margin, and the loaded route is accepted on the same terms as the typed one. Both directions are exercised in verification/negative_fixtures_test.py."},
+
+    {"id": "d_includes_pairing_in_rolling_totals", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Added the pairing's own duty period and flight time to the rolling totals before comparing them with their ceilings.",
+     "truth_ref": "Step 6",
+     "weight_evidence": "Work product: the ceilings are totals over a window ending at report and the pairing under test contributes to each of them, so comparing the history column alone passes a pairing that the pairing itself pushes over. It is the specific error that makes the three cumulative-governed pairings look compliant, and those are exactly the pairings where a non-duty-period limit governs. Weight 3."},
+
+    {"id": "d_takes_minimum_margin", "channel": "deterministic", "weight": 3, "is_positive": true,
+     "criterion": "Selected the governing limit as the smallest of the margins - by a minimum, a sort, an argmin or a hand-rolled scan that keeps a running best - rather than by precedence, first violation, or the headline limit.",
+     "truth_ref": "Step 7",
+     "weight_evidence": "Outcome-breaking convention error: the contract pins the rule, and any other selection reports a different name and a different margin on the seven pairings where the duty period is not the tightest, i.e. two of the three graded figures on 41 per cent of the roster. Weight 3: a stated convention, not the withheld knowledge. ROUTE INDEPENDENCE (repaired 2026-08-03): the detector required one of min / sorted / argmin / heapq.nsmallest, and so FALSELY FAILED no-skill/run_1, which selected the minimum with an explicit scan - `if best is None or margins[code] < margins[best]: best = code` - a correct argmin, and the shape a run reaches for when it also wants the published tie-break order. Binding a criterion to a builtin's name is REQUIREMENTS.md:324-341's named-library restriction in miniature, and it fell on the no-Skills arm, which is where an unfamiliar-but-correct spelling is most likely. The hand-rolled route now requires a comparison and a running-best name on ONE line plus margin vocabulary in the run, so a run that takes the first code in contract order is still rejected - shown in verification/negative_fixtures_test.py."},
+
+    {"id": "d_reports_contract", "channel": "deterministic", "weight": 1, "is_positive": true,
+     "criterion": "Emitted /root/results.json with all three contracted fields for every pairing.",
+     "truth_ref": "Step 7",
+     "weight_evidence": "Structural role: a correct derivation that misses the contract is unscoreable, so this guards measurability rather than knowledge. Hygiene tier (weight 1)."},
+
+    {"id": "d_g_flat_duty_ceiling", "channel": "deterministic", "weight": -5, "is_positive": false,
+     "criterion": "GUARDRAIL: a single flat duty ceiling stands in for the matrix - one figure used regardless of report time, segment count, regime or acclimation.",
+     "truth_ref": "Step 4; Delta-lever",
+     "weight_evidence": "Measured control flat_14h_duty_day, the nearest real competitor: up to 330x tolerance, smallest non-zero gap 11x, and it reproduces NONE of the fifty-one graded cases (control_gaps.flat_14h_duty_day). It is the producible route for a run that does not hold the matrix and so is the route the unaided arm is expected to take. Guardrails are negative by design; magnitude 5 matches the crux tier it negates."},
+
+    {"id": "d_g_extension_applied_to_schedule", "channel": "deterministic", "weight": -3, "is_positive": false,
+     "criterion": "GUARDRAIL: the relief for unforeseen operational circumstances was added to a scheduled ceiling.",
+     "truth_ref": "Where runs break",
+     "weight_evidence": "Measured control unforeseen_extension_applied: 120x tolerance on every duty-period margin, reproducing fourteen of fifty-one graded cases (control_gaps.unforeseen_extension_applied). It is the most defensible-looking wrong answer available here, because the relief is real, published and correctly recalled - the error is applying operational relief to a schedule. Magnitude 3 rather than 5: it is a scope error on a real provision rather than absence of the withheld matrix."},
+
+    {"id": "d_g_grader_path_access", "channel": "deterministic", "weight": -5, "is_positive": false,
+     "criterion": "GUARDRAIL: read or probed the grading surface - /verifier, /oracle, expected_values.json, part117.xml, reg_reparse.py, part117_tables.py, truth.md, rubric.yaml or build/.",
+     "truth_ref": "Step 0",
+     "weight_evidence": "Structural integrity: any hit invalidates the pair regardless of score, and on this task it is a direct read of the withheld tables, which sit in verifier/part117.xml. Containment is enforced by file ownership in the image and by sandbox_locked_paths; this criterion records whether it was tested. Magnitude matches the crux tier because a hit voids the measurement rather than degrading it."},
+
+    {"id": "d_g_network_egress", "channel": "deterministic", "weight": -3, "is_positive": false,
+     "criterion": "GUARDRAIL: attempted to fetch the published part text, or to install a package, from the network.",
+     "truth_ref": "What cannot be done",
+     "weight_evidence": "Structural integrity. Magnitude 3 rather than 5 because the limit tables are a public government document and the residual risk is recorded honestly in build_report.json:anonymisation - what makes the graded FIGURES un-fetchable is that the roster is synthetic, not the network posture, so a fetch is a hygiene signal about the run rather than a leak of the answer. Citing the source beside the numbers is not egress and the detector requires a fetch verb."},
+
+    {"id": "n_reconstructs_the_matrix_reading", "channel": "non_deterministic", "weight": 3, "is_positive": true,
+     "criterion": "For at least one pairing the reasoning makes the matrix reading reconstructable: which regime the pairing is in, which report-time band its report time falls in, which column its segment count (or its facility class and pilot count) selects, and the cell that pair of coordinates yields. A reader must be able to follow it to the same cell. Naming the table, asserting that the correct row and column were used, or stating a maximum with no coordinates behind it earns nothing.",
+     "truth_ref": "Step 4; The crux",
+     "weight_evidence": "REQUIRED JUDGED TWIN of the gate d_indexes_matrix_on_both_axes (REQUIREMENTS.md:352, 'every deterministic gate has a judged twin'); the gate previously had none, and the three judged criteria sat on Step 6, Step 8 and Sources, leaving nothing judged on the crux the task exists to measure. Separable from its twin by design and therefore exempt from mutual exclusivity (REQUIREMENTS.md:311-316): the gate is numeric and asks whether enough literals reading as published cells appear beside an index on both axes, which a run satisfies by pasting a correct table and then reading the wrong row from it; this asks whether the reasoning names the two coordinates and lands on the cell, which a run can satisfy while mistyping the cell it pasted. The band boundaries are irregular and the columns are not monotone, so an off-by-one row is invisible in the output and visible only in the derivation. Weight 3, not 5: no judged criterion gates, because panel noise disqualifies a judged verdict from a verdict-flipping role (gate_doctrine above). Weight 3 rather than the narration tier because it asks for a reconstructable derivation - a work product - not for a claim about method; n_enumeration_reasoning holds the Step 6 claim at weight 1 and n_states_limit_source the attribution, so neither is duplicated here."},
+
+    {"id": "n_flight_time_ceiling_source", "channel": "non_deterministic", "weight": 1, "is_positive": true, "kind": "narration",
+     "criterion": "The reasoning distinguishes where the maximum FLIGHT TIME comes from, and does not take it from the duty-period matrix: that for the minimum required crew it is a report-time band of its own table, whose boundaries are not the duty-period matrix's boundaries, and that for a crew of three or four pilots it is a fixed ceiling stated in the section prose rather than in any table. A single flat flight-time figure applied to every pairing, or a flight-time ceiling read off the duty-period bands, does not satisfy this.",
+     "truth_ref": "Step 5",
+     "weight_evidence": "COVERAGE (added 2026-08-03): TRUTH.md Step 5 was named by no truth_ref in any channel and carried no uncheckable declaration (REQUIREMENTS.md:317-322). Judged rather than deterministic, deliberately and on the evidence available: unlike the duty-period matrix, whose cells this bundle's verifier/checks.py carries as a constant set and can therefore test numerically, the published flight-time ceilings are NOT in the grader's constant set, so no numeric test exists for them; and a structural test - 'the flight-time ceiling was selected by a report-time comparison' - would decide the criterion on which control-flow shape the run happened to use, which is the route restriction REQUIREMENTS.md:324-341 forbids and which this same repair pass removed from three sibling criteria. Narration tier, capped at 1 by doctrine, because what it asks the judge for is what the run SAYS about the ceiling's provenance. It is not a duplicate of d_enumerates_all_limits: that criterion asks whether flight_time carries a margin at all, this asks where its ceiling came from, and no-skill/run_1 is the separating case - it enumerated flight_time and then used a flat 480 for every minimum-crew pairing."},
+
+    {"id": "n_enumeration_reasoning", "channel": "non_deterministic", "weight": 1, "is_positive": true, "kind": "narration",
+     "criterion": "The reasoning says that the answer is the tightest of several simultaneous limits and that the duty period is not always the tightest - rather than treating the duty-period matrix as the whole question.",
+     "truth_ref": "Step 6",
+     "weight_evidence": "Narration tier, capped at 1 by doctrine. It was drafted at 3 as the judged twin of d_enumerates_all_limits, but what it asks the judge for is what the run SAYS about the enumeration, and a model can say it without doing it. The behaviour itself is already scored where it leaves a work product: d_enumerates_all_limits carries weight 5 and tests the limit vocabulary in the authored source. Re-tiering costs the instrument nothing and removes a double count."},
+
+    {"id": "n_verification_that_can_disagree", "channel": "non_deterministic", "weight": 3, "is_positive": true,
+     "criterion": "The run checks its result against something that could actually have disagreed - a second reading of a matrix cell, a sign check against a direct comparison of the two quantities a margin came from, a hand recomputation of one pairing, or a check that no excluded rest made a duty period longer than the elapsed period - rather than treating a clean script run as verification.",
+     "truth_ref": "Step 8",
+     "weight_evidence": "Behavioural: every failure route on this task returns a well-formed signed number of minutes in a plausible range, so nothing about the output looks wrong and only a check that can disagree separates a correctly indexed matrix from a confidently wrong one. Weight 3 (an executed check is a work product, not a claim)."},
+
+    {"id": "n_states_limit_source", "channel": "non_deterministic", "weight": 1, "is_positive": true, "kind": "narration",
+     "criterion": "The agent states which limits it applied and where they come from, rather than presenting the ceilings as unattributed numbers.",
+     "truth_ref": "Sources",
+     "weight_evidence": "Narration tier: a speech act any style-tuned model can emit, capped at weight 1 by doctrine. Its value is attribution - it lets a reviewer bind a wrong answer to a named provision instead of to an unexplained number, and it is what distinguishes a cited limit set from one the run produced from its own weights."}
+  ]
+}

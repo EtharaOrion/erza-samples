@@ -1,0 +1,159 @@
+{
+  "task_name": "flight-duty-period-legality",
+  "rollout_name": "flight-duty-period-legality__fb1ddcf8",
+  "rewards": {
+    "reward": 0.7647
+  },
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "no-skill",
+  "skill_source": "none",
+  "requested_skills_dir": null,
+  "effective_skills_dir": null,
+  "skills_sandbox_dir": null,
+  "include_task_skills": false,
+  "n_tool_calls": 5,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 5,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 429567,
+    "n_output_tokens": 85373,
+    "n_cache_read_tokens": 136158,
+    "n_cache_creation_tokens": 77829,
+    "total_tokens": 300953,
+    "cost_usd": 2.69680025,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 429567,
+    "total_completion_tokens": 85373,
+    "total_cached_tokens": 136158,
+    "total_cost_usd": 2.69680025
+  },
+  "trajectory_summary": {
+    "steps": 17,
+    "tool_call_steps": 5,
+    "user_message_steps": 1,
+    "agent_message_steps": 6,
+    "agent_thought_steps": 5,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 5,
+      "agent_message": 6,
+      "tool_call": 5
+    },
+    "tool_call_status_counts": {
+      "completed": 5
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "required",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-29 11:59:59.804250",
+  "finished_at": "2026-07-29 12:20:48.891905",
+  "timing": {
+    "environment_setup": 2.7,
+    "agent_setup": 4.8,
+    "agent_execution": 1110.0,
+    "verifier": 4.2,
+    "total": 1249.1
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "source": {
+    "type": "github",
+    "repo": "Ethara-Ai/erza-harness",
+    "requested_ref": "main",
+    "resolved_sha": "a45214b569b439381ad556292a9810df786d782b",
+    "path": "tasks/flight-duty-period-legality",
+    "dirty": true,
+    "file_hashes": {
+      "build/build_report.json": "sha256:bed6e4d11251737a2c151be8e8756f368ddbccd644137fea034afa9e04394c0c",
+      "build/gen.py": "sha256:7ef5a4385abf44e615fcac3bf5b8f1deccd74eea02a606cdab41ead91241dfef",
+      "build/independent_check.py": "sha256:f4bba907b106ea82f0258c656a95fcb2634e4b1d9790a2112d041e8b23d57f9b",
+      "environment/Dockerfile": "sha256:47b30082f22f216bfd42cd5f62620858428bf6966adeb24ca0d3ac2788d68cfe",
+      "environment/data/pairings.csv": "sha256:2127c0c393a6f9a944fe9365760d903fe209562ca2178cff26a3cbfdd94ae10a",
+      "environment/data/question.json": "sha256:ac8b9f98c50016c22811850fe8ca25961c207f01b44d312dd9ce7b7d56170018",
+      "environment/skills/flightcrew-duty-limit-enumeration/SKILL.md": "sha256:6daa56bc6de8846a916200a388106cc1f248b2f4b0841e0ce42b90316ac2f54b",
+      "oracle/part117_tables.py": "sha256:23cc7a1591faad55f844c3dd3cb69ea883c65a1964206ed121ca0c22c222fd7e",
+      "oracle/solve.py": "sha256:501691a9ad7054c7311cde8b5fd37fcf52f43949033b2020302d78c1c19ae574",
+      "oracle/solve.sh": "sha256:5dca633a0364e6bdc2f400f966f90ae7726cfc769f3d4a39e9b3f49888f5fd6b",
+      "task.md": "sha256:603deb38d08f77f812854aaf2d200387ea8ffaf26b1bd8e7396cf17a6a2471fe",
+      "verifier/expected_values.json": "sha256:541b73950e85eb8e1a0ee9ffe9287333d92ac6d4108eae9b3e4666941a047a32",
+      "verifier/part117.xml": "sha256:c1e0020d662507e14388d3030b85cf15b492587bf7ad99f8b1db4a40d7136537",
+      "verifier/process/README.md": "sha256:cf6c6883c8125f72256d1fa91ab4e1fc22510f9ede4887446316ee7e15f6b9ef",
+      "verifier/process/TRUTH.md": "sha256:c6daef81a34317a750bb0c93e0cdf688e91107bdc582c48db2a25f8d031d84b7",
+      "verifier/process/judge/judge.py": "sha256:e6c4a4c284a0102b3a7ac162798ab7afc811bb7308183e804f080e281ad2a5a7",
+      "verifier/process/report.py": "sha256:371ca5e314e68816cfdb1b7122958fac559f737cf4b55f66dd23fd8e739fd5c0",
+      "verifier/process/rubrics.json": "sha256:82e29e10d8c47cbc52d64ff1f949dac0ce5917c1eeaa2a081f34a6e3483dc7aa",
+      "verifier/process/run.sh": "sha256:e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2",
+      "verifier/process/score.py": "sha256:f498834fea483a510dbb614595a440c5b6d53d74972627c08a080c7b7c461c4a",
+      "verifier/process/verification/check_refs.py": "sha256:bc5c36e04a635ae480dd6aa05dd91f957153f6626e9e52c6bba11649a3f333a3",
+      "verifier/process/verification/negative_fixtures_test.py": "sha256:6a83d128797559097767179969c36cc812aac1f62e0425f5c85dd7d4d381b836",
+      "verifier/process/verification/rederivation_test.py": "sha256:b0e09c11c4b6f1fa3216a977e5e298724600fe73bc6ceec394cc9e579b0a1c93",
+      "verifier/process/verifier/checks.py": "sha256:ca6721178f6b045eaa220015c32cb18dd464f2c9e30717e58b61840cb29ae6d6",
+      "verifier/process/verifier/conftest.py": "sha256:2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23",
+      "verifier/process/verifier/test_trajectory.py": "sha256:5b52a38239c6ca1ba5fbdc0610f598b4b43f3c3a67d8425914b30b8fad06c425",
+      "verifier/process/verifier/trajectory.py": "sha256:fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012",
+      "verifier/reg_reparse.py": "sha256:0d010932800f98eae9f95ba4791659f7eb7425d85fe8e2b46867230e26aaf0c9",
+      "verifier/rubric.yaml": "sha256:224231bbb1790d53f1dee0a043457597ff774d1926cdbbbf02419e7bbf4664f1",
+      "verifier/test.sh": "sha256:ebe554ae8cac5a237e7d51e6cb6ad241288dcb0966cf08515997e6c8d9ab33b3",
+      "verifier/test_outputs.py": "sha256:d3fa646e207e225e1fa243b74dfcc749d333b466f68ea50b13b6b8725e5d3276",
+      "verifier/truth.md": "sha256:0cdb63fc26b7e13897f04e13add5c411f29edba85bb61479e317a2ac11e07d7d"
+    }
+  },
+  "task_digest": "sha256:6f78e6825e411b3b88ca845459bd0c10ed82ea822d8a27a0377fddddf8bd1b8f",
+  "sandbox_id": null
+}

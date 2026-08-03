@@ -1,0 +1,414 @@
+{
+  "control_gaps": {
+    "comma_delimited_instead_of_fixed_width": {
+      "description": "emit the payee data comma-delimited, as the payables extract supplies it, padded to the declared length",
+      "field_mismatch_gap_over_tol": 36.0,
+      "graded_cases_failed_of_31": 30,
+      "nearest_real_competitor": true,
+      "note": "A real competing method: the delimited export is what most downstream tax systems consume, and it is what the orientation block in question.json shows.",
+      "worst_group_field_mismatches": 18
+    },
+    "left_justified_amount_fields": {
+      "description": "write payment amounts as dollars-and-cents text, left-justified and blank-filled, rather than right-justified and zero-filled with implied cents",
+      "field_mismatch_gap_over_tol": 36.0,
+      "graded_cases_failed_of_31": 9,
+      "nearest_real_competitor": true,
+      "note": "A real competing convention: left-justified blank-filled is the default in most fixed-width business formats, and this specification inverts it for money fields only.",
+      "worst_group_field_mismatches": 18
+    },
+    "missing_form_specific_tail": {
+      "description": "emit the block common to every return type and leave the return-specific tail blank",
+      "field_mismatch_gap_over_tol": 4.0,
+      "graded_cases_failed_of_31": 9,
+      "nearest_real_competitor": true,
+      "note": "A real competing method: the common block is the part of the specification that is widely reproduced, and the per-form tails are the part that is not.",
+      "worst_group_field_mismatches": 2
+    },
+    "nec_tail_instead_of_misc": {
+      "description": "apply the neighbouring form's tail table, which runs blanks where this form carries its account-reporting indicator",
+      "field_mismatch_gap_over_tol": 2.0,
+      "graded_cases_failed_of_31": 1,
+      "note": "A real competing method - the two tails are adjacent sections of the same publication - but MEASURED NON-DISCRIMINATING on the two payees that carry no account-reporting requirement, where the two tables agree position for position. It separates only on the payee that does, and there by a single field. Recorded rather than dropped; see build_report.json:graded_set.",
+      "worst_group_field_mismatches": 1
+    },
+    "reserved_runs_zero_filled": {
+      "description": "zero-fill every reserved run instead of blank-filling it",
+      "field_mismatch_gap_over_tol": 4.0,
+      "graded_cases_failed_of_31": 18,
+      "note": "A real competing convention: zero-fill is the usual fixed-width habit, and this specification distinguishes 'enter blanks' from 'enter zeros' field by field.",
+      "worst_group_field_mismatches": 2
+    },
+    "shifted_name_and_address_block": {
+      "description": "place the head and the payment amounts correctly, then pack the payee identification block straight on with no reserved run between the amounts and the name lines, and none between the mailing address and the city",
+      "field_mismatch_gap_over_tol": 6.0,
+      "graded_cases_failed_of_31": 24,
+      "nearest_real_competitor": true,
+      "note": "The nearest real competitor method: the route a competent implementer without the field map actually produces. Recall of this specification is real for the opening positions and decays afterwards, so the head lands and everything past the amounts slides. Not a strawman.",
+      "worst_group_field_mismatches": 3
+    }
+  },
+  "convention_variants": {
+    "issuer_account_number_right_justified": {
+      "description": "the issuer's account-number field right-justified rather than left-justified; the publication permits either",
+      "measured_deviation_field_mismatches": 0,
+      "must_not_false_fail": true
+    },
+    "record_terminated_with_crlf": {
+      "description": "the last two positions carrying a carriage return and line feed rather than blanks; the publication permits either",
+      "measured_deviation_field_mismatches": 0,
+      "must_not_false_fail": true
+    }
+  },
+  "form_type": "1099-MISC",
+  "golden_records": {
+    "R0001": "B2025 HERN2412556309AC-4471902          NC03          000001845000000000000000000000000000000000276750000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000                 HERNANDEZ ROSA M                                                                3184 CALLE VERDE APT 12                                                         CHARLOTTE                               NC28202     00000003                                       1                                                                                                                                                                               00000009237500000000000037  ",
+    "R0002": "B2025GPINE13644188570000012947-B        WI11          000000000000000000731520000000000000000000000000000000000000000002498000000000000000000000000000000000000000000000115000000000000000000000960000000000000000000000000000000000000000000000000000000000000000000000000000                 PINEHURST FARMS COOPERATIVE             AND MIDLAND GRAIN PARTNERS LLC          1420 COUNTY ROAD K                                                              FOND DU LAC                             WI549359102 00000004                                    2   1                                                                                                                                                                              00000014623000000000000055  ",
+    "R0003": "B2025 OKEE2587223416SP-2025-0088        TX07          000000000000000000000000000000540000000000000000000000000000000000000000000000000000000000214075000000000000000000000000000000000000000000000000000003100000000000000000000000000000000000000000000000000000000000000000                 OKEEFE DANIEL J                                                                 PO BOX 4471                                                                     EL PASO                                 TX799120044 00000005                                    2                                                                                                                                                                                  000000000000000000000000    "
+  },
+  "graded_output": [
+    "records"
+  ],
+  "graded_quantity": "number of fields in the group that decode back to the payee's own value; the reference is the group's own field count and the tolerance admits no shortfall",
+  "group_keys": [
+    "head_1_54",
+    "amounts_55_270",
+    "reserved_and_first_name_271_327",
+    "second_name_and_address_328_407",
+    "reserved_and_city_408_487",
+    "state_and_postal_488_498",
+    "reserved_and_counter_499_543",
+    "indicators_and_reserved_544_662",
+    "free_text_and_state_withholding_663_734",
+    "local_withholding_and_program_code_735_750"
+  ],
+  "items": [
+    {
+      "case_id": "R0001_head_1_54",
+      "group": "head_1_54",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 9.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_amounts_55_270",
+      "group": "amounts_55_270",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 18.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_reserved_and_first_name_271_327",
+      "group": "reserved_and_first_name_271_327",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_second_name_and_address_328_407",
+      "group": "second_name_and_address_328_407",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_reserved_and_city_408_487",
+      "group": "reserved_and_city_408_487",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_state_and_postal_488_498",
+      "group": "state_and_postal_488_498",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_reserved_and_counter_499_543",
+      "group": "reserved_and_counter_499_543",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_indicators_and_reserved_544_662",
+      "group": "indicators_and_reserved_544_662",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 5.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_free_text_and_state_withholding_663_734",
+      "group": "free_text_and_state_withholding_663_734",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0001_local_withholding_and_program_code_735_750",
+      "group": "local_withholding_and_program_code_735_750",
+      "kind": "field_group",
+      "payee_ref": "R0001",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_head_1_54",
+      "group": "head_1_54",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 9.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_amounts_55_270",
+      "group": "amounts_55_270",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 18.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_reserved_and_first_name_271_327",
+      "group": "reserved_and_first_name_271_327",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_second_name_and_address_328_407",
+      "group": "second_name_and_address_328_407",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_reserved_and_city_408_487",
+      "group": "reserved_and_city_408_487",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_state_and_postal_488_498",
+      "group": "state_and_postal_488_498",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_reserved_and_counter_499_543",
+      "group": "reserved_and_counter_499_543",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_indicators_and_reserved_544_662",
+      "group": "indicators_and_reserved_544_662",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 5.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_free_text_and_state_withholding_663_734",
+      "group": "free_text_and_state_withholding_663_734",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0002_local_withholding_and_program_code_735_750",
+      "group": "local_withholding_and_program_code_735_750",
+      "kind": "field_group",
+      "payee_ref": "R0002",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_head_1_54",
+      "group": "head_1_54",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 9.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_amounts_55_270",
+      "group": "amounts_55_270",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 18.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_reserved_and_first_name_271_327",
+      "group": "reserved_and_first_name_271_327",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_second_name_and_address_328_407",
+      "group": "second_name_and_address_328_407",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_reserved_and_city_408_487",
+      "group": "reserved_and_city_408_487",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_state_and_postal_488_498",
+      "group": "state_and_postal_488_498",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_reserved_and_counter_499_543",
+      "group": "reserved_and_counter_499_543",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_indicators_and_reserved_544_662",
+      "group": "indicators_and_reserved_544_662",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 5.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_free_text_and_state_withholding_663_734",
+      "group": "free_text_and_state_withholding_663_734",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 2.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "R0003_local_withholding_and_program_code_735_750",
+      "group": "local_withholding_and_program_code_735_750",
+      "kind": "field_group",
+      "payee_ref": "R0003",
+      "ref": 3.0,
+      "tolerance": 0.5
+    },
+    {
+      "case_id": "answer_file_shape_and_charset",
+      "group": null,
+      "kind": "file_level",
+      "payee_ref": null,
+      "ref": 3.0,
+      "tolerance": 0.5
+    }
+  ],
+  "method": "each payee's semantic record placed at the field positions the published table fixes for this return type, with each field justified and filled as that table requires, and graded by slicing the submission back apart at those positions and decoding every field to the value the payee data carries",
+  "n_cases": 31,
+  "n_field_groups": 10,
+  "n_records": 3,
+  "payee_refs": [
+    "R0001",
+    "R0002",
+    "R0003"
+  ],
+  "payment_year": "2025",
+  "published_precision_ambiguity_method": "re-derived through a second route and the worst disagreement taken: every reading of the publication that is equally faithful - either justification in the issuer's account-number field, and the carriage-return/line-feed terminator the last two positions permit - was rebuilt and re-graded, and the largest number of fields any of them failed to decode was recorded",
+  "published_precision_ambiguity_mismatches_maxabs": 0.0,
+  "published_precision_ambiguity_note": "Zero by measurement, not by assertion. The publication fixes one spelling for every graded field except two, and both of those are decoded rather than byte-compared, so both permitted readings pass.",
+  "record_length_positions": 750,
+  "ref_R0001_amounts_55_270": 18.0,
+  "ref_R0001_free_text_and_state_withholding_663_734": 2.0,
+  "ref_R0001_head_1_54": 9.0,
+  "ref_R0001_indicators_and_reserved_544_662": 5.0,
+  "ref_R0001_local_withholding_and_program_code_735_750": 3.0,
+  "ref_R0001_reserved_and_city_408_487": 2.0,
+  "ref_R0001_reserved_and_counter_499_543": 3.0,
+  "ref_R0001_reserved_and_first_name_271_327": 3.0,
+  "ref_R0001_second_name_and_address_328_407": 2.0,
+  "ref_R0001_state_and_postal_488_498": 2.0,
+  "ref_R0002_amounts_55_270": 18.0,
+  "ref_R0002_free_text_and_state_withholding_663_734": 2.0,
+  "ref_R0002_head_1_54": 9.0,
+  "ref_R0002_indicators_and_reserved_544_662": 5.0,
+  "ref_R0002_local_withholding_and_program_code_735_750": 3.0,
+  "ref_R0002_reserved_and_city_408_487": 2.0,
+  "ref_R0002_reserved_and_counter_499_543": 3.0,
+  "ref_R0002_reserved_and_first_name_271_327": 3.0,
+  "ref_R0002_second_name_and_address_328_407": 2.0,
+  "ref_R0002_state_and_postal_488_498": 2.0,
+  "ref_R0003_amounts_55_270": 18.0,
+  "ref_R0003_free_text_and_state_withholding_663_734": 2.0,
+  "ref_R0003_head_1_54": 9.0,
+  "ref_R0003_indicators_and_reserved_544_662": 5.0,
+  "ref_R0003_local_withholding_and_program_code_735_750": 3.0,
+  "ref_R0003_reserved_and_city_408_487": 2.0,
+  "ref_R0003_reserved_and_counter_499_543": 3.0,
+  "ref_R0003_reserved_and_first_name_271_327": 3.0,
+  "ref_R0003_second_name_and_address_328_407": 2.0,
+  "ref_R0003_state_and_postal_488_498": 2.0,
+  "ref_answer_file_shape_and_charset": 3.0,
+  "seed": 20260729,
+  "smallest_wrong_path_gap_multiple": 2.0,
+  "tolerance_R0001_amounts_55_270_abs": 0.5,
+  "tolerance_R0001_free_text_and_state_withholding_663_734_abs": 0.5,
+  "tolerance_R0001_head_1_54_abs": 0.5,
+  "tolerance_R0001_indicators_and_reserved_544_662_abs": 0.5,
+  "tolerance_R0001_local_withholding_and_program_code_735_750_abs": 0.5,
+  "tolerance_R0001_reserved_and_city_408_487_abs": 0.5,
+  "tolerance_R0001_reserved_and_counter_499_543_abs": 0.5,
+  "tolerance_R0001_reserved_and_first_name_271_327_abs": 0.5,
+  "tolerance_R0001_second_name_and_address_328_407_abs": 0.5,
+  "tolerance_R0001_state_and_postal_488_498_abs": 0.5,
+  "tolerance_R0002_amounts_55_270_abs": 0.5,
+  "tolerance_R0002_free_text_and_state_withholding_663_734_abs": 0.5,
+  "tolerance_R0002_head_1_54_abs": 0.5,
+  "tolerance_R0002_indicators_and_reserved_544_662_abs": 0.5,
+  "tolerance_R0002_local_withholding_and_program_code_735_750_abs": 0.5,
+  "tolerance_R0002_reserved_and_city_408_487_abs": 0.5,
+  "tolerance_R0002_reserved_and_counter_499_543_abs": 0.5,
+  "tolerance_R0002_reserved_and_first_name_271_327_abs": 0.5,
+  "tolerance_R0002_second_name_and_address_328_407_abs": 0.5,
+  "tolerance_R0002_state_and_postal_488_498_abs": 0.5,
+  "tolerance_R0003_amounts_55_270_abs": 0.5,
+  "tolerance_R0003_free_text_and_state_withholding_663_734_abs": 0.5,
+  "tolerance_R0003_head_1_54_abs": 0.5,
+  "tolerance_R0003_indicators_and_reserved_544_662_abs": 0.5,
+  "tolerance_R0003_local_withholding_and_program_code_735_750_abs": 0.5,
+  "tolerance_R0003_reserved_and_city_408_487_abs": 0.5,
+  "tolerance_R0003_reserved_and_counter_499_543_abs": 0.5,
+  "tolerance_R0003_reserved_and_first_name_271_327_abs": 0.5,
+  "tolerance_R0003_second_name_and_address_328_407_abs": 0.5,
+  "tolerance_R0003_state_and_postal_488_498_abs": 0.5,
+  "tolerance_answer_file_shape_and_charset_abs": 0.5,
+  "tolerance_field_mismatches_abs": 0.5,
+  "tolerance_rationale": "The graded quantity is a count of fields that decode back to the payee's own value, so a group's reference is its own field count and the tolerance, 0.500, admits no shortfall while remaining a positive band rather than an equality test. LOWER BOUND (defensible-reading spread): zero, measured - the two readings the publication explicitly permits were rebuilt and re-graded and neither loses a field. UPPER BOUND (nearest wrong route): the closest recorded competing method is 2.000 tolerances away on its widest group. The band is therefore wide enough that no faithful reading fails and narrow enough that no competing method passes."
+}

@@ -1,0 +1,93 @@
+{
+  "form_type": "1099-MISC",
+  "payees": [
+    {
+      "combined_federal_state_code": "37",
+      "correction_status": "original",
+      "direct_sales_5000_or_more": true,
+      "fatca_filing_requirement": false,
+      "first_payee_name_line": "HERNANDEZ ROSA M",
+      "foreign_address": false,
+      "issuer_account_number": "AC-4471902",
+      "issuer_office_code": "NC03",
+      "local_income_tax_withheld": "0.00",
+      "name_control": "HERN",
+      "payee_city": "CHARLOTTE",
+      "payee_mailing_address": "3184 CALLE VERDE APT 12",
+      "payee_ref": "R0001",
+      "payee_state": "NC",
+      "payee_tin": "412556309",
+      "payee_zip_code": "28202",
+      "payment_amounts": {
+        "1": "18450.00",
+        "4": "2767.50"
+      },
+      "record_sequence_number": 3,
+      "second_payee_name_line": "",
+      "second_tin_notice": false,
+      "special_data_entries": "",
+      "state_income_tax_withheld": "923.75",
+      "tin_type": "SSN"
+    },
+    {
+      "combined_federal_state_code": "55",
+      "correction_status": "one-transaction correction",
+      "direct_sales_5000_or_more": false,
+      "fatca_filing_requirement": true,
+      "first_payee_name_line": "PINEHURST FARMS COOPERATIVE",
+      "foreign_address": false,
+      "issuer_account_number": "0000012947-B",
+      "issuer_office_code": "WI11",
+      "local_income_tax_withheld": "0.00",
+      "name_control": "PINE",
+      "payee_city": "FOND DU LAC",
+      "payee_mailing_address": "1420 COUNTY ROAD K",
+      "payee_ref": "R0002",
+      "payee_state": "WI",
+      "payee_tin": "364418857",
+      "payee_zip_code": "549359102",
+      "payment_amounts": {
+        "2": "7315.20",
+        "6": "24980.00",
+        "A": "1150.00",
+        "C": "9600.00"
+      },
+      "record_sequence_number": 4,
+      "second_payee_name_line": "AND MIDLAND GRAIN PARTNERS LLC",
+      "second_tin_notice": true,
+      "special_data_entries": "",
+      "state_income_tax_withheld": "1462.30",
+      "tin_type": "EIN"
+    },
+    {
+      "combined_federal_state_code": "",
+      "correction_status": "original",
+      "direct_sales_5000_or_more": false,
+      "fatca_filing_requirement": false,
+      "first_payee_name_line": "OKEEFE DANIEL J",
+      "foreign_address": false,
+      "issuer_account_number": "SP-2025-0088",
+      "issuer_office_code": "TX07",
+      "local_income_tax_withheld": "0.00",
+      "name_control": "OKEE",
+      "payee_city": "EL PASO",
+      "payee_mailing_address": "PO BOX 4471",
+      "payee_ref": "R0003",
+      "payee_state": "TX",
+      "payee_tin": "587223416",
+      "payee_zip_code": "799120044",
+      "payment_amounts": {
+        "3": "5400.00",
+        "8": "2140.75",
+        "D": "31000.00"
+      },
+      "record_sequence_number": 5,
+      "second_payee_name_line": "",
+      "second_tin_notice": true,
+      "special_data_entries": "",
+      "state_income_tax_withheld": "0.00",
+      "tin_type": "SSN"
+    }
+  ],
+  "payment_year": "2025"
+}

@@ -1,0 +1,139 @@
+{
+  "task": "information-return-brecord-emission",
+  "built_by": "build/gen.py",
+  "seed": 20260729,
+  "seed_note": "Declared for the template's sake and used for nothing. There is no random component: the instance is authored, not sampled, so the build is byte-reproducible by construction.",
+  "delta_lever": "Each payee's details must be written into the 750-position payee detail record at the absolute character positions Publication 1220 fixes for Form 1099-MISC - including the reserved runs at 271-286 and 408-447 that separate fields which look adjacent, and the return-specific tail at 544-750 - rather than packed in field order; the default places the opening correctly and slides everything past the payment amounts.",
+  "gap_type": "(b) a published positional map the model cannot reproduce past its opening",
+  "failure_family": "F7 (format and serialisation)",
+  "template": "A - a real, published, citable, non-recallable positional table carried in the skill, plus a neutral in-input distractor (the payables system's own comma-delimited export) and a byte-exact output contract",
+  "family_caveat": "This lever is a published LOOKUP TABLE, which is the engine section 3.3 of PROMPT-AUTHOR-TO-30.md calls over-represented. The argument that byte-exact EMISSION is a different engine, and the counter-argument, are both set out under `engine_overlap_disclosure` below. The call is left to a human.",
+  "s01_recall_probe": {
+    "method": "claude-opus-4-8 via the local bridge, no tools, no network, no skill, n=4, asked for the field positions of the payee detail record directly",
+    "route_a_recall": "NO - real to about position 66 and decoherent after. 3 of 4 samples REFUSED to give byte offsets past the opening. The one sample that answered was SELF-CONTRADICTORY: it placed two different fields at position 247, and put the First Payee Name Line at 248 when the published range is 288-327.",
+    "route_b_reconstruction": "NO - the artifact the task ships is roughly ten semantic values per payee and the withheld object is a positional table of forty-nine rows. No quantity of payment data identifies a character offset; the data says what to write, never where. This is the route-(b) question asked in the shape the task actually takes, per the gate-order change in S-LAYER-GATE-2026-07-28.md section 9.",
+    "route_c_library": "NO - no package in the base image emits this format. The image is python:3.11-slim plus pinned pytest only.",
+    "route_d_script": "NO - the prompt states the goal and never a position. The procedure is fully deterministic ONCE THE TABLE IS IN HAND, which is exactly why the table is the withheld object and why no worked example record is shipped.",
+    "verified_front_of_record": "Positions 1-66 were checked against the publication and are as the probe reported them: 1 Record Type, 2-5 Payment Year, 6 Corrected Return Indicator, 7-10 Name Control, 11 Type of TIN, 12-20 Payee's TIN, 21-40 Issuer's Account Number, 41-44 Issuer's Office Code, 45-54 Blank, 55-66 Payment Amount 1. Every one of them, and everything past 66, was re-read from the publication's own layout tables rather than accepted from the probe.",
+    "expected_no_skill_failure_mode": "3 of 4 samples asserted that Publication 1220 was last revised for tax year 2021 and that the fixed-length format has been sunset. That is FALSE - the live document is the Tax Year 2025 revision. The prompt and question.json are therefore written so the task is unambiguous regardless: question.json names the document, the revision and its status in force, and the prompt states that the named revision governs. A run that declines on sunset grounds has answered a different question, and this is the failure mode the pilot should expect to see attributed.",
+    "verdict": "NOT-RECALLABLE past the opening of the record. Bucket N evidence: sufficient to have killed the candidate, never sufficient to certify it. Only Gate 2 decides."
+  },
+  "sources": [
+    {
+      "role": "the withheld positional table, the field-class rules and the indicator codes",
+      "title": "Publication 1220, Specifications for Electronic Filing of Forms 1097, 1098, 1099, 3921, 3922, 5498, and W-2G",
+      "revision": "Tax Year 2025",
+      "publisher": "Internal Revenue Service, United States",
+      "url": "https://www.irs.gov/pub/irs-pdf/p1220.pdf",
+      "retrieved": "2026-07-29",
+      "http_status": 200,
+      "bytes": 1735511,
+      "sections_used": [
+        "Part C, Sec. 3 - Payee 'B' Record general field descriptions and the layout for positions 1-543",
+        "Part C, Sec. 3 (18) - Payee 'B' Record layout, positions 544-750, Form 1099-MISC",
+        "Part C, Sec. 3 (19) - Payee 'B' Record layout, positions 544-750, Form 1099-NEC (quoted in the skill for contrast; not graded)",
+        "Part B, Sec. 2 - Issuer 'A' Record amount codes per return type",
+        "Part A, Sec. 12, Table 1 - Combined Federal/State Filing participating states and codes",
+        "Part A, Sec. 13, Table 2 - state and US territory postal abbreviations"
+      ],
+      "doi": null,
+      "doi_note": "The IRS publishes no DOI or report number for this document. The publication number and revision year are its citable identity. Recorded as an OPEN provenance field rather than a fabricated citation."
+    }
+  ],
+  "licence": {
+    "gate_a_access": "PASS - the document is served publicly from www.irs.gov with no login. Verified by HTTP 200 and a 1,735,511-byte PDF body, and by reading the Tax Year 2025 revision statement inside the document rather than trusting the URL.",
+    "gate_b_licence": "PASS, unconditional",
+    "quotes": [
+      "Content on this website that was created or maintained by federal employees in the course of their duties is not subject to copyright and may be freely copied. Credit is requested."
+    ],
+    "gate_b_reasoning": "This is a first-party affirmative grant on the publisher's own rights page, not a 'US federal therefore public domain' inference. It carries no non-commercial restriction - which is what disqualified the EPA candidate in S-LAYER-GATE-2026-07-28.md section 7 - and the document is authored and maintained by the agency itself, with no contractor operator: the pages carry no 'operated by', no 'DE-AC' contract number and no third-party rights notice. Credit is requested and is given, in the skill's Sources section, in verifier/truth.md and here.",
+    "obligations_met": [
+      "credit carried in environment/skills/fixed-width-filing-record-emission/SKILL.md, verifier/truth.md and this report",
+      "no IRS logo, seal or emblem is used anywhere in the bundle",
+      "the publication itself is NOT redistributed; only the field positions, lengths and codes are transcribed, which is the factual content the grant covers"
+    ],
+    "honest_caveat": "The rights statement is site-wide rather than attached to this document, and the IRS carves out third-party material generally. Nothing transcribed here is third-party material: field positions and lengths are the agency's own specification."
+  },
+  "anonymisation": {
+    "method": "The payee data is entirely SYNTHETIC. Names, addresses, account numbers, office codes and taxpayer identification numbers are authored for this bundle. The identification numbers are drawn from ranges the US Social Security Administration has never issued, so none can collide with a real number. Payee references are opaque labels.",
+    "why": "Real information returns carry taxpayer identification numbers, legal names and home addresses. None of that may be baked into a distributed image, and there is no public corpus of real payee records to draw on. Synthesis is the only lawful source of the working data for this task.",
+    "residual_risk": "PRINCIPAL RISK, and it is not small. Unlike the anonymised-instrument tasks in this set, the lever here CANNOT be made un-fetchable: it is a positional table on a public URL, and the task must name the specification for the question to be well posed at all. Section 6.8 records that no-network is declared but NOT enforced for LLM arms - benchflow re-enables allow_internet and disallow_web_tools kills only the web_search tool, not shell curl - so an unblocked fetch hands over the entire lever. Gate 2 for this task MUST run with erza_harbor/egress/firewall.py enabled and MUST require per-run evidence that egress was blocked. Without that evidence the pilot is not a measurement of this lever and must be labelled as such. The process rubric carries d_g_network_egress at magnitude 3 to record the attempt in the trajectory, but a guardrail that observes a fetch is not a substitute for preventing one.",
+    "what_is_NOT_at_risk": "The graded records themselves are not fetchable: they are a function of synthetic payee data that exists nowhere but this bundle. The exposure is the table, not the answer."
+  },
+  "no_worked_example_record": {
+    "decision": "No assembled record appears anywhere the agent can read: not in task.md, not in environment/data/, not in the skill, and not in verifier/process/TRUTH.md.",
+    "why": "This is the one leak channel the task has, and it is fully under the author's control. One correct 750-position record lets a reader count the first payee name line's start position straight off it, which is the crux. Ten semantic values per payee do not.",
+    "enforced_by": [
+      "verifier/test_outputs.py::test_no_assembled_record_reaches_the_agent - slides a forty-character window over every golden record and requires no window carrying six or more non-blank characters to appear in any agent-visible file, on every graded run",
+      "verifier/process/verification/rederivation_test.py::test_truth_md_states_no_graded_value and ::test_truth_md_carries_no_assembled_record",
+      "verifier/process/verification/rederivation_test.py::test_truth_md_withholds_the_field_positions - fails if any field boundary between position 20 and 750 appears in TRUTH.md as a numeral"
+    ]
+  },
+  "golden_verification": {
+    "method": "INDEPENDENT, in four separately written formulations, three of which run on every graded run rather than only at build time.",
+    "formulation_1_oracle": "oracle/layout.py walks a table of (name, start, length) with a cursor and concatenates. This is the emitter, and it is the only one of the four that produces a record.",
+    "formulation_2_verifier": "verifier/brecord_layout.py carries absolute (first, last) position pairs with the published length beside them, never renders anything, and grades by SLICING A SUBMISSION BACK APART and decoding every field to a semantic value that is compared against the payee entry. test_frozen_golden_records_decode_to_the_payee_data runs it against the frozen goldens on every graded run.",
+    "formulation_3_process_rederivation": "verifier/process/verification/rederivation_test.py transcribes the LENGTH column only and computes the starts by accumulation, then asserts row-for-row agreement with formulation 2 and reproduces all 31 graded quantities.",
+    "formulation_4_build_supplement": "build/independent_check.py rebuilds every record by writing each field into a pre-sized buffer at an absolute offset, LAST FIELD FIRST, so nothing can implicitly depend on the previous field's end, and requires byte-identity with the frozen golden. Measured: 0 positions differ on all three records.",
+    "standing_tripwire": "verifier/brecord_layout.py::check_spans asserts, on every graded run, that every published length equals its own position range, that the ranges are contiguous and non-overlapping, and that they total exactly 750. A mistyped start needs a compensating mistyped length to survive the first assertion, and that compensation is caught by the second.",
+    "why_this_matters_here": "A shared offset table between an emitter and a byte-comparing verifier is exactly the 999a91d3 tautology in a new domain: both would agree on a wrong position and the golden would be wrong. Grading by decode against the source data, with a table transcribed independently and cross-checked against its own length column, is what closes that."
+  },
+  "graded_set": {
+    "n_cases": 31,
+    "n_cases_note": "31 is prime, so no partial score lands on a round fraction.",
+    "composition": "10 field groups x 3 payee records = 30 cases, plus 1 answer-file shape and character-set case.",
+    "graded_quantity": "the number of fields in the group that DECODE BACK to the payee's own value, so a group's reference is its own field count (9, 18, 3, 2, 2, 2, 3, 5, 2, 3 across the ten groups) and the file-level reference is 3 well-formed records; tolerance 0.500, which admits no shortfall",
+    "weighting_past_position_247": "8 of the 10 field groups begin past position 247, and 480 of the record's 750 positions sit past it. This is deliberate: recall was measured real to about position 66 and decoherent afterwards, so the graded mass has to sit where the measurement says the knowledge is not.",
+    "amount_convention_deliberately_not_the_lever": "The payment-amount convention - 12 positions, right-justified, zero-filled, cents implied - was recalled 4/4 in the probe. It is one graded group of ten and the task is asserted not to rest on it: test_amount_convention_alone_does_not_carry_the_task requires the amount block to be at most a quarter of the graded mass AND requires a submission with every amount field correct and the payee block shifted to fail at least eight of the ten groups. Measured: it fails exactly eight.",
+    "removed_free_pass": "Under an earlier grouping the reserved runs at 271-286, 408-447 and 549-662 were graded as cases of their own, and a submission of 750 blanks collected 14 of 41 cases for nothing. Measured, then fixed rather than documented away: every reserved run is now carried in the same graded group as a neighbouring field that holds content for every payee. A blank submission now collects exactly one case out of 31 - the answer-file shape case - which exists so that a run able to commit to a well-formed answer is scoreable at all (L-04). Measured in test_plausibility_envelope_and_guess_resistance: 750 blanks reach that case and nothing else, and the prompt's Z placeholder, 750 zeros and the orientation extract miss even that.",
+    "measured_separation": {
+      "shifted_name_and_address_block": "6.00x tolerance on its widest group, 24 of 31 graded cases failed - the nearest real competitor",
+      "comma_delimited_instead_of_fixed_width": "36.00x, 30 of 31",
+      "left_justified_amount_fields": "36.00x, 9 of 31",
+      "missing_form_specific_tail": "4.00x, 9 of 31",
+      "reserved_runs_zero_filled": "4.00x, 18 of 31",
+      "nec_tail_instead_of_misc": "2.00x, 1 of 31 - MEASURED NON-DISCRIMINATING on the two payees with no chapter-4 requirement"
+    },
+    "tolerance": 0.5,
+    "published_precision_ambiguity": "0 field mismatches, MEASURED rather than asserted: both readings the publication explicitly permits - either justification in the issuer's account-number field, and the carriage-return/line-feed terminator - were rebuilt and re-graded, and neither loses a field. Grading by decode rather than by byte comparison is what makes that true.",
+    "why_conformance_not_faults": "The first formulation counted FAULTS, so every reference was 0.0. That is semantically fine and operationally unusable: numeric_forms(0.0) renders as '0.00', the payee data legitimately carries zero-dollar amounts written '0.00', and the leak scanners cannot tell the two apart - B-09 reported thirty-one INVALIDATING false leaks against the bundle's own input file. Recorded rather than worked around by weakening the scanner: counting conformance makes each reference a property of its group, which is also stronger, because a submission that fails to parse at all can no longer coincide with the reference by accident."
+  },
+  "engine_overlap_disclosure": {
+    "flag": "The withheld object is a PUBLISHED LOOKUP TABLE. Section 3.3 of PROMPT-AUTHOR-TO-30.md names 'withhold a lookup table' as the over-represented engine in this set, and this bundle sits next to it. Flagged here rather than argued away.",
+    "argument_that_it_is_a_different_engine": "In every lookup-table task in the set so far, the table's rows are CONSTANTS that enter an arithmetic pipeline: retrieve a coefficient, multiply, aggregate, report a number within a tolerance. Three things differ here. (1) The withheld object is not a value but a POSITION - it does not enter the arithmetic, it decides where the arithmetic's output is written, and there is no tolerance because there is no numeric spread. (2) The failure is total rather than graded: a wrong coefficient moves an answer, a wrong position destroys every field after it, which is why the graded quantity is a conformance count and not a magnitude. (3) The verifier is a parser rather than a comparator - it decodes the submission back into semantics - which is a grading engine no other task in the set uses, and which is what lets two spellings the publication permits both pass.",
+    "counter_argument": "Against all that: the mechanism by which the with-skill arm wins is still 'the skill contains a published table the model cannot reproduce', and the ONE-SENTENCE lever reads like the others' - retrieve the table, apply it. A reviewer who clusters by what the skill CONTAINS rather than by what the task DOES will and should count this as the same engine. The set-level question Z-03 asks is engine clustering, and a strict reading of it puts this bundle in the existing cluster.",
+    "disposition": "LEFT TO A HUMAN. No claim is made here that this is a new engine. If it is counted as the existing one, that is a legitimate reading and the bundle should be labelled accordingly rather than dropped."
+  },
+  "phase_1_scope_exception": {
+    "flag": "FOR A HUMAN. This task is classified category `office-white-collar`, and ERZA-OTS.md section 4 scopes Phase 1 to natural science.",
+    "detail": "Every shipped task in the set is natural-science except one finance task. This bundle is neither. It was authored because the F7 format-and-serialisation family has zero coverage and because the recall gate killed the natural-science candidates it was run against, not because the scope was reinterpreted.",
+    "options_for_the_reviewer": [
+      "accept as a deliberate Phase-1 exception and record it in the set-level notes",
+      "hold the bundle until Phase 2 opens the scope",
+      "reject on scope, in which case the measurement work above is still recorded and the engine question is still answered"
+    ],
+    "not_decided_here": "No approval is assumed. The bundle is complete and QC-clean so that the decision can be made on a finished artifact rather than a proposal."
+  },
+  "taxonomy": {
+    "triple": "(office-white-collar, formatting, json+document)",
+    "duplication_check": "No shipped task uses category `office-white-collar`, and no shipped task uses task_type `formatting`. Checked against every dataset/*/task.md at build time.",
+    "committed_vocabulary": "Every value validates against `git -C harness show HEAD:taxonomy.yaml`, not the working tree (QC B-17)."
+  },
+  "instrument_liveness_invariant_17": {
+    "gate_1": "PASS, EXECUTED. `erzaqc gate1 --twice` in Docker: oracle reward 1.0 on both runs, so O-03 and O-04 are both clean and neither is a coverage gap. The oracle scored 31/31 graded cases from a clean build with no network.",
+    "gate_1_first_attempt": "FAILED, and the failure was the gating design working. test_no_assembled_record_reaches_the_agent scanned bundle-relative paths that are not mounted in the container, so the self-check errored, test.sh gated the run to 0 and the oracle scored 0.0 despite all 31 graded cases passing. Recorded because it is the evidence that the gate is live rather than decorative. The check now scans the surfaces reachable from wherever it runs and asserts it found the baked payee record.",
+    "degenerate_matrix": "PASS, EXECUTED. `erzaqc degenerate` in Docker: every malformed answer - empty file, empty object, malformed JSON, null, zero, string, NaN, 1e30, wrong key case, nested - scores 0 as a FAILURE rather than an error, so no run is lost to verifier_failure.",
+    "oracle_accepts": "31/31 graded cases pass on the reference solution, in Docker and from a checkout",
+    "shifted_offsets_rejected": "a submission with every field shifted by one position fails ALL 31 graded cases, including the answer-file case; the nearest real competitor, which keeps the opening and the amounts and closes the reserved runs, fails 24 of 31",
+    "guess_resistance": "no degenerate or copied submission passes ANY field-group case; 750 blanks passes only the answer-file shape case, by design and measured; the prompt's own placeholder shape passes nothing",
+    "determinism": "two oracle runs in Docker produce identical rewards; two runs of build/gen.py produce byte-identical environment/data and expected_values.json; two oracle runs from a checkout produce byte-identical results.json",
+    "process_verifier": "78 collected tests in verifier/process/verification/, all green; all 18 truth_refs resolve to TRUTH.md headings",
+    "qc_toolkit": "./qc bundle: 0 BLOCKER, 0 INVALIDATING, 0 MINOR. The single remaining MAJOR is I-01, uuid_provenance.json, which is written by the freeze step and does not exist yet (6.13: freeze last). ./qc gate1 --twice: PASS. ./qc degenerate: PASS."
+  },
+  "open_fields": [
+    "No DOI or report number exists for the specification; the publication number and revision year are its citable identity.",
+    "Gate 2 has not run. No difficulty claim is made anywhere in this bundle.",
+    "The egress dependency in `anonymisation.residual_risk` is unresolved at authoring time and must be resolved by the pilot, not by this report.",
+    "The Phase-1 scope exception and the engine-overlap question are both open and both belong to a human."
+  ]
+}

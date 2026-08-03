@@ -1,0 +1,40 @@
+schema_version = "1.3"
+
+[metadata]
+author_name = "Erza FORGE"
+difficulty = "hard"
+difficulty_explanation = "Subtracting one clock time from another is arithmetic. Deciding whether a published crew pairing is inside its legal ceilings is not, because the ceiling on the duty period is not a number but a cell of a two-way matrix indexed by report time and segment count, the matrix has irregular row boundaries, its ten rows carry arbitrary half-hour values with no generating relation, and a second matrix with different row boundaries replaces it once the crew is augmented. Nothing in the roster determines those cells: the pairings carry no compliance labels, so no schedule pins a cell from either side, and the values cannot be interpolated, extrapolated or inferred from the data supplied. Around the matrix sit six further ceilings drawn from separate paragraphs - flight time, two rolling duty totals, a rolling flight total, the rest immediately before report and the longest duty-free period in the previous week - and the answer is the tightest of the seven, so an analysis that stops at the headline ceiling is wrong on the pairings where something else governs. Two published relief provisions cut the other way: one that removes a scheduled accommodation rest from the duty period only when a six-part conjunction holds, and one that enlarges the ceiling only for circumstances that arise after a schedule is set and therefore never applies here. Reading the matrix as a flat duty-day figure misses every one of the fifty-one graded figures. The roster itself is synthetic, so the graded figures are properties of this extract and are not published anywhere."
+category = "office-white-collar"
+subcategory = "aviation-regulatory-compliance"
+category_confidence = "high"
+task_type = ["verification", "analysis"]
+modality = ["csv", "json"]
+interface = ["terminal", "python"]
+skill_type = ["domain-procedure", "evaluation-protocol"]
+tags = [
+  "crew-scheduling",
+  "duty-time",
+  "regulatory-compliance",
+  "air-carrier",
+  "constraint-checking",
+  "roster-audit",
+]
+
+[verifier]
+type = "test-script"
+timeout_sec = 300.0
+
+[verifier.hardening]
+cleanup_conftests = true
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+network_mode = "no-network"
+build_timeout_sec = 900.0
+os = "linux"
+cpus = 2
+memory_mb = 4096
+storage_mb = 8192
+gpus = 0

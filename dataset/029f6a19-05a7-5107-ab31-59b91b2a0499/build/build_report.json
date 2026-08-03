@@ -1,0 +1,1927 @@
+{
+  "anonymisation": {
+    "method": "Counties are replaced by opaque labels AREA-01 to AREA-17 and no name, FIPS code, state or population appears in anything the agent can see. The shipped area profile carries only the model covariates plus percent single-category White, which the published models deliberately exclude.",
+    "residual_risk": "An agent with network access could retrieve the report itself and the coefficient tables in it. That is the withheld object, so a successful fetch is a leak; it is a hygiene signal about the run, detected by the process guardrail d_g_network_egress, and the reason the pilot must run with the egress firewall enabled.",
+    "why": "PROMPT-AUTHOR-TO-30.md 6.8: network_mode no-network is declared but is NOT enforced for LLM arms, so validity must not rest on it. With the areas delabelled, the withheld coefficient set is the only route to the answer even with full internet: the published tables are covariate-indexed, so an agent that fetched the report would still have to hold the coefficients, and there is no published table of shares keyed by anything the agent can see."
+  },
+  "area_covariates_are_the_publishers_own": "The four area percentages the models use were reconstructed from the public Census 2000 Modified Race Data Summary File and checked against the values NCHS itself carries: percent single-category AIAN, percent API, percent Black and percent multiple-response agree EXACTLY, to the last stored digit, on 3,139 of the 3,140 counties. The single exception is 51005 (Alleghany County, Virginia), where an independent-city merge moved population between two FIPS codes. Three conventions were recovered rather than guessed and are now stated in the skill: the percentages are rounded to two decimal places before the transforms are applied; the Asian-and-Pacific-Islander percentage counts the Asian-and-Native-Hawaiian response as single-category API, not as a multiple response; and the logarithm of an area's AIAN percentage is taken after that rounding. Areas whose rounded AIAN percentage is zero - where NCHS floors the value - are EXCLUDED from the shipped set, so no graded case depends on a floor the prompt would have to state.",
+  "built_by": "build/gen.py",
+  "bundled_source_slices": {
+    "bridged2010_county_check.npz": {
+      "bytes": 851869,
+      "sha256": "d78cdce054a563d76c26a8765ed16c06405f955228637d0353d9ac9845dfe283"
+    },
+    "census2000_group_cells.npz": {
+      "bytes": 629612,
+      "sha256": "f1d434443b032754a295bb3705e5f572031b64a6aa25971f640919012ecfadb2"
+    },
+    "nchs_area_covariates_census2000.csv": {
+      "bytes": 176650,
+      "sha256": "558daf3e6e4cc0fa3922681f75b0fd18c05b7f3c36c28432611d19deacb66260"
+    },
+    "sr02_135_table7.csv": {
+      "bytes": 1127,
+      "sha256": "6c8d7cbb0d957a319490170fa10c3cb80cacbbfc3eda0845bade0688e5cb114f"
+    },
+    "sr02_135_table8.csv": {
+      "bytes": 739,
+      "sha256": "b54719a683b0f9efba19419218e3bfa770fa22da9e649df1dc119320930fa2d5"
+    },
+    "sr02_135_table9.csv": {
+      "bytes": 1601,
+      "sha256": "8e931b4074ed970b70e365ab6f4aa622bb60b7caedf8e220a9d6e46ebb9b3333"
+    }
+  },
+  "constant_answer_floor": {
+    "best_constant": 0.002585,
+    "cases_cleared": 1,
+    "method": "exhaustive sweep of a single constant answer over [0, 1] at 5e-06 resolution, scored against the graded tolerance",
+    "value": 0.0323,
+    "why_it_is_at_the_floor": "The graded set is built with a minimum pairwise separation of 4.00 tolerances between goldens (measured: 4.03), so no constant can clear two cases. 1/31 is the arithmetic minimum for a set of this size."
+  },
+  "cqs_countyprobs_is_not_the_table_7_proportion_set": "A scouting note said the publisher's own intermediate cqs_countyprobs.sas7bdat would give a record-by-record anchor for the bridging proportions. It does not, and this was MEASURED rather than assumed. The file carries 879,200 rows (3,140 counties x 70 single years of age x 2 sexes x 2 origins) and 28 probability columns, which is the right shape - but regressing the logit of each column on the Table 7 covariate set gives R-squared between 0.48 and 0.99, while regressing it on the file's OWN 40 covariates - which include dissimilarity, interaction and isolation indices, poverty, crowding, single-parent share, high-school education, foreign-born share and public-assistance share, none of which appear in Table 7 or Table 8 - gives R-squared 1.0000000000 with a maximum residual of 7.6e-06. The file is an EXPANDED, later model, not the published one, and two of its 28 columns are national constants rather than functions of the covariates at all. Grading Table 7 output against it would have been grading against the wrong model. What the file IS used for here is its county attributes: the four-level urbanisation classification and the region indicators, which are NCHS's own and are not derivable from the Census file.",
+  "delta_lever": "A census response naming more than one race is assigned to one of the four 1977-standard categories with the logistic-regression coefficient set NCHS estimated from National Health Interview Survey primary-race answers - Table 7's six separate models and Table 8's composite multi-logit, evaluated on that person's own age, sex, Hispanic origin and county composition - not by splitting the response equally over the categories it names and not in proportion to the area's single-category counts.",
+  "discrimination_assertion": {
+    "candidate_records_dropped_by_reason": {
+      "equal_split": 775,
+      "flat_national_shares": 6428,
+      "proportional_to_alone": 3301,
+      "round_figure": 14100
+    },
+    "candidate_records_surviving": 68685,
+    "candidate_records_swept": 92706,
+    "carried_into_the_verifier_as_a_standing_self_check": "test_every_graded_case_is_decided_by_the_withheld_models",
+    "rule": "S-LAYER-GATE-2026-07-28.md sections 14-15: every graded case must be one the withheld object actually decides. Enforced per candidate at build time against ALL THREE routes reachable without the coefficient set - the equal split, the split proportional to the area's own single-category percentages, and the published country-wide flat shares that question.json ships - at a floor of 2.0x the graded tolerance. A candidate failing any one of them is DROPPED, never recorded as non-discriminating.",
+    "smallest_surviving_gap_multiple": 2.2088
+  },
+  "end_to_end_against_the_publishers_own_2010_output": {
+    "AIAN": {
+      "predicted": 553615.3,
+      "publisher": 523358,
+      "relative_difference_pct": 5.7814
+    },
+    "API": {
+      "predicted": 987012.4,
+      "publisher": 981155,
+      "relative_difference_pct": 0.597
+    },
+    "BLACK": {
+      "predicted": 1777262.5,
+      "publisher": 1814489,
+      "relative_difference_pct": -2.0516
+    },
+    "WHITE": {
+      "predicted": 3486049.7,
+      "publisher": 3484938,
+      "relative_difference_pct": 0.0319
+    },
+    "equal_split": {
+      "AIAN": {
+        "predicted": 1130868.5,
+        "relative_difference_pct": 116.0793
+      },
+      "API": {
+        "predicted": 1276294.3,
+        "relative_difference_pct": 30.0808
+      },
+      "BLACK": {
+        "predicted": 1411983.0,
+        "relative_difference_pct": -22.1829
+      },
+      "WHITE": {
+        "predicted": 2984794.2,
+        "relative_difference_pct": -14.3516
+      }
+    },
+    "identity": {
+      "exact": true,
+      "multiple_response_population_on_the_input_file": 6803940,
+      "note": "The publisher's own released bridged file minus the publisher's own single-category counts equals the multiple-response population on the input file, exactly, over 3137 counties. That identity is what makes the 2010 file a check on the method rather than a restatement of it.",
+      "publisher_allocated_total": 6803940
+    },
+    "proportional_to_area_single_category_counts": {
+      "AIAN": {
+        "predicted": 103817.6,
+        "relative_difference_pct": -80.1632
+      },
+      "API": {
+        "predicted": 464433.4,
+        "relative_difference_pct": -52.6646
+      },
+      "BLACK": {
+        "predicted": 799660.4,
+        "relative_difference_pct": -55.9292
+      },
+      "WHITE": {
+        "predicted": 5436028.5,
+        "relative_difference_pct": 55.9864
+      }
+    }
+  },
+  "end_to_end_verdict": "DOES NOT REPRODUCE, and the task is scoped accordingly. Applying the published coefficient set to the Census 2010 Modified Race Data Summary File and comparing against the publisher's own released bridged file gives national agreement of +0.032% (White), +0.597% (API), -2.052% (Black) and +5.781% (AIAN) on the allocated multiple-response population. That is far better than either naive route - the equal split misses AIAN by +116.079% and the proportional-to-single-category split by -80.163% - but it is not golden precision, and two irreducible reasons are known: the public input file releases population by five-year age group while the publisher applied the proportions at single years of age, and the publisher then ran a progressive rounding step that forces integer counts and preserves cell totals. The graded quantity is therefore the assignment SHARE, which is what the report itself publishes distributional characteristics for, and the 2010 comparison is reported here as a measurement rather than used as a golden.",
+  "failure_family": "F2 (a real published statistical model the default route substitutes with a plausible arithmetic rule)",
+  "gap_type": "(b) a published, measured coefficient set the default route replaces with an arithmetic split",
+  "graded_set": {
+    "composition": "One graded case for each of the 28 (response group, target category) pairs the published method produces - the report's own 'set of 28 probabilities, one for selecting each possible primary race in each of the 11 multiple-race groups' - plus three extras that exercise the age cap at 70 and over, Hispanic origin, and the four-way conditional rescale.",
+    "extras": [
+      "R-09: age_cap_applies",
+      "R-11: hispanic_origin",
+      "R-30: composite_rescale_over_four"
+    ],
+    "goldens": {
+      "share-R-01": 0.342133776,
+      "share-R-02": 0.611434163,
+      "share-R-03": 0.065097266,
+      "share-R-04": 0.887947556,
+      "share-R-05": 0.387857202,
+      "share-R-06": 0.644999314,
+      "share-R-07": 0.594901139,
+      "share-R-08": 0.928596903,
+      "share-R-09": 0.432105228,
+      "share-R-10": 0.322367414,
+      "share-R-11": 0.661299589,
+      "share-R-12": 0.77224979,
+      "share-R-13": 0.585750138,
+      "share-R-14": 0.47282584,
+      "share-R-15": 0.228139175,
+      "share-R-16": 0.285468807,
+      "share-R-17": 0.509459763,
+      "share-R-18": 0.013810982,
+      "share-R-19": 0.073164173,
+      "share-R-20": 0.974421362,
+      "share-R-21": 0.462469761,
+      "share-R-22": 0.406510147,
+      "share-R-23": 0.357911771,
+      "share-R-24": 0.05703451,
+      "share-R-25": 0.039828071,
+      "share-R-26": 0.790858507,
+      "share-R-27": 0.021863595,
+      "share-R-28": 0.004582381,
+      "share-R-29": 0.088995638,
+      "share-R-30": 0.965695275,
+      "share-R-31": 0.982957274
+    },
+    "measured_separation_min_multiple": {
+      "age_not_capped_at_69": 0.0362,
+      "area_covariates_omitted": 0.4442,
+      "best_case_tuned_single_constant": 0.0,
+      "composite_indicator_variables_omitted": 4.1762,
+      "composite_model_for_every_group": 3.332,
+      "composite_shares_not_rescaled": 0.0873,
+      "contextual_covariates_omitted": 0.4399,
+      "equal_split": 12.2892,
+      "flat_national_shares": 2.2088,
+      "hispanic_origin_coded_inverted": 0.5468,
+      "log_transform_of_percent_aian_omitted": 0.2026,
+      "proportional_to_area_single_category_counts": 3.6247,
+      "sex_coded_inverted": 0.0314,
+      "square_of_percent_black_omitted": 0.0061
+    },
+    "n_cases": 31,
+    "n_cases_is_prime": true,
+    "records": {
+      "share-R-01": {
+        "age_years": 59,
+        "area_id": "AREA-13",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API",
+        "sex": "female",
+        "target_category": "AIAN"
+      },
+      "share-R-02": {
+        "age_years": 54,
+        "area_id": "AREA-14",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API",
+        "sex": "female",
+        "target_category": "API"
+      },
+      "share-R-03": {
+        "age_years": 14,
+        "area_id": "AREA-15",
+        "enumerated_population_of_the_cell": 12,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+BLACK",
+        "sex": "male",
+        "target_category": "AIAN"
+      },
+      "share-R-04": {
+        "age_years": 2,
+        "area_id": "AREA-16",
+        "enumerated_population_of_the_cell": 39,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+BLACK",
+        "sex": "male",
+        "target_category": "BLACK"
+      },
+      "share-R-05": {
+        "age_years": 8,
+        "area_id": "AREA-17",
+        "enumerated_population_of_the_cell": 43,
+        "hispanic_origin": "hispanic",
+        "response_group": "AIAN+WHITE",
+        "sex": "female",
+        "target_category": "AIAN"
+      },
+      "share-R-06": {
+        "age_years": 14,
+        "area_id": "AREA-01",
+        "enumerated_population_of_the_cell": 47,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+WHITE",
+        "sex": "female",
+        "target_category": "WHITE"
+      },
+      "share-R-07": {
+        "age_years": 21,
+        "area_id": "AREA-02",
+        "enumerated_population_of_the_cell": 369,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+BLACK",
+        "sex": "female",
+        "target_category": "API"
+      },
+      "share-R-08": {
+        "age_years": 27,
+        "area_id": "AREA-03",
+        "enumerated_population_of_the_cell": 48,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+BLACK",
+        "sex": "male",
+        "target_category": "BLACK"
+      },
+      "share-R-09": {
+        "age_years": 70,
+        "area_id": "AREA-02",
+        "enumerated_population_of_the_cell": 380,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+WHITE",
+        "sex": "female",
+        "target_category": "API"
+      },
+      "share-R-10": {
+        "age_years": 32,
+        "area_id": "AREA-04",
+        "enumerated_population_of_the_cell": 60,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+WHITE",
+        "sex": "female",
+        "target_category": "API"
+      },
+      "share-R-11": {
+        "age_years": 6,
+        "area_id": "AREA-02",
+        "enumerated_population_of_the_cell": 781,
+        "hispanic_origin": "hispanic",
+        "response_group": "API+WHITE",
+        "sex": "male",
+        "target_category": "WHITE"
+      },
+      "share-R-12": {
+        "age_years": 39,
+        "area_id": "AREA-05",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "hispanic",
+        "response_group": "API+WHITE",
+        "sex": "female",
+        "target_category": "WHITE"
+      },
+      "share-R-13": {
+        "age_years": 23,
+        "area_id": "AREA-06",
+        "enumerated_population_of_the_cell": 12,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "BLACK+WHITE",
+        "sex": "female",
+        "target_category": "BLACK"
+      },
+      "share-R-14": {
+        "age_years": 52,
+        "area_id": "AREA-07",
+        "enumerated_population_of_the_cell": 49,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "BLACK+WHITE",
+        "sex": "female",
+        "target_category": "WHITE"
+      },
+      "share-R-15": {
+        "age_years": 14,
+        "area_id": "AREA-08",
+        "enumerated_population_of_the_cell": 10,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK",
+        "sex": "male",
+        "target_category": "AIAN"
+      },
+      "share-R-16": {
+        "age_years": 59,
+        "area_id": "AREA-09",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK",
+        "sex": "male",
+        "target_category": "API"
+      },
+      "share-R-17": {
+        "age_years": 44,
+        "area_id": "AREA-10",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK",
+        "sex": "female",
+        "target_category": "BLACK"
+      },
+      "share-R-18": {
+        "age_years": 80,
+        "area_id": "AREA-11",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+WHITE",
+        "sex": "male",
+        "target_category": "AIAN"
+      },
+      "share-R-19": {
+        "age_years": 19,
+        "area_id": "AREA-12",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+WHITE",
+        "sex": "male",
+        "target_category": "API"
+      },
+      "share-R-20": {
+        "age_years": 15,
+        "area_id": "AREA-13",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+WHITE",
+        "sex": "female",
+        "target_category": "WHITE"
+      },
+      "share-R-21": {
+        "age_years": 13,
+        "area_id": "AREA-14",
+        "enumerated_population_of_the_cell": 2,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+BLACK+WHITE",
+        "sex": "female",
+        "target_category": "AIAN"
+      },
+      "share-R-22": {
+        "age_years": 21,
+        "area_id": "AREA-15",
+        "enumerated_population_of_the_cell": 3,
+        "hispanic_origin": "hispanic",
+        "response_group": "AIAN+BLACK+WHITE",
+        "sex": "female",
+        "target_category": "BLACK"
+      },
+      "share-R-23": {
+        "age_years": 26,
+        "area_id": "AREA-16",
+        "enumerated_population_of_the_cell": 23,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+BLACK+WHITE",
+        "sex": "female",
+        "target_category": "WHITE"
+      },
+      "share-R-24": {
+        "age_years": 11,
+        "area_id": "AREA-17",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+BLACK+WHITE",
+        "sex": "female",
+        "target_category": "API"
+      },
+      "share-R-25": {
+        "age_years": 14,
+        "area_id": "AREA-01",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "API+BLACK+WHITE",
+        "sex": "female",
+        "target_category": "BLACK"
+      },
+      "share-R-26": {
+        "age_years": 39,
+        "area_id": "AREA-02",
+        "enumerated_population_of_the_cell": 15,
+        "hispanic_origin": "hispanic",
+        "response_group": "API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "WHITE"
+      },
+      "share-R-27": {
+        "age_years": 25,
+        "area_id": "AREA-03",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "hispanic",
+        "response_group": "AIAN+API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "AIAN"
+      },
+      "share-R-28": {
+        "age_years": 58,
+        "area_id": "AREA-04",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "API"
+      },
+      "share-R-29": {
+        "age_years": 54,
+        "area_id": "AREA-12",
+        "enumerated_population_of_the_cell": 12,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "BLACK"
+      },
+      "share-R-30": {
+        "age_years": 30,
+        "area_id": "AREA-02",
+        "enumerated_population_of_the_cell": 35,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "WHITE"
+      },
+      "share-R-31": {
+        "age_years": 72,
+        "area_id": "AREA-06",
+        "enumerated_population_of_the_cell": 1,
+        "hispanic_origin": "not_hispanic",
+        "response_group": "AIAN+API+BLACK+WHITE",
+        "sex": "male",
+        "target_category": "WHITE"
+      }
+    },
+    "tolerance": "0.0020 absolute on a share in [0, 1], per case"
+  },
+  "independent_verification": {
+    "method": "INDEPENDENT SECOND FORMULATION, in the verifier and run on every graded run: verifier/independent_bridging.py. It is not the oracle's code - the published tables are transcribed a second time in a model-major layout rather than the oracle's covariate-major one, the odds are accumulated as a product of per-covariate factors rather than as one exponential of a summed linear predictor, the two-category models are inverted by bisection on the logit equation rather than by evaluating the logistic function, and every multi-category model is computed as a conditional normalisation over the applicable categories instead of forming the four-category vector and rescaling it.",
+    "publisher_anchor": {
+      "known_one_sided_bias": "Table 9's cell universe is every county, SINGLE YEAR of age, sex and Hispanic origin combination with a non-zero population for the group. The public Modified Race Data Summary File releases the population by five-year age group, so the recompute decides membership at the band the file publishes. That is a strict SUPERSET of the publisher's cell set, which is why the recomputed minima run at or below the published minima and the recomputed maxima at or above them on most series. The bound is set at 0.15 absolute to accommodate it; the median absolute difference is far smaller and is in `rows`.",
+      "rows": [
+        {
+          "absolute_difference": 0.0131,
+          "published": 0.404,
+          "recomputed": 0.4171,
+          "response_group": "AIAN_API",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0101,
+          "published": 0.385,
+          "recomputed": 0.3951,
+          "response_group": "AIAN_API",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0051,
+          "published": 0.296,
+          "recomputed": 0.3011,
+          "response_group": "AIAN_API",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0123,
+          "published": 0.5,
+          "recomputed": 0.5123,
+          "response_group": "AIAN_API",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0166,
+          "published": 0.009,
+          "recomputed": 0.0256,
+          "response_group": "AIAN_API",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.948,
+          "recomputed": 0.9482,
+          "response_group": "AIAN_API",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0131,
+          "published": 0.596,
+          "recomputed": 0.5829,
+          "response_group": "AIAN_API",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0101,
+          "published": 0.615,
+          "recomputed": 0.6049,
+          "response_group": "AIAN_API",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0123,
+          "published": 0.5,
+          "recomputed": 0.4877,
+          "response_group": "AIAN_API",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0051,
+          "published": 0.704,
+          "recomputed": 0.6989,
+          "response_group": "AIAN_API",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.052,
+          "recomputed": 0.0518,
+          "response_group": "AIAN_API",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0166,
+          "published": 0.991,
+          "recomputed": 0.9744,
+          "response_group": "AIAN_API",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0067,
+          "published": 0.286,
+          "recomputed": 0.2927,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0017,
+          "published": 0.252,
+          "recomputed": 0.2537,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0017,
+          "published": 0.186,
+          "recomputed": 0.1843,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0165,
+          "published": 0.369,
+          "recomputed": 0.3855,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0183,
+          "published": 0.015,
+          "recomputed": 0.0333,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.95,
+          "recomputed": 0.9503,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0031,
+          "published": 0.253,
+          "recomputed": 0.2499,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0018,
+          "published": 0.244,
+          "recomputed": 0.2458,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0062,
+          "published": 0.187,
+          "recomputed": 0.1932,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.291,
+          "recomputed": 0.2933,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.027,
+          "recomputed": 0.027,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.114,
+          "published": 0.899,
+          "recomputed": 0.785,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0036,
+          "published": 0.461,
+          "recomputed": 0.4574,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0051,
+          "published": 0.473,
+          "recomputed": 0.4781,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0142,
+          "published": 0.352,
+          "recomputed": 0.3378,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0096,
+          "published": 0.584,
+          "recomputed": 0.5744,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.015,
+          "recomputed": 0.015,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.872,
+          "recomputed": 0.8726,
+          "response_group": "AIAN_API_BLACK",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.01,
+          "recomputed": 0.0098,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.007,
+          "recomputed": 0.0066,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0027,
+          "published": 0.007,
+          "recomputed": 0.0043,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0094,
+          "published": 0.021,
+          "recomputed": 0.0116,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.001,
+          "recomputed": 0.0008,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0001,
+          "published": 0.11,
+          "recomputed": 0.1101,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0008,
+          "published": 0.009,
+          "recomputed": 0.0082,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0009,
+          "published": 0.007,
+          "recomputed": 0.0061,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0007,
+          "published": 0.005,
+          "recomputed": 0.0043,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0009,
+          "published": 0.01,
+          "recomputed": 0.0091,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.002,
+          "recomputed": 0.0018,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0112,
+          "published": 0.097,
+          "recomputed": 0.0858,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0026,
+          "published": 0.02,
+          "recomputed": 0.0174,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0019,
+          "published": 0.011,
+          "recomputed": 0.0091,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.006,
+          "recomputed": 0.0057,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.003,
+          "published": 0.02,
+          "recomputed": 0.017,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.001,
+          "recomputed": 0.0013,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0008,
+          "published": 0.324,
+          "recomputed": 0.3248,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0037,
+          "published": 0.961,
+          "recomputed": 0.9647,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.974,
+          "recomputed": 0.9763,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0054,
+          "published": 0.958,
+          "recomputed": 0.9634,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0015,
+          "published": 0.982,
+          "recomputed": 0.9835,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0013,
+          "published": 0.621,
+          "recomputed": 0.6197,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.994,
+          "recomputed": 0.994,
+          "response_group": "AIAN_API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.024,
+          "recomputed": 0.0237,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.017,
+          "recomputed": 0.017,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0009,
+          "published": 0.012,
+          "recomputed": 0.0111,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0011,
+          "published": 0.03,
+          "recomputed": 0.0289,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.002,
+          "recomputed": 0.002,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0053,
+          "published": 0.332,
+          "recomputed": 0.3373,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0079,
+          "published": 0.043,
+          "recomputed": 0.0351,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0031,
+          "published": 0.029,
+          "recomputed": 0.0259,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0011,
+          "published": 0.02,
+          "recomputed": 0.0189,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0038,
+          "published": 0.041,
+          "recomputed": 0.0372,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.01,
+          "recomputed": 0.0096,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0295,
+          "published": 0.356,
+          "recomputed": 0.3265,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0082,
+          "published": 0.933,
+          "recomputed": 0.9412,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0046,
+          "published": 0.95,
+          "recomputed": 0.9546,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0058,
+          "published": 0.926,
+          "recomputed": 0.9318,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0044,
+          "published": 0.963,
+          "recomputed": 0.9674,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0052,
+          "published": 0.621,
+          "recomputed": 0.6158,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.988,
+          "recomputed": 0.9877,
+          "response_group": "AIAN_API_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0177,
+          "published": 0.186,
+          "recomputed": 0.2037,
+          "response_group": "AIAN_BLACK",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.012,
+          "published": 0.127,
+          "recomputed": 0.139,
+          "response_group": "AIAN_BLACK",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0057,
+          "published": 0.073,
+          "recomputed": 0.0787,
+          "response_group": "AIAN_BLACK",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0314,
+          "published": 0.233,
+          "recomputed": 0.2644,
+          "response_group": "AIAN_BLACK",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0036,
+          "published": 0.017,
+          "recomputed": 0.0134,
+          "response_group": "AIAN_BLACK",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.015,
+          "published": 0.981,
+          "recomputed": 0.966,
+          "response_group": "AIAN_BLACK",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0177,
+          "published": 0.814,
+          "recomputed": 0.7963,
+          "response_group": "AIAN_BLACK",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.012,
+          "published": 0.873,
+          "recomputed": 0.861,
+          "response_group": "AIAN_BLACK",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0314,
+          "published": 0.767,
+          "recomputed": 0.7356,
+          "response_group": "AIAN_BLACK",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0057,
+          "published": 0.927,
+          "recomputed": 0.9213,
+          "response_group": "AIAN_BLACK",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.015,
+          "published": 0.019,
+          "recomputed": 0.034,
+          "response_group": "AIAN_BLACK",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0036,
+          "published": 0.983,
+          "recomputed": 0.9866,
+          "response_group": "AIAN_BLACK",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0142,
+          "published": 0.195,
+          "recomputed": 0.2092,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0085,
+          "published": 0.124,
+          "recomputed": 0.1325,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.046,
+          "recomputed": 0.0437,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.031,
+          "published": 0.285,
+          "recomputed": 0.316,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0003,
+          "published": 0.002,
+          "recomputed": 0.0017,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 1.0,
+          "recomputed": 1.0,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.572,
+          "recomputed": 0.5716,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0034,
+          "published": 0.599,
+          "recomputed": 0.5956,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0045,
+          "published": 0.349,
+          "recomputed": 0.3445,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0066,
+          "published": 0.801,
+          "recomputed": 0.8076,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.0,
+          "recomputed": 0.0,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0037,
+          "published": 0.99,
+          "recomputed": 0.9937,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0138,
+          "published": 0.233,
+          "recomputed": 0.2192,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0125,
+          "published": 0.157,
+          "recomputed": 0.1445,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.006,
+          "published": 0.039,
+          "recomputed": 0.033,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0218,
+          "published": 0.38,
+          "recomputed": 0.3582,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0,
+          "published": 0.0,
+          "recomputed": 0.0,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0225,
+          "published": 0.952,
+          "recomputed": 0.9295,
+          "response_group": "AIAN_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0001,
+          "published": 0.205,
+          "recomputed": 0.2051,
+          "response_group": "AIAN_WHITE",
+          "statistic": "mean",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.16,
+          "recomputed": 0.1594,
+          "response_group": "AIAN_WHITE",
+          "statistic": "median",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.107,
+          "recomputed": 0.1047,
+          "response_group": "AIAN_WHITE",
+          "statistic": "q1",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.264,
+          "recomputed": 0.2646,
+          "response_group": "AIAN_WHITE",
+          "statistic": "q3",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0036,
+          "published": 0.005,
+          "recomputed": 0.0014,
+          "response_group": "AIAN_WHITE",
+          "statistic": "min",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0034,
+          "published": 0.906,
+          "recomputed": 0.9094,
+          "response_group": "AIAN_WHITE",
+          "statistic": "max",
+          "target_category": "AIAN"
+        },
+        {
+          "absolute_difference": 0.0001,
+          "published": 0.795,
+          "recomputed": 0.7949,
+          "response_group": "AIAN_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.84,
+          "recomputed": 0.8406,
+          "response_group": "AIAN_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.736,
+          "recomputed": 0.7354,
+          "response_group": "AIAN_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.893,
+          "recomputed": 0.8953,
+          "response_group": "AIAN_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0034,
+          "published": 0.094,
+          "recomputed": 0.0906,
+          "response_group": "AIAN_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0026,
+          "published": 0.996,
+          "recomputed": 0.9986,
+          "response_group": "AIAN_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0029,
+          "published": 0.37,
+          "recomputed": 0.3729,
+          "response_group": "API_BLACK",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0008,
+          "published": 0.284,
+          "recomputed": 0.2848,
+          "response_group": "API_BLACK",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0011,
+          "published": 0.15,
+          "recomputed": 0.1489,
+          "response_group": "API_BLACK",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0097,
+          "published": 0.541,
+          "recomputed": 0.5507,
+          "response_group": "API_BLACK",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0066,
+          "published": 0.01,
+          "recomputed": 0.0166,
+          "response_group": "API_BLACK",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0018,
+          "published": 0.981,
+          "recomputed": 0.9828,
+          "response_group": "API_BLACK",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0029,
+          "published": 0.63,
+          "recomputed": 0.6271,
+          "response_group": "API_BLACK",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0008,
+          "published": 0.716,
+          "recomputed": 0.7152,
+          "response_group": "API_BLACK",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0097,
+          "published": 0.459,
+          "recomputed": 0.4493,
+          "response_group": "API_BLACK",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0001,
+          "published": 0.851,
+          "recomputed": 0.8511,
+          "response_group": "API_BLACK",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0018,
+          "published": 0.019,
+          "recomputed": 0.0172,
+          "response_group": "API_BLACK",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0066,
+          "published": 0.99,
+          "recomputed": 0.9834,
+          "response_group": "API_BLACK",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0068,
+          "published": 0.104,
+          "recomputed": 0.0972,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0054,
+          "published": 0.089,
+          "recomputed": 0.0836,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0039,
+          "published": 0.065,
+          "recomputed": 0.0611,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.003,
+          "published": 0.119,
+          "recomputed": 0.116,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0012,
+          "published": 0.03,
+          "recomputed": 0.0312,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0511,
+          "published": 0.598,
+          "recomputed": 0.5469,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0084,
+          "published": 0.113,
+          "recomputed": 0.1046,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0076,
+          "published": 0.081,
+          "recomputed": 0.0734,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0042,
+          "published": 0.053,
+          "recomputed": 0.0488,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0119,
+          "published": 0.129,
+          "recomputed": 0.1171,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.014,
+          "recomputed": 0.0136,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0009,
+          "published": 0.73,
+          "recomputed": 0.7309,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0162,
+          "published": 0.782,
+          "recomputed": 0.7982,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0107,
+          "published": 0.827,
+          "recomputed": 0.8377,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0252,
+          "published": 0.742,
+          "recomputed": 0.7672,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0126,
+          "published": 0.874,
+          "recomputed": 0.8866,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0005,
+          "published": 0.158,
+          "recomputed": 0.1575,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0002,
+          "published": 0.946,
+          "recomputed": 0.9458,
+          "response_group": "API_BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0087,
+          "published": 0.327,
+          "recomputed": 0.3183,
+          "response_group": "API_WHITE",
+          "statistic": "mean",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0129,
+          "published": 0.328,
+          "recomputed": 0.3151,
+          "response_group": "API_WHITE",
+          "statistic": "median",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.009,
+          "published": 0.219,
+          "recomputed": 0.21,
+          "response_group": "API_WHITE",
+          "statistic": "q1",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.409,
+          "recomputed": 0.4067,
+          "response_group": "API_WHITE",
+          "statistic": "q3",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.134,
+          "recomputed": 0.1336,
+          "response_group": "API_WHITE",
+          "statistic": "min",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0493,
+          "published": 0.881,
+          "recomputed": 0.8317,
+          "response_group": "API_WHITE",
+          "statistic": "max",
+          "target_category": "API"
+        },
+        {
+          "absolute_difference": 0.0087,
+          "published": 0.673,
+          "recomputed": 0.6817,
+          "response_group": "API_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0149,
+          "published": 0.67,
+          "recomputed": 0.6849,
+          "response_group": "API_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0023,
+          "published": 0.591,
+          "recomputed": 0.5933,
+          "response_group": "API_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.009,
+          "published": 0.781,
+          "recomputed": 0.79,
+          "response_group": "API_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0493,
+          "published": 0.119,
+          "recomputed": 0.1683,
+          "response_group": "API_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0004,
+          "published": 0.866,
+          "recomputed": 0.8664,
+          "response_group": "API_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0024,
+          "published": 0.621,
+          "recomputed": 0.6186,
+          "response_group": "BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0005,
+          "published": 0.622,
+          "recomputed": 0.6225,
+          "response_group": "BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0035,
+          "published": 0.524,
+          "recomputed": 0.5205,
+          "response_group": "BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.72,
+          "recomputed": 0.7194,
+          "response_group": "BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0012,
+          "published": 0.226,
+          "recomputed": 0.2248,
+          "response_group": "BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0007,
+          "published": 1.0,
+          "recomputed": 0.9993,
+          "response_group": "BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "BLACK"
+        },
+        {
+          "absolute_difference": 0.0024,
+          "published": 0.379,
+          "recomputed": 0.3814,
+          "response_group": "BLACK_WHITE",
+          "statistic": "mean",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0005,
+          "published": 0.378,
+          "recomputed": 0.3775,
+          "response_group": "BLACK_WHITE",
+          "statistic": "median",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0006,
+          "published": 0.28,
+          "recomputed": 0.2806,
+          "response_group": "BLACK_WHITE",
+          "statistic": "q1",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0035,
+          "published": 0.476,
+          "recomputed": 0.4795,
+          "response_group": "BLACK_WHITE",
+          "statistic": "q3",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0007,
+          "published": 0.0,
+          "recomputed": 0.0007,
+          "response_group": "BLACK_WHITE",
+          "statistic": "min",
+          "target_category": "WHITE"
+        },
+        {
+          "absolute_difference": 0.0252,
+          "published": 0.75,
+          "recomputed": 0.7752,
+          "response_group": "BLACK_WHITE",
+          "statistic": "max",
+          "target_category": "WHITE"
+        }
+      ],
+      "what": "NCHS Table 9 of the same report publishes the mean, median, interquartile bounds, minimum and maximum of the bridging proportions for all 28 (group, category) series - 168 published numbers describing exactly the quantity this task grades. verifier/anchor_table9.csv carries them and test_published_table9_distribution_is_reproduced recomputes them over the published cell universe on every graded run.",
+      "worst_absolute_difference": 0.114
+    },
+    "worst_disagreement_abs": 2.220446049250313e-16,
+    "worst_disagreement_note": "2.220e-16 against a 0.0020 graded tolerance"
+  },
+  "licence": {
+    "gate_a_access": "PASS - every file used is publicly downloadable with no login. Two access facts are recorded because they are operational, not incidental: www.cdc.gov returns HTTP 403 to automated fetches, so the publisher's own report PDF was taken from a raw web.archive.org capture of the canonical URL, while ftp.cdc.gov serves the whole NCHS bulk tree without a User-Agent workaround; and stacks.cdc.gov also 403s. www2.census.gov serves the Modified Race Data Summary Files directly.",
+    "gate_b_licence": "PASS with obligations",
+    "honest_caveat": "The CDC public-domain statement is site-wide, not file-level: there is no LICENSE file, SPDX tag or CC0 dedication anywhere in the NCHS bridged-race FTP tree, and CDC's own page carves out contractor-developed and third-party-licensed material. A contractor-attribution grep over the NCHS bridged-race tree returned zero hits, and the report itself is authored by named NCHS staff, so the carve-out does not appear to bite - but the verdict rests on the general statements quoted above plus the absence of any redistribution restriction, NOT on a 'US federal therefore public domain' inference, which is unsound. On the Census side, https://www.census.gov/about/policies/open-government/data-policy.html is a 404 (HTTP 404, 26,711-byte 'Page not found' body) and is deliberately NOT cited here; the live citation policy page is.",
+    "obligations_met": [
+      "attribution carried in this report, in verifier/truth.md, in verifier/process/TRUTH.md, in the skill's source line and in every module that carries a transcribed coefficient",
+      "the Census Bureau is cited as the source of the original data, and the derived area percentages are labelled as derived rather than presented as Census Bureau estimates",
+      "no CDC, HHS or Census Bureau logo, emblem or endorsement is used",
+      "NCHS Data User Agreement respected in full: every figure in this bundle is a county-level statistical aggregate or a model-implied share, no record-level microdata is used, no re-identification is attempted, nothing is linked to any identifiable record, and no disclosure methodology is assessed",
+      "the county identifiers are replaced by opaque labels in everything the agent can see, which is stricter than the agreement requires"
+    ],
+    "quotes": [
+      "Most of the information on the CDC and ATSDR websites is not subject to copyright, is in the public domain, and may be freely used or reproduced without obtaining copyright permission. (CDC, Use of Agency Materials, https://www.cdc.gov/other/agencymaterials.html)",
+      "The following requirements must be followed to utilize CDC's public domain content: 1) Attribution to the agency that developed the material must be provided in your use of the materials. (CDC, Use of Agency Materials)",
+      "These confidentiality laws state the data collected by NCHS may be used only for statistical reporting and analysis. Any effort to determine the identity of individuals and establishments violates the assurances of confidentiality provided by federal law. (NCHS Data User Agreement, https://www.cdc.gov/nchs/data_access/restrictions.htm)",
+      "Therefore, users will: Use the data in this dataset for statistical reporting and analysis only. Make no attempt to learn the identity of any person or establishment included in these data. Not link this dataset with individually identifiable data from other NCHS or non-NCHS datasets. Not engage in any efforts to assess disclosure methodologies applied to protect individuals and establishments or any research on methods of re-identification of individuals and establishments. (NCHS Data User Agreement)",
+      "Proper citation ensures that Census Bureau statistical products and research can be discovered, reused, replicated for verification, and credited for recognition to measure usage and impact. (U.S. Census Bureau, Citing our Data, Tools, Technical Documents and Research, https://www.census.gov/about/policies/citation.html)",
+      "Data users who create their own estimates using data from disseminated tables and other data should cite the Census Bureau as the source of the original data only. Conclusions drawn from any analysis of these data are the sole responsibility of the performing party. (U.S. Census Bureau, Citing our Data, Tools, Technical Documents and Research)"
+    ]
+  },
+  "open_fields": [
+    "S-01 route (b) has NOT been probed empirically. The caller runs the n=1 no-skill kill gate; this bundle is handed over unfrozen and unpiloted.",
+    "PROPERTY 3 IS ACHIEVED IN AGGREGATE, NOT RECORD BY RECORD. The goldens are computed by the oracle from the published coefficient set. They are anchored against the publisher in two independent ways - Table 9's 168 published distributional numbers, reproduced to 0.114 absolute worst case, and the publisher's own 2010 bridged file, reproduced to -2.052% to +5.781% by category - but no single graded share is a number NCHS itself printed. The scouting note that cqs_countyprobs would supply record-level shares was tested and is wrong; see cqs_countyprobs_is_not_the_table_7_proportion_set.",
+    "The 2010 end-to-end comparison excludes 6 of 3,143 counties whose boundaries changed between the two censuses (five Alaska boroughs and Broomfield, Colorado) and one county, 51005, whose Census 2000 percentages differ from NCHS's stored values because of a Virginia independent-city merge.",
+    "Category and subcategory are recorded as `category_confidence: medium`: official demographic statistics sit between finance-economics and office-white-collar in the committed taxonomy, and neither is a clean fit."
+  ],
+  "phase_1_scope_exception": "PROMPT-AUTHOR-TO-30.md section 3.2 / ERZA-OTS.md section 4 scope Phase 1 to Natural Science. This task is DEMOGRAPHIC / official statistics and is therefore filed as category `finance-economics` with `secondary_category: office-white-collar`, both of which are outside Phase 1. FLAGGED FOR A HUMAN to accept or defer, not resolved unilaterally. The diversity argument for accepting it is that Phase-1-only cannot meet the Tier-1 target of two domains per family, and the licence-clear sources for a genuine published coefficient set of this kind live in official statistics.",
+  "plausibility_envelope": {
+    "against_the_publisher": "every graded value must sit inside the published minimum-to-maximum range Table 9 gives for its own (group, category) series",
+    "share": "every graded value is a share and must satisfy 0 < share < 1; the goldens run from 0.0046 to 0.9830",
+    "sum_over_a_group": "the shares of one response group must sum to 1 over the categories that group can be assigned to; asserted on every graded run"
+  },
+  "s01_recall_probe": {
+    "route_a_recall": "NO, on analysis; the empirical probe is the caller's kill gate and is recorded OPEN. The withheld object is a 7-column by 14-row table of five-decimal regression coefficients plus a 3-column by 17-row one, from a 2003 NCHS methodology report. There is no named formula and no round number in it.",
+    "route_b_reconstruction": "NO, on analysis, and this is the decisive route. The task grades the model OUTPUT, so a reconstruction would have to reproduce 31 shares to 0.002 absolute from remembered five-decimal coefficients across three different model families. Every route that does not hold the coefficients is measured to miss every graded case by more than 2.0 tolerances, per case, by construction. OPEN: not probed empirically here, because this bundle is handed over before any agent run.",
+    "route_c_library": "NO. No package implements the NCHS bridging models. The image carries python:3.11-slim plus numpy and pytest only; statsmodels and scikit-learn are not installed, and neither would help - they fit models, they do not carry NCHS's fitted coefficients.",
+    "route_d_script": "NO. task.md states the goal - report the assignment share for each listed record - and never states the model, the coefficient set, the model-selection rule, the covariate transforms or the rescale. A run can script the arithmetic only once it holds the table.",
+    "verdict": "NOT-RECALLABLE on analysis. The empirical n=1 no-skill probe is the caller's kill gate and is deliberately not run here."
+  },
+  "s05_kill_list": "Cleared. Not a famous formula (the models are named in one 2003 methodology report), not a named method with a standard implementation, not a global-standard table, not library-packaged, not a fully-stated clean cascade (the prompt states no rule), not a guessable statutory rule, not a single recallable convention, and NOT an invented house method - every constant in this bundle is a published, citable coefficient with a page reference.",
+  "seed": 20260731,
+  "seed_base": 20260729,
+  "sources": [
+    {
+      "bytes": 1245730,
+      "citation": "Ingram DD, Parker JD, Schenker N, Weed JA, Hamilton B, Arias E, Madans JH. United States Census 2000 population with bridged race categories. National Center for Health Statistics. Vital Health Stat 2(135). 2003.",
+      "http_status": 200,
+      "note": "The canonical URL https://www.cdc.gov/nchs/data/series/sr_02/sr02_135.pdf returns HTTP 403 to every automated fetch, so the publisher's own bytes were taken from a raw web.archive.org capture of that exact URL. The text layer of that capture is native, not OCR.",
+      "role": "withheld coefficient set (Tables 7 and 8) and the Table 9 anchor",
+      "sha256": "51a4c9f38997fb065561819aa3f68d08ce332fc1c8b0ccbf56dd34bc29037333",
+      "url": "https://web.archive.org/web/20200224153533id_/https://www.cdc.gov/nchs/data/series/sr_02/sr02_135.pdf"
+    },
+    {
+      "bytes": 975987,
+      "citation": "Same report, ERIC full-text copy ED481807.",
+      "http_status": 200,
+      "note": "This copy is an OCR scan and DROPS two Table 7 cells - the AIAN/Black/White Northeast coefficient and the API/Black Midwest coefficient come through as bare digit runs with the leading characters lost. Both are legible in the archived publisher PDF (-4.53976 and -3.92403). Recorded because a build that had used the ERIC scan alone would have had to guess two coefficients, which PROMPT-AUTHOR-TO-30.md S-11 forbids.",
+      "role": "cross-check on the coefficient tables, independent scan",
+      "sha256": "d2ec23f7015af367aeaa24f16958571e878476914ef2d58c32b4940acb6c44f7",
+      "url": "https://files.eric.ed.gov/fulltext/ED481807.pdf"
+    },
+    {
+      "bytes": 65046291,
+      "citation": "U.S. Census Bureau, Census 2000 Modified Race Data Summary File, county file mr-co.txt.",
+      "http_status": 200,
+      "role": "area covariates: the county composition percentages the models use",
+      "sha256": "9d77dfc50efba080a03b51880a73b983e8470d1a75ae3ce55c5d6d28cbf48053",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2000/modified-race-data-2000/mr-co.txt"
+    },
+    {
+      "bytes": 514475008,
+      "citation": "National Center for Health Statistics, bridged-race county probability file cqs_countyprobs.sas7bdat.",
+      "http_status": 200,
+      "note": "Used ONLY for the four-level urbanisation classification and the region indicators, which are county attributes NCHS released and which are not derivable from the Census file. See `cqs_countyprobs_is_not_the_table_7_proportion_set` for what its probability columns turned out to be.",
+      "role": "NCHS's own county urbanisation and region classification",
+      "sha256": "0787181db0f377385b40f415c205fb9dfa2b371975b71920970f165ab1f537a8",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/nchs/datasets/nvss/bridgepop/cqs_countyprobs.sas7bdat"
+    },
+    {
+      "bytes": 13283930,
+      "citation": "National Center for Health Statistics, bridged-race April 1, 2010 population estimates, census_0401_2010.txt.",
+      "http_status": 200,
+      "note": "4,324,768 records. NEVER shipped agent-side in any form.",
+      "role": "publisher's own released output, grader-side measurement only",
+      "sha256": "f69a2a18403800fa22b0ec5f5242fedad93fa1520fb1d9ee18f62807da9d4221",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/nchs/datasets/nvss/bridgepop/census_0401_2010.txt.zip"
+    },
+    {
+      "bytes": 59949859,
+      "citation": "U.S. Census Bureau, Census 2010 Modified Race Data Summary File, state-county files.",
+      "http_status": 200,
+      "role": "input file the publisher's 2010 output was produced from",
+      "sha256": "64f01a3ebbf00b439059c26bae0eb3838faf8cd68d99ae7be716066bdb5f7bd8 and 1a2ef8efc9cbdcfdfcee81b93c3b488d9086e3177d081cc292be1ffc91f90230",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2010/modified-race-data-2010/stco-mr2010_al_mo.csv and .../stco-mr2010_mt_wy.csv"
+    },
+    {
+      "bytes": 76706,
+      "citation": "National Center for Health Statistics, Documentation for April 1, 2010 Bridged-Race Population Estimates.",
+      "http_status": 200,
+      "role": "method documentation for the 2010 vintage",
+      "sha256": "5ee0e04f608bb0ede37433ab62674de81c0d986b6de43f7403a357abc0ab12db",
+      "url": "https://ftp.cdc.gov/pub/health_statistics/nchs/datasets/nvss/bridgepop/DocumentationBridgedApril1_2010.pdf"
+    }
+  ],
+  "task": "bridged-race-population-estimates",
+  "template": "A - a real, published, citable, non-recallable coefficient set carried in the skill, a neutral in-input distractor the default grabs (question.json's orientation block of published country-wide flat shares), and genuine multi-stage computation: model selection, two footnoted covariate transforms, reference categories, an age cap, and a conditional rescale over the categories that apply."
+}

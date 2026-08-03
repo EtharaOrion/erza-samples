@@ -1,0 +1,182 @@
+{
+ "recipe": "forge.task_id.v1",
+ "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+ "canonical_content_hash": "0234a39c1a4b7b221fe14cf6a2845d88ae92e71aaac4fc35701386af05cb6935",
+ "task_id": "c7faca71-82cd-5ad3-9dc5-c161793ddb25",
+ "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest below, sorted by POSIX relpath, joined without a trailing newline. Paths are relative to the bundle root (path-independent). Skips .git, __pycache__, .DS_Store, *.pyc and this uuid_provenance.json (self-referential).",
+ "source": {
+  "origin": "content-rekey",
+  "human_slug": "flight-duty-period-legality",
+  "staged_from": "harness/tasks | harness/tasks-salvage",
+  "duplicate_staged_copies": [],
+  "supersede_reason": "The canonical content hash moved because files OUTSIDE the grading layer changed, so the agent-visible surface IS different: solution/TRUTH.md, solution/_truth_template.py, solution/grounding.yaml, solution/recompute.py. Any measurement recorded against 585d2a95-e0f4-53a8-8f25-b08bd29525dd describes bytes this bundle no longer has and must not be reported as a result for this id.",
+  "supersedes": "585d2a95-e0f4-53a8-8f25-b08bd29525dd"
+ },
+ "manifest": [
+  {
+   "relpath": "build/build_report.json",
+   "sha256": "bed6e4d11251737a2c151be8e8756f368ddbccd644137fea034afa9e04394c0c"
+  },
+  {
+   "relpath": "build/gen.py",
+   "sha256": "fbace1bf4d78c56b3b4b09fe2949324d3d56a76d6274949a61c2f68f882d7c68"
+  },
+  {
+   "relpath": "build/independent_check.py",
+   "sha256": "e49e1e0d9b5a38fbc752b283fb3ec2a506aba4994e1c45f2a5c651ea64b4d8cf"
+  },
+  {
+   "relpath": "environment/Dockerfile",
+   "sha256": "47b30082f22f216bfd42cd5f62620858428bf6966adeb24ca0d3ac2788d68cfe"
+  },
+  {
+   "relpath": "environment/data/pairings.csv",
+   "sha256": "2127c0c393a6f9a944fe9365760d903fe209562ca2178cff26a3cbfdd94ae10a"
+  },
+  {
+   "relpath": "environment/data/question.json",
+   "sha256": "ac8b9f98c50016c22811850fe8ca25961c207f01b44d312dd9ce7b7d56170018"
+  },
+  {
+   "relpath": "environment/skills/flightcrew-duty-limit-enumeration/SKILL.md",
+   "sha256": "6daa56bc6de8846a916200a388106cc1f248b2f4b0841e0ce42b90316ac2f54b"
+  },
+  {
+   "relpath": "instruction.md",
+   "sha256": "0ff68d1e978c3065fc0805e38150363b078affe7e208bc97db949baa5ce7ab1b"
+  },
+  {
+   "relpath": "solution/TRUTH.md",
+   "sha256": "a3030add44be826e9611d9a9d156e60c6b2e4110de42ed091e5b14d1f5522e69"
+  },
+  {
+   "relpath": "solution/_truth_template.py",
+   "sha256": "d54d40368619049f0da5454bc2f21cf78e38f1cb48b55b9e49fbcd3e14925752"
+  },
+  {
+   "relpath": "solution/grounding.yaml",
+   "sha256": "6a5557b21c6a5a5d51bf5f779a5529b2dae490ab0f1e90bf13e083b3be46cf2c"
+  },
+  {
+   "relpath": "solution/part117_tables.py",
+   "sha256": "23cc7a1591faad55f844c3dd3cb69ea883c65a1964206ed121ca0c22c222fd7e"
+  },
+  {
+   "relpath": "solution/recompute.py",
+   "sha256": "d5546e10b3b56e10f92981e5466b938306cbf4e10b11b95f3864a97e727e7cf7"
+  },
+  {
+   "relpath": "solution/solve.py",
+   "sha256": "501691a9ad7054c7311cde8b5fd37fcf52f43949033b2020302d78c1c19ae574"
+  },
+  {
+   "relpath": "solution/solve.sh",
+   "sha256": "2cdf90600893eac83fda3835550961dc44345841bdce416021c42aa8206e7da0"
+  },
+  {
+   "relpath": "task.toml",
+   "sha256": "b90d7f62df4f841ac8feb4b6d8b705814927456cb0fd9923db2277cd9f913c2e"
+  },
+  {
+   "relpath": "tests/expected_values.json",
+   "sha256": "541b73950e85eb8e1a0ee9ffe9287333d92ac6d4108eae9b3e4666941a047a32"
+  },
+  {
+   "relpath": "tests/part117.xml",
+   "sha256": "c1e0020d662507e14388d3030b85cf15b492587bf7ad99f8b1db4a40d7136537"
+  },
+  {
+   "relpath": "tests/process/README.md",
+   "sha256": "cf6c6883c8125f72256d1fa91ab4e1fc22510f9ede4887446316ee7e15f6b9ef"
+  },
+  {
+   "relpath": "tests/process/TRUTH.md",
+   "sha256": "c6daef81a34317a750bb0c93e0cdf688e91107bdc582c48db2a25f8d031d84b7"
+  },
+  {
+   "relpath": "tests/process/judge/judge.py",
+   "sha256": "e6c4a4c284a0102b3a7ac162798ab7afc811bb7308183e804f080e281ad2a5a7"
+  },
+  {
+   "relpath": "tests/process/report.py",
+   "sha256": "371ca5e314e68816cfdb1b7122958fac559f737cf4b55f66dd23fd8e739fd5c0"
+  },
+  {
+   "relpath": "tests/process/rubrics.json",
+   "sha256": "9a994a73d66a8083b15974009cbc53f73b57bb6a18940697aac2e9bbf2ea91e9"
+  },
+  {
+   "relpath": "tests/process/run.sh",
+   "sha256": "e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2"
+  },
+  {
+   "relpath": "tests/process/score.py",
+   "sha256": "f498834fea483a510dbb614595a440c5b6d53d74972627c08a080c7b7c461c4a"
+  },
+  {
+   "relpath": "tests/process/verification/check_refs.py",
+   "sha256": "bc5c36e04a635ae480dd6aa05dd91f957153f6626e9e52c6bba11649a3f333a3"
+  },
+  {
+   "relpath": "tests/process/verification/negative_fixtures_test.py",
+   "sha256": "f96c3f15e783a6f7b9940c5c3fad5a952a1ed2d31127a82c1722f6e2b59a5b2b"
+  },
+  {
+   "relpath": "tests/process/verification/rederivation_test.py",
+   "sha256": "c1a489a142f5bbfb9c34005238516aac97bb38d864909fb345ec5125653d7cd2"
+  },
+  {
+   "relpath": "tests/process/verifier/checks.py",
+   "sha256": "d62567b552b0924bd0a5b04fd82b8f131934bf7620fa314e963ea0e8afd90686"
+  },
+  {
+   "relpath": "tests/process/verifier/conftest.py",
+   "sha256": "2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23"
+  },
+  {
+   "relpath": "tests/process/verifier/test_trajectory.py",
+   "sha256": "7e8f75a43f9f3a787eae4d31fa2cc3c710be9099ffc6a39d0d79707a46c464d0"
+  },
+  {
+   "relpath": "tests/process/verifier/trajectory.py",
+   "sha256": "fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012"
+  },
+  {
+   "relpath": "tests/reg_reparse.py",
+   "sha256": "0d010932800f98eae9f95ba4791659f7eb7425d85fe8e2b46867230e26aaf0c9"
+  },
+  {
+   "relpath": "tests/rubric.yaml",
+   "sha256": "224231bbb1790d53f1dee0a043457597ff774d1926cdbbbf02419e7bbf4664f1"
+  },
+  {
+   "relpath": "tests/test.sh",
+   "sha256": "dd7351731a713ac67b6920ecc61373789adbb2666615cdb01d529161f74658cb"
+  },
+  {
+   "relpath": "tests/test_outputs.py",
+   "sha256": "d3fa646e207e225e1fa243b74dfcc749d333b466f68ea50b13b6b8725e5d3276"
+  },
+  {
+   "relpath": "tests/truth.md",
+   "sha256": "0cdb63fc26b7e13897f04e13add5c411f29edba85bb61479e317a2ac11e07d7d"
+  }
+ ],
+ "supersede_history": [
+  {
+   "superseded_task_id": "204cfa84-e093-510b-bf55-8dafadec6e6c",
+   "superseded_canonical_content_hash": "b9fd59e6a8639c128c49ee8666a4ea87386df84bd8580638c8d1797811e1e2ae",
+   "date": "2026-08-03",
+   "reason": "QC repair pass. Defects corrected: engineered a discriminating tolerance for a gated crux case whose tolerance exceeded its own reference value; added fail-closed reward pre-seeding; repaired pre-Harbor path references (oracle/ -> solution/, verifier/ -> tests/, task.md -> instruction.md) that broke every build-time independent check; widened process-instrument detectors that were bound to a single spelling in violation of the REQ-9 route-restriction ban; repaired guardrail false-positive patterns; brought rubric weights, weight_evidence, gate declarations and TRUTH.md step coverage into conformance with REQ-9. See QC_REPORT.md.",
+   "grading_affected": false
+  },
+  {
+   "superseded_task_id": "ac6c4629-f1c2-55b8-bdad-01370abe1a15",
+   "superseded_canonical_content_hash": "d1bb95b9c05a458117f27c71620249f9edbcf3eeface446637e774d9fc1935fc",
+   "date": "2026-08-03",
+   "reason": "QC repair pass. Defects corrected: engineered a discriminating tolerance for a gated crux case whose tolerance exceeded its own reference value; added fail-closed reward pre-seeding; repaired pre-Harbor path references (oracle/ -> solution/, verifier/ -> tests/, task.md -> instruction.md) that broke every build-time independent check; widened process-instrument detectors that were bound to a single spelling in violation of the REQ-9 route-restriction ban; repaired guardrail false-positive patterns; brought rubric weights, weight_evidence, gate declarations and TRUTH.md step coverage into conformance with REQ-9. See QC_REPORT.md.",
+   "grading_affected": false
+  }
+ ],
+ "supersedes": "ac6c4629-f1c2-55b8-bdad-01370abe1a15"
+}

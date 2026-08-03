@@ -1,0 +1,803 @@
+{
+  "all_margins_by_pairing": {
+    "P01": {
+      "cumulative_fdp_168h": 510,
+      "cumulative_fdp_672h": 1730,
+      "cumulative_flight_672h": 1360,
+      "flight_duty_period": 23,
+      "flight_time": 45,
+      "free_period_168h": 660,
+      "rest_before_duty": 80
+    },
+    "P02": {
+      "cumulative_fdp_168h": 380,
+      "cumulative_fdp_672h": 1240,
+      "cumulative_flight_672h": 835,
+      "flight_duty_period": -18,
+      "flight_time": 115,
+      "free_period_168h": 190,
+      "rest_before_duty": 40
+    },
+    "P03": {
+      "cumulative_fdp_168h": 350,
+      "cumulative_fdp_672h": 1950,
+      "cumulative_flight_672h": 785,
+      "flight_duty_period": 7,
+      "flight_time": 25,
+      "free_period_168h": 360,
+      "rest_before_duty": 120
+    },
+    "P04": {
+      "cumulative_fdp_168h": 675,
+      "cumulative_fdp_672h": 1875,
+      "cumulative_flight_672h": 2050,
+      "flight_duty_period": -12,
+      "flight_time": 130,
+      "free_period_168h": 120,
+      "rest_before_duty": 85
+    },
+    "P05": {
+      "cumulative_fdp_168h": 390,
+      "cumulative_fdp_672h": 1470,
+      "cumulative_flight_672h": 465,
+      "flight_duty_period": 34,
+      "flight_time": 45,
+      "free_period_168h": 480,
+      "rest_before_duty": 105
+    },
+    "P06": {
+      "cumulative_fdp_168h": 395,
+      "cumulative_fdp_672h": 1775,
+      "cumulative_flight_672h": 950,
+      "flight_duty_period": -22,
+      "flight_time": 50,
+      "free_period_168h": 240,
+      "rest_before_duty": 30
+    },
+    "P07": {
+      "cumulative_fdp_168h": 555,
+      "cumulative_fdp_672h": 2115,
+      "cumulative_flight_672h": 1110,
+      "flight_duty_period": -41,
+      "flight_time": 30,
+      "free_period_168h": 420,
+      "rest_before_duty": 60
+    },
+    "P08": {
+      "cumulative_fdp_168h": 300,
+      "cumulative_fdp_672h": 1410,
+      "cumulative_flight_672h": 545,
+      "flight_duty_period": -27,
+      "flight_time": 65,
+      "free_period_168h": 30,
+      "rest_before_duty": 15
+    },
+    "P09": {
+      "cumulative_fdp_168h": 620,
+      "cumulative_fdp_672h": 1980,
+      "cumulative_flight_672h": 910,
+      "flight_duty_period": 9,
+      "flight_time": 38,
+      "free_period_168h": 545,
+      "rest_before_duty": 155
+    },
+    "P10": {
+      "cumulative_fdp_168h": 210,
+      "cumulative_fdp_672h": 1170,
+      "cumulative_flight_672h": 615,
+      "flight_duty_period": -26,
+      "flight_time": 70,
+      "free_period_168h": 55,
+      "rest_before_duty": 50
+    },
+    "P11": {
+      "cumulative_fdp_168h": 520,
+      "cumulative_fdp_672h": 2030,
+      "cumulative_flight_672h": 330,
+      "flight_duty_period": 11,
+      "flight_time": -24,
+      "free_period_168h": 905,
+      "rest_before_duty": 150
+    },
+    "P12": {
+      "cumulative_fdp_168h": 770,
+      "cumulative_fdp_672h": 3170,
+      "cumulative_flight_672h": 880,
+      "flight_duty_period": 14,
+      "flight_time": 100,
+      "free_period_168h": 1500,
+      "rest_before_duty": -19
+    },
+    "P13": {
+      "cumulative_fdp_168h": 860,
+      "cumulative_fdp_672h": 2780,
+      "cumulative_flight_672h": 11,
+      "flight_duty_period": 21,
+      "flight_time": 80,
+      "free_period_168h": 840,
+      "rest_before_duty": 150
+    },
+    "P14": {
+      "cumulative_fdp_168h": 18,
+      "cumulative_fdp_672h": 1650,
+      "cumulative_flight_672h": 530,
+      "flight_duty_period": 38,
+      "flight_time": 55,
+      "free_period_168h": 200,
+      "rest_before_duty": 70
+    },
+    "P15": {
+      "cumulative_fdp_168h": 430,
+      "cumulative_fdp_672h": -6,
+      "cumulative_flight_672h": 240,
+      "flight_duty_period": 14,
+      "flight_time": 60,
+      "free_period_168h": 300,
+      "rest_before_duty": 30
+    },
+    "P16": {
+      "cumulative_fdp_168h": 210,
+      "cumulative_fdp_672h": 1170,
+      "cumulative_flight_672h": 615,
+      "flight_duty_period": -25,
+      "flight_time": 150,
+      "free_period_168h": -43,
+      "rest_before_duty": 50
+    },
+    "P17": {
+      "cumulative_fdp_168h": 605,
+      "cumulative_fdp_672h": 1865,
+      "cumulative_flight_672h": 700,
+      "flight_duty_period": 9,
+      "flight_time": -14,
+      "free_period_168h": 60,
+      "rest_before_duty": 40
+    }
+  },
+  "binding_limit_by_pairing": {
+    "P01": "flight_duty_period",
+    "P02": "flight_duty_period",
+    "P03": "flight_duty_period",
+    "P04": "flight_duty_period",
+    "P05": "flight_duty_period",
+    "P06": "flight_duty_period",
+    "P07": "flight_duty_period",
+    "P08": "flight_duty_period",
+    "P09": "flight_duty_period",
+    "P10": "flight_duty_period",
+    "P11": "flight_time",
+    "P12": "rest_before_duty",
+    "P13": "cumulative_flight_672h",
+    "P14": "cumulative_fdp_168h",
+    "P15": "cumulative_fdp_672h",
+    "P16": "free_period_168h",
+    "P17": "flight_time"
+  },
+  "compliant_by_pairing": {
+    "P01": true,
+    "P02": false,
+    "P03": true,
+    "P04": false,
+    "P05": true,
+    "P06": false,
+    "P07": false,
+    "P08": false,
+    "P09": true,
+    "P10": false,
+    "P11": false,
+    "P12": false,
+    "P13": true,
+    "P14": true,
+    "P15": false,
+    "P16": false,
+    "P17": false
+  },
+  "constant_answer_floors": {
+    "always_cumulative_fdp_168h": 1,
+    "always_cumulative_fdp_672h": 1,
+    "always_cumulative_flight_672h": 1,
+    "always_flight_duty_period": 10,
+    "always_flight_time": 2,
+    "always_free_period_168h": 1,
+    "always_rest_before_duty": 1,
+    "every_margin_-120": 0,
+    "every_margin_-150": 0,
+    "every_margin_-180": 0,
+    "every_margin_-30": 0,
+    "every_margin_-60": 0,
+    "every_margin_-90": 0,
+    "every_margin_0": 0,
+    "every_margin_120": 0,
+    "every_margin_150": 0,
+    "every_margin_180": 0,
+    "every_margin_30": 0,
+    "every_margin_60": 0,
+    "every_margin_90": 0
+  },
+  "control_gaps": {
+    "augmentation_ignored": {
+      "binding_limit_mismatches": 7,
+      "binding_margin_cases_reproduced": 0,
+      "binding_margin_gap_over_tol": 340.0,
+      "binding_margin_min_nonzero_gap_over_tol": 37.0,
+      "description": "the unaugmented matrix applied to augmented pairings, ignoring the rest-facility class and the extra pilots",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 360.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 60.0,
+      "graded_cases_reproduced": 0,
+      "graded_cases_scored": 21,
+      "note": "A real competing method: an analyst who finds one matrix and not the other applies it to everything. Scored only over the pairings it alters, since on unaugmented pairings it is by definition the correct route.",
+      "pairings_scored": 7,
+      "scored_over": "augmented"
+    },
+    "cumulative_limits_ignored": {
+      "binding_limit_mismatches": 3,
+      "binding_margin_cases_reproduced": 14,
+      "binding_margin_gap_over_tol": 20.0,
+      "binding_margin_min_nonzero_gap_over_tol": 10.0,
+      "description": "only the per-pairing limits enumerated; the rolling cumulative limits never checked",
+      "fdp_margin_cases_reproduced": 17,
+      "fdp_margin_gap_over_tol": 0.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 0.0,
+      "graded_cases_reproduced": 45,
+      "graded_cases_scored": 51,
+      "note": "A real competing method: the cumulative limits need the crew member's duty history rather than the pairing, and an analysis that starts from the pairing sheet stops before them.",
+      "pairings_scored": 17,
+      "scored_over": "all"
+    },
+    "flat_14h_duty_day": {
+      "binding_limit_mismatches": 17,
+      "binding_margin_cases_reproduced": 0,
+      "binding_margin_gap_over_tol": 280.0,
+      "binding_margin_min_nonzero_gap_over_tol": 11.0,
+      "description": "treat the maximum flight duty period as a flat 14 hours regardless of report time, segment count, augmentation or acclimation, while enumerating and applying every other limit correctly",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 330.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 60.0,
+      "graded_cases_reproduced": 0,
+      "graded_cases_scored": 51,
+      "nearest_real_competitor": true,
+      "note": "The nearest real competing method: what a scheduler who knows the limits exist but not the matrix actually does. 14 hours is the figure the regulation itself states for the combined split-duty period and the figure the superseded domestic scheduled-duty rule used, so it is the number that is reached for. Not a strawman.",
+      "pairings_scored": 17,
+      "scored_over": "all"
+    },
+    "flight_duty_period_only": {
+      "binding_limit_mismatches": 7,
+      "binding_margin_cases_reproduced": 10,
+      "binding_margin_gap_over_tol": 35.0,
+      "binding_margin_min_nonzero_gap_over_tol": 10.0,
+      "description": "the flight duty period treated as the only limit, so it is always reported as the governing one",
+      "fdp_margin_cases_reproduced": 17,
+      "fdp_margin_gap_over_tol": 0.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 0.0,
+      "graded_cases_reproduced": 37,
+      "graded_cases_scored": 51,
+      "note": "Floor-bounding strawman rather than a competing method: it is what answering the headline limit everywhere looks like, and it bounds how much of the graded set a run can collect without enumerating.",
+      "pairings_scored": 17,
+      "scored_over": "all"
+    },
+    "report_row_ignored": {
+      "binding_limit_mismatches": 9,
+      "binding_margin_cases_reproduced": 8,
+      "binding_margin_gap_over_tol": 97.0,
+      "binding_margin_min_nonzero_gap_over_tol": 11.0,
+      "description": "correct segment column, but the mid-morning report-time row used for every pairing",
+      "fdp_margin_cases_reproduced": 4,
+      "fdp_margin_gap_over_tol": 240.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 60.0,
+      "graded_cases_reproduced": 20,
+      "graded_cases_scored": 51,
+      "note": "A real competing method: the mid-morning row is the one quoted in trade summaries, and using it everywhere is the mirror image of ignoring the segment column.",
+      "pairings_scored": 17,
+      "scored_over": "all"
+    },
+    "segment_column_ignored": {
+      "binding_limit_mismatches": 5,
+      "binding_margin_cases_reproduced": 2,
+      "binding_margin_gap_over_tol": 60.0,
+      "binding_margin_min_nonzero_gap_over_tol": 11.0,
+      "description": "correct report-time row, but the single-segment column used for every pairing",
+      "fdp_margin_cases_reproduced": 2,
+      "fdp_margin_gap_over_tol": 90.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 30.0,
+      "graded_cases_reproduced": 9,
+      "graded_cases_scored": 30,
+      "note": "A real competing method: reading the matrix as a function of report time alone is the most common misreading of it.",
+      "pairings_scored": 10,
+      "scored_over": "unaugmented"
+    },
+    "split_duty_relief_skipped": {
+      "binding_limit_mismatches": 0,
+      "binding_margin_cases_reproduced": 0,
+      "binding_margin_gap_over_tol": 205.0,
+      "binding_margin_min_nonzero_gap_over_tol": 205.0,
+      "description": "the scheduled accommodation rest counted as duty",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 205.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 205.0,
+      "graded_cases_reproduced": 1,
+      "graded_cases_scored": 3,
+      "note": "A real competing method: the split-duty provision is optional relief and an analyst who does not know it is there leaves the whole elapsed period on duty.",
+      "pairings_scored": 1,
+      "scored_over": "split_duty_qualifying"
+    },
+    "split_duty_relief_unconditional": {
+      "binding_limit_mismatches": 3,
+      "binding_margin_cases_reproduced": 0,
+      "binding_margin_gap_over_tol": 71.0,
+      "binding_margin_min_nonzero_gap_over_tol": 29.0,
+      "description": "every scheduled accommodation rest excluded from duty without testing the published conditions on it",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 190.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 165.0,
+      "graded_cases_reproduced": 0,
+      "graded_cases_scored": 9,
+      "note": "A real competing method, and the opposite error to skipping the relief: the conditions are a six-part conjunction and taking the relief on sight is the standard shortcut.",
+      "pairings_scored": 3,
+      "scored_over": "split_duty_unqualifying"
+    },
+    "unacclimated_reduction_skipped": {
+      "binding_limit_mismatches": 0,
+      "binding_margin_cases_reproduced": 1,
+      "binding_margin_gap_over_tol": 30.0,
+      "binding_margin_min_nonzero_gap_over_tol": 30.0,
+      "description": "the acclimation reduction omitted",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 30.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 30.0,
+      "graded_cases_reproduced": 4,
+      "graded_cases_scored": 9,
+      "note": "A real competing method: the reduction sits in a different paragraph from the matrix and is routinely missed.",
+      "pairings_scored": 3,
+      "scored_over": "unacclimated"
+    },
+    "unforeseen_extension_applied": {
+      "binding_limit_mismatches": 10,
+      "binding_margin_cases_reproduced": 7,
+      "binding_margin_gap_over_tol": 97.0,
+      "binding_margin_min_nonzero_gap_over_tol": 11.0,
+      "description": "the two-hour unforeseen-circumstances extension added to every scheduled pairing",
+      "fdp_margin_cases_reproduced": 0,
+      "fdp_margin_gap_over_tol": 120.0,
+      "fdp_margin_min_nonzero_gap_over_tol": 120.0,
+      "graded_cases_reproduced": 14,
+      "graded_cases_scored": 51,
+      "note": "A real competing method, and the most defensible-looking wrong answer here: the extension is real and published, but it is relief for circumstances arising after the schedule is set, so it can never enlarge a SCHEDULED limit.",
+      "pairings_scored": 17,
+      "scored_over": "all"
+    }
+  },
+  "items": [
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P01",
+      "ref": 23,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P01",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P01",
+      "ref": 23,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P02",
+      "ref": -18,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P02",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P02",
+      "ref": -18,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P03",
+      "ref": 7,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P03",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P03",
+      "ref": 7,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P04",
+      "ref": -12,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P04",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P04",
+      "ref": -12,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P05",
+      "ref": 34,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P05",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P05",
+      "ref": 34,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P06",
+      "ref": -22,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P06",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P06",
+      "ref": -22,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P07",
+      "ref": -41,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P07",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P07",
+      "ref": -41,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P08",
+      "ref": -27,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P08",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P08",
+      "ref": -27,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P09",
+      "ref": 9,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P09",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P09",
+      "ref": 9,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P10",
+      "ref": -26,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P10",
+      "ref": "flight_duty_period",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P10",
+      "ref": -26,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P11",
+      "ref": 11,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P11",
+      "ref": "flight_time",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P11",
+      "ref": -24,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P12",
+      "ref": 14,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P12",
+      "ref": "rest_before_duty",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P12",
+      "ref": -19,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P13",
+      "ref": 21,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P13",
+      "ref": "cumulative_flight_672h",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P13",
+      "ref": 11,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P14",
+      "ref": 38,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P14",
+      "ref": "cumulative_fdp_168h",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P14",
+      "ref": 18,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P15",
+      "ref": 14,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P15",
+      "ref": "cumulative_fdp_672h",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P15",
+      "ref": -6,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P16",
+      "ref": -25,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P16",
+      "ref": "free_period_168h",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P16",
+      "ref": -43,
+      "tolerance": 1.0
+    },
+    {
+      "field": "fdp_margin_min",
+      "kind": "margin",
+      "pairing": "P17",
+      "ref": 9,
+      "tolerance": 1.0
+    },
+    {
+      "field": "binding_limit",
+      "kind": "code",
+      "pairing": "P17",
+      "ref": "flight_time",
+      "tolerance": null
+    },
+    {
+      "field": "binding_margin_min",
+      "kind": "margin",
+      "pairing": "P17",
+      "ref": -14,
+      "tolerance": 1.0
+    }
+  ],
+  "limit_codes": [
+    "flight_duty_period",
+    "flight_time",
+    "rest_before_duty",
+    "free_period_168h",
+    "cumulative_fdp_168h",
+    "cumulative_fdp_672h",
+    "cumulative_flight_672h"
+  ],
+  "method": "each pairing's margin taken against every limit the part imposes on it, the maximum flight duty period read from the matrix its report time and segment count select and reduced when the crew is not acclimated, the accommodation rest excluded from the duty period only when every published condition on it holds, and the governing limit taken as the smallest of the seven margins",
+  "n_cases": 51,
+  "n_pairings": 17,
+  "pairing_ids": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15",
+    "P16",
+    "P17"
+  ],
+  "published_precision_ambiguity_margin_maxabs": 0.0,
+  "published_precision_ambiguity_method": "re-derived through the second formulation and the worst disagreement taken: every margin recomputed from the limits parsed out of the published regulation XML, by the release-deadline route, and differenced against the oracle's transcription-and-subtraction route. Worst disagreement over all 119 margins: 0 minutes.",
+  "published_precision_ambiguity_note": "Zero by construction, and this is the one place where a lookup table is easier to grade than a fitted relation. Every published cell is a whole or half hour, every scheduled time is a whole minute, and every limit is an integral number of hours, so a faithful reading has no rounding freedom at all. The tolerance is one minute purely to absorb a differently-ordered integer computation.",
+  "ref_P01_binding_margin_min": 23,
+  "ref_P01_fdp_margin_min": 23,
+  "ref_P02_binding_margin_min": -18,
+  "ref_P02_fdp_margin_min": -18,
+  "ref_P03_binding_margin_min": 7,
+  "ref_P03_fdp_margin_min": 7,
+  "ref_P04_binding_margin_min": -12,
+  "ref_P04_fdp_margin_min": -12,
+  "ref_P05_binding_margin_min": 34,
+  "ref_P05_fdp_margin_min": 34,
+  "ref_P06_binding_margin_min": -22,
+  "ref_P06_fdp_margin_min": -22,
+  "ref_P07_binding_margin_min": -41,
+  "ref_P07_fdp_margin_min": -41,
+  "ref_P08_binding_margin_min": -27,
+  "ref_P08_fdp_margin_min": -27,
+  "ref_P09_binding_margin_min": 9,
+  "ref_P09_fdp_margin_min": 9,
+  "ref_P10_binding_margin_min": -26,
+  "ref_P10_fdp_margin_min": -26,
+  "ref_P11_binding_margin_min": -24,
+  "ref_P11_fdp_margin_min": 11,
+  "ref_P12_binding_margin_min": -19,
+  "ref_P12_fdp_margin_min": 14,
+  "ref_P13_binding_margin_min": 11,
+  "ref_P13_fdp_margin_min": 21,
+  "ref_P14_binding_margin_min": 18,
+  "ref_P14_fdp_margin_min": 38,
+  "ref_P15_binding_margin_min": -6,
+  "ref_P15_fdp_margin_min": 14,
+  "ref_P16_binding_margin_min": -43,
+  "ref_P16_fdp_margin_min": -25,
+  "ref_P17_binding_margin_min": -14,
+  "ref_P17_fdp_margin_min": 9,
+  "schema": "flat",
+  "seed": 20260729,
+  "smallest_wrong_path_gap_multiple": 10.0,
+  "tolerance_binding_margin_min_abs": 1.0,
+  "tolerance_fdp_margin_min_abs": 1.0,
+  "tolerance_rationale": "One absolute tolerance, 1.000 minute, on every graded margin. LOWER BOUND (defensible-reading spread): zero. Every published cell is a whole or half hour, every clock time in the roster is a whole minute and every non-tabular limit is an integral number of hours, so two faithful readings of the cited edition cannot differ by any amount; the measured disagreement between the two independent formulations over all 119 margins is 0 minutes. The one minute allowed is there only so that an integer computation performed in a different order, or carried through a float, cannot fail. UPPER BOUND (nearest wrong route): the smallest non-zero separation any competing method achieves on any graded margin is 10.000 tolerances, and the nearest real competitor reproduces none of the 51 graded cases."
+}

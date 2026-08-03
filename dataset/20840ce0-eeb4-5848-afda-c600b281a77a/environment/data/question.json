@@ -1,0 +1,54 @@
+{
+  "decoy_reference": {
+    "delimited_columns": [
+      "payee_ref",
+      "name_control",
+      "tin_type",
+      "payee_tin",
+      "issuer_account_number",
+      "issuer_office_code",
+      "correction_status",
+      "first_payee_name_line",
+      "second_payee_name_line",
+      "payee_mailing_address",
+      "payee_city",
+      "payee_state",
+      "payee_zip_code",
+      "record_sequence_number",
+      "state_income_tax_withheld",
+      "local_income_tax_withheld",
+      "combined_federal_state_code"
+    ],
+    "delimited_rendering": {
+      "R0001": "R0001,HERN,SSN,412556309,AC-4471902,NC03,original,HERNANDEZ ROSA M,,3184 CALLE VERDE APT 12,CHARLOTTE,NC,28202,3,923.75,0.00,37",
+      "R0002": "R0002,PINE,EIN,364418857,0000012947-B,WI11,one-transaction correction,PINEHURST FARMS COOPERATIVE,AND MIDLAND GRAIN PARTNERS LLC,1420 COUNTY ROAD K,FOND DU LAC,WI,549359102,4,1462.30,0.00,55",
+      "R0003": "R0003,OKEE,SSN,587223416,SP-2025-0088,TX07,original,OKEEFE DANIEL J,,PO BOX 4471,EL PASO,TX,799120044,5,0.00,0.00,"
+    },
+    "supplied_for": "orientation only - this is the same payee data as it leaves the payables system, before any transmission format is applied"
+  },
+  "form_type": "1099-MISC",
+  "output_contract": {
+    "keyed_by": "payee_ref",
+    "scoring": "one case per field group per record, plus one case for the shape of the answer file as a whole; 31 in total",
+    "top_level_key": "records",
+    "value": "one string per payee, of exactly specification.record_length_positions characters"
+  },
+  "output_path": "/root/results.json",
+  "payee_refs": [
+    "R0001",
+    "R0002",
+    "R0003"
+  ],
+  "payment_year": "2025",
+  "specification": {
+    "currency": "United States dollars",
+    "document": "Publication 1220",
+    "publisher": "Internal Revenue Service, United States",
+    "record_length_positions": 750,
+    "record_name": "Payee \"B\" Record",
+    "revision": "Tax Year 2025",
+    "status_note": "The Tax Year 2025 revision is the governing revision for this transmission. The fixed-length record format it specifies is in force for this filing; treat it as current and conform to it.",
+    "title": "Specifications for Electronic Filing of Forms 1097, 1098, 1099, 3921, 3922, 5498, and W-2G",
+    "url": "https://www.irs.gov/pub/irs-pdf/p1220.pdf"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "columns": {
+    "acclimated": "whether the crew is acclimated to the theater the report time is expressed in",
+    "longest_free_period_prior_7d": "longest single period free from all duty in the 7 days before report, h:mm",
+    "onboard_rest_facility": "class of onboard rest facility fitted, or 'none'",
+    "pairing_id": "opaque label for the pairing",
+    "pilots_assigned": "number of pilots assigned to the pairing",
+    "prior_fdp_rolling_28d": "flight duty period hours already accrued in the 28 days before report, h:mm",
+    "prior_fdp_rolling_7d": "flight duty period hours already accrued in the 7 days before report, h:mm",
+    "prior_flight_rolling_28d": "flight hours already accrued in the 28 days before report, h:mm",
+    "release_local": "scheduled release time, same clock; earlier than report_local means the pairing ends the next day",
+    "report_local": "scheduled report time, expressed in the local time of the theater the crew was last acclimated to",
+    "rest_before_duty": "rest actually given immediately before report, h:mm",
+    "rest_opportunity_accommodation": "what the crew member is given for that rest opportunity",
+    "rest_opportunity_after_first_segment": "whether the rest opportunity is scheduled only after the first segment has been flown",
+    "rest_opportunity_end": "end of that rest opportunity, or blank",
+    "rest_opportunity_start": "start of a scheduled rest opportunity inside the pairing, or blank",
+    "scheduled_flight_time": "total scheduled flight time, h:mm",
+    "segments": "number of scheduled flight segments"
+  },
+  "limit_codes": [
+    "flight_duty_period",
+    "flight_time",
+    "rest_before_duty",
+    "free_period_168h",
+    "cumulative_fdp_168h",
+    "cumulative_fdp_672h",
+    "cumulative_flight_672h"
+  ],
+  "output_contract": {
+    "binding_limit": "one of limit_codes: the limit with the smallest margin, ties resolved in the order limit_codes is given in",
+    "binding_margin_min": "signed whole minutes: that smallest margin. The pairing complies with every limit exactly when this is not negative.",
+    "fdp_margin_min": "signed whole minutes: the applicable maximum flight duty period minus the scheduled flight duty period"
+  },
+  "output_path": "/root/results.json",
+  "regulatory_scope": "Scheduled domestic and flag passenger operations of a US air carrier certificated under 14 CFR part 121, whose flightcrew members are subject to 14 CFR part 117. Every row is a SCHEDULED pairing taken from the published bid package; none is an as-flown record, and no unforeseen operational circumstance has arisen."
+}

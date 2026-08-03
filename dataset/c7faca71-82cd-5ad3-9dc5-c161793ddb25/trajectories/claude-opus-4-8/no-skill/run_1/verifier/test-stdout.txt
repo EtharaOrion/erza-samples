@@ -1,0 +1,43 @@
+test cases passed : 39/51
+Score             : 0.7647
+pass@1            : 0
+/verifier/test_outputs.py:107: in test_graded_case
+    assert abs(got - item["ref"]) <= item["tolerance"], \
+E   AssertionError: P11-binding_margin_min: got 11.000, expected -24.000 (tol 1.000)
+E   assert 35.0 <= 1.0
+E    +  where 35.0 = abs((11.0 - -24))
+_____________________ test_graded_case[P17-fdp_margin_min] _____________________
+/verifier/test_outputs.py:107: in test_graded_case
+    assert abs(got - item["ref"]) <= item["tolerance"], \
+E   AssertionError: P17-fdp_margin_min: got -81.000, expected 9.000 (tol 1.000)
+E   assert 90.0 <= 1.0
+E    +  where 90.0 = abs((-81.0 - 9))
+_____________________ test_graded_case[P17-binding_limit] ______________________
+/verifier/test_outputs.py:99: in test_graded_case
+    assert value.strip() == item["ref"], \
+E   AssertionError: P17-binding_limit: got 'flight_duty_period', expected 'flight_time'
+E   assert 'flight_duty_period' == 'flight_time'
+E     
+E     - flight_time
+E     + flight_duty_period
+___________________ test_graded_case[P17-binding_margin_min] ___________________
+/verifier/test_outputs.py:107: in test_graded_case
+    assert abs(got - item["ref"]) <= item["tolerance"], \
+E   AssertionError: P17-binding_margin_min: got -81.000, expected -14.000 (tol 1.000)
+E   assert 67.0 <= 1.0
+E    +  where 67.0 = abs((-81.0 - -14))
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+=========================== short test summary info ============================
+FAILED ::test_graded_case[P01-binding_limit] - AssertionError: P01-binding_li...
+FAILED ::test_graded_case[P01-binding_margin_min] - AssertionError: P01-bindi...
+FAILED ::test_graded_case[P03-fdp_margin_min] - AssertionError: P03-fdp_margi...
+FAILED ::test_graded_case[P03-binding_limit] - AssertionError: P03-binding_li...
+FAILED ::test_graded_case[P03-binding_margin_min] - AssertionError: P03-bindi...
+FAILED ::test_graded_case[P07-fdp_margin_min] - AssertionError: P07-fdp_margi...
+FAILED ::test_graded_case[P07-binding_margin_min] - AssertionError: P07-bindi...
+FAILED ::test_graded_case[P11-binding_limit] - AssertionError: P11-binding_li...
+FAILED ::test_graded_case[P11-binding_margin_min] - AssertionError: P11-bindi...
+FAILED ::test_graded_case[P17-fdp_margin_min] - AssertionError: P17-fdp_margi...
+FAILED ::test_graded_case[P17-binding_limit] - AssertionError: P17-binding_li...
+FAILED ::test_graded_case[P17-binding_margin_min] - AssertionError: P17-bindi...
+======================== 12 failed, 49 passed in 0.17s =========================
