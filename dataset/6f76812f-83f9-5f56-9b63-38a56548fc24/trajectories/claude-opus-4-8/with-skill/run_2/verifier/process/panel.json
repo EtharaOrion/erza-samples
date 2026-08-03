@@ -1,0 +1,141 @@
+{
+  "bundle": "6f76812f-83f9-5f56-9b63-38a56548fc24",
+  "run_dir": "trajectories/6f76812f-83f9-5f56-9b63-38a56548fc24/claude-opus-4-8/with-skill/run_2",
+  "run_model": "claude-opus-4-8",
+  "channel": "non_deterministic",
+  "panel": [
+    {
+      "model": "claude-opus-5",
+      "stance": "domain reviewer",
+      "self_judging": false,
+      "family_judging": true,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "stance": "neutral",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "stance": "sceptic",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    }
+  ],
+  "single_vendor_panel": true,
+  "self_judging_seats": [],
+  "family_judging_seats": [
+    "claude-opus-5"
+  ],
+  "criteria": [
+    {
+      "id": "R18",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning distinguishes the arcs whose ordered pair is published directly from those whose pair has to be assembled from other rows, rather than treating every arc as the same lookup.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": true,
+          "rationale": "The agent implemented an explicit precedence resolver (direct row, reversed row, signed shortest chain) and in its summary named which arcs used which branch \u2014 \"direct rows (RX-1: C1C/C2W), and chained rows where the pair was absent (RX-2 receiver needed C1W\u2192C2W chained via C1C; RX-3 needed C1C\u2192C2L chained via the C2W reference observable, on both satellite and station sides)\" \u2014 and the per-arc printout shows differing b_sat/b_rec values consistent with that distinction."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "The agent implemented rule 1/2/3 resolution in code and, in its final summary, explicitly distinguished direct-row arcs (e.g., RX-1's C1C/C2W) from chained arcs (RX-2 and RX-3 needing shortest-path resolution via reference observables), rather than treating every lookup identically."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": true,
+          "rationale": "The agent's code implements all three resolution rules (direct, reversed, chained) and applies them uniformly to all arcs. In trajectory [29], the agent then explicitly states which arcs used direct rows (RX-1: \"C1C/C2W\") versus which required chaining (RX-2 receiver \"C1W\u2192C2W chained via C1C\"; RX-3 \"C1C\u2192C2L chained via the C2W reference observable\"). This retrospective narrative shows the agent distinguished direct from chained cases rather than treating every arc identically."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R19",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning checks the calibrated result against a physical expectation - vertical content positive and of order tens of TECU, a nanosecond of uncorrected delay worth several TECU - rather than reporting whatever came out.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": true,
+          "rationale": "After computing, the agent stated \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" and separately reproduced the uncorrected decoy slant figures exactly to confirm the sign/scale convention of the conversion, which is the same physical-plausibility check the criterion asks for."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "The agent's closing summary states \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" explicitly checking the calibrated result against the expected order-of-magnitude and sign rather than just reporting the numbers."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": true,
+          "rationale": "In trajectory [29], after reporting the result, the agent explicitly states: \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" checking both the sign (positive, as physics requires) and the order of magnitude (tens of TECU for daytime ionosphere). Additionally in [27\u201328], the agent reproduced the uncorrected-slant decoy values to verify the sign convention of the STEC formula itself."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R20",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which instrumental values it applied and where they came from.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": true,
+          "rationale": "The run log prints b_sat, b_rec and b_tot in ns for every arc, and the summary states these were resolved \"from the CAS/IGG DSB tables\" via the gnss-signal-bias-referencing skill's `references/dsb_sat_*.tsv` and `dsb_rec_*.tsv` files, which the agent had read and displayed."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "The agent explicitly names the source (\"CAS/IGG DSB tables\" via the gnss-signal-bias-referencing skill's reference files) and reports the specific b_sat/b_rec/b_total values used per arc in its printed output and summary."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": true,
+          "rationale": "The agent loads and displays the reference bias tables in [16\u201320], which are explicitly labeled as coming from \"CAS/IGG multi-GNSS DCB product\" and \"Bias-SINEX 1.00; Wang et al. 2016\" format. In [29], the agent states: \"for each arc I resolved `BD(l1_signal, l2_signal)` on both the satellite and station side from the CAS/IGG DSB tables.\" The debug output in [25] shows intermediate bias values (`b_sat`, `b_rec`) being printed. The agent thus identifies both what values were applied (differential signal biases per arc) and their source (published CAS/IGG tables loaded from the skill directory)."
+        }
+      ],
+      "dissenting_models": []
+    }
+  ],
+  "fingerprint": {
+    "truth_md": "af865c83c746ddbd",
+    "rubrics_json": "c14f678721ede3b1",
+    "test_trajectory_py": "c76bead8b9a0664b",
+    "expected_values_json": "fff21b1f4e8c60a3",
+    "judge_impl": "85dcdcbaee0a63c8",
+    "panel": [
+      "claude-opus-5",
+      "claude-sonnet-5",
+      "claude-haiku-4-5-20251001"
+    ]
+  }
+}

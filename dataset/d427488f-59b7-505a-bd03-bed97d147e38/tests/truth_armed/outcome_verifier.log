@@ -1,0 +1,17 @@
+test cases passed  : 3/3
+self-check failures: 0
+Score              : 1
+pass@1             : 1
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.2, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /bundle/tests
+plugins: json-ctrf-0.3.5
+collecting ... collected 18 items / 14 deselected / 4 selected
+
+../bundle/tests/test_pytest.py::test_reward_plausible PASSED             [ 25%]
+../bundle/tests/test_pytest.py::test_reward_robust_scale PASSED          [ 50%]
+../bundle/tests/test_pytest.py::test_reward_zeta_prime PASSED            [ 75%]
+../bundle/tests/test_pytest.py::test_selfcheck_isomorphic_invariance PASSED [100%]
+
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+======================= 4 passed, 14 deselected in 0.04s =======================

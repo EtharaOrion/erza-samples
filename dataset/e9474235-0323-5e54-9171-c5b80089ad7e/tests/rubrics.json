@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "task": "tidal-harmonic-prediction",
+  "task_id": "850700fd-2df3-5816-a2fd-74cd0e1baa28",
+  "doctrine": "VERIFIER_PIPELINE.md Stages 5-6. Weight magnitudes are 5 / 3 / 1 / 0 and nothing between. Weight 5 = the crux, traced to the TRUTH.md crux step AND to a measured control. Weight 3 = outcome-breaking (a measured control that clears the graded tolerance, or an output-contract violation that zeroes the score). Weight 1 = hygiene, structural preconditions, measured-but-sub-tolerance levers, and ALL narration. Weight 0 = report-only. Guardrails carry NEGATIVE weight (sign = polarity, magnitude = importance); -5 is reserved for a failure that invalidates GRADING ITSELF, and no criterion on this task qualifies (see R14). Every criterion carries weight_evidence naming its measured control and the impact in units of the graded tolerance (0.10 m). Only deterministic criteria may gate.",
+  "weight_evidence_source": "Measured control ledger, single-lever variants of the oracle chain re-solved against the twelve frozen reference heights. `x_tol` is the WORST-CASE |height - reference| over the twelve cases divided by the graded tolerance (tolerance_m = 0.10 m, verifier/expected_values.json); `cases_out` is how many of the twelve cases the lever pushes outside tolerance. FOUR FIGURES ARE TAKEN FROM THE BUNDLE'S OWN LEDGER (verifier/expected_values.json: control_gaps) and reproduced here exactly: report the recent observed water level at every instant, mean 8.43x tol (worst case 25.81x, 11/12 out); report the mean water level at every instant, mean 7.31x tol (worst 18.53x, 12/12 out); synthesise using only M2,S2,N2,K1,O1, worst 3.20x (9/12 out); synthesise with f=1,u=0, worst 0.93x (0/12 out - INSIDE tolerance). SEVEN MORE ARE DERIVED HERE by the same method and asserted in verification/rederivation_test.py: drop the datum offset Z0, worst 17.28x (12/12 out); never form the equilibrium argument (V = semi only, no astronomical longitudes), worst 24.22x (11/12 out); evaluate the mean longitudes from J2000 instead of the Schureman 1899-12-31T12:00 epoch, worst 19.67x (12/12 out); from the Unix epoch, worst 25.36x (12/12 out); read the Greenwich phase lag as radians instead of degrees, worst 24.31x (12/12 out); drop the `semi` phase constant only, worst 5.64x (9/12 out); truncate to the N largest constituents - the measured curve crosses the tolerance between N=9 (worst 1.26x, 1/12 out) and N=10 (worst 0.92x, 0/12 out).",
+  "outcome_context": "Measured outcome on the ten recorded runs of claude-opus-4-8: no-skill 0/5 pass@1, with-skill 5/5 pass@1. The no-skill reward is FRACTIONAL, not zero: 0.0833 on every no-skill run, i.e. 1 of the 12 test cases passed. All five no-skill runs reported the recent observed water level at every instant, and at gauge TG-C the third instant happens to land within 0.10 m of that level. Delta is +0.917 on the fractional mean and +1.000 binarised on reward == 1.0. This is a reporting question for humans; no criterion here is tuned to it.",
+  "deliberate_non_criteria": [
+    "OMITTING THE NODAL CORRECTIONS IS NOT AN OUTCOME-BREAKING FAILURE ON THIS INSTANCE. Measured at 0.93x the graded tolerance with 0 of 12 cases outside. R9 therefore sits at the hygiene tier (weight 1), not at 3, and no guardrail charges its absence. Weighting it higher would be exactly the over-reading TRUTH.md Step 5 warns about.",
+    "TRUNCATING TO TEN OR MORE CONSTITUENTS IS NOT CHARGED. Measured at 0.92x tolerance with 0 of 12 cases outside at N=10, against 1.26x with 1 case outside at N=9. R13 fires only on an explicit whitelist of NINE OR FEWER constituent names, and a benign near-miss fixture asserts a fifteen-name whitelist stays quiet.",
+    "THE NODE-FACTOR GROUP TABLE IS NOT A CONSTITUENT WHITELIST. Every one of the five with-skill runs writes a membership test against a literal collection of nine node-factor GROUP labels ('M2','K1','O1','K2','J1','OO1','MF','MM','SOL'); with-skill run_2 spells it as a nine-element tuple in an `if group in (...)` test. A truncation guardrail matching any short collection of constituent-shaped names would have charged all five correct runs. The detector requires the collection to be used as a filter on a CONSTITUENT NAME, and a fixture drawn verbatim from that behaviour binds the carve-out.",
+    "READING, PRINTING AND COMPARING AGAINST THE RECENT OBSERVED WATER LEVEL IS NOT REPORTING IT. TRUTH.md Steps 2 and 8 both instruct the run to do it - Step 8 makes reproducing that observation from the harmonic method the ONE check that discriminates. Four of the five with-skill runs carry the decoy water levels as literals in their solver for exactly that comparison. Only a data path from the decoy into the EMITTED predictions fires R12.",
+    "NO CRITERION REQUIRES THE ORACLE'S SPELLING OF THE ASTRONOMICAL EPOCH. The Schureman epoch is reachable as a datetime subtraction, as a Julian-day offset from 2415020.0, or as a literal day count; three distinct spellings appear across the five with-skill runs and all three are accepted.",
+    "NO CRITERION GRADES THE FINAL NUMBERS. benchflow does not copy the agent's /root/results.json out of the container, and grading the answer is the outcome verifier's job (../test_outputs.py). CONTINUOUS reports the outcome verifier's own per-case result and nothing else."
+  ],
+  "criteria": [
+    {
+      "id": "R1",
+      "channel": "outcome",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+      "truth_ref": "Closing properties (hold for a correct run, and state no values)",
+      "weight_evidence": "Structural role: the outcome channel's shape check. Weight 3 (contract conformance, outcome-breaking): a correct calculation serialised outside the declared contract scores zero on the reward instrument. Route-independent - it grades the answer's shape, never how the answer was reached, and it is satisfied by a solver in any language or by a hand-written answer file. Not a nested duplicate of R2: the separating trajectory is the common one that emits a well-formed answer with a wrong value, which fails the tolerance criterion alone.",
+      "is_gate": false
+    },
+    {
+      "id": "R2",
+      "channel": "outcome",
+      "weight": 5,
+      "is_positive": true,
+      "is_gate": true,
+      "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+      "truth_ref": "Closing properties (hold for a correct run, and state no values)",
+      "gate_evidence": "Gate ground is structural, not sampled: the criterion re-derives the run's answer by probe re-execution and compares every graded case against verifier/expected_values.json inside the task's own tolerance, so a failure IS the wrong answer, not a proxy for it. REQ-9 requires the wrong-answer gate (OUTCOME-FAILED) to cap final at 0.5 exactly as CRUX-FAILED does; an unevaluated gate is reported as GATE-UNEVALUATED and capped identically, never treated as passed.",
+      "weight_evidence": "Structural role: the outcome itself. GATE, weight 5: this is the outcome itself, and REQ-9 requires the wrong-answer gate (OUTCOME-FAILED) to cap final at 0.5 exactly as CRUX-FAILED does. The reference and the tolerance are the task's own frozen, control-measured values in verifier/expected_values.json - not a value invented for the rubric. Route-independent by construction: it reads only the answer, so every correct route satisfies it. Outcome mass is deliberately modest (8 of the rubric's total weight mass) - the channel's authority is the gate, not the mass."
+    },
+    {
+      "id": "R3",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Opened the shipped inputs - stations.csv, question.json, or the input directory - rather than working from the prose task statement alone.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Structural role: orientation precondition. TRUTH.md Step 0 exists because the gauge labels, the four target instants and their exact timestamp spelling live only in the shipped files; a run that never opens them cannot key its answer correctly, and the outcome verifier fails a case on a missing key before it compares any number. NOT MEASURED by any control: a run that never reads the inputs produces no well-formed submission at all rather than a wrong one, so there is no x-tolerance figure, and doctrine caps an unmeasured claim at the hygiene tier (weight 1) - low blast radius alone, but every later step depends on it. The detector consults `tool_surface`, not just `agent_code`: a read-only tool call carries a `file_path` and no `content`, so it leaves no trace in either `file_writes` or `commands`. On these ten runs both routes happen to agree because every run also cats the files from a shell, but that is a coincidence of these ten runs and not a property a detector may rely on.",
+      "is_gate": false
+    },
+    {
+      "id": "R4",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Authored solver source - a .py file write, a heredoc, or an inline `python -c` program.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "Structural role: TRUTH.md Step 1 records the working conditions - Python 3 with numpy, no tide library, no harmonic-constant database, no network - so nothing in the image computes a tide height and a submission exists only if the run wrote its own program. Unmeasured by construction: there is no control for 'wrote no program'. Hygiene tier (weight 1). Both spellings occur: all five with-skill runs write a .py file with a write tool, all five no-skill runs author theirs as a `python3 - <<EOF` heredoc or a `python3 -c` program, and a detector demanding either one alone would have failed five runs.",
+      "is_gate": false
+    },
+    {
+      "id": "R5",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Executed python to produce the result.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "Structural role: an authored-but-unexecuted program leaves no results file for the outcome verifier to grade. Unmeasured by construction - no control exists for 'never ran it'. Hygiene tier (weight 1). Uncontested on these ten runs: all ten execute python.",
+      "is_gate": false
+    },
+    {
+      "id": "R6",
+      "channel": "deterministic",
+      "weight": 5,
+      "is_positive": true,
+      "is_gate": true,
+      "criterion": "Synthesised the tide from the gauge's own harmonic constants - a per-constituent amplitude and Greenwich phase lag, accumulated through a cosine sum over that gauge's constituent list - rather than reporting a single value or a constant.",
+      "truth_ref": "Step 2",
+      "weight_evidence": "CRUX. Traced to TRUTH.md Step 2, the step marked 'Everything before this is orientation. This step is the task.' MEASURED as the largest WORST-CASE lever in the ledger (25.81x the graded tolerance, ahead of every with-constants defect): the only two routes available without the constants are the bundle's own two no_skill_route controls - report the recent observed water level at every instant (mean 8.43x the graded tolerance, worst case 25.81x, 11 of 12 cases outside) and report the mean water level at every instant (mean 7.31x, worst 18.53x, 12 of 12 outside). Both figures are the bundle's own (verifier/expected_values.json: control_gaps) and both are reproduced in verification/rederivation_test.py. The failure is not a degradation but an impossibility: without the per-gauge amplitudes and phase lags the harmonic sum has no terms. ONE ORDERING CAVEAT, RECORDED RATHER THAN SMOOTHED OVER: on the MEAN gap the decoy route (0.8429 m) is smaller than dropping the datum offset (1.3843 m). That does not move the crux, for a structural reason rather than an arithmetic one - dropping Z0 is a one-line omission reachable only by a run that ALREADY HAS the constants, while the decoy route is the only thing a run without them can do at all. verification/rederivation_test.py asserts both the worst-case ordering and this caveat. GATE FLAG AWARDED (is_gate: true), and the measurement behind it is stated in full so a reader can discount it: on the ten recorded runs this criterion fires on exactly the five no-skill runs, and all five FAIL the outcome (reward 0.0833, pass@1 = 0), giving precision 1.00 for outcome failure at n = 5 - a 95% Clopper-Pearson lower bound of 0.478, not a tight interval. The five observed failures are five runs of ONE arm exhibiting ONE failure mode, so the sample contains no independent replication of the precision claim; what carries the flag beyond that correlation is the structural argument above, that no route to a within-tolerance height exists without the table. See README for the honest reading.",
+      "gate_evidence": "Recorded runs, claude-opus-4-8, n=10: criterion fails on no-skill run_1..run_5 (5/5), passes on with-skill run_1..run_5 (5/5). Outcome: all five failing runs have pass@1 = 0 and reward 0.0833; all five passing runs have pass@1 = 1 and reward 1.0. Precision for outcome failure = 5/5 = 1.00 (95% CI lower bound 0.478); recall = 5/5 = 1.00. Confound stated: the criterion is perfectly collinear with the arm on this sample."
+    },
+    {
+      "id": "R7",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Computed the astronomical mean longitudes at the requested UTC instant from the Schureman epoch - the mean-longitude polynomials evaluated on days since 1899-12-31 12:00 UT - rather than from another time origin or not at all.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "Outcome-breaking, measured, and the controls are DERIVED HERE and asserted in verification/rederivation_test.py because the bundle's ledger does not isolate the time origin. Holding everything else fixed and moving only the epoch the polynomials are evaluated from: J2000 instead of the Schureman epoch is a worst case of 1.9669 m = 19.67x the graded tolerance with 12 of 12 cases outside; the Unix epoch is 2.5361 m = 25.36x with 12 of 12 outside. Never forming the longitudes at all (V collapses to the `semi` constant) is 2.4221 m = 24.22x with 11 of 12 outside. Weight 3 rather than 5: it is a distinct step from the crux, it is only reachable by a run that already cleared the crux, and TRUTH.md Step 8's discriminating check - reproducing the recent observation at its own timestamp - catches it loudly, because a wrong time origin misses that observation by the same order.",
+      "is_gate": false
+    },
+    {
+      "id": "R8",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Formed each constituent's equilibrium argument as the dot product of its six Doodson numbers with the six mean longitudes, plus its `semi` phase constant.",
+      "truth_ref": "Step 4",
+      "weight_evidence": "Outcome-breaking, measured, derived here and asserted in verification/rederivation_test.py. The equilibrium argument is the entire time dependence of the prediction: a run that never forms it emits a value that does not vary with the instant, worst case 2.4221 m = 24.22x the graded tolerance with 11 of 12 cases outside. Dropping ONLY the `semi` constant while keeping the Doodson dot product is still 0.5638 m = 5.64x with 9 of 12 outside, which is why the criterion names both halves of the relation rather than the dot product alone. Weight 3, not 5: a distinct step from the crux, reachable only by a run that already has the constants, and caught by TRUTH.md Step 8's discriminating check.",
+      "is_gate": false
+    },
+    {
+      "id": "R9",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Applied the 18.6-year Schureman nodal factor and angle, computed from the ascending-node longitude and taken per node-factor GROUP rather than per constituent.",
+      "truth_ref": "Step 5",
+      "weight_evidence": "MEASURED, AND MEASURED TO BE SUB-TOLERANCE ON THIS INSTANCE - which is why it is weight 1 and not 3. The bundle's own ledger records the f=1,u=0 control at max_abs_gap_m 0.0934, i.e. 0.93x the graded tolerance of 0.10 m, and re-derivation confirms 0 of 12 cases fall outside tolerance: a run that omitted the nodal terms entirely would still have passed all twelve outcome cases. Doctrine reserves the outcome-breaking tier for a control that clears the tolerance, and this one does not, so the hygiene tier applies even though the terms are correct method that TRUTH.md Step 5 pins. Reported in the per-criterion vector for diagnosis; deliberately near-weightless in the aggregate. Uncontested on these ten runs in one direction - all five with-skill runs apply the full Schureman table and no no-skill run performs any synthesis at all.",
+      "is_gate": false
+    },
+    {
+      "id": "R10",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Added the gauge's datum offset - mean sea level above the chart datum - to the constituent sum, rather than reporting the oscillation about zero.",
+      "truth_ref": "Step 6",
+      "weight_evidence": "Outcome-breaking, measured, derived here and asserted in verification/rederivation_test.py. Dropping Z0 and changing nothing else shifts every height by the whole datum offset: worst case 1.7280 m = 17.28x the graded tolerance, with 12 of 12 cases outside - the largest whole-answer displacement of any lever except the crux itself. It is a silent defect: the answer is still a smooth, well-formed tidal oscillation, just about the wrong level, and every plausibility check in TRUTH.md Step 8's 'does not discriminate' column passes on it. Weight 3, not 5: it is a one-line omission on an otherwise correct chain, distinct from the crux step, and recoverable by the Step 8 check against the recent observation.",
+      "is_gate": false
+    },
+    {
+      "id": "R11",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Emitted the contracted results file at the contracted path, carrying the `predictions` object keyed by gauge label and target timestamp.",
+      "truth_ref": "Step 7",
+      "weight_evidence": "Output-contract violation that zeroes the score, which doctrine places at weight 3 without needing a control. ../test_outputs.py asserts `predictions` is present, then that the gauge label is a key of it, then that the timestamp is a key of that, and fails the case before it compares any number - so a perfect computation under the wrong keys scores 0/12. Weight 3, not 5: a presentation-layer defect on an otherwise correct chain. The detector reads the whole tool surface: all five with-skill runs emit results.json from inside a .py file written with a write tool, where the path and the key appear only in the written content, while two no-skill runs emit it from a shell heredoc where they appear only in a command.",
+      "is_gate": false
+    },
+    {
+      "id": "R12",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the single recent observed water level carried in the input was piped into the emitted predictions instead of a computed height.",
+      "truth_ref": "Step 2",
+      "weight_evidence": "Outcome-breaking, measured, and the bundle names it as the designed attractor: verifier/expected_values.json records report_recent_observation as a no_skill_route control at mean_abs_gap_m 0.8428 = 8.43x the graded tolerance (worst case 25.81x, 11 of 12 cases outside). It is the cheapest wrong answer available and the one all five recorded no-skill runs took. Magnitude 3, not 5: it is the behavioural shadow of the crux criterion rather than the crux itself, and TRUTH.md Step 8's discriminating check catches it. Negative sign is polarity, not severity. SPECIFICITY IS LOAD-BEARING AND FIXTURE-BOUND IN BOTH DIRECTIONS: TRUTH.md Steps 2 and 8 both instruct the run to read, print and compare against that value, and four of the five CORRECT with-skill runs carry the decoy water levels as literals in their solver to do exactly that. Only a data path into the emitted answer fires - a decoy-derived variable used inside a per-instant emission, or a decoy literal emitted under a target timestamp key.",
+      "is_gate": false
+    },
+    {
+      "id": "R13",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the synthesis was restricted to a hand-picked whitelist of nine or fewer constituents instead of using the whole table the gauge supplies.",
+      "truth_ref": "Step 6",
+      "weight_evidence": "Outcome-breaking, measured, with the threshold set by the measurement rather than by feel. The bundle's ledger records major_constituents_only (M2,S2,N2,K1,O1) at max_abs_gap_m 0.3201 = 3.20x the graded tolerance; re-derivation puts 9 of 12 cases outside. The full truncation curve is derived and asserted in verification/rederivation_test.py and crosses the tolerance between N=9 (worst 0.1259 m = 1.26x, 1 case outside) and N=10 (worst 0.0924 m = 0.92x, 0 cases outside), which is why the guardrail's threshold is nine and not five or twenty. Magnitude 3: it clears the tolerance and zeroes at least one case, but it is a truncation of an otherwise correct chain, not the crux. Fires on no recorded run - it is bound entirely by fixtures, in both directions: one that truncates to five names and must fire, one that whitelists fifteen and must stay quiet, and one drawn verbatim from with-skill run_2's nine-element node-factor GROUP tuple, which must stay quiet.",
+      "is_gate": false
+    },
+    {
+      "id": "R14",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the run wrote into, deleted from, or edited in place the shipped input directory.",
+      "truth_ref": "Step 9",
+      "weight_evidence": "Magnitude 3, and the doctrine's sole -5 exemption DELIBERATELY DOES NOT APPLY here. That exemption is for a failure that invalidates grading itself, i.e. the verifier recomputes truth from the shipped inputs at grade time. This task's outcome verifier does not: ../test_outputs.py compares the submission against the frozen ref_height_m table in expected_values.json and recomputes its freeze guard from verifier/harmonic_constants.json, never from /root/data, so a mutated input leaves the grade perfectly well-defined. What a mutation destroys is provenance - the reported heights would no longer describe the instants the run claims to have predicted. The ledger bounds how far corrupting the inputs can move an answer - the two no-skill-route controls, at 8.43x and 7.31x the graded tolerance on the mean, are exactly what a run gets when it works from the wrong quantity - which is why this sits at the outcome-breaking tier rather than at hygiene. Specificity is fixture-bound in both directions: a read-direction copy of the inputs OUT mutates nothing and must stay quiet, while the same verb with the input directory as destination must fire.",
+      "is_gate": false
+    },
+    {
+      "id": "R15",
+      "channel": "deterministic",
+      "weight": -1,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the run attempted a network fetch or a package install.",
+      "truth_ref": "Step 9",
+      "weight_evidence": "Hygiene tier. Structural role only: task.md declares network_mode: no-network, so the attempt cannot succeed and cannot change the answer; measured outcome impact is exactly zero, i.e. 0.00x the graded tolerance. It costs the run time and signals that it did not read its working conditions - TRUTH.md Step 9. Magnitude 1 for that reason, not because the behaviour is acceptable. Specificity matters on this task: all five no-skill runs run `pip list` while hunting the container for a constants table, and a guardrail matching any pip invocation would have charged all five for a read-only probe.",
+      "is_gate": false
+    },
+    {
+      "id": "R16",
+      "channel": "non_deterministic",
+      "weight": 5,
+      "is_positive": true,
+      "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
+      "truth_ref": "Step 2",
+      "weight_evidence": "Judged twin of the crux, at the crux weight but WITHOUT any gate flag - doctrine permits only deterministic criteria to gate, and the panel's +/-5-point noise is disqualifying for a verdict-flipping role. Same measured backing as R6: the two no-constants routes the bundle's ledger measures are 8.43x and 7.31x the graded tolerance on the mean, 25.81x and 18.53x at worst. This criterion grades the reasoning; its deterministic twin grades the code, and the pair is the one place where a run that reasoned correctly but could not obtain the table separates from one that never saw the problem.",
+      "is_gate": false
+    },
+    {
+      "id": "R17",
+      "channel": "non_deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
+      "truth_ref": "Step 8",
+      "weight_evidence": "BEHAVIOURAL, with a work product: a second evaluation either exists in the trajectory or it does not, which is what separates this from a narration criterion and earns weight 3 rather than 1. Backed by the structure of the ledger: every measured failure mode on this task - wrong time origin 19.67x, phase read as radians 24.31x, missing datum offset 17.28x, truncated constituent set 3.20x - returns smooth, in-range, physically plausible metres, so plausibility is not a check. Only the comparison against the independently observed water level at its own timestamp can disagree, which is why TRUTH.md Step 8 tabulates it as the single discriminating check. Empirically it is the behaviour that separates the arms on process rather than on access: all five with-skill runs perform it.",
+      "is_gate": false
+    },
+    {
+      "id": "R18",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
+      "truth_ref": "Step 2",
+      "weight_evidence": "NARRATION - capped at 1 by doctrine, which is binding regardless of how diagnostic the signal looks. Saying so is evidence the run noticed the attractor, but a run can notice it silently and compute correctly, and a run can say it and still let the value leak into the answer - the recorded no-skill runs do exactly that, arguing at length that the observation is not the answer and then emitting it anyway. The behaviour itself is graded by the deterministic guardrail R12, which carries the measured 8.43x weight.",
+      "is_gate": false
+    },
+    {
+      "id": "R19",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "NARRATION - capped at 1. The channel grades work, not speeches, and a terse correct run and a lucky confident run read identically here. Doctrine is explicit that confident phrasing must not be rewarded; this criterion exists to make convention-blindness visible in the per-criterion vector, not to move the score. The conventions it names are the ones the measured ledger says are load-bearing (time origin 19.67x, phase-as-radians 24.31x), so a run silent on all of them has left the reader no way to tell a derivation from a guess.",
+      "is_gate": false
+    }
+  ],
+  "mece": "REQ-9: the criterion set is MECE across the outcome and process instruments jointly. MUTUALLY EXCLUSIVE - no two criteria are decided by the same evidence; for every pair there is a trajectory that fails exactly one, argued in each criterion's weight_evidence. The deliberate exception is a d_ criterion and its judged twin on the same subject: they rest on different evidence (what the code did vs. what the reasoning earned) and are separable in both directions. COLLECTIVELY EXHAUSTIVE - see the `coverage` block. THREE CHANNELS - `outcome` (o_*: pytest that re-derives the final answer by probe re-execution of the run's own solver), `deterministic` (d_*: mechanics over the trajectory), `non_deterministic` (n_*: the judged rubric) - blended by weight mass with TWO gates capping identically at 0.5: CRUX-FAILED and OUTCOME-FAILED.",
+  "mutual_exclusivity_review": {
+    "note": "VERIFIER_PIPELINE Stage 2 rule 7 audit, corroborated by _qc/criterion_independence.py over the 14 fixtures in verification/negative_fixtures_test.py, which reports NO duplicate columns in this bundle. Operative test: can a run fail exactly one of the two criteria?",
+    "removed_criteria": [],
+    "pairs": [
+      {
+        "pair": ["R12", "R18"],
+        "shape": "d_/n_ twin on one subject",
+        "verdict": "EXEMPT BY DOCTRINE, no change",
+        "separating_trajectory": "Both directions are on record rather than hypothetical. The recorded no-skill runs argue at length that the observation is not the answer and then emit it anyway: R18 is satisfied, the deterministic guardrail fires. The converse is a run that never mentions the orientation value and computes the harmonic sum correctly: R18 fails, the guardrail stays quiet. Different evidence - a data path into the emitted answer vs. a statement in the narration - which is precisely the exception rule 7 states, not a violation of it.",
+        "action": "none"
+      },
+      {
+        "pair": ["R6", "R12"],
+        "shape": "complement (suspected)",
+        "verdict": "SEPARABLE, no change",
+        "separating_trajectory": "The second no_skill_route control - reporting the MEAN water level at every instant - fails the gate while leaving this guardrail quiet, because no decoy value reaches the answer. The guardrail is specific to one data path, not to the absence of the harmonic sum, and _qc/criterion_independence.py measures two fixtures separating them in that direction.",
+        "action": "none"
+      },
+      {
+        "pair": ["R7", "R8"],
+        "shape": "nested subset",
+        "verdict": "SEPARABLE, no change",
+        "separating_trajectory": "One fixture fails R8 while R7 passes - the astronomical arguments are computed and then not assembled into the equilibrium argument. The reverse is the nesting and costs nothing extra: the two rows are 3 and 3 on adjacent steps, not a crux charged twice.",
+        "action": "none"
+      },
+      {
+        "pair": ["R2", "any deterministic criterion"],
+        "shape": "answer-correctness overlap",
+        "verdict": "NO OVERLAP",
+        "separating_trajectory": "No d_ criterion reads a graded height; each reads the route.",
+        "action": "none"
+      }
+    ]
+  },
+  "coverage": {
+    "note": "REQ-9 collective exhaustiveness / VERIFIER_PIPELINE Stage 2 rule 8: every TRUTH.md heading must be named by at least one criterion's truth_ref across the union of the three channels, or appear here with a reason. Exhaustiveness is assessed over the union of channels, never per channel. A step no criterion reaches is instrument blindness, and in a score artifact blindness is indistinguishable from coverage - so the uncovered list ships as a named artifact rather than being left to be rediscovered.",
+    "uncheckable": [
+      {
+        "truth_ref": "What \"no numbers\" means here, precisely",
+        "reason": "Context section, not a step: it records authoring background for the reader and prescribes no action a trajectory could be checked against."
+      },
+      {
+        "truth_ref": "The withheld lever (context, not a step)",
+        "reason": "Context section, not a step: it records authoring background for the reader and prescribes no action a trajectory could be checked against."
+      }
+    ]
+  }
+}

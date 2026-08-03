@@ -1,0 +1,141 @@
+{
+  "bundle": "6f76812f-83f9-5f56-9b63-38a56548fc24",
+  "run_dir": "trajectories/6f76812f-83f9-5f56-9b63-38a56548fc24/claude-opus-4-8/no-skill/run_2",
+  "run_model": "claude-opus-4-8",
+  "channel": "non_deterministic",
+  "panel": [
+    {
+      "model": "claude-opus-5",
+      "stance": "domain reviewer",
+      "self_judging": false,
+      "family_judging": true,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "stance": "neutral",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "stance": "sceptic",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    }
+  ],
+  "single_vendor_panel": true,
+  "self_judging_seats": [],
+  "family_judging_seats": [
+    "claude-opus-5"
+  ],
+  "criteria": [
+    {
+      "id": "R18",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning distinguishes the arcs whose ordered pair is published directly from those whose pair has to be assembled from other rows, rather than treating every arc as the same lookup.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": false,
+          "rationale": "The agent never located or consulted any published differential bias product; it searched the filesystem, found none, and instead estimated a lumped per-arc bias by network least squares, so it never distinguished directly-published ordered pairs from pairs needing a chained assembly (nor did it use the receivers.csv signal codes at all beyond printing them)."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": false,
+          "rationale": "The agent never found or used a differential bias reference product at all; its entire approach was a self-derived network least-squares estimate of \"station + satellite\" bias terms from the observations themselves. There is no discussion of an ordered pair of published bias rows, a reversed-pair negation, or a chain-summed fallback \u2014 the crux distinction required by the criterion is entirely absent."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": false,
+          "rationale": "The trajectory shows extensive searching for bias/DCB reference files (commands [17]\u2013[42]), concluding none exist on the system. The agent then pivoted entirely to network least-squares estimation of biases as abstract station+satellite terms. There is no evidence that the agent engaged with the concept of ordered pairs of observables, distinguished published pairs from reversed or chained pairs, or referenced differential bias product precedence rules at all. The reasoning treats biases as unknowns to recover, not as published values to resolve through a lookup hierarchy."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R19",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning checks the calibrated result against a physical expectation - vertical content positive and of order tens of TECU, a nanosecond of uncorrected delay worth several TECU - rather than reporting whatever came out.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": false,
+          "rationale": "The agent's checks were purely statistical (residual std, lag-1 autocorrelation, gauge invariance, polynomial-degree instability); it rejected higher-degree models for numerical instability, not for physical implausibility, and never checked the final written VTEC values against the expectation of positive, tens-of-TECU content or related a nanosecond of delay to TECU."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": false,
+          "rationale": "The agent's checks were about statistical feasibility of bias recovery (residual noise magnitude, simulation error percentiles, gauge-invariance across datum choices) rather than a physical plausibility check that vertical content is positive and of order tens of TECU or that a nanosecond of delay corresponds to several TECU; no such explicit sanity framing appears in the trajectory."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": false,
+          "rationale": "The agent computed final arc-mean VTEC values (all positive, ranging 13\u201351 TECU) in [70\u201371] and wrote them to the output file. However, no explicit sanity check is performed on the final answer. The agent earlier quotes the sanity-check principle (e.g., at [49]) but does not apply it as a closing verification step (e.g., \"checking: all positive? yes; all order-tens? yes\"). The final numbers are produced without a stated back-check against physical expectations."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R20",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which instrumental values it applied and where they came from.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": true,
+          "rationale": "At step 70-71 the agent printed the exact per-arc differential bias values it subtracted (e.g. RX-1/SV-K = -15.595 TECU) and stated plainly that they came from a joint network least-squares estimate over the 12 arcs (station + satellite terms, sum-of-satellite datum), after documenting that no published bias file existed on the system; provenance is explicit even though the source is not the intended mounted reference."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "At step [71] the agent explicitly prints \"bias per arc (TECU)\" values it applied to each arc and throughout the trajectory explains these came from its own joint network least-squares estimation of station+satellite bias terms (since no external bias file was found), so it does state which instrumental values were applied and their origin."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": true,
+          "rationale": "At [60], the agent explicitly states it will solve for \"VTEC per arc + station biases + satellite biases\" via network joint least-squares. At [70], the code constructs and applies differential bias values `B[k] = station_bias + satellite_bias` recovered from the LSQ solution. The agent states both which values were applied (the per-arc biases, recovered from LSQ) and where they came from (network joint least-squares estimation on the connected bipartite graph of observations). Although these are estimated rather than published values, the trajectory satisfies the literal criterion: the agent states the instrumental values it applied and their source."
+        }
+      ],
+      "dissenting_models": []
+    }
+  ],
+  "fingerprint": {
+    "truth_md": "af865c83c746ddbd",
+    "rubrics_json": "c14f678721ede3b1",
+    "test_trajectory_py": "c76bead8b9a0664b",
+    "expected_values_json": "fff21b1f4e8c60a3",
+    "judge_impl": "7014897be87fe4dd",
+    "panel": [
+      "claude-opus-5",
+      "claude-sonnet-5",
+      "claude-haiku-4-5-20251001"
+    ]
+  }
+}

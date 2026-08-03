@@ -1,0 +1,52 @@
+schema_version = "2.0"
+
+[task]
+id   = "c59f8b2a-0606-5f02-bed5-52937e5ab468"
+slug = "antenna-phase-centre-correction"
+name = "Antenna Phase Centre Correction"
+
+[metadata]
+author_name = "Erza FORGE"
+category    = "natural-science"
+subcategory = "geodesy"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = "A geodetic receiver antenna does not observe from a single point. Its electrical phase centre moves with the direction the signal arrives from and with the carrier frequency, by up to a few centimetres, and the pattern is a property of that one antenna model - measured on a robot or in an anechoic chamber and published as a table of offsets and gridded variations. It is not a formula and it does not transfer between models: two geodetic antennas at the same site can differ by nearly a decimetre in the vertical offset alone. The antennas here carry opaque labels and no manufacturer type or radome code, so their calibration tables cannot be looked up from any public index; they are supplied only in the mounted reference. The routes available without the table - projecting the single nominal offset shown for orientation, applying the offset but no variation, or applying nothing at all - are wrong at every case by 22x to 550x the tolerance, because the offset is model-specific and the variation runs to several millimetres. Given the table the remaining work is real but ordinary: parse the block, pick the right frequency, project the offset onto the line of sight, and interpolate the variation grid."
+task_type   = ["calculation", "analysis"]
+modality    = ["csv", "scientific-data"]
+interface   = ["terminal", "python"]
+skill_type  = ["domain-procedure", "file-format-knowledge"]
+tags        = ["geodesy", "gnss", "antenna-calibration", "phase-centre", "antex", "positioning"]
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 2
+memory_mb         = 4096
+build_timeout_sec = 900.0
+
+[agent]
+timeout_sec = 3600.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[verifier.hardening]
+cleanup_conftests = true
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "forge.task_id.v1"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "8255deec15dc688726c439f6aa5ea0c569c0f41adc36bed4ad9282be75203540"
+source_slug     = "antenna-phase-centre-correction"
+source_origin   = "re-freeze"
+provenance_date = "2026-07-28"
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

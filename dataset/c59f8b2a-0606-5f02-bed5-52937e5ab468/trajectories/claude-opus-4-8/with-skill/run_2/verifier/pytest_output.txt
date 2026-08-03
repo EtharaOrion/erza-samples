@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /root
+configfile: ../dev/null
+collecting ... collected 17 items
+
+::test_phase_centre_correction[ANT-A-s1] PASSED                          [  5%]
+::test_phase_centre_correction[ANT-A-s2] PASSED                          [ 11%]
+::test_phase_centre_correction[ANT-A-s3] PASSED                          [ 17%]
+::test_phase_centre_correction[ANT-A-s4] PASSED                          [ 23%]
+::test_phase_centre_correction[ANT-B-s1] PASSED                          [ 29%]
+::test_phase_centre_correction[ANT-B-s2] PASSED                          [ 35%]
+::test_phase_centre_correction[ANT-B-s3] PASSED                          [ 41%]
+::test_phase_centre_correction[ANT-B-s4] PASSED                          [ 47%]
+::test_phase_centre_correction[ANT-C-s1] PASSED                          [ 52%]
+::test_phase_centre_correction[ANT-C-s2] PASSED                          [ 58%]
+::test_phase_centre_correction[ANT-C-s3] PASSED                          [ 64%]
+::test_phase_centre_correction[ANT-C-s4] PASSED                          [ 70%]
+::test_frozen_golden_matches_live_recompute PASSED                       [ 76%]
+::test_plausibility_and_guess_resistance PASSED                          [ 82%]
+::test_isomorphic_invariance_under_rescale PASSED                        [ 88%]
+::test_tolerances_are_positive_and_bind PASSED                           [ 94%]
+::test_variation_term_is_load_bearing PASSED                             [100%]
+
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+============================== 17 passed in 0.14s ==============================

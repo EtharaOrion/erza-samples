@@ -1,0 +1,173 @@
+{
+  "bundle": "e9474235-0323-5e54-9171-c5b80089ad7e",
+  "run_dir": "trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1",
+  "run_model": "claude-opus-4-8",
+  "channel": "non_deterministic",
+  "panel": [
+    {
+      "model": "claude-opus-5",
+      "stance": "domain reviewer",
+      "self_judging": false,
+      "family_judging": true,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-sonnet-5",
+      "stance": "neutral",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    },
+    {
+      "model": "claude-haiku-4-5-20251001",
+      "stance": "sceptic",
+      "self_judging": false,
+      "family_judging": false,
+      "misjoined": 0,
+      "error": null
+    }
+  ],
+  "single_vendor_panel": true,
+  "self_judging_seats": [],
+  "family_judging_seats": [
+    "claude-opus-5"
+  ],
+  "criteria": [
+    {
+      "id": "R16",
+      "weight": 5,
+      "is_positive": true,
+      "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "majority",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": false,
+          "rationale": "The agent established that per-gauge constituents are required and absent (no file, no library, no network, anonymised labels preventing lookup), but it did not articulate why the amplitudes/phases are empirical and site-specific beyond restating the prompt, and the criterion's contrastive clause is violated outright \u2014 it substituted a single constant value at every instant as its answer."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "The agent explicitly explained that harmonic tide prediction needs each gauge's own empirical amplitude and Greenwich phase lag per constituent, searched exhaustively confirming no such table exists in the container, and stated the decoy is \"a single instant, one earlier time\" rather than a full curve \u2014 showing why the constants are load-bearing and can't be substituted."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": false,
+          "rationale": "The agent identified that tidal constituents (amplitude + Greenwich phase) were required by the task and were missing from the container (steps 2\u201321, then step 25). However, it did not establish WHY these constants are load-bearing \u2014 it did not argue that per-constituent values are empirical, gauge-specific, bathymetrically determined, and cannot be estimated or recalled; did not explain that a single water level is one instant of the curve rather than the curve itself; and did not reason from physics or from the observed tidal range why all constituents are necessary. It read the task statement that constituents are needed, but did not derive this reasoning from first principles as the criterion requires."
+        }
+      ],
+      "dissenting_models": [
+        "claude-sonnet-5"
+      ]
+    },
+    {
+      "id": "R17",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": false,
+          "rationale": "The only check performed was `json.load` confirming the file parsed and contained 12 cases; no harmonic method was ever evaluated, so nothing was compared against the recent observation or any construction that could have disagreed."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": false,
+          "rationale": "The agent never computed a harmonic prediction at all and never checked its constant-value answer against the decoy observation via a harmonic method or any other construction capable of disagreeing; it merely validated that the JSON was well-formed."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": false,
+          "rationale": "The run performed no independent verification. It wrote no harmonic synthesis code, did not evaluate its method at the decoy observation timestamp, and made no check that could have disagreed with the result. The agent explicitly stated it would not fabricate constituent values, so verification was structurally impossible; but the trajectory contains no attempt at it."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R18",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": true,
+          "rationale": "In prose the agent explicitly stated \"the decoy water levels \u2014 which the task explicitly says are not to be used for prediction (single instant, one earlier time)\", and later conceded it is \"essentially the tide's mean/offset with no oscillation\"; the statement required by the criterion was made, even though the agent then adopted those values anyway."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": true,
+          "rationale": "The agent explicitly stated in prose that the decoy water level is \"a single instant, one earlier time\" and that the task says it is \"not to be used for prediction,\" satisfying the literal wording of the criterion even though it later used that same value as its answer."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": true,
+          "rationale": "The agent explicitly stated in step 25 that the recent observed water level applies to \"one earlier instant\" and is \"not to be used for prediction\". It later reiterated: \"a single instant of the curve rather than the curve \u2014 which the task explicitly says are *not* to be used for prediction (single instant, one earlier time).\" The agent named the decoy for what it is before using it as a fallback estimate."
+        }
+      ],
+      "dissenting_models": []
+    },
+    {
+      "id": "R19",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "unanimous",
+      "votes": [
+        {
+          "model": "claude-opus-5",
+          "stance": "domain reviewer",
+          "satisfied": false,
+          "rationale": "No harmonic computation was attempted at all, so no epoch for the mean longitudes, no cycles-vs-degrees choice, no Greenwich/UTC phase referencing, and no phase-lag sign convention appear anywhere in the trajectory."
+        },
+        {
+          "model": "claude-sonnet-5",
+          "stance": "neutral",
+          "satisfied": false,
+          "rationale": "The agent never wrote or discussed any harmonic-synthesis code, so it never stated an epoch, UTC/Greenwich referencing, cycles-vs-degrees convention, or phase-lag sign convention."
+        },
+        {
+          "model": "claude-haiku-4-5-20251001",
+          "stance": "sceptic",
+          "satisfied": false,
+          "rationale": "The agent wrote no code implementing harmonic synthesis and therefore stated no time conventions. It never specified which epoch the mean longitudes would be counted from, never declared that timestamps are UTC or that phase lags are Greenwich-referenced, never chose between cycles and degrees for the equilibrium argument, and never stated whether the phase lag is subtracted. The task's TRUTH.md file identifies these as load-bearing silent choices (steps 3, 4, 6); the criterion requires the agent to state them before or during execution. The agent did neither."
+        }
+      ],
+      "dissenting_models": []
+    }
+  ],
+  "fingerprint": {
+    "truth_md": "5d5dfcc584f70897",
+    "rubrics_json": "6cfb67303e22f50f",
+    "test_trajectory_py": "0fdd183a6980d1d1",
+    "expected_values_json": "4be27e88c13a85ef",
+    "judge_impl": "85dcdcbaee0a63c8",
+    "panel": [
+      "claude-opus-5",
+      "claude-sonnet-5",
+      "claude-haiku-4-5-20251001"
+    ]
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "task_name": "446e76fe-be48-51d8-8739-07a721a141df",
+  "rollout_name": "446e76fe-be48-51d8-8739-07a721a141df__dedc3fe1",
+  "rewards": {
+    "reward": 1.0
+  },
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "with-skill",
+  "skill_source": "task_bundled",
+  "requested_skills_dir": "tasks-salvage/446e76fe-be48-51d8-8739-07a721a141df/environment/skills",
+  "effective_skills_dir": "/var/folders/b0/5pf3p9cj4h94cxl67pppfw0h0000gn/T/benchflow-task-3m1a3huv/446e76fe-be48-51d8-8739-07a721a141df/environment/skills",
+  "skills_sandbox_dir": "/skills",
+  "include_task_skills": true,
+  "n_tool_calls": 5,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 5,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 331960,
+    "n_output_tokens": 2106,
+    "n_cache_read_tokens": 158090,
+    "n_cache_creation_tokens": 7055,
+    "total_tokens": 168921,
+    "cost_usd": 0.18413875,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 331960,
+    "total_completion_tokens": 2106,
+    "total_cached_tokens": 158090,
+    "total_cost_usd": 0.18413875
+  },
+  "trajectory_summary": {
+    "steps": 13,
+    "tool_call_steps": 5,
+    "user_message_steps": 1,
+    "agent_message_steps": 5,
+    "agent_thought_steps": 2,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 2,
+      "agent_message": 5,
+      "tool_call": 5
+    },
+    "tool_call_status_counts": {
+      "completed": 5
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "required",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-28 13:39:12.967510",
+  "finished_at": "2026-07-28 13:41:19.840855",
+  "timing": {
+    "environment_setup": 2.7,
+    "agent_setup": 5.3,
+    "agent_execution": 60.0,
+    "verifier": 7.9,
+    "total": 126.9
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "source": {
+    "type": "github",
+    "repo": "Ethara-Ai/erza-harness",
+    "requested_ref": "main",
+    "resolved_sha": "a45214b569b439381ad556292a9810df786d782b",
+    "path": "tasks-salvage/446e76fe-be48-51d8-8739-07a721a141df",
+    "dirty": true,
+    "file_hashes": {
+      "environment/Dockerfile": "sha256:533dbaa54c65759a14532ac6198e8fa30c700439769eb46d43eb4889517c4d03",
+      "environment/data/question.json": "sha256:1409f5b8d81cc9ab0ba96921d7c0cae0885b1a4dfbb41716b84f71f8df9197f9",
+      "environment/data/station.xml": "sha256:1beace6c62ac22b16b5adf9eb510d037abdc9145030dd3b40432e41b6f138541",
+      "environment/data/waveform.mseed": "sha256:d426905a4677190a23c4192615706440a9999bd5f1a48662cea1f2304c5ab067",
+      "environment/skills/local-magnitude-seismology/SKILL.md": "sha256:882312bb7cc5e8ed4cbcbbebf81a94d6afa45fa520f552ec186118f1c8898350",
+      "oracle/solve.sh": "sha256:b536b2aadd50e903ed63f2d5a97ac476e7abded9bd6b9517e93ec6c9cdc7e060",
+      "task.md": "sha256:2604464ee875455de7d8f0fadbc49184073b9aada07fccfcb3b41adf6a33f6ee",
+      "uuid_provenance.json": "sha256:73d74db5904e42d99c314431ddf92f30db4b735b7de6cd0e3e286e34bffd5927",
+      "verifier/expected_values.json": "sha256:8df07efa077802e523feeb5f962d5b4587637687a0fab11b81820f7a410d6f12",
+      "verifier/process/.gitignore": "sha256:dcbb1f6d763032a1660a3589054b66bcea51cf3a610843b84fb25fbe7107f941",
+      "verifier/process/README.md": "sha256:cdc8f0ca9f2a4170657f4e3a14c7483bd5bfd63e37e5be20ef9fcc0d27e71768",
+      "verifier/process/TRUTH.md": "sha256:1ae81cf726294995ef27373a32049013b93187160e46a87be8421a7753e2f299",
+      "verifier/process/judge/judge.py": "sha256:a66125393930930de97a6b72449e364bec3a9a302378f8c9b7c87cddad1e1f89",
+      "verifier/process/rubrics.json": "sha256:92e64b07b311eab7bdc7796d8b9704708c883c3f0ddf312d7dd164e221a8d39d",
+      "verifier/process/run.sh": "sha256:caba5a4e2dac0167c2c955cc333db7970c095af85cb3fe7717f28e8ef658ef72",
+      "verifier/process/score.py": "sha256:fd047c6c74bc66d184060d46ec082da3acd9f175447fa99b7a6987fa2504b507",
+      "verifier/process/verification/negative_fixtures_test.py": "sha256:b4b16e38879e853146932981fc94d159dad9d0af3cd87110fbb599e6a541ccd3",
+      "verifier/process/verification/rederivation_test.py": "sha256:d9499531a92cb297584dc45dc0f2ada0eef26ff7aec8bfd075af1d961299bf1a",
+      "verifier/process/verifier/checks.py": "sha256:ad2adf40046883eb65c28c49862d5aa90936e2cff8da51a970aa47ffb04a6947",
+      "verifier/process/verifier/conftest.py": "sha256:2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23",
+      "verifier/process/verifier/test_trajectory.py": "sha256:dd1d753fc020e96fae4be5c4100c83293fd121ff4079df2ca23df394927fb844",
+      "verifier/process/verifier/trajectory.py": "sha256:fb9680eb1448da34c944ac1d847aa1f7f5b68d7a919a3e6b6fe2b15bc66a0f58",
+      "verifier/test.sh": "sha256:f1d9027972bda191b485df3b6f65da59b060dcaaa5c513b553182e36556fba65",
+      "verifier/test_outputs.py": "sha256:a62ee68e651e330dcbda2cfeda35aac3211da69737dc16bc0ba46f7f45e57884"
+    }
+  },
+  "task_digest": "sha256:cff6ab13598f28febbc61fc3d1b6d1463b5aca502f6c1345849cb95cd95fd216",
+  "sandbox_id": null
+}

@@ -1,0 +1,225 @@
+{
+  "method": "receiver-antenna phase-centre correction in millimetres: the antenna's own IGS20 mean phase-centre offset vector projected onto the line of sight in the local North/East/Up frame, plus the phase-centre variation interpolated bilinearly on that antenna's azimuth by zenith-angle grid at the same frequency",
+  "seed": 20260727,
+  "rounding_decimal_places": 9,
+  "freeze_tol_mm": 1e-06,
+  "ref_ANT-A_s1_correction_mm": 30.851459324,
+  "tolerance_ANT-A_s1_correction_mm_abs": 0.05,
+  "ref_ANT-A_s2_correction_mm": 38.920987465,
+  "tolerance_ANT-A_s2_correction_mm_abs": 0.05,
+  "ref_ANT-A_s3_correction_mm": 41.312060544,
+  "tolerance_ANT-A_s3_correction_mm_abs": 0.05,
+  "ref_ANT-A_s4_correction_mm": 27.529889005,
+  "tolerance_ANT-A_s4_correction_mm_abs": 0.05,
+  "ref_ANT-B_s1_correction_mm": 79.274265975,
+  "tolerance_ANT-B_s1_correction_mm_abs": 0.05,
+  "ref_ANT-B_s2_correction_mm": 127.202941072,
+  "tolerance_ANT-B_s2_correction_mm_abs": 0.05,
+  "ref_ANT-B_s3_correction_mm": 84.13801468,
+  "tolerance_ANT-B_s3_correction_mm_abs": 0.05,
+  "ref_ANT-B_s4_correction_mm": 114.102785449,
+  "tolerance_ANT-B_s4_correction_mm_abs": 0.05,
+  "ref_ANT-C_s1_correction_mm": 76.184665249,
+  "tolerance_ANT-C_s1_correction_mm_abs": 0.05,
+  "ref_ANT-C_s2_correction_mm": 89.556661644,
+  "tolerance_ANT-C_s2_correction_mm_abs": 0.05,
+  "ref_ANT-C_s3_correction_mm": 95.47162216,
+  "tolerance_ANT-C_s3_correction_mm_abs": 0.05,
+  "ref_ANT-C_s4_correction_mm": 80.233057195,
+  "tolerance_ANT-C_s4_correction_mm_abs": 0.05,
+  "published_precision_ambiguity_correction_maxabs": 0.013649492,
+  "published_precision_ambiguity_correction_units": "mm, absolute, same scale as tolerance_<antenna>_<sight>_correction_mm_abs = 0.05",
+  "published_precision_ambiguity_note": "V-23. AXIS VARIED: the precision of the ANTEX tabulation the correction is built from, and the precision the correction is reported at. ANTEX 1.4 (Rothacher and Schmid 2010) publishes both the mean phase-centre offset (3F10.2) and every phase-centre-variation grid node (F8.2) rounded to 0.01 mm, and the task prompt states the evaluation chain in full (offset projected onto the North/East/Up line-of-sight unit vector, plus the variation read bilinearly on the azimuth by zenith-angle grid, zenith = 90 - elevation), so no step of the method is left to the reader's judgement. What remains open is only the rounding in the published source and in the answer. MEASURED, by mirroring oracle/antex.py and varying exactly one convention at a time after asserting the unmodified route reproduces all 12 goldens to 1e-9 mm: (a) report at ANTEX's own 0.01 mm precision -> worst 0.004665 mm (ANT-C s1); (b) worst-case realisation of the SAME calibration inside the format's +-0.005 mm rounding, pushing each of the three offset components and each of the four bracketing grid nodes in the direction that moves the correction furthest -> worst 0.013649 mm (ANT-B s3); (c) bilinear evaluated zenith-first rather than azimuth-first -> exactly 0.000000 mm (the interpolant is separable); (d) linear interpolation in elevation rather than zenith over the same cell -> exactly 0.000000 mm (the zenith grid is uniform, so this is an affine reparametrisation of the same cell); (e) a wrap-aware rather than clamping azimuth axis -> exactly 0.000000 mm (the shipped grids publish both the 0 and the 360 row, so both readers bracket the same cell). The three exact zeros are explained, not empty: those variants are provably identical on this grid geometry, and each was confirmed to change the intermediate arithmetic. BAND = max = 0.013649 mm; graded tolerance 0.05 mm; margin 3.66x. Reproduce: for each item, perturb the parsed block by +-0.005 mm with the sign of the corresponding line-of-sight component / bilinear weight and re-evaluate antex.correction. NOT band members, measured for the record: indexing the grid with 360-azimuth (0.8368 mm, 16.7x tol) and reading the NOAZI row instead of the azimuth grid (0.6176 mm, 12.4x tol) are wrong readings, not alternative ones - the prompt supplies one azimuth for both the projection and the grid lookup and pins the azimuth-resolved grid.",
+  "items": [
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 356.4,
+      "elevation_deg": 31.0,
+      "ref_correction_mm": 30.851459324,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 25.5,
+      "elevation_deg": 46.5,
+      "ref_correction_mm": 38.920987465,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 97.6,
+      "elevation_deg": 48.3,
+      "ref_correction_mm": 41.312060544,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 292.2,
+      "elevation_deg": 33.4,
+      "ref_correction_mm": 27.529889005,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 270.7,
+      "elevation_deg": 30.8,
+      "ref_correction_mm": 79.274265975,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 43.4,
+      "elevation_deg": 57.1,
+      "ref_correction_mm": 127.202941072,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 317.9,
+      "elevation_deg": 33.7,
+      "ref_correction_mm": 84.13801468,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 230.8,
+      "elevation_deg": 51.0,
+      "ref_correction_mm": 114.102785449,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 353.1,
+      "elevation_deg": 63.8,
+      "ref_correction_mm": 76.184665249,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 358.6,
+      "elevation_deg": 53.6,
+      "ref_correction_mm": 89.556661644,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 142.2,
+      "elevation_deg": 52.8,
+      "ref_correction_mm": 95.47162216,
+      "tolerance_mm": 0.05
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 97.5,
+      "elevation_deg": 51.1,
+      "ref_correction_mm": 80.233057195,
+      "tolerance_mm": 0.05
+    }
+  ],
+  "antenna_detail": [
+    {
+      "antenna_id": "ANT-A",
+      "frequency_blocks": 25,
+      "azimuth_step_deg": 5.0,
+      "zenith_nodes": 19
+    },
+    {
+      "antenna_id": "ANT-B",
+      "frequency_blocks": 25,
+      "azimuth_step_deg": 5.0,
+      "zenith_nodes": 19
+    },
+    {
+      "antenna_id": "ANT-C",
+      "frequency_blocks": 22,
+      "azimuth_step_deg": 5.0,
+      "zenith_nodes": 19
+    }
+  ],
+  "control_gaps": {
+    "nominal_offset_without_variation": {
+      "description": "project the nominal phase-centre offset supplied for orientation onto the line of sight and apply no phase-centre variation",
+      "no_skill_route": true,
+      "correction_mm_gap_over_tol": 92.713,
+      "note": "worst (smallest) separation over all 12 cases, in tolerance units. NEAREST REAL COMPETITOR: substituting a published calibration for a similar geodetic antenna is what an analyst without the antenna's own block actually does, and the route the recall probe showed the model takes unprompted. Not a strawman."
+    },
+    "no_correction_applied": {
+      "description": "report zero, the value ANTEX assigns to an antenna carrying no calibration entry",
+      "no_skill_route": true,
+      "correction_mm_gap_over_tol": 550.598,
+      "note": "worst (smallest) separation over all 12 cases, in tolerance units."
+    },
+    "pco_projection_without_variation": {
+      "description": "project the antenna's own offset vector but drop the phase-centre variation term",
+      "no_skill_route": false,
+      "correction_mm_gap_over_tol": 22.209,
+      "note": "worst (smallest) separation over all 12 cases, in tolerance units."
+    },
+    "variation_subtracted_instead_of_added": {
+      "description": "subtract the phase-centre variation from the offset projection instead of adding it",
+      "no_skill_route": false,
+      "correction_mm_gap_over_tol": 44.418,
+      "note": "worst (smallest) separation over all 12 cases, in tolerance units."
+    },
+    "other_antenna_calibration": {
+      "description": "apply one antenna's calibration block to another antenna's line of sight",
+      "no_skill_route": false,
+      "correction_mm_gap_over_tol": 372.996,
+      "note": "worst (smallest) separation over all 12 cases, in tolerance units."
+    }
+  },
+  "convention_variants": {
+    "reported_at_antex_precision": {
+      "description": "report the correction at the 0.01 mm precision at which ANTEX tabulates its own values",
+      "worst_deviation_over_tol": 0.093,
+      "must_not_false_fail": true,
+      "note": "V-06 evidence: a defensible alternative reporting or evaluation convention. It stays inside tolerance on every case, so it costs no arm anything and is not part of the lever. The lever is the per-antenna calibration block alone."
+    },
+    "bilinear_evaluated_zenith_first": {
+      "description": "evaluate the bilinear interpolation in zenith angle first and azimuth second rather than azimuth first",
+      "worst_deviation_over_tol": 0.0,
+      "must_not_false_fail": true,
+      "note": "V-06 evidence: a defensible alternative reporting or evaluation convention. It stays inside tolerance on every case, so it costs no arm anything and is not part of the lever. The lever is the per-antenna calibration block alone."
+    }
+  },
+  "non_separating_routes": {
+    "elevation_used_as_zenith_angle": {
+      "description": "index the variation grid with the elevation angle instead of the zenith angle",
+      "worst_case_gap_over_tol": 0.34,
+      "best_case_gap_over_tol": 97.688,
+      "in_control_ledger": false,
+      "note": "Measured and deliberately kept out of control_gaps: it fails to clear the 2x-tolerance floor on at least one case, so counting it as a control would overstate the separation (V-04). It stays in the rubric failure-mode catalogue for attribution."
+    },
+    "noazi_row_instead_of_azimuth_grid": {
+      "description": "read the azimuth-independent NOAZI row instead of the azimuth-resolved grid",
+      "worst_case_gap_over_tol": 0.024,
+      "best_case_gap_over_tol": 12.352,
+      "in_control_ledger": false,
+      "note": "Measured and deliberately kept out of control_gaps: it fails to clear the 2x-tolerance floor on at least one case, so counting it as a control would overstate the separation (V-04). It stays in the rubric failure-mode catalogue for attribution."
+    }
+  }
+}

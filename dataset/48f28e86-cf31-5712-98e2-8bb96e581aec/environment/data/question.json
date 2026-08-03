@@ -1,0 +1,16 @@
+{
+  "survey_epoch_decimal_year": 2020.0,
+  "output_path": "/root/results.json",
+  "output_contract": {
+    "stations": {
+      "<station_id>": {
+        "true_azimuth_deg": "number, the true (geographic) azimuth of the station baseline in degrees, wrapped into [0, 360)"
+      }
+    }
+  },
+  "azimuth_reduction": "For each station the true azimuth equals the measured magnetic azimuth plus the local magnetic declination at the survey epoch, with declination positive when magnetic north lies east of true north; wrap the result into [0, 360).",
+  "decoy_reference": {
+    "note": "Shown for orientation only. A decades-old regional chart printed a single rounded magnetic declination for this general area.",
+    "old_chart_declination_deg": 6.5
+  }
+}

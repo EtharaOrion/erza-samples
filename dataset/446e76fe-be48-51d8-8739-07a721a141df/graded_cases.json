@@ -1,0 +1,17 @@
+{
+ "task_id": "446e76fe-be48-51d8-8739-07a721a141df",
+ "n_outcome_cases_spec": 6,
+ "graded_tests": [
+  "test_local_magnitude"
+ ],
+ "guard_tests": [
+  "test_golden_matches_independent_recompute",
+  "test_isomorphic_invariance",
+  "test_not_the_velocity_form",
+  "test_plausible",
+  "test_wood_anderson_calibration"
+ ],
+ "granularity": "wrapped-or-mismatched",
+ "needs_review": true,
+ "basis": "name-pattern classification from shipped run reports; see scripts/generate_graded_manifests.py"
+}

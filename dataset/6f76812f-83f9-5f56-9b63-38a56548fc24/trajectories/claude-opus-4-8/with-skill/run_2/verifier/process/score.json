@@ -1,0 +1,236 @@
+{
+  "run_dir": "/Users/AgisSpectre/Desktop/erza/delivery/trajectories/6f76812f-83f9-5f56-9b63-38a56548fc24/claude-opus-4-8/with-skill/run_2",
+  "task_id": "pending-freeze",
+  "version_stamp": {
+    "truth_md": "af865c83c746ddbd",
+    "rubrics_json": "eac051b7cfe96751",
+    "test_trajectory_py": "3c5bab29409b55d3"
+  },
+  "outcome": {
+    "score": 1.0,
+    "invalid": false,
+    "n_scored": 2,
+    "n_total": 2,
+    "weight_mass_scored": 8,
+    "weight_mass_total": 8,
+    "criteria": [
+      {
+        "id": "R1",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R2",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "deterministic": {
+    "score": 1.0,
+    "invalid": false,
+    "n_scored": 15,
+    "n_total": 15,
+    "weight_mass_scored": 43,
+    "weight_mass_total": 43,
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Read the baked record under /root/data (observations.csv and receivers.csv).",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Authored a hand-written solver rather than assembling the answer by hand.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Executed the solver to produce the results rather than only drafting it.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Formed the difference of the two frequencies' code pseudoranges at each epoch.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Keyed the instrumental lookup on the ordered signal pair named in receivers.csv for that receiver, which is not the same at every receiver.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R8",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "Resolved a space-vehicle entry and a station entry and summed them into one total per arc.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R9",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Subtracted the total instrumental term from the geometry-free observable rather than adding it.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R10",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Branched on whether the product publishes the wanted ordered pair before assembling it from other rows: the direct row first, the reversed row negated, a chain only as the fallback.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R11",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Reduced each epoch from slant to vertical using that epoch's elevation angle, then averaged the arc.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Emitted /root/results.json under the arc_mean_vtec_tecu contract.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The geometry-free observable was converted to slant content with the frequency-dependent factor the task statement pins - written out, loaded from the shipped record, or bound to a named constant. Any algebraically equivalent arrangement of the same factor counts. The graded increment is the FACTOR: naming the quantity is corroboration, never the evidence.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL, DEGREE-OF-ERROR: no instrumental term of ANY kind ever enters the computation - the geometry-free observable is reduced and averaged uncalibrated. This grades the SEVEREST degree of the calibration error only. It is deliberately NOT the negation of R8, which fails whenever the satellite-side and station-side entries are not BOTH resolved and summed - including the far commoner one-sided route. Any instrumental vocabulary at all silences this guardrail.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: the uncorrected orientation figure from question.json is copied through as the answer.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R16",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: read or probed the grading surface - /verifier, /oracle, expected_values.json, golden.json, truth.md, rubric.yaml or build/.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R17",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: attempted to fetch the bias product, the format specification or any other external resource.",
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 1.0,
+    "invalid": false,
+    "n_scored": 3,
+    "n_total": 3,
+    "weight_mass_scored": 7,
+    "weight_mass_total": 7,
+    "criteria": [
+      {
+        "id": "R18",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The reasoning distinguishes the arcs whose ordered pair is published directly from those whose pair has to be assembled from other rows, rather than treating every arc as the same lookup.",
+        "score": 1.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': True, 'rationale': 'The agent implemented an explicit precedence resolver (direct row, reversed row, signed shortest chain) and in its summary named which arcs used which branch \u2014 \"direct rows (RX-1: C1C/C2W), and chained rows where the pair was absent (RX-2 receiver needed C1W\u2192C2W chained via C1C; RX-3 needed C1C\u2192C2L chained via the C2W reference observable, on both satellite and station sides)\" \u2014 and the per-arc printout shows differing b_sat/b_rec values consistent with that distinction.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': \"The agent implemented rule 1/2/3 resolution in code and, in its final summary, explicitly distinguished direct-row arcs (e.g., RX-1's C1C/C2W) from chained arcs (RX-2 and RX-3 needing shortest-path resolution via reference observables), rather than treating every lookup identically.\"}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': True, 'rationale': 'The agent\\'s code implements all three resolution rules (direct, reversed, chained) and applies them uniformly to all arcs. In trajectory [29], the agent then explicitly states which arcs used direct rows (RX-1: \"C1C/C2W\") versus which required chaining (RX-2 receiver \"C1W\u2192C2W chained via C1C\"; RX-3 \"C1C\u2192C2L chained via the C2W reference observable\"). This retrospective narrative shows the agent distinguished direct from chained cases rather than treating every arc identically.'}]",
+        "rationales": []
+      },
+      {
+        "id": "R19",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The reasoning checks the calibrated result against a physical expectation - vertical content positive and of order tens of TECU, a nanosecond of uncorrected delay worth several TECU - rather than reporting whatever came out.",
+        "score": 1.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': True, 'rationale': 'After computing, the agent stated \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" and separately reproduced the uncorrected decoy slant figures exactly to confirm the sign/scale convention of the conversion, which is the same physical-plausibility check the criterion asks for.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': 'The agent\\'s closing summary states \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" explicitly checking the calibrated result against the expected order-of-magnitude and sign rather than just reporting the numbers.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': True, 'rationale': 'In trajectory [29], after reporting the result, the agent explicitly states: \"All values are physically plausible daytime VTEC (18\u201338 TECU) and positive,\" checking both the sign (positive, as physics requires) and the order of magnitude (tens of TECU for daytime ionosphere). Additionally in [27\u201328], the agent reproduced the uncorrected-slant decoy values to verify the sign convention of the STEC formula itself.'}]",
+        "rationales": []
+      },
+      {
+        "id": "R20",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The agent states which instrumental values it applied and where they came from.",
+        "score": 1.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': True, 'rationale': 'The run log prints b_sat, b_rec and b_tot in ns for every arc, and the summary states these were resolved \"from the CAS/IGG DSB tables\" via the gnss-signal-bias-referencing skill\\'s `references/dsb_sat_*.tsv` and `dsb_rec_*.tsv` files, which the agent had read and displayed.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': 'The agent explicitly names the source (\"CAS/IGG DSB tables\" via the gnss-signal-bias-referencing skill\\'s reference files) and reports the specific b_sat/b_rec/b_total values used per arc in its printed output and summary.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': True, 'rationale': 'The agent loads and displays the reference bias tables in [16\u201320], which are explicitly labeled as coming from \"CAS/IGG multi-GNSS DCB product\" and \"Bias-SINEX 1.00; Wang et al. 2016\" format. In [29], the agent states: \"for each arc I resolved `BD(l1_signal, l2_signal)` on both the satellite and station side from the CAS/IGG DSB tables.\" The debug output in [25] shows intermediate bias values (`b_sat`, `b_rec`) being printed. The agent thus identifies both what values were applied (differential signal biases per arc) and their source (published CAS/IGG tables loaded from the skill directory).'}]",
+        "rationales": []
+      }
+    ]
+  },
+  "final_score": 1.0,
+  "final_formula": "(W_O*S_O + W_D*S_D + W_N*S_N) / (W_O+W_D+W_N), by weight mass; capped at 0.5 by CRUX-FAILED and/or OUTCOME-FAILED",
+  "verdict": "ok",
+  "crux_failed": false,
+  "outcome_failed": false,
+  "failed_gates": [],
+  "unevaluated_gates": [],
+  "gates_unevaluated": false,
+  "failed_outcome_gates": [],
+  "coverage_floor": 0.6666666666666666,
+  "continuous": null,
+  "continuous_detail": "INVALID (no outcome result: results.json absent in run dir)",
+  "guardrail_floor_excluded": [],
+  "abstained": []
+}

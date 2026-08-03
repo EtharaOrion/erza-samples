@@ -1,0 +1,151 @@
+{
+  "method": "true_azimuth = (magnetic_azimuth + D) mod 360, where D is the IGRF-13 magnetic declination at the geodetic station and survey epoch, from spherical-harmonic synthesis of the Schmidt semi-normalised Gauss coefficients to degree 13.",
+  "epoch_decimal_year": 2020.0,
+  "freeze_tol_deg": 1e-09,
+  "ref_GDS01_true_azimuth_deg": 52.54799845832471,
+  "tolerance_GDS01_true_azimuth_deg_abs": 0.1,
+  "ref_GDS02_true_azimuth_deg": 130.70847805511158,
+  "tolerance_GDS02_true_azimuth_deg_abs": 0.1,
+  "ref_GDS03_true_azimuth_deg": 221.00035935140193,
+  "tolerance_GDS03_true_azimuth_deg_abs": 0.1,
+  "ref_GDS04_true_azimuth_deg": 312.5866348678679,
+  "tolerance_GDS04_true_azimuth_deg_abs": 0.1,
+  "ref_GDS05_true_azimuth_deg": 91.9623706682086,
+  "tolerance_GDS05_true_azimuth_deg_abs": 0.1,
+  "ref_GDS06_true_azimuth_deg": 359.79967349037173,
+  "tolerance_GDS06_true_azimuth_deg_abs": 0.1,
+  "ref_GDS07_true_azimuth_deg": 177.75945302278726,
+  "tolerance_GDS07_true_azimuth_deg_abs": 0.1,
+  "ref_GDS08_true_azimuth_deg": 29.599160251738553,
+  "tolerance_GDS08_true_azimuth_deg_abs": 0.1,
+  "ref_GDS09_true_azimuth_deg": 269.39055845659317,
+  "tolerance_GDS09_true_azimuth_deg_abs": 0.1,
+  "ref_GDS10_true_azimuth_deg": 116.35438443210231,
+  "tolerance_GDS10_true_azimuth_deg_abs": 0.1,
+  "ref_GDS11_true_azimuth_deg": 319.47590222368996,
+  "tolerance_GDS11_true_azimuth_deg_abs": 0.1,
+  "ref_GDS12_true_azimuth_deg": 242.95990893443806,
+  "tolerance_GDS12_true_azimuth_deg_abs": 0.1,
+  "station_detail": {
+    "GDS01": {
+      "ref_true_azimuth_deg": 52.54799845832471,
+      "ref_declination_deg": 15.147998458324711,
+      "latitude_deg": 64.2,
+      "longitude_deg": -152.3,
+      "elevation_m": 210,
+      "magnetic_azimuth_deg": 37.4
+    },
+    "GDS02": {
+      "ref_true_azimuth_deg": 130.70847805511158,
+      "ref_declination_deg": 11.808478055111573,
+      "latitude_deg": 66.85,
+      "longitude_deg": -160.1,
+      "elevation_m": 95,
+      "magnetic_azimuth_deg": 118.9
+    },
+    "GDS03": {
+      "ref_true_azimuth_deg": 221.00035935140193,
+      "ref_declination_deg": 15.800359351401948,
+      "latitude_deg": 61.4,
+      "longitude_deg": -149.9,
+      "elevation_m": 120,
+      "magnetic_azimuth_deg": 205.2
+    },
+    "GDS04": {
+      "ref_true_azimuth_deg": 312.5866348678679,
+      "ref_declination_deg": 20.986634867867824,
+      "latitude_deg": 68.1,
+      "longitude_deg": -133.7,
+      "elevation_m": 60,
+      "magnetic_azimuth_deg": 291.6
+    },
+    "GDS05": {
+      "ref_true_azimuth_deg": 91.9623706682086,
+      "ref_declination_deg": 18.962370668208607,
+      "latitude_deg": 58.3,
+      "longitude_deg": -134.4,
+      "elevation_m": 15,
+      "magnetic_azimuth_deg": 73.0
+    },
+    "GDS06": {
+      "ref_true_azimuth_deg": 359.79967349037173,
+      "ref_declination_deg": 16.999673490371705,
+      "latitude_deg": 70.2,
+      "longitude_deg": -148.5,
+      "elevation_m": 8,
+      "magnetic_azimuth_deg": 342.8
+    },
+    "GDS07": {
+      "ref_true_azimuth_deg": 177.75945302278726,
+      "ref_declination_deg": 18.259453022787266,
+      "latitude_deg": 60.1,
+      "longitude_deg": -141.0,
+      "elevation_m": 900,
+      "magnetic_azimuth_deg": 159.5
+    },
+    "GDS08": {
+      "ref_true_azimuth_deg": 29.599160251738553,
+      "ref_declination_deg": 17.499160251738555,
+      "latitude_deg": 67.5,
+      "longitude_deg": -115.3,
+      "elevation_m": 180,
+      "magnetic_azimuth_deg": 12.1
+    },
+    "GDS09": {
+      "ref_true_azimuth_deg": 269.39055845659317,
+      "ref_declination_deg": 20.690558456593177,
+      "latitude_deg": 65.0,
+      "longitude_deg": -126.8,
+      "elevation_m": 140,
+      "magnetic_azimuth_deg": 248.7
+    },
+    "GDS10": {
+      "ref_true_azimuth_deg": 116.35438443210231,
+      "ref_declination_deg": 21.054384432102314,
+      "latitude_deg": 72.1,
+      "longitude_deg": -125.9,
+      "elevation_m": 30,
+      "magnetic_azimuth_deg": 95.3
+    },
+    "GDS11": {
+      "ref_true_azimuth_deg": 319.47590222368996,
+      "ref_declination_deg": 19.475902223689967,
+      "latitude_deg": 62.8,
+      "longitude_deg": -137.6,
+      "elevation_m": 700,
+      "magnetic_azimuth_deg": 300.0
+    },
+    "GDS12": {
+      "ref_true_azimuth_deg": 242.95990893443806,
+      "ref_declination_deg": 18.35990893443807,
+      "latitude_deg": 55.2,
+      "longitude_deg": -131.6,
+      "elevation_m": 10,
+      "magnetic_azimuth_deg": 224.6
+    }
+  },
+  "control_gaps": {
+    "apply_chart_declination": {
+      "description": "apply the single old-chart declination (6.5 deg) to every station",
+      "no_skill_route": true,
+      "min_abs_gap_deg": 5.3085,
+      "true_azimuth_deg_gap_over_tol": 53.08
+    },
+    "report_magnetic_as_true": {
+      "description": "report the magnetic azimuth unchanged (declination = 0)",
+      "no_skill_route": true,
+      "min_abs_gap_deg": 11.8085,
+      "true_azimuth_deg_gap_over_tol": 118.08
+    },
+    "skip_geodetic_conversion": {
+      "description": "compute IGRF-13 but treat the geodetic latitude as geocentric (omit the WGS84 geodetic->geocentric step)",
+      "no_skill_route": false,
+      "note": "a with-coefficients implementation trap the skill pins; 0.12-0.32 deg (1.2x-3.2x tol) across the network"
+    },
+    "wmm_equivalent_model": {
+      "description": "a different official field model (WMM) reproduces the same physical declination within tolerance and also requires its own withheld coefficient set",
+      "no_skill_route": false,
+      "note": "documents the nearest real competitor; not a separation threat (agrees within tol; unavailable without a model)"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="14" time="0.048" timestamp="2026-07-29T19:34:27.947882+05:30" hostname="Agasthhyas-Mac-2.local"><testcase classname="verifier.test_trajectory" name="test_R3" time="0.005"><failure message="AssertionError: never referenced /root/data/image.hdr&#10;assert 'image.hdr' in 'import numpy as np, csv, json\n\nCRPIX1, CRPIX2 = 512.5, 512.5\nCRVAL1, CRVAL2 = 213.742, 67.0\nCD = np.array([[-0.01...results.json\',\'w\'), indent=1)\nprint(json.dumps({&quot;sources&quot;: out}, indent=1))\n\n\npython3 solve.py python3 solve.py'">traj = Trajectory(run_dir='trajectories/903d6f33-74c0-554d-b210-9c2b3a5138fb/claude-opus-4-8/no-skill/run_3', turns=[Turn(rol...2, 67.0), consistent with a ~1024-pixel field at ~0.015°/pix.', tool_name='', tool_input={})], reward=1.0, pass_at_1=1)
+
+    def test_R3(traj):
+        """The agent went to the shipped header rather than only the prose task."""
+        blob = traj.agent_code + " " + " ".join(traj.commands)
+&gt;       assert "image.hdr" in blob, "never referenced /root/data/image.hdr"
+E       AssertionError: never referenced /root/data/image.hdr
+E       assert 'image.hdr' in 'import numpy as np, csv, json\n\nCRPIX1, CRPIX2 = 512.5, 512.5\nCRVAL1, CRVAL2 = 213.742, 67.0\nCD = np.array([[-0.01...results.json\',\'w\'), indent=1)\nprint(json.dumps({"sources": out}, indent=1))\n\n\npython3 solve.py python3 solve.py'
+
+verifier/test_trajectory.py:44: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R4" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R5" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R6" time="0.001" /><testcase classname="verifier.test_trajectory" name="test_R7" time="0.000"><failure message="AssertionError: LONPOLE never named&#10;assert None&#10; +  where None = &lt;function search at 0x101ebfec0&gt;('lonpole', 'import numpy as np, csv, json\n\nCRPIX1, CRPIX2 = 512.5, 512.5\nCRVAL1, CRVAL2 = 213.742, 67.0\nCD = np.array([[-0.01...ll results land within ~7° of the reference point (213.742, 67.0), consistent with a ~1024-pixel field at ~0.015°/pix.', re.IGNORECASE)&#10; +    where &lt;function search at 0x101ebfec0&gt; = re.search&#10; +    and   re.IGNORECASE = re.I">everything = 'import numpy as np, csv, json\n\nCRPIX1, CRPIX2 = 512.5, 512.5\nCRVAL1, CRVAL2 = 213.742, 67.0\nCD = np.array([[-0.01...ll results land within ~7° of the reference point (213.742, 67.0), consistent with a ~1024-pixel field at ~0.015°/pix.'
+
+    def test_R7(everything):
+&gt;       assert re.search(r"lonpole", everything, re.I), "LONPOLE never named"
+E       AssertionError: LONPOLE never named
+E       assert None
+E        +  where None = &lt;function search at 0x101ebfec0&gt;('lonpole', 'import numpy as np, csv, json\n\nCRPIX1, CRPIX2 = 512.5, 512.5\nCRVAL1, CRVAL2 = 213.742, 67.0\nCD = np.array([[-0.01...ll results land within ~7° of the reference point (213.742, 67.0), consistent with a ~1024-pixel field at ~0.015°/pix.', re.IGNORECASE)
+E        +    where &lt;function search at 0x101ebfec0&gt; = re.search
+E        +    and   re.IGNORECASE = re.I
+
+verifier/test_trajectory.py:105: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R8" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R9" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R10" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R11" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R12" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R13" time="0.001" /><testcase classname="verifier.test_trajectory" name="test_R14" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R15" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R16" time="0.000" /></testsuite></testsuites>

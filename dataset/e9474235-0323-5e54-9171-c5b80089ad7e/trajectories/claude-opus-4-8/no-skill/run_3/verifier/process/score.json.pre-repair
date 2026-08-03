@@ -1,0 +1,336 @@
+{
+  "bundle": "e9474235-0323-5e54-9171-c5b80089ad7e",
+  "task_id": "850700fd-2df3-5816-a2fd-74cd0e1baa28",
+  "run_dir": "trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_3",
+  "arm": "no-skill",
+  "run": "run_3",
+  "deterministic": {
+    "score": 0.41935483870967744,
+    "n_scored": 13,
+    "n_total": 13,
+    "weight_scored": 31,
+    "weight_total": 31,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R8",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R9",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R10",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R11",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "failure mode occurred"
+      },
+      {
+        "id": "R13",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.1,
+    "n_scored": 4,
+    "n_total": 4,
+    "weight_scored": 10,
+    "weight_total": 10,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R16",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "majority",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The run identified that harmonic synthesis needs per-gauge amplitudes/phases and a datum offset and searched for them, but it never argued they are empirical, site-specific and hence unrecallable; worse, it then substituted a constant and explicitly mis-modelled the single observation as an unbiased estimate of Z0 (\"a random-phase sample of the same oscillation averages to Z0\"), the exact opposite of recognising it as one instant of the curve."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent explicitly stated that harmonic tide prediction requires each gauge's own empirical tidal constituents (amplitude, Greenwich phase lag) and datum offset, that these are not derivable, and searched exhaustively confirming no constants table exists in the container, concluding the task \"as literally specified is not computable from the container's inputs\" - this is the \"absence of any constants table\" route the criterion explicitly allows."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent asserted that harmonic tide prediction \"requires each gauge's tidal constituents (amplitudes + Greenwich phases) and datum offset\" and concluded they were absent from the container. However, the agent did not explain why these constants are necessary: that they are empirical, site-specific, determined by local bathymetry and resonance, and therefore cannot be estimated or substituted. The agent proceeded directly to searching for the data rather than first establishing conceptually why the data is load-bearing and why the single observed water level (a random phase sample) is not the constants themselves. The agent asserted the need without deriving it."
+          }
+        ],
+        "dissenting_models": [
+          "claude-sonnet-5"
+        ]
+      },
+      {
+        "id": "R17",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "No harmonic method was ever implemented, and no check of any kind was run against the 2025-01-01 observation or anything else that could have disagreed; the only justification offered is a hand-wave about minimising expected squared error."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent never implemented any harmonic method at all, so it never evaluated its own prediction at the decoy timestamp or performed any check capable of disagreeing with a wrong convention; it merely adopted the decoy value directly with no cross-check."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent produced a constant prediction (repeating each gauge's decoy water level across all four target times) without implementing any harmonic synthesis code. The agent made no attempt to verify by evaluating its (non-existent) method at the decoy_reference timestamp and comparing the result to the observed value at that instant. No independent check that could have disagreed was performed."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R18",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "majority",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The run did note the decoy is \"one water level per gauge at a single earlier instant... explicitly labelled orientation only\", but it drew the opposite conclusion \u2014 adopting that exact value as the reported height at all four target instants \u2014 so it never stated that it is therefore not the predicted height."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent explicitly stated in its own summary that the decoy value is \"a single water level per gauge at 2025-01-01T00:00Z\" and \"one water level per gauge at a single earlier instant,\" explicitly labelled orientation only, satisfying the literal wording of the criterion even though it then used it as the answer anyway."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The agent explicitly stated in prose: \"the only gauge-specific height information available is the `decoy_reference` block \u2014 a single water level per gauge at `2025-01-01T00:00Z`\" and recognized it as \"a random-phase sample of the same oscillation\" \u2014 one instant of the tidal curve, not the predicted values at the target instants. The agent articulated this conceptual distinction clearly."
+          }
+        ],
+        "dissenting_models": [
+          "claude-opus-5"
+        ]
+      },
+      {
+        "id": "R19",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "No astronomical arguments were computed at all, so no epoch, no cycles-vs-degrees choice, no Greenwich phase referencing and no phase-lag sign convention were stated anywhere in the trajectory."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent never attempted the astronomical/harmonic computation, so it never stated an epoch, UTC/Greenwich referencing, cycles-vs-degrees convention, or the phase-subtraction convention; no such conventions appear anywhere in the trajectory."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent never implemented any harmonic synthesis code and therefore never encountered the branches where time conventions apply. The agent made zero explicit statements about: which epoch (Schureman vs J2000 vs Unix), UTC vs local time, cycles vs degrees for the equilibrium argument, phase lag subtraction, or any other computational convention. The agent's output was a constant prediction with no working code or convention narrative."
+          }
+        ],
+        "dissenting_models": []
+      }
+    ]
+  },
+  "final_score": 0.34146341463414637,
+  "final_formula": "(W_D*S_D + W_N*S_N)/(W_D+W_N) by weight mass; capped at 0.5 on gate failure",
+  "final_score_count_blended": 0.3442125237191651,
+  "count_blend_delta": 0.002749,
+  "crux_failed": true,
+  "failed_gates": [
+    "R6"
+  ],
+  "CONTINUOUS": {
+    "passed": 1,
+    "total": 12,
+    "value": 0.08333333333333333,
+    "source": "verifier/results.xml",
+    "basis": "parametrised cases"
+  },
+  "abstained": [],
+  "panel": {
+    "panel": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ],
+    "single_vendor_panel": true,
+    "self_judging_seats": [],
+    "family_judging_seats": [
+      "claude-opus-5"
+    ],
+    "run_model": "claude-opus-4-8"
+  },
+  "fingerprint": {
+    "truth_md": "5d5dfcc584f70897",
+    "rubrics_json": "6cfb67303e22f50f",
+    "test_trajectory_py": "0fdd183a6980d1d1",
+    "expected_values_json": "4be27e88c13a85ef",
+    "combiner": "ac4af05e2dc4ff92",
+    "panel_models": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "arcs": [
+    {
+      "station_label": "RX-1",
+      "sv_label": "SV-K"
+    },
+    {
+      "station_label": "RX-1",
+      "sv_label": "SV-P"
+    },
+    {
+      "station_label": "RX-1",
+      "sv_label": "SV-R"
+    },
+    {
+      "station_label": "RX-1",
+      "sv_label": "SV-W"
+    },
+    {
+      "station_label": "RX-2",
+      "sv_label": "SV-M"
+    },
+    {
+      "station_label": "RX-2",
+      "sv_label": "SV-R"
+    },
+    {
+      "station_label": "RX-2",
+      "sv_label": "SV-T"
+    },
+    {
+      "station_label": "RX-2",
+      "sv_label": "SV-W"
+    },
+    {
+      "station_label": "RX-3",
+      "sv_label": "SV-K"
+    },
+    {
+      "station_label": "RX-3",
+      "sv_label": "SV-M"
+    },
+    {
+      "station_label": "RX-3",
+      "sv_label": "SV-P"
+    },
+    {
+      "station_label": "RX-3",
+      "sv_label": "SV-T"
+    }
+  ],
+  "decoy_reference": {
+    "description": "Mean slant total electron content over each arc obtained straight from the recorded ranges, with no instrumental term removed and no slant-to-vertical reduction applied. Supplied for orientation.",
+    "uncorrected_mean_slant_tec_tecu": {
+      "RX-1": {
+        "SV-K": 34.851,
+        "SV-P": 30.792,
+        "SV-R": 3.966,
+        "SV-W": 18.157
+      },
+      "RX-2": {
+        "SV-M": 32.543,
+        "SV-R": 7.808,
+        "SV-T": 30.813,
+        "SV-W": 0.019
+      },
+      "RX-3": {
+        "SV-K": 40.192,
+        "SV-M": 61.387,
+        "SV-P": 65.081,
+        "SV-T": 52.693
+      }
+    }
+  },
+  "output_key": "arc_mean_vtec_tecu",
+  "output_path": "/root/results.json",
+  "unit": "TECU (10^16 electrons per square metre)"
+}

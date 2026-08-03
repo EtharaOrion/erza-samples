@@ -1,0 +1,28 @@
+{
+ "task_id": "c59f8b2a-0606-5f02-bed5-52937e5ab468",
+ "n_outcome_cases_spec": 12,
+ "graded_tests": [
+  "test_phase_centre_correction[ANT-A-s1]",
+  "test_phase_centre_correction[ANT-A-s2]",
+  "test_phase_centre_correction[ANT-A-s3]",
+  "test_phase_centre_correction[ANT-A-s4]",
+  "test_phase_centre_correction[ANT-B-s1]",
+  "test_phase_centre_correction[ANT-B-s2]",
+  "test_phase_centre_correction[ANT-B-s3]",
+  "test_phase_centre_correction[ANT-B-s4]",
+  "test_phase_centre_correction[ANT-C-s1]",
+  "test_phase_centre_correction[ANT-C-s2]",
+  "test_phase_centre_correction[ANT-C-s3]",
+  "test_phase_centre_correction[ANT-C-s4]",
+  "test_variation_term_is_load_bearing"
+ ],
+ "guard_tests": [
+  "test_frozen_golden_matches_live_recompute",
+  "test_isomorphic_invariance_under_rescale",
+  "test_plausibility_and_guess_resistance",
+  "test_tolerances_are_positive_and_bind"
+ ],
+ "granularity": "wrapped-or-mismatched",
+ "needs_review": true,
+ "basis": "name-pattern classification from shipped run reports; see scripts/generate_graded_manifests.py"
+}

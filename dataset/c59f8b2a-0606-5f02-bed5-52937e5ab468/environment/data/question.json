@@ -1,0 +1,126 @@
+{
+  "output_path": "/root/results.json",
+  "cases": [
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 356.4,
+      "elevation_deg": 31.0
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 25.5,
+      "elevation_deg": 46.5
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 97.6,
+      "elevation_deg": 48.3
+    },
+    {
+      "antenna_id": "ANT-A",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 292.2,
+      "elevation_deg": 33.4
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 270.7,
+      "elevation_deg": 30.8
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 43.4,
+      "elevation_deg": 57.1
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 317.9,
+      "elevation_deg": 33.7
+    },
+    {
+      "antenna_id": "ANT-B",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 230.8,
+      "elevation_deg": 51.0
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s1",
+      "frequency_code": "G01",
+      "azimuth_deg": 353.1,
+      "elevation_deg": 63.8
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s2",
+      "frequency_code": "G02",
+      "azimuth_deg": 358.6,
+      "elevation_deg": 53.6
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s3",
+      "frequency_code": "G05",
+      "azimuth_deg": 142.2,
+      "elevation_deg": 52.8
+    },
+    {
+      "antenna_id": "ANT-C",
+      "sight_id": "s4",
+      "frequency_code": "E06",
+      "azimuth_deg": 97.5,
+      "elevation_deg": 51.1
+    }
+  ],
+  "output_contract": {
+    "phase_centre_correction_mm": {
+      "<antenna_id>": {
+        "<sight_id>": "number, correction in millimetres"
+      }
+    }
+  },
+  "method_note": "For each case report the phase-centre correction in millimetres as (N*e_N + E*e_E + U*e_U) + PCV, where (N, E, U) is the antenna's mean phase-centre offset for that frequency in the local North/East/Up frame, e = (cos(el)*cos(az), cos(el)*sin(az), sin(el)) is the line-of-sight unit vector in the same frame with azimuth measured clockwise from geodetic north, and PCV is the antenna's phase-centre variation for that frequency at that azimuth and at the zenith angle 90 - el, taken bilinearly on the tabulated azimuth by zenith-angle grid.",
+  "nominal_reference": {
+    "note": "Shown for orientation only. The nominal phase-centre offset for a published geodetic antenna, in the local North/East/Up frame, at each frequency code listed in this task.",
+    "nominal_phase_centre_offset_mm": {
+      "G01": {
+        "frequency_label": "GPS L1",
+        "north_mm": 0.12,
+        "east_mm": 1.25,
+        "up_mm": 90.09
+      },
+      "G02": {
+        "frequency_label": "GPS L2",
+        "north_mm": -0.17,
+        "east_mm": -0.13,
+        "up_mm": 117.83
+      },
+      "G05": {
+        "frequency_label": "GPS L5",
+        "north_mm": -0.09,
+        "east_mm": -0.28,
+        "up_mm": 126.97
+      },
+      "E06": {
+        "frequency_label": "Galileo E6",
+        "north_mm": -0.04,
+        "east_mm": -0.04,
+        "up_mm": 112.62
+      }
+    }
+  }
+}

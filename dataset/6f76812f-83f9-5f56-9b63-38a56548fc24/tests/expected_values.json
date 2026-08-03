@@ -1,0 +1,294 @@
+{
+  "arc_detail": [
+    {
+      "elevation_max_deg": 65.362,
+      "elevation_min_deg": 42.975,
+      "mean_obliquity": 0.8332929834749931,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 34.61052912446327,
+      "station_label": "RX-1",
+      "sv_label": "SV-K",
+      "total_bias_ns": 2.423
+    },
+    {
+      "elevation_max_deg": 73.905,
+      "elevation_min_deg": 50.741,
+      "mean_obliquity": 0.8959793082261238,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 29.572770604689552,
+      "station_label": "RX-1",
+      "sv_label": "SV-P",
+      "total_bias_ns": 0.8220000000000001
+    },
+    {
+      "elevation_max_deg": 72.574,
+      "elevation_min_deg": 47.115,
+      "mean_obliquity": 0.8772866665884868,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 23.129462268853345,
+      "station_label": "RX-1",
+      "sv_label": "SV-R",
+      "total_bias_ns": 7.867999999999999
+    },
+    {
+      "elevation_max_deg": 73.067,
+      "elevation_min_deg": 49.545,
+      "mean_obliquity": 0.8887260872846927,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 36.72052171518529,
+      "station_label": "RX-1",
+      "sv_label": "SV-W",
+      "total_bias_ns": 8.172
+    },
+    {
+      "elevation_max_deg": 64.142,
+      "elevation_min_deg": 42.954,
+      "mean_obliquity": 0.8283697188595923,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 28.546917843121648,
+      "station_label": "RX-2",
+      "sv_label": "SV-M",
+      "total_bias_ns": 0.7260000000000009
+    },
+    {
+      "elevation_max_deg": 66.592,
+      "elevation_min_deg": 44.025,
+      "mean_obliquity": 0.8428287202219477,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 22.006827220821616,
+      "station_label": "RX-2",
+      "sv_label": "SV-R",
+      "total_bias_ns": 6.445000000000001
+    },
+    {
+      "elevation_max_deg": 76.646,
+      "elevation_min_deg": 52.652,
+      "mean_obliquity": 0.9110013247043623,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 24.18028764256543,
+      "station_label": "RX-2",
+      "sv_label": "SV-T",
+      "total_bias_ns": -1.472999999999999
+    },
+    {
+      "elevation_max_deg": 78.158,
+      "elevation_min_deg": 52.186,
+      "mean_obliquity": 0.9133356515853184,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 17.79276370902095,
+      "station_label": "RX-2",
+      "sv_label": "SV-W",
+      "total_bias_ns": 6.850000000000001
+    },
+    {
+      "elevation_max_deg": 75.728,
+      "elevation_min_deg": 51.818,
+      "mean_obliquity": 0.9053858715681745,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 21.533690225433794,
+      "station_label": "RX-3",
+      "sv_label": "SV-K",
+      "total_bias_ns": -5.718999999999999
+    },
+    {
+      "elevation_max_deg": 71.12,
+      "elevation_min_deg": 47.651,
+      "mean_obliquity": 0.8747335493465199,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 36.220640693107896,
+      "station_label": "RX-3",
+      "sv_label": "SV-M",
+      "total_bias_ns": -6.955
+    },
+    {
+      "elevation_max_deg": 75.512,
+      "elevation_min_deg": 53.467,
+      "mean_obliquity": 0.9108447337596978,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 37.67497033985336,
+      "station_label": "RX-3",
+      "sv_label": "SV-P",
+      "total_bias_ns": -8.274000000000001
+    },
+    {
+      "elevation_max_deg": 67.734,
+      "elevation_min_deg": 44.514,
+      "mean_obliquity": 0.849298024004304,
+      "n_epochs": 121,
+      "ref_arc_mean_vtec_tecu": 20.63798692329868,
+      "station_label": "RX-3",
+      "sv_label": "SV-T",
+      "total_bias_ns": -9.89
+    }
+  ],
+  "control_gaps": {
+    "chain_terms_added_not_signed": {
+      "arc_mean_vtec_tecu_gap_over_tol": 252.529,
+      "arcs_altered": 4,
+      "description": "sum the magnitudes of the chained rows instead of following each row's own ordered-pair sign",
+      "note": "sum the magnitudes of the chained rows instead of following each row's own ordered-pair sign. Figure is the worst (smallest) separation over the 4 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "chained_although_direct_row_present": {
+      "arc_mean_vtec_tecu_gap_over_tol": 13.131,
+      "arcs_altered": 8,
+      "description": "rebuild every differential by chaining through the reference observables even where the product publishes the exact ordered pair",
+      "note": "rebuild every differential by chaining through the reference observables even where the product publishes the exact ordered pair. A genuinely defensible alternative convention -- the published rows are independent estimates and are not algebraically consistent, so the chained and direct values differ; it is pinned in the mounted reference so nobody who reads that reference can land here. Figure is the worst (smallest) separation over the 8 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "intra_frequency_step_skipped": {
+      "arc_mean_vtec_tecu_gap_over_tol": 47.04,
+      "arcs_altered": 8,
+      "description": "treat a non-reference observable as though it were the reference observable of its frequency, skipping the intra-frequency row",
+      "note": "treat a non-reference observable as though it were the reference observable of its frequency, skipping the intra-frequency row. Figure is the worst (smallest) separation over the 8 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "no_instrumental_term_removed": {
+      "arc_mean_vtec_tecu_gap_over_tol": 34.32,
+      "arcs_altered": 12,
+      "description": "reduce the recorded ranges straight to vertical content with no instrumental term removed at all -- the route an analyst without the published bias product is left with, and the one the orientation figure anchors",
+      "no_skill_route": true,
+      "note": "reduce the recorded ranges straight to vertical content with no instrumental term removed at all -- the route an analyst without the published bias product is left with, and the one the orientation figure anchors. Not a strawman: it is the nearest producible alternative and it is what the standard textbook geometry-free expression gives when the bias term is unavailable. Figure is the worst (smallest) separation over the 12 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "orientation_figure_echoed": {
+      "arc_mean_vtec_tecu_gap_over_tol": 4.809,
+      "arcs_altered": 12,
+      "description": "report the uncorrected slant figure supplied for orientation",
+      "no_skill_route": true,
+      "note": "report the orientation figure from question.json unchanged. Worst (smallest) separation over all 12 arcs."
+    },
+    "receiver_entry_only": {
+      "arc_mean_vtec_tecu_gap_over_tol": 52.817,
+      "arcs_altered": 12,
+      "description": "remove the receiver entry only, leaving the space-vehicle term in",
+      "note": "remove the receiver entry only, leaving the space-vehicle term in. Figure is the worst (smallest) separation over the 12 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "removal_sign_reversed": {
+      "arc_mean_vtec_tecu_gap_over_tol": 68.639,
+      "arcs_altered": 12,
+      "description": "add the total entry to the geometry-free observable instead of removing it",
+      "note": "add the total entry to the geometry-free observable instead of removing it. This is the defensible-looking reading of a bias as a correction rather than as an error, and the standard's own numerical example is the only thing that settles it. Figure is the worst (smallest) separation over the 12 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    },
+    "space_vehicle_entry_only": {
+      "arc_mean_vtec_tecu_gap_over_tol": 76.965,
+      "arcs_altered": 12,
+      "description": "remove the space-vehicle entry and nothing else, leaving the receiver entry in the observable",
+      "note": "remove the space-vehicle entry and nothing else, leaving the receiver entry in the observable. A published competitor habit: single-station users routinely have satellite values and no receiver values. Figure is the worst (smallest) separation over the 12 of 12 arcs this route alters; the remaining arcs are untouched by it."
+    }
+  },
+  "convention_variant_spread_arc_mean_vtec_tecu_maxabs": 0.01874157274306043,
+  "convention_variants": {
+    "trapezoidal_arc_average": {
+      "description": "average the per-epoch vertical content trapezoidally over the evenly spaced arc rather than plainly",
+      "must_not_false_fail": true,
+      "note": "a defensible alternative reduction convention on an evenly sampled arc; the prompt pins the plain arithmetic mean, so this costs the unaided arm nothing and is not part of the lever.",
+      "worst_deviation_over_tol": 0.3685
+    }
+  },
+  "freeze_tol_tecu": 1e-09,
+  "graded_output": "arc_mean_vtec_tecu",
+  "items": [
+    {
+      "ref_arc_mean_vtec_tecu": 34.61052912446327,
+      "station_label": "RX-1",
+      "sv_label": "SV-K",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 29.572770604689552,
+      "station_label": "RX-1",
+      "sv_label": "SV-P",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 23.129462268853345,
+      "station_label": "RX-1",
+      "sv_label": "SV-R",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 36.72052171518529,
+      "station_label": "RX-1",
+      "sv_label": "SV-W",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 28.546917843121648,
+      "station_label": "RX-2",
+      "sv_label": "SV-M",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 22.006827220821616,
+      "station_label": "RX-2",
+      "sv_label": "SV-R",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 24.18028764256543,
+      "station_label": "RX-2",
+      "sv_label": "SV-T",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 17.79276370902095,
+      "station_label": "RX-2",
+      "sv_label": "SV-W",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 21.533690225433794,
+      "station_label": "RX-3",
+      "sv_label": "SV-K",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 36.220640693107896,
+      "station_label": "RX-3",
+      "sv_label": "SV-M",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 37.67497033985336,
+      "station_label": "RX-3",
+      "sv_label": "SV-P",
+      "tolerance_tecu": 0.05
+    },
+    {
+      "ref_arc_mean_vtec_tecu": 20.63798692329868,
+      "station_label": "RX-3",
+      "sv_label": "SV-T",
+      "tolerance_tecu": 0.05
+    }
+  ],
+  "method": "per epoch, geometry-free code combination of the two reported ranges; the total differential signal bias for the reported observable pair (space-vehicle entry plus receiver entry, resolved against the published product) removed from it; the residual converted to slant content and reduced to vertical content with the single-layer obliquity factor; the arc value is the arithmetic mean of the per-epoch vertical content",
+  "n_cases": 12,
+  "published_precision_ambiguity_arc_mean_vtec_tecu_maxabs": 0.007933490350268357,
+  "published_precision_ambiguity_draws": 200,
+  "ref_RX-1_SV-K_arc_mean_vtec_tecu": 34.61052912446327,
+  "ref_RX-1_SV-P_arc_mean_vtec_tecu": 29.572770604689552,
+  "ref_RX-1_SV-R_arc_mean_vtec_tecu": 23.129462268853345,
+  "ref_RX-1_SV-W_arc_mean_vtec_tecu": 36.72052171518529,
+  "ref_RX-2_SV-M_arc_mean_vtec_tecu": 28.546917843121648,
+  "ref_RX-2_SV-R_arc_mean_vtec_tecu": 22.006827220821616,
+  "ref_RX-2_SV-T_arc_mean_vtec_tecu": 24.18028764256543,
+  "ref_RX-2_SV-W_arc_mean_vtec_tecu": 17.79276370902095,
+  "ref_RX-3_SV-K_arc_mean_vtec_tecu": 21.533690225433794,
+  "ref_RX-3_SV-M_arc_mean_vtec_tecu": 36.220640693107896,
+  "ref_RX-3_SV-P_arc_mean_vtec_tecu": 37.67497033985336,
+  "ref_RX-3_SV-T_arc_mean_vtec_tecu": 20.63798692329868,
+  "seed": 20260518,
+  "smallest_wrong_path_gap_arc_mean_vtec_tecu_minabs": 0.6561724161012705,
+  "smallest_wrong_path_gap_draws": 120,
+  "tolerance_RX-1_SV-K_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-1_SV-P_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-1_SV-R_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-1_SV-W_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-2_SV-M_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-2_SV-R_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-2_SV-T_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-2_SV-W_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-3_SV-K_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-3_SV-M_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-3_SV-P_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_RX-3_SV-T_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_arc_mean_vtec_tecu_abs": 0.05,
+  "tolerance_rationale": "One absolute tolerance, 0.050 TECU, on the single graded quantity. LOWER BOUND (defensible-reading spread): over 200 draws that jitter every consumed bias row inside the half-ulp of its printed precision and swap the ionospheric constant and the shell radius for their common alternative spellings, two faithful readings of the same published inputs never differ by more than 7.933e-03 TECU; the widest pinned-convention variant (trapezoidal instead of plain arc averaging) adds 1.874e-02 TECU. The tolerance sits 2.7x above the larger of the two. UPPER BOUND (smallest wrong-path gap): over 120 draws of the same jitter, the closest any named wrong path in control_gaps ever comes to the reference on any arc is 0.656 TECU, which is 13.1x the tolerance; the deterministic worst case is 4.81x. The ordering that matters is spread 7.933e-03 < variant 1.874e-02 < tolerance 0.050 < gap 0.656: 6.3x of headroom above the reading spread, 2.7x above the widest pinned variant, 13.1x below the closest wrong path. Routes that do not separate are recorded under convention_variants, never here, and must not false-fail."
+}

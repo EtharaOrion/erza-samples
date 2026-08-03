@@ -1,0 +1,111 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /root
+configfile: ../dev/null
+collecting ... collected 16 items
+
+::test_arc_mean_vtec[RX-1-SV-K] FAILED                                   [  6%]
+::test_arc_mean_vtec[RX-1-SV-P] FAILED                                   [ 12%]
+::test_arc_mean_vtec[RX-1-SV-R] FAILED                                   [ 18%]
+::test_arc_mean_vtec[RX-1-SV-W] FAILED                                   [ 25%]
+::test_arc_mean_vtec[RX-2-SV-M] FAILED                                   [ 31%]
+::test_arc_mean_vtec[RX-2-SV-R] FAILED                                   [ 37%]
+::test_arc_mean_vtec[RX-2-SV-T] FAILED                                   [ 43%]
+::test_arc_mean_vtec[RX-2-SV-W] FAILED                                   [ 50%]
+::test_arc_mean_vtec[RX-3-SV-K] FAILED                                   [ 56%]
+::test_arc_mean_vtec[RX-3-SV-M] FAILED                                   [ 62%]
+::test_arc_mean_vtec[RX-3-SV-P] FAILED                                   [ 68%]
+::test_arc_mean_vtec[RX-3-SV-T] FAILED                                   [ 75%]
+::test_frozen_reference_matches_live_recompute PASSED                    [ 81%]
+::test_plausibility_and_guess_resistance PASSED                          [ 87%]
+::test_isomorphic_invariance_under_relabel_and_rescale PASSED            [ 93%]
+::test_tolerances_are_positive_and_bind PASSED                           [100%]
+
+=================================== FAILURES ===================================
+________________________ test_arc_mean_vtec[RX-1-SV-K] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-1 SV-K: got 41.84000 TECU, expected 34.61053 TECU (tol 0.05000 TECU)
+E   assert 7.229470875536734 <= 0.05
+E    +  where 7.229470875536734 = abs((41.84 - 34.61052912446327))
+________________________ test_arc_mean_vtec[RX-1-SV-P] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-1 SV-P: got 39.68000 TECU, expected 29.57277 TECU (tol 0.05000 TECU)
+E   assert 10.107229395310448 <= 0.05
+E    +  where 10.107229395310448 = abs((39.68 - 29.572770604689552))
+________________________ test_arc_mean_vtec[RX-1-SV-R] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-1 SV-R: got 13.13000 TECU, expected 23.12946 TECU (tol 0.05000 TECU)
+E   assert 9.999462268853344 <= 0.05
+E    +  where 9.999462268853344 = abs((13.13 - 23.129462268853345))
+________________________ test_arc_mean_vtec[RX-1-SV-W] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-1 SV-W: got 44.17000 TECU, expected 36.72052 TECU (tol 0.05000 TECU)
+E   assert 7.44947828481471 <= 0.05
+E    +  where 7.44947828481471 = abs((44.17 - 36.72052171518529))
+________________________ test_arc_mean_vtec[RX-2-SV-M] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-2 SV-M: got 27.54000 TECU, expected 28.54692 TECU (tol 0.05000 TECU)
+E   assert 1.0069178431216486 <= 0.05
+E    +  where 1.0069178431216486 = abs((27.54 - 28.546917843121648))
+________________________ test_arc_mean_vtec[RX-2-SV-R] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-2 SV-R: got 14.98000 TECU, expected 22.00683 TECU (tol 0.05000 TECU)
+E   assert 7.026827220821616 <= 0.05
+E    +  where 7.026827220821616 = abs((14.98 - 22.006827220821616))
+________________________ test_arc_mean_vtec[RX-2-SV-T] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-2 SV-T: got 31.64000 TECU, expected 24.18029 TECU (tol 0.05000 TECU)
+E   assert 7.459712357434572 <= 0.05
+E    +  where 7.459712357434572 = abs((31.64 - 24.18028764256543))
+________________________ test_arc_mean_vtec[RX-2-SV-W] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-2 SV-W: got 27.99000 TECU, expected 17.79276 TECU (tol 0.05000 TECU)
+E   assert 10.197236290979049 <= 0.05
+E    +  where 10.197236290979049 = abs((27.99 - 17.79276370902095))
+________________________ test_arc_mean_vtec[RX-3-SV-K] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-3 SV-K: got 30.39000 TECU, expected 21.53369 TECU (tol 0.05000 TECU)
+E   assert 8.856309774566206 <= 0.05
+E    +  where 8.856309774566206 = abs((30.39 - 21.533690225433794))
+________________________ test_arc_mean_vtec[RX-3-SV-M] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-3 SV-M: got 35.85000 TECU, expected 36.22064 TECU (tol 0.05000 TECU)
+E   assert 0.3706406931078945 <= 0.05
+E    +  where 0.3706406931078945 = abs((35.85 - 36.220640693107896))
+________________________ test_arc_mean_vtec[RX-3-SV-P] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-3 SV-P: got 51.44000 TECU, expected 37.67497 TECU (tol 0.05000 TECU)
+E   assert 13.765029660146638 <= 0.05
+E    +  where 13.765029660146638 = abs((51.44 - 37.67497033985336))
+________________________ test_arc_mean_vtec[RX-3-SV-T] _________________________
+/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) <= tol, \
+E   AssertionError: RX-3 SV-T: got 30.04000 TECU, expected 20.63799 TECU (tol 0.05000 TECU)
+E   assert 9.40201307670132 <= 0.05
+E    +  where 9.40201307670132 = abs((30.04 - 20.63798692329868))
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+=========================== short test summary info ============================
+FAILED ::test_arc_mean_vtec[RX-1-SV-K] - AssertionError: RX-1 SV-K: got 41.84...
+FAILED ::test_arc_mean_vtec[RX-1-SV-P] - AssertionError: RX-1 SV-P: got 39.68...
+FAILED ::test_arc_mean_vtec[RX-1-SV-R] - AssertionError: RX-1 SV-R: got 13.13...
+FAILED ::test_arc_mean_vtec[RX-1-SV-W] - AssertionError: RX-1 SV-W: got 44.17...
+FAILED ::test_arc_mean_vtec[RX-2-SV-M] - AssertionError: RX-2 SV-M: got 27.54...
+FAILED ::test_arc_mean_vtec[RX-2-SV-R] - AssertionError: RX-2 SV-R: got 14.98...
+FAILED ::test_arc_mean_vtec[RX-2-SV-T] - AssertionError: RX-2 SV-T: got 31.64...
+FAILED ::test_arc_mean_vtec[RX-2-SV-W] - AssertionError: RX-2 SV-W: got 27.99...
+FAILED ::test_arc_mean_vtec[RX-3-SV-K] - AssertionError: RX-3 SV-K: got 30.39...
+FAILED ::test_arc_mean_vtec[RX-3-SV-M] - AssertionError: RX-3 SV-M: got 35.85...
+FAILED ::test_arc_mean_vtec[RX-3-SV-P] - AssertionError: RX-3 SV-P: got 51.44...
+FAILED ::test_arc_mean_vtec[RX-3-SV-T] - AssertionError: RX-3 SV-T: got 30.04...
+========================= 12 failed, 4 passed in 0.45s =========================

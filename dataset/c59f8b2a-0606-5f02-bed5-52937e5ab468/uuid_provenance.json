@@ -1,0 +1,162 @@
+{
+  "recipe": "forge.task_id.v1",
+  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+  "canonical_content_hash": "93b7b944f66b01d688ea10c59015b7ad6e5330ff55129735c403b4211786d0f4",
+  "task_id": "c59f8b2a-0606-5f02-bed5-52937e5ab468",
+  "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
+  "format": "standardised benchmark layout (tests/) - re-sealed 2026-07-31 after the format change and audit-layer restoration; supersedes the pre-format seal.",
+  "manifest": [
+    {
+      "relpath": "TRUTH.md",
+      "sha256": "2a062b5d912fc6da68a7fc8b60d7a34da6492512bdd41838d72729851dd56057"
+    },
+    {
+      "relpath": "environment/Dockerfile",
+      "sha256": "b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3"
+    },
+    {
+      "relpath": "environment/data/antennas.csv",
+      "sha256": "b9c40a6d253f656c6a2502d9e8fb5ee922be14622035dd019075803d288f75ec"
+    },
+    {
+      "relpath": "environment/data/question.json",
+      "sha256": "7d727fff8d9abade8e48cf778b090372fff9613b622d913e03cbb42967c44524"
+    },
+    {
+      "relpath": "environment/data/sightlines.csv",
+      "sha256": "697de1dfcd29e2dc21c7bc766fa6acc6716f683bc55e8baeceb5f8399f20361d"
+    },
+    {
+      "relpath": "environment/skills/antex-receiver-antenna-calibration/SKILL.md",
+      "sha256": "1383b00266fa0c65933ee3d8df68e86c9b4310666798c947f3d54899418fdc85"
+    },
+    {
+      "relpath": "environment/skills/antex-receiver-antenna-calibration/references/antenna_ANT-A.atx",
+      "sha256": "e7667af6f4a8578e59093cac67a03ce78f0ee32b1770932a130c4fb7878481d5"
+    },
+    {
+      "relpath": "environment/skills/antex-receiver-antenna-calibration/references/antenna_ANT-B.atx",
+      "sha256": "7495a357d65a551143ff23528c6016b831a7e561bebac74da311f132d10d4a4e"
+    },
+    {
+      "relpath": "environment/skills/antex-receiver-antenna-calibration/references/antenna_ANT-C.atx",
+      "sha256": "52d6914c0295e71d361cbdd2241cf51fd19e489bb0382b63edef4dc170ee470d"
+    },
+    {
+      "relpath": "environment/skills/antex-receiver-antenna-calibration/references/antex_format.md",
+      "sha256": "60d46af25a8ff054d51bc6f12a0cca18dd73c7e614c259258f4a65f50f8406f2"
+    },
+    {
+      "relpath": "instruction.md",
+      "sha256": "94c094e4a1907b2448b05d24f1c9285224608365dfa3ee077e2faa2a87975c96"
+    },
+    {
+      "relpath": "oracle/antennas/antenna_ANT-A.atx",
+      "sha256": "e7667af6f4a8578e59093cac67a03ce78f0ee32b1770932a130c4fb7878481d5"
+    },
+    {
+      "relpath": "oracle/antennas/antenna_ANT-B.atx",
+      "sha256": "7495a357d65a551143ff23528c6016b831a7e561bebac74da311f132d10d4a4e"
+    },
+    {
+      "relpath": "oracle/antennas/antenna_ANT-C.atx",
+      "sha256": "52d6914c0295e71d361cbdd2241cf51fd19e489bb0382b63edef4dc170ee470d"
+    },
+    {
+      "relpath": "oracle/antex.py",
+      "sha256": "9c5923bd44f40b21198f735e1abf210f6f990cb2bac6e2f124976eea213b81cc"
+    },
+    {
+      "relpath": "oracle/generate.py",
+      "sha256": "1fd99a79f951c06304a863b4c340a29e44dc735592b663d5fdca1b5967968874"
+    },
+    {
+      "relpath": "oracle/solve.py",
+      "sha256": "7a3c0de696f669a8e496dbca36bdfd93250f7b9ebc2627256a0001225a5b82ce"
+    },
+    {
+      "relpath": "oracle/solve.sh",
+      "sha256": "61b73c99082a56ddabb10509b62bd8243428228404b7dd52c13a95b7dc98b174"
+    },
+    {
+      "relpath": "task.toml",
+      "sha256": "3029c80729331dc5919ff513c94ad13fc8e954e4cb7dc6b328dcadfe571efa2b"
+    },
+    {
+      "relpath": "tests/expected_values.json",
+      "sha256": "98b7a1c6ff8e343b728b580ca8975eb58713c0647f4a4c0f49eed4645eb90197"
+    },
+    {
+      "relpath": "tests/judge.py",
+      "sha256": "bf564d551be2ab8b93b27487937cfb7dcefa19a3f153331a55756fe326f9a24c"
+    },
+    {
+      "relpath": "tests/lib/antennas/antenna_ANT-A.atx",
+      "sha256": "e7667af6f4a8578e59093cac67a03ce78f0ee32b1770932a130c4fb7878481d5"
+    },
+    {
+      "relpath": "tests/lib/antennas/antenna_ANT-B.atx",
+      "sha256": "7495a357d65a551143ff23528c6016b831a7e561bebac74da311f132d10d4a4e"
+    },
+    {
+      "relpath": "tests/lib/antennas/antenna_ANT-C.atx",
+      "sha256": "52d6914c0295e71d361cbdd2241cf51fd19e489bb0382b63edef4dc170ee470d"
+    },
+    {
+      "relpath": "tests/lib/antex.py",
+      "sha256": "9c5923bd44f40b21198f735e1abf210f6f990cb2bac6e2f124976eea213b81cc"
+    },
+    {
+      "relpath": "tests/lib/trajectory.py",
+      "sha256": "59d7b742cda3456e033d1390c9838d3b678272cd4bcaaad125c67649b27edcf0"
+    },
+    {
+      "relpath": "tests/rubrics.json",
+      "sha256": "51e1d771bdf8aca95b32b575a5b8585b982589d1b801f1a1f3fa573ff60de720"
+    },
+    {
+      "relpath": "tests/score.py",
+      "sha256": "361fd86df6276b9e26bdc9aa06be4f45955761fe940f888bacb4d6a05ce48944"
+    },
+    {
+      "relpath": "tests/test.sh",
+      "sha256": "b39b7d53d890a8acf63f5773d58628668f1f8be9067397b3b25cf03192ae2dad"
+    },
+    {
+      "relpath": "tests/test_pytest.py",
+      "sha256": "290c66085c1d03d1baefb6350ea3af924f4caca93e270433b60e1fa6a37959bf"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_pytest.xml",
+      "sha256": "1860e396a1cd5246dd50df45cef8bc9673a04c1c7366fc1de20aeddcab14a537"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_result.json",
+      "sha256": "fb0ae73875c45ecf2ba7435d1c0216783db721b63deb509443ef2a1964792322"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/results.json",
+      "sha256": "18dcd2dd3df76e92f91caa88aa74d768a37426fbe1f38537ed65c752a1168ef9"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/trajectory/llm_trajectory.jsonl",
+      "sha256": "e955fb7a30f17ded309522d63ed0652a84b28c96fa7cd860d8381feb6e32755a"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/pass_at_1.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/reward.txt",
+      "sha256": "b4e088f864db15584d519f8675237536319ae00e0d40e1dba206514474d1a179"
+    },
+    {
+      "relpath": "tests/truth_armed/outcome_verifier.log",
+      "sha256": "0bd3fdbe96eb3924b00c29c58533c4dded3fe70b3dc34e597fd47f7f893f45fa"
+    },
+    {
+      "relpath": "tests/verification/negative_fixtures_test.py",
+      "sha256": "00b5f3df2433a9b2096147cd7108335acefd68f9e4b8d975f3a1bfef7a199e81"
+    }
+  ]
+}

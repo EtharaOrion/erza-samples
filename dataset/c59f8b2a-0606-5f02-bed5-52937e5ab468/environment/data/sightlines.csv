@@ -1,0 +1,13 @@
+antenna_id,sight_id,frequency_code,frequency_label,azimuth_deg,elevation_deg
+ANT-A,s1,G01,GPS L1,356.4,31.0
+ANT-A,s2,G02,GPS L2,25.5,46.5
+ANT-A,s3,G05,GPS L5,97.6,48.3
+ANT-A,s4,E06,Galileo E6,292.2,33.4
+ANT-B,s1,G01,GPS L1,270.7,30.8
+ANT-B,s2,G02,GPS L2,43.4,57.1
+ANT-B,s3,G05,GPS L5,317.9,33.7
+ANT-B,s4,E06,Galileo E6,230.8,51.0
+ANT-C,s1,G01,GPS L1,353.1,63.8
+ANT-C,s2,G02,GPS L2,358.6,53.6
+ANT-C,s3,G05,GPS L5,142.2,52.8
+ANT-C,s4,E06,Galileo E6,97.5,51.1

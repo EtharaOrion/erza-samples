@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="16" time="0.420" timestamp="2026-07-28T08:33:31.987831+00:00" hostname="89aea3cf5c67"><testcase classname="" name="test_arc_mean_vtec[RX-1-SV-K]" time="0.025"><failure message="AssertionError: RX-1 SV-K: got 41.84400 TECU, expected 34.61053 TECU (tol 0.05000 TECU)&#10;assert 7.233470875536732 &lt;= 0.05&#10; +  where 7.233470875536732 = abs((41.844 - 34.61052912446327))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-1 SV-K: got 41.84400 TECU, expected 34.61053 TECU (tol 0.05000 TECU)
+E   assert 7.233470875536732 &lt;= 0.05
+E    +  where 7.233470875536732 = abs((41.844 - 34.61052912446327))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-1-SV-P]" time="0.005"><failure message="AssertionError: RX-1 SV-P: got 39.68200 TECU, expected 29.57277 TECU (tol 0.05000 TECU)&#10;assert 10.10922939531045 &lt;= 0.05&#10; +  where 10.10922939531045 = abs((39.682 - 29.572770604689552))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-1 SV-P: got 39.68200 TECU, expected 29.57277 TECU (tol 0.05000 TECU)
+E   assert 10.10922939531045 &lt;= 0.05
+E    +  where 10.10922939531045 = abs((39.682 - 29.572770604689552))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-1-SV-R]" time="0.008"><failure message="AssertionError: RX-1 SV-R: got 13.12900 TECU, expected 23.12946 TECU (tol 0.05000 TECU)&#10;assert 10.000462268853346 &lt;= 0.05&#10; +  where 10.000462268853346 = abs((13.129 - 23.129462268853345))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-1 SV-R: got 13.12900 TECU, expected 23.12946 TECU (tol 0.05000 TECU)
+E   assert 10.000462268853346 &lt;= 0.05
+E    +  where 10.000462268853346 = abs((13.129 - 23.129462268853345))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-1-SV-W]" time="0.013"><failure message="AssertionError: RX-1 SV-W: got 44.17400 TECU, expected 36.72052 TECU (tol 0.05000 TECU)&#10;assert 7.453478284814707 &lt;= 0.05&#10; +  where 7.453478284814707 = abs((44.174 - 36.72052171518529))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-1 SV-W: got 44.17400 TECU, expected 36.72052 TECU (tol 0.05000 TECU)
+E   assert 7.453478284814707 &lt;= 0.05
+E    +  where 7.453478284814707 = abs((44.174 - 36.72052171518529))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-2-SV-M]" time="0.005"><failure message="AssertionError: RX-2 SV-M: got 27.54500 TECU, expected 28.54692 TECU (tol 0.05000 TECU)&#10;assert 1.001917843121646 &lt;= 0.05&#10; +  where 1.001917843121646 = abs((27.545 - 28.546917843121648))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-2 SV-M: got 27.54500 TECU, expected 28.54692 TECU (tol 0.05000 TECU)
+E   assert 1.001917843121646 &lt;= 0.05
+E    +  where 1.001917843121646 = abs((27.545 - 28.546917843121648))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-2-SV-R]" time="0.023"><failure message="AssertionError: RX-2 SV-R: got 14.98500 TECU, expected 22.00683 TECU (tol 0.05000 TECU)&#10;assert 7.021827220821617 &lt;= 0.05&#10; +  where 7.021827220821617 = abs((14.985 - 22.006827220821616))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-2 SV-R: got 14.98500 TECU, expected 22.00683 TECU (tol 0.05000 TECU)
+E   assert 7.021827220821617 &lt;= 0.05
+E    +  where 7.021827220821617 = abs((14.985 - 22.006827220821616))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-2-SV-T]" time="0.011"><failure message="AssertionError: RX-2 SV-T: got 31.64000 TECU, expected 24.18029 TECU (tol 0.05000 TECU)&#10;assert 7.459712357434572 &lt;= 0.05&#10; +  where 7.459712357434572 = abs((31.64 - 24.18028764256543))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-2 SV-T: got 31.64000 TECU, expected 24.18029 TECU (tol 0.05000 TECU)
+E   assert 7.459712357434572 &lt;= 0.05
+E    +  where 7.459712357434572 = abs((31.64 - 24.18028764256543))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-2-SV-W]" time="0.003"><failure message="AssertionError: RX-2 SV-W: got 27.99200 TECU, expected 17.79276 TECU (tol 0.05000 TECU)&#10;assert 10.199236290979051 &lt;= 0.05&#10; +  where 10.199236290979051 = abs((27.992 - 17.79276370902095))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-2 SV-W: got 27.99200 TECU, expected 17.79276 TECU (tol 0.05000 TECU)
+E   assert 10.199236290979051 &lt;= 0.05
+E    +  where 10.199236290979051 = abs((27.992 - 17.79276370902095))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-3-SV-K]" time="0.006"><failure message="AssertionError: RX-3 SV-K: got 30.39400 TECU, expected 21.53369 TECU (tol 0.05000 TECU)&#10;assert 8.860309774566204 &lt;= 0.05&#10; +  where 8.860309774566204 = abs((30.394 - 21.533690225433794))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-3 SV-K: got 30.39400 TECU, expected 21.53369 TECU (tol 0.05000 TECU)
+E   assert 8.860309774566204 &lt;= 0.05
+E    +  where 8.860309774566204 = abs((30.394 - 21.533690225433794))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-3-SV-M]" time="0.009"><failure message="AssertionError: RX-3 SV-M: got 35.84600 TECU, expected 36.22064 TECU (tol 0.05000 TECU)&#10;assert 0.3746406931078994 &lt;= 0.05&#10; +  where 0.3746406931078994 = abs((35.846 - 36.220640693107896))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-3 SV-M: got 35.84600 TECU, expected 36.22064 TECU (tol 0.05000 TECU)
+E   assert 0.3746406931078994 &lt;= 0.05
+E    +  where 0.3746406931078994 = abs((35.846 - 36.220640693107896))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-3-SV-P]" time="0.009"><failure message="AssertionError: RX-3 SV-P: got 51.43800 TECU, expected 37.67497 TECU (tol 0.05000 TECU)&#10;assert 13.763029660146643 &lt;= 0.05&#10; +  where 13.763029660146643 = abs((51.438 - 37.67497033985336))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-3 SV-P: got 51.43800 TECU, expected 37.67497 TECU (tol 0.05000 TECU)
+E   assert 13.763029660146643 &lt;= 0.05
+E    +  where 13.763029660146643 = abs((51.438 - 37.67497033985336))</failure></testcase><testcase classname="" name="test_arc_mean_vtec[RX-3-SV-T]" time="0.002"><failure message="AssertionError: RX-3 SV-T: got 30.04100 TECU, expected 20.63799 TECU (tol 0.05000 TECU)&#10;assert 9.40301307670132 &lt;= 0.05&#10; +  where 9.40301307670132 = abs((30.041 - 20.63798692329868))">/verifier/test_outputs.py:93: in test_arc_mean_vtec
+    assert abs(got - ref) &lt;= tol, \
+E   AssertionError: RX-3 SV-T: got 30.04100 TECU, expected 20.63799 TECU (tol 0.05000 TECU)
+E   assert 9.40301307670132 &lt;= 0.05
+E    +  where 9.40301307670132 = abs((30.041 - 20.63798692329868))</failure></testcase><testcase classname="" name="test_frozen_reference_matches_live_recompute" time="0.010" /><testcase classname="" name="test_plausibility_and_guess_resistance" time="0.011" /><testcase classname="" name="test_isomorphic_invariance_under_relabel_and_rescale" time="0.006" /><testcase classname="" name="test_tolerances_are_positive_and_bind" time="0.002" /></testsuite></testsuites>

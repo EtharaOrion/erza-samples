@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/hero.png" alt="Erza-Samples — agent-skills efficacy, measured in paired runs" width="880">
+  <img src="assets/hero.png" alt="Erza-Samples — agent-skills efficacy, measured in paired runs" width="880">
 </p>
 
 <p align="center">
@@ -60,21 +60,14 @@ scoring are identical to the production Erza harness.
 ```text
 erza-samples/
 ├── README.md                 # this document
-├── images/                   # figures referenced by this document
-└── d427488f-59b7-505a-bd03-bed97d147e38/   # one self-contained bundle per task-id
-    ├── task.md               # task definition (frontmatter + prompt body)
-    ├── uuid_provenance.json  # content-addressed integrity manifest
-    ├── environment/          # sandbox image, mounted inputs, curated Skill
-    ├── oracle/               # generator + reference solution, never mounted
-    ├── verifier/             # deterministic pytest grader
-    └── trajectories/         # graded agent runs
-        └── <condition>/run_N/ ...
+├── dataset/                  # task definitions, one directory per task-id
+│   └── d427488f-59b7-505a-bd03-bed97d147e38/ ...
+└── trajectories/             # agent runs, one dir per (task-id, model, condition)
+    └── d427488f-.../claude-opus-4-8/<condition>/run_N/ ...
 ```
 
-`condition ∈ {no-skill, with-skill}`, `N ∈ {1, 2, 3}`. Each task-id directory is **self-contained**:
-the definition, the grader, and every graded run for that task live under one root, so the task and
-its trajectories cannot drift apart. The model is not a path segment — it is recorded per run in
-`config.json` (`model`) and `result.json` (`model`).
+`condition ∈ {no-skill, with-skill}`, `N ∈ {1, 2, 3}`. Task ids match **1:1** between `dataset/`
+and `trajectories/`.
 
 ## Metric: Skill efficacy (Δ)
 
@@ -127,9 +120,9 @@ clamp each miss at least one tolerance.
 | **no-skill** (A)   |    3 |      0 |      0.0% |   $1.0781 |         460.0 s |            8.00 |             31,752 |
 | **with-skill** (B) |    3 |      3 |    100.0% |   $0.1395 |          30.0 s |            3.00 |              1,516 |
 
-![Skill efficacy and cost per run, by condition](images/efficacy.png)
+![Skill efficacy and cost per run, by condition](assets/efficacy.png)
 
-Per-run rewards (`<task-id>/trajectories/<condition>/run_N/verifier/reward.txt`):
+Per-run rewards (`trajectories/<task-id>/claude-opus-4-8/<condition>/run_N/verifier/reward.txt`):
 
 | Run   | no-skill | with-skill |
 | :---- | -------: | ---------: |
@@ -166,7 +159,7 @@ the naive **standard-z decoy** (−0.109806) that `question.json` explicitly war
 the nominated lab with the plain-mean route the prompt tells it not to use. Each failing run is a
 well-formed, confidently-wrong answer of exactly the kind a metrology sanity-check waves through.
 
-![Reported robust_scale / zeta_prime per run against the pass window and the decoy](images/attractor.png)
+![Reported robust_scale / zeta_prime per run against the pass window and the decoy](assets/attractor.png)
 
 **The Skill collapses the variance, not just the error rate.** All three curated runs report
 **0.250368 / 1.690145** — the same pair, to the digit, sitting exactly on the reference (error
@@ -191,11 +184,10 @@ the point estimate as illustration, not measurement.
 
 ## Dataset structure
 
-Each task lives under `<task-id>/` as a native `task.md` package. The definition side is below;
-the `trajectories/` sibling is covered in [Trajectory structure](#trajectory-structure):
+Each task lives under `dataset/<task-id>/` as a native `task.md` package:
 
 ```text
-<task-id>/
+dataset/<task-id>/
 ├── task.md                   # YAML frontmatter (metadata, verifier, agent, environment) + prompt body
 ├── uuid_provenance.json      # content-addressed integrity manifest (sha256 per shipped file)
 ├── environment/
@@ -208,11 +200,10 @@ the `trajectories/` sibling is covered in [Trajectory structure](#trajectory-str
 ├── oracle/
 │   ├── generate.py           # deterministic (seeded) instance + golden generator; oracle-only, never mounted
 │   └── solve.sh              # human-authored reference solution; passes the verifier by construction
-├── verifier/
-│   ├── test.sh               # entry point
-│   ├── test_outputs.py       # pytest assertions (test_plausible, test_robust_scale, test_zeta_prime, test_isomorphic_invariance)
-│   └── expected_values.json  # ref_robust_scale 0.250368, ref_zeta_prime 1.690145, tolerances + control ledger
-└── trajectories/             # the six graded runs — see Trajectory structure
+└── verifier/
+    ├── test.sh               # entry point
+    ├── test_outputs.py       # pytest assertions (test_plausible, test_robust_scale, test_zeta_prime, test_isomorphic_invariance)
+    └── expected_values.json  # ref_robust_scale 0.250368, ref_zeta_prime 1.690145, tolerances + control ledger
 ```
 
 During a run the agent sees only the built environment, the `task.md` prompt body, and — in the
@@ -223,7 +214,7 @@ regenerating reproduces byte-identical inputs and reference values.
 
 ## Trajectory structure
 
-Each run lives under `<task-id>/trajectories/<condition>/run_N/`:
+Each run lives under `trajectories/<task-id>/<model>/<condition>/run_N/`:
 
 ```text
 run_N/
@@ -278,7 +269,7 @@ rewards directly:
 import json, glob, collections
 
 by_cond = collections.defaultdict(list)
-for rd in glob.glob("*/trajectories/*/run_*"):
+for rd in glob.glob("trajectories/*/*/*/run_*"):
     r = json.load(open(f"{rd}/result.json"))
     by_cond[r["skill_mode"]].append(float(r["rewards"]["reward"]))
 
@@ -294,11 +285,10 @@ print(f"normalized gain g = {delta / (1 - rates['no-skill']):.3f}")
 
 ## Verification and quality assurance
 
-- **Structure.** 1 task bundle, with its definition and all of its runs under a single task-id root
-  (so the two cannot drift apart); the full 2 × 3 grid (6 runs) is complete with no gaps; every
-  scoring-relevant file is present and non-empty in every run (one non-scoring exception, noted
-  under [Known issues](#known-issues)). The bundle ships a `uuid_provenance.json` manifest covering
-  the 10 shipped definition files, and every file's sha256 matches it.
+- **Structure.** 1 dataset directory and 1 trajectory directory, matched 1:1 by task-id; the full
+  2 × 3 grid (6 runs) is complete with no gaps; every scoring-relevant file is present and non-empty
+  in every run (one non-scoring exception, noted under [Known issues](#known-issues)). The dataset
+  ships a `uuid_provenance.json` manifest and every file's sha256 matches it.
 - **Score integrity.** Every reward is read directly from a `result.json`; `verifier/reward.txt`
   agrees with `result.json` on all 6 runs; `config.skill_mode` matches the condition directory.
 - **Paired isolation.** `prompts.json` is byte-identical (1,754 bytes) across both arms: the Skill is

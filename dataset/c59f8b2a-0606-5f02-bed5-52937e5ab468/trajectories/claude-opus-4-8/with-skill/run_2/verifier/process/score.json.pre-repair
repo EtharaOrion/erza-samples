@@ -1,0 +1,266 @@
+{
+  "bundle": "c59f8b2a-0606-5f02-bed5-52937e5ab468",
+  "task_id": "antenna-phase-centre-correction",
+  "run_dir": "trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-8/with-skill/run_2",
+  "arm": "with-skill",
+  "run": "run_2",
+  "deterministic": {
+    "score": 1.0,
+    "n_scored": 12,
+    "n_total": 12,
+    "weight_scored": 32,
+    "weight_total": 32,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R8",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R9",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R10",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R11",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.5,
+    "n_scored": 2,
+    "n_total": 2,
+    "weight_scored": 2,
+    "weight_total": 2,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R16",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "majority",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent's final narration asserts the answers come from \"each antenna's own ANTEX calibration block\" and that the per-antenna Up components (~64/158/123 mm) differ substantially from one another and from the nominal, which conveys antenna-specific calibration; however, nowhere does the run state (or argue) that the pattern cannot be derived from the line-of-sight geometry \u2014 that statement appears only in the skill text it read, not in the agent's own reasoning."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The skill documentation loaded into context (step 8) explicitly states \"Both are properties of the antenna model, not of the site or of the constellation... Nothing in the geometry of a line of sight predicts them; the antenna's own calibration table is required,\" and the agent's own procedure and final summary follow this by loading each antenna's own .atx block and matching by label, confirming the run operated on and stated this principle."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The trajectory shows the agent receiving this principle in the skill description [8]: \"Nothing in the geometry of a line of sight predicts them; the antenna's own calibration table is required.\" The agent then implements the solution correctly using antenna-specific ANTEX tables rather than geometry. However, in the agent's own reasoning summary [19], the statement is implicit only (\"each answer comes from the antenna-specific tables\") rather than explicit\u2014the agent does not directly state that the pattern cannot be derived from line-of-sight geometry."
+          }
+        ],
+        "dissenting_models": [
+          "claude-sonnet-5"
+        ]
+      },
+      {
+        "id": "R17",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The agent explicitly wrote \"The published `nominal_reference` block was used only for orientation \u2014 each answer comes from the antenna-specific tables,\" and its code never touches the nominal vectors, parsing PCO/PCV solely from the per-antenna .atx files."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent's final summary explicitly states \"The published nominal_reference block was used only for orientation \u2014 each answer comes from the antenna-specific tables, which differ substantially from the nominals (e.g. Up components of ~64/158/123 mm vs the ~90 mm nominal),\" correctly identifying the nominal block as a distractor and not using it in the computation."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "In [19], the agent explicitly states: \"The published `nominal_reference` block was used only for orientation \u2014 each answer comes from the antenna-specific tables, which differ substantially from the nominals (e.g. Up components of ~64/158/123 mm vs the ~90 mm nominal).\" The code in [15] loads antenna calibrations from ANTEX files, not from the nominal reference block. The agent directly identifies the nominal as orientation-only and shows the answer is derived from antenna-specific calibrations that differ substantially from it."
+          }
+        ],
+        "dissenting_models": []
+      }
+    ]
+  },
+  "final_score": 0.9705882352941176,
+  "final_formula": "(W_D*S_D + W_N*S_N)/(W_D+W_N) by weight mass; capped at 0.5 on gate failure",
+  "final_score_count_blended": 0.9285714285714286,
+  "count_blend_delta": -0.042017,
+  "crux_failed": false,
+  "failed_gates": [],
+  "CONTINUOUS": {
+    "passed": 12,
+    "total": 12,
+    "value": 1.0,
+    "source": "verifier/results.xml",
+    "basis": "parametrised cases"
+  },
+  "abstained": [],
+  "panel": {
+    "panel": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ],
+    "single_vendor_panel": true,
+    "self_judging_seats": [],
+    "family_judging_seats": [
+      "claude-opus-5"
+    ],
+    "run_model": "claude-opus-4-8"
+  },
+  "fingerprint": {
+    "truth_md": "2a062b5d912fc6da",
+    "rubrics_json": "713b9a1112103d9a",
+    "test_trajectory_py": "959fdbfa8ec74ed8",
+    "expected_values_json": "98b7a1c6ff8e343b",
+    "combiner": "ac4af05e2dc4ff92",
+    "panel_models": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ]
+  }
+}
