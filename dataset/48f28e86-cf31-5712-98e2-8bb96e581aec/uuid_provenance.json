@@ -1,0 +1,134 @@
+{
+  "recipe": "forge.task_id.v1",
+  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+  "canonical_content_hash": "5b2bdba3fe5e631d2aef877e42f29bd5371d7afd8cf2a99c929405874b432f86",
+  "task_id": "48f28e86-cf31-5712-98e2-8bb96e581aec",
+  "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
+  "format": "standardised benchmark layout (tests/) - re-sealed 2026-07-31 after the format change and audit-layer restoration; supersedes the pre-format seal.",
+  "manifest": [
+    {
+      "relpath": "TRUTH.md",
+      "sha256": "facd7c538fdfe5b6cffa1a2af3ff2083e2dc2d99c4d222607f9d52c3e5a55ec3"
+    },
+    {
+      "relpath": "environment/Dockerfile",
+      "sha256": "b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3"
+    },
+    {
+      "relpath": "environment/data/question.json",
+      "sha256": "d5b74e77d17c073c78968d2bba91adaf382430b2408072e31613048899b1a973"
+    },
+    {
+      "relpath": "environment/data/stations.csv",
+      "sha256": "53af9932b18e81ebb929179657fdc72d7fac2ccecbdc76c20f8bd1a09638d744"
+    },
+    {
+      "relpath": "environment/skills/geomagnetic-declination-igrf/SKILL.md",
+      "sha256": "c7005433ead0ddbdbc0c02ad8d427dabf574469fe1fb878e6a2e7766313b002b"
+    },
+    {
+      "relpath": "environment/skills/geomagnetic-declination-igrf/references/coefficients-and-synthesis.md",
+      "sha256": "06ce91f0b6ef6ae118ce42b085032c4675db9fa566632464a3221681f06f5d3b"
+    },
+    {
+      "relpath": "environment/skills/geomagnetic-declination-igrf/references/igrf13coeffs.txt",
+      "sha256": "460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425"
+    },
+    {
+      "relpath": "instruction.md",
+      "sha256": "86b8c810aef2fb5442c2088dd80a945a6020bb527cb8c9491a9b3ab443b3d09b"
+    },
+    {
+      "relpath": "oracle/generate.py",
+      "sha256": "f13f86280d7e4d2544a4d7e9ec33ebc07465db5324f59de9c41d319643ee4ba5"
+    },
+    {
+      "relpath": "oracle/igrf13coeffs.txt",
+      "sha256": "460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425"
+    },
+    {
+      "relpath": "oracle/igrf_synth.py",
+      "sha256": "9e4779f03d9d498cb7961f43d0254983e7f59b3ca7c20c48449ad618989d957e"
+    },
+    {
+      "relpath": "oracle/solve.py",
+      "sha256": "c87cb1b0e0cc7e29630ba9db9906bb52b2134ed15c8f5b3d0d1bc95f3fd64214"
+    },
+    {
+      "relpath": "oracle/solve.sh",
+      "sha256": "32c1ad302a2b8e3fe20953f8608bafc1476525f02e73a7f6c86e58dfc756b805"
+    },
+    {
+      "relpath": "task.toml",
+      "sha256": "c6c69e80cb5a3af370744293c0e0a3599618e388bd66851381537bb10c01f2f0"
+    },
+    {
+      "relpath": "tests/expected_values.json",
+      "sha256": "c0842ad4b3090a28ab580edb0b7ad2c3d3bf748a37ef7cb158ad6140d49cf59d"
+    },
+    {
+      "relpath": "tests/judge.py",
+      "sha256": "bf564d551be2ab8b93b27487937cfb7dcefa19a3f153331a55756fe326f9a24c"
+    },
+    {
+      "relpath": "tests/lib/igrf13coeffs.txt",
+      "sha256": "460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425"
+    },
+    {
+      "relpath": "tests/lib/igrf_synth.py",
+      "sha256": "9e4779f03d9d498cb7961f43d0254983e7f59b3ca7c20c48449ad618989d957e"
+    },
+    {
+      "relpath": "tests/lib/trajectory.py",
+      "sha256": "59d7b742cda3456e033d1390c9838d3b678272cd4bcaaad125c67649b27edcf0"
+    },
+    {
+      "relpath": "tests/rubrics.json",
+      "sha256": "7b1ce1627b38239c52e13050297361bd194d29770b4be4f73d7bd4f844ff5ce5"
+    },
+    {
+      "relpath": "tests/score.py",
+      "sha256": "d0c1aa8256d09d29a511a39b2c5e8eee909c79615250c4e3b0299a0febd220e6"
+    },
+    {
+      "relpath": "tests/test.sh",
+      "sha256": "b39b7d53d890a8acf63f5773d58628668f1f8be9067397b3b25cf03192ae2dad"
+    },
+    {
+      "relpath": "tests/test_pytest.py",
+      "sha256": "1e788b7d932dcb0c9a1d21105275ef83bc254a96eeb85288f390415493e9f637"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_pytest.xml",
+      "sha256": "304350f6618c42310f97600a0c4d1edfb66bdff11594de4a0c4380f16317be09"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_result.json",
+      "sha256": "7d3c5c3c9622ae778a764ffe03899a8ab8d7099e223d58ad6bc6881fdaa979f9"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/results.json",
+      "sha256": "2879daca69b5c57d8eac2905279e4af33ff68880fc2a67b97465374770d3cbc4"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/trajectory/llm_trajectory.jsonl",
+      "sha256": "6e7f7e6156d4ff940ef57082d9e52b93249cf22f6d385d7abf372c2083c31d62"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/pass_at_1.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/reward.txt",
+      "sha256": "b4e088f864db15584d519f8675237536319ae00e0d40e1dba206514474d1a179"
+    },
+    {
+      "relpath": "tests/truth_armed/outcome_verifier.log",
+      "sha256": "803feebd2b92f45cec1710013c18822e7bbc26557ac7a18923afaf449f577fac"
+    },
+    {
+      "relpath": "tests/verification/negative_fixtures_test.py",
+      "sha256": "1cacd7f896b208d3a2bb4d8e951dd3fbf36749887ff688f69a15ff7f03d39755"
+    }
+  ]
+}

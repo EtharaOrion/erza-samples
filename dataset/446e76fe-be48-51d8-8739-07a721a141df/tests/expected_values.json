@@ -1,0 +1,63 @@
+{
+  "ref_ml": 5.2179,
+  "tolerance_ml_abs": 0.3,
+
+  "ref_ml_note": "NOT an answer key. verifier/test_outputs.py derives ML from the baked waveform and station response and asserts this cached value against that derivation (test_golden_matches_independent_recompute); the graded comparison uses the DERIVED value. The predecessor of this task read this field and compared, which is how a wrong Wood-Anderson response survived a full pilot, Gate 1 and publication.",
+
+  "published_precision_ambiguity_ml_maxabs": 0.0372,
+  "published_precision_ambiguity_note": "Widest spread between defensible readings, measured on this record. (a) Damping convention: the IASPEI poles (-6.2832 +/- 4.7124j) encode h = 0.8 and give ML 5.2179; the h = 0.7 value still widely quoted in textbooks gives ML 5.2551. Spread 0.0372. (b) Deconvolution stabilisation, which no standard pins: water level swept over 30/45/60/90 dB crossed with three pre-filter bands spans ML 5.2147..5.2179, spread 0.0032 (n = 12). The graded tolerance of 0.3 is 8.1x the total band, so no faithful reading of the standard can fail on convention alone.",
+
+  "station": "CI.SWS",
+  "epicentral_distance_km": 26.552,
+  "distance_km": 27.174,
+  "hypocentral_distance_km": 27.174,
+  "wa_peak_amplitude_mm": 962.9378,
+  "dominant_frequency_hz": 0.9958,
+
+  "catalog_magnitude": 5.25,
+  "catalog_magnitude_type": "mw",
+  "catalog_magnitude_note": "RECORDED HERE, NOT SUPPLIED TO THE AGENT. question.json no longer carries it -- see control_gaps.catalogue_magnitude_as_answer. Kept in the grader-side ledger because the guardrail that detects a catalogue value reaching the answer needs its arithmetic to stay checkable.",
+  "attractor_gap_mw_minus_ml": 0.0321,
+  "attractor_gap_note": "This is now a RISK measure, not a lever. Under the predecessor's wrong golden it read 0.828 (2.76x tolerance) and was sold as the task's decoy. With the physics corrected it is 0.107x tolerance: the catalogue Mw and the true ML agree, so the catalogue value is a free pass rather than a distractor.",
+  "method": "IASPEI Wood-Anderson (static magnification 2080, T0 = 0.8 s, TWO zeros at the origin) applied to response-removed horizontal ground displacement; Hutton & Boore (1987) Southern California -logA0; maximum-horizontal zero-to-peak amplitude in mm at hypocentral distance.",
+
+  "control_gaps": {
+    "one_zero_velocity_form_wa": {
+      "ml": 4.4215,
+      "ml_gap_over_tol": 2.654,
+      "note": "PRIMARY LEVER, and a REAL COMPETITOR METHOD, not a strawman: it is the Wood-Anderson paz carried by most circulated obspy snippets and by this task's own predecessor. Simulates with zeros=[0j] -- the response to VELOCITY -- on a trace already converted to displacement, so the amplitude is short by |2*pi*f| = 6.257 at the 0.996 Hz dominant frequency, i.e. 0.796 ML. Measured to bite: 4 of 5 no-skill runs of the predecessor pilot produced 4.35-4.40 by this exact path."
+    },
+    "no_response_removal": {
+      "ml": 15.16,
+      "ml_gap_over_tol": 33.14,
+      "note": "simulates Wood-Anderson on raw instrument counts without deconvolving the station response"
+    },
+    "generic_logA0_reference_only": {
+      "ml": 5.9836,
+      "ml_gap_over_tol": 2.552,
+      "note": "REAL COMPETITOR METHOD: applies the 100 km reference term alone (ML = log10 A + 3), omitting the Hutton & Boore distance terms. This is the nearest correct-looking alternative a competent analyst without the regional calibration would produce. Gap is amplitude-invariant (3.0 - logA0), so it is unchanged by the zero-count correction."
+    },
+    "vertical_component": {
+      "ml": 4.7824,
+      "ml_gap_over_tol": 1.451,
+      "note": "measures the vertical component; ML is defined on the horizontals. THIN: caught, but by less than 2x tolerance."
+    },
+    "historical_2800_magnification": {
+      "ml": 5.347,
+      "ml_gap_over_tol": 0.43,
+      "note": "uses the historical Wood-Anderson static magnification 2800 instead of IASPEI 2080. NOT DISCRIMINATING: this wrong path PASSES the graded tolerance. Recorded because the skill names 2080-not-2800 and at this distance it is not a lever."
+    },
+    "epicentral_not_hypocentral": {
+      "ml": 5.2055,
+      "ml_gap_over_tol": 0.041,
+      "note": "uses epicentral distance where ML is defined on hypocentral. NOT DISCRIMINATING: the event is 5.78 km deep at 26.6 km epicentral, so the depth term moves ML by 0.012. Recorded because the skill names it and at this geometry it is not a lever."
+    },
+    "catalogue_magnitude_as_answer": {
+      "ml": 5.25,
+      "ml_gap_over_tol": 0.107,
+      "note": "NOT DISCRIMINATING, and this is WHY THE CATALOGUE MAGNITUDE WAS REMOVED FROM question.json. The event's catalogue Mw is 5.25 and the correct ML is 5.2179 -- 0.107x tolerance apart, so this wrong path passes the graded tolerance. The predecessor handed this number to the agent as a decoy; that was defensible only while the golden was wrong by 0.80. With the physics corrected the decoy became a free pass, so the field is no longer supplied. RESIDUAL RISK, recorded not hidden: the event is real and catalogued, so a model may recall Mw ~ 5.25 from the origin time and location and land inside tolerance without computing. Watch the re-pilot for a no-skill pass with no amplitude measurement in its trajectory."
+    }
+  },
+
+  "separation_summary": "Three paths are decisive (>= 2x tolerance): the one-zero velocity-form Wood-Anderson (2.65x), skipping response removal (33.1x), and the bare 100 km reference term (2.55x). The one-zero WA is the designed lever and the only one with direct measured evidence that the base model takes it: 4 of 5 no-skill runs of the predecessor pilot landed on 4.35-4.40, which is that path. Two conventions the skill names -- IASPEI 2080 vs historical 2800, and hypocentral vs epicentral distance -- do NOT bite at this station geometry and pass the tolerance; they are recorded as non-levers so no one claims them. The vertical-component path is caught but thinly (1.45x). The tolerance has deliberately NOT been tightened to manufacture separation: 0.3 is 8.1x the band that keeps every faithful reading of the standard passing (see published_precision_ambiguity_ml_maxabs), and narrowing it would fail correct work to produce a more flattering number."
+}

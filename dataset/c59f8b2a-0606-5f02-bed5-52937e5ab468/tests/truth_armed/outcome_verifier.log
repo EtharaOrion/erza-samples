@@ -1,0 +1,29 @@
+test cases passed  : 12/12
+self-check failures: 0
+Score              : 1
+pass@1             : 1
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /bundle/tests
+collecting ... collected 32 items / 15 deselected / 17 selected
+
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-A-s1] PASSED [  5%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-A-s2] PASSED [ 11%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-A-s3] PASSED [ 17%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-A-s4] PASSED [ 23%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-B-s1] PASSED [ 29%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-B-s2] PASSED [ 35%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-B-s3] PASSED [ 41%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-B-s4] PASSED [ 47%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-C-s1] PASSED [ 52%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-C-s2] PASSED [ 58%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-C-s3] PASSED [ 64%]
+../bundle/tests/test_pytest.py::test_reward_phase_centre_correction[ANT-C-s4] PASSED [ 70%]
+../bundle/tests/test_pytest.py::test_selfcheck_frozen_golden_matches_live_recompute PASSED [ 76%]
+../bundle/tests/test_pytest.py::test_selfcheck_plausibility_and_guess_resistance PASSED [ 82%]
+../bundle/tests/test_pytest.py::test_selfcheck_isomorphic_invariance_under_rescale PASSED [ 88%]
+../bundle/tests/test_pytest.py::test_selfcheck_tolerances_are_positive_and_bind PASSED [ 94%]
+../bundle/tests/test_pytest.py::test_selfcheck_variation_term_is_load_bearing PASSED [100%]
+
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+====================== 17 passed, 15 deselected in 0.18s =======================

@@ -1,0 +1,234 @@
+{
+  "run_dir": "/Users/AgisSpectre/Desktop/erza/delivery/trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_3",
+  "task_id": "850700fd-2df3-5816-a2fd-74cd0e1baa28",
+  "version_stamp": {
+    "truth_md": "5d5dfcc584f70897",
+    "rubrics_json": "1cd31d41e069a2c2",
+    "checks_py": "77d4e61544cc96b7",
+    "test_trajectory_py": "c280d4b21b147703"
+  },
+  "outcome": {
+    "score": 0.375,
+    "invalid": false,
+    "n_scored": 2,
+    "n_total": 2,
+    "weight_mass_scored": 8,
+    "weight_mass_total": 8,
+    "criteria": [
+      {
+        "id": "R1",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R2",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      }
+    ]
+  },
+  "deterministic": {
+    "score": 0.41935483870967744,
+    "invalid": false,
+    "n_scored": 13,
+    "n_total": 13,
+    "weight_mass_scored": 31,
+    "weight_mass_total": 31,
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Opened the shipped inputs - stations.csv, question.json, or the input directory - rather than working from the prose task statement alone.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Authored solver source - a .py file write, a heredoc, or an inline `python -c` program.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Executed python to produce the result.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "Synthesised the tide from the gauge's own harmonic constants - a per-constituent amplitude and Greenwich phase lag, accumulated through a cosine sum over that gauge's constituent list - rather than reporting a single value or a constant.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Computed the astronomical mean longitudes at the requested UTC instant from the Schureman epoch - the mean-longitude polynomials evaluated on days since 1899-12-31 12:00 UT - rather than from another time origin or not at all.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R8",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Formed each constituent's equilibrium argument as the dot product of its six Doodson numbers with the six mean longitudes, plus its `semi` phase constant.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R9",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Applied the 18.6-year Schureman nodal factor and angle, computed from the ascending-node longitude and taken per node-factor GROUP rather than per constituent.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R10",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Added the gauge's datum offset - mean sea level above the chart datum - to the constituent sum, rather than reporting the oscillation about zero.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R11",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "Emitted the contracted results file at the contracted path, carrying the `predictions` object keyed by gauge label and target timestamp.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL - the single recent observed water level carried in the input was piped into the emitted predictions instead of a computed height.",
+        "score": 0.0,
+        "detail": "failure mode occurred"
+      },
+      {
+        "id": "R13",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL - the synthesis was restricted to a hand-picked whitelist of nine or fewer constituents instead of using the whole table the gauge supplies.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL - the run wrote into, deleted from, or edited in place the shipped input directory.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL - the run attempted a network fetch or a package install.",
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.1,
+    "invalid": false,
+    "n_scored": 4,
+    "n_total": 4,
+    "weight_mass_scored": 10,
+    "weight_mass_total": 10,
+    "criteria": [
+      {
+        "id": "R16",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
+        "score": 0.0,
+        "detail": "majority votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': False, 'rationale': 'The run identified that harmonic synthesis needs per-gauge amplitudes/phases and a datum offset and searched for them, but it never argued they are empirical, site-specific and hence unrecallable; worse, it then substituted a constant and explicitly mis-modelled the single observation as an unbiased estimate of Z0 (\"a random-phase sample of the same oscillation averages to Z0\"), the exact opposite of recognising it as one instant of the curve.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': 'The agent explicitly stated that harmonic tide prediction requires each gauge\\'s own empirical tidal constituents (amplitude, Greenwich phase lag) and datum offset, that these are not derivable, and searched exhaustively confirming no constants table exists in the container, concluding the task \"as literally specified is not computable from the container\\'s inputs\" - this is the \"absence of any constants table\" route the criterion explicitly allows.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': False, 'rationale': 'The agent asserted that harmonic tide prediction \"requires each gauge\\'s tidal constituents (amplitudes + Greenwich phases) and datum offset\" and concluded they were absent from the container. However, the agent did not explain why these constants are necessary: that they are empirical, site-specific, determined by local bathymetry and resonance, and therefore cannot be estimated or substituted. The agent proceeded directly to searching for the data rather than first establishing conceptually why the data is load-bearing and why the single observed water level (a random phase sample) is not the constants themselves. The agent asserted the need without deriving it.'}]",
+        "rationales": []
+      },
+      {
+        "id": "R17",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
+        "score": 0.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': False, 'rationale': 'No harmonic method was ever implemented, and no check of any kind was run against the 2025-01-01 observation or anything else that could have disagreed; the only justification offered is a hand-wave about minimising expected squared error.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': False, 'rationale': 'The agent never implemented any harmonic method at all, so it never evaluated its own prediction at the decoy timestamp or performed any check capable of disagreeing with a wrong convention; it merely adopted the decoy value directly with no cross-check.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': False, 'rationale': \"The agent produced a constant prediction (repeating each gauge's decoy water level across all four target times) without implementing any harmonic synthesis code. The agent made no attempt to verify by evaluating its (non-existent) method at the decoy_reference timestamp and comparing the result to the observed value at that instant. No independent check that could have disagreed was performed.\"}]",
+        "rationales": []
+      },
+      {
+        "id": "R18",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
+        "score": 1.0,
+        "detail": "majority votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': False, 'rationale': 'The run did note the decoy is \"one water level per gauge at a single earlier instant... explicitly labelled orientation only\", but it drew the opposite conclusion \u2014 adopting that exact value as the reported height at all four target instants \u2014 so it never stated that it is therefore not the predicted height.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': 'The agent explicitly stated in its own summary that the decoy value is \"a single water level per gauge at 2025-01-01T00:00Z\" and \"one water level per gauge at a single earlier instant,\" explicitly labelled orientation only, satisfying the literal wording of the criterion even though it then used it as the answer anyway.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': True, 'rationale': 'The agent explicitly stated in prose: \"the only gauge-specific height information available is the `decoy_reference` block \u2014 a single water level per gauge at `2025-01-01T00:00Z`\" and recognized it as \"a random-phase sample of the same oscillation\" \u2014 one instant of the tidal curve, not the predicted values at the target instants. The agent articulated this conceptual distinction clearly.'}]",
+        "rationales": []
+      },
+      {
+        "id": "R19",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
+        "score": 0.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': False, 'rationale': 'No astronomical arguments were computed at all, so no epoch, no cycles-vs-degrees choice, no Greenwich phase referencing and no phase-lag sign convention were stated anywhere in the trajectory.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': False, 'rationale': 'The agent never attempted the astronomical/harmonic computation, so it never stated an epoch, UTC/Greenwich referencing, cycles-vs-degrees convention, or the phase-subtraction convention; no such conventions appear anywhere in the trajectory.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': False, 'rationale': \"The agent never implemented any harmonic synthesis code and therefore never encountered the branches where time conventions apply. The agent made zero explicit statements about: which epoch (Schureman vs J2000 vs Unix), UTC vs local time, cycles vs degrees for the equilibrium argument, phase lag subtraction, or any other computational convention. The agent's output was a constant prediction with no working code or convention narrative.\"}]",
+        "rationales": []
+      }
+    ]
+  },
+  "final_score": 0.3469387755102041,
+  "final_formula": "(W_O*S_O + W_D*S_D + W_N*S_N) / (W_O+W_D+W_N), by weight mass; capped at 0.5 by CRUX-FAILED and/or OUTCOME-FAILED",
+  "verdict": "CRUX-FAILED + OUTCOME-FAILED",
+  "crux_failed": true,
+  "outcome_failed": true,
+  "failed_gates": [
+    "R6"
+  ],
+  "unevaluated_gates": [],
+  "gates_unevaluated": false,
+  "failed_outcome_gates": [
+    "R2"
+  ],
+  "coverage_floor": 0.6666666666666666,
+  "continuous": 0.08333333333333333,
+  "continuous_detail": "1/12 outcome cases passed (from the run's own outcome verifier, results.xml)",
+  "report_only": [],
+  "guardrail_floor_excluded": [],
+  "abstained": []
+}

@@ -1,0 +1,44 @@
+schema_version = "2.0"
+
+[task]
+id   = "903d6f33-74c0-554d-b210-9c2b3a5138fb"
+slug = "wcs-astrometry-v3"
+name = "Wcs Astrometry V3"
+
+[metadata]
+author_name = "Erza FORGE (fair execution-coupled fork)"
+category    = "natural-science"
+subcategory = "astronomy"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = ""
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 2
+memory_mb         = 4096
+build_timeout_sec = 600.0
+
+[agent]
+timeout_sec = 2400.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "forge.task_id.v1"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "cab31a180d3243d2ef0fdd6aebf65417137c4986493df6ca43e516ff23806469"
+source_slug     = "wcs-astrometry-v3"
+source_origin   = "original"
+provenance_date = ""
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

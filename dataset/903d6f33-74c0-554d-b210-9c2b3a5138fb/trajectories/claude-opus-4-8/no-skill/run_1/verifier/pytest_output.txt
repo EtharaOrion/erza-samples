@@ -1,0 +1,122 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /root
+configfile: ../dev/null
+collecting ... collected 16 items
+
+::test_source_position[S01] FAILED                                       [  6%]
+::test_source_position[S02] FAILED                                       [ 12%]
+::test_source_position[S03] FAILED                                       [ 18%]
+::test_source_position[S04] FAILED                                       [ 25%]
+::test_source_position[S05] FAILED                                       [ 31%]
+::test_source_position[S06] FAILED                                       [ 37%]
+::test_source_position[S07] FAILED                                       [ 43%]
+::test_source_position[S08] FAILED                                       [ 50%]
+::test_source_position[S09] FAILED                                       [ 56%]
+::test_source_position[S10] FAILED                                       [ 62%]
+::test_source_position[S11] FAILED                                       [ 68%]
+::test_source_position[S12] FAILED                                       [ 75%]
+::test_source_position[S13] FAILED                                       [ 81%]
+::test_source_position[S14] FAILED                                       [ 87%]
+::test_source_position[S15] FAILED                                       [ 93%]
+::test_source_position[S16] FAILED                                       [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_source_position[S01] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S01: submitted (ra=222.572174217, dec=65.481168368) is 7.728015402 deg from the reference position - tolerance is 0.0005 deg (15456.0x over)
+E   assert 7.72801540158886 <= 0.0005
+__________________________ test_source_position[S02] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S02: submitted (ra=225.890510098, dec=65.200192155) is 10.460541540 deg from the reference position - tolerance is 0.0005 deg (20921.1x over)
+E   assert 10.460541539651384 <= 0.0005
+__________________________ test_source_position[S03] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S03: submitted (ra=196.138272692, dec=66.533766485) is 13.872958498 deg from the reference position - tolerance is 0.0005 deg (27745.9x over)
+E   assert 13.872958497536867 <= 0.0005
+__________________________ test_source_position[S04] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S04: submitted (ra=225.567989880, dec=70.964449456) is 11.575614898 deg from the reference position - tolerance is 0.0005 deg (23151.2x over)
+E   assert 11.575614898017333 <= 0.0005
+__________________________ test_source_position[S05] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S05: submitted (ra=212.762940814, dec=60.000373558) is 14.026047224 deg from the reference position - tolerance is 0.0005 deg (28052.1x over)
+E   assert 14.026047223953208 <= 0.0005
+__________________________ test_source_position[S06] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S06: submitted (ra=208.720398916, dec=72.496944104) is 11.520865180 deg from the reference position - tolerance is 0.0005 deg (23041.7x over)
+E   assert 11.520865180354523 <= 0.0005
+__________________________ test_source_position[S07] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S07: submitted (ra=213.304291090, dec=72.048769840) is 10.102114438 deg from the reference position - tolerance is 0.0005 deg (20204.2x over)
+E   assert 10.102114437942868 <= 0.0005
+__________________________ test_source_position[S08] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S08: submitted (ra=231.262020384, dec=68.456260835) is 13.545996467 deg from the reference position - tolerance is 0.0005 deg (27092.0x over)
+E   assert 13.54599646681768 <= 0.0005
+__________________________ test_source_position[S09] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S09: submitted (ra=218.801935107, dec=71.283885340) is 9.287168610 deg from the reference position - tolerance is 0.0005 deg (18574.3x over)
+E   assert 9.287168609776124 <= 0.0005
+__________________________ test_source_position[S10] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S10: submitted (ra=220.139103518, dec=61.480067263) is 12.346597067 deg from the reference position - tolerance is 0.0005 deg (24693.2x over)
+E   assert 12.346597066704554 <= 0.0005
+__________________________ test_source_position[S11] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S11: submitted (ra=203.376517418, dec=72.089024513) is 12.457139680 deg from the reference position - tolerance is 0.0005 deg (24914.3x over)
+E   assert 12.45713968049604 <= 0.0005
+__________________________ test_source_position[S12] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S12: submitted (ra=207.873235105, dec=62.718145262) is 9.900340355 deg from the reference position - tolerance is 0.0005 deg (19800.7x over)
+E   assert 9.900340355192023 <= 0.0005
+__________________________ test_source_position[S13] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S13: submitted (ra=216.980914148, dec=62.071365212) is 10.239773927 deg from the reference position - tolerance is 0.0005 deg (20479.5x over)
+E   assert 10.239773927180524 <= 0.0005
+__________________________ test_source_position[S14] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S14: submitted (ra=199.974188338, dec=63.771894874) is 13.120982797 deg from the reference position - tolerance is 0.0005 deg (26242.0x over)
+E   assert 13.120982796782606 <= 0.0005
+__________________________ test_source_position[S15] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S15: submitted (ra=195.703139807, dec=68.756070931) is 13.976274669 deg from the reference position - tolerance is 0.0005 deg (27952.5x over)
+E   assert 13.976274669025331 <= 0.0005
+__________________________ test_source_position[S16] ___________________________
+/verifier/test_outputs.py:84: in test_source_position
+    assert sep <= TOL_DEG, (
+E   AssertionError: S16: submitted (ra=231.178102427, dec=65.512340682) is 14.302212400 deg from the reference position - tolerance is 0.0005 deg (28604.4x over)
+E   assert 14.30221240019955 <= 0.0005
+=========================== short test summary info ============================
+FAILED ::test_source_position[S01] - AssertionError: S01: submitted (ra=222.5...
+FAILED ::test_source_position[S02] - AssertionError: S02: submitted (ra=225.8...
+FAILED ::test_source_position[S03] - AssertionError: S03: submitted (ra=196.1...
+FAILED ::test_source_position[S04] - AssertionError: S04: submitted (ra=225.5...
+FAILED ::test_source_position[S05] - AssertionError: S05: submitted (ra=212.7...
+FAILED ::test_source_position[S06] - AssertionError: S06: submitted (ra=208.7...
+FAILED ::test_source_position[S07] - AssertionError: S07: submitted (ra=213.3...
+FAILED ::test_source_position[S08] - AssertionError: S08: submitted (ra=231.2...
+FAILED ::test_source_position[S09] - AssertionError: S09: submitted (ra=218.8...
+FAILED ::test_source_position[S10] - AssertionError: S10: submitted (ra=220.1...
+FAILED ::test_source_position[S11] - AssertionError: S11: submitted (ra=203.3...
+FAILED ::test_source_position[S12] - AssertionError: S12: submitted (ra=207.8...
+FAILED ::test_source_position[S13] - AssertionError: S13: submitted (ra=216.9...
+FAILED ::test_source_position[S14] - AssertionError: S14: submitted (ra=199.9...
+FAILED ::test_source_position[S15] - AssertionError: S15: submitted (ra=195.7...
+FAILED ::test_source_position[S16] - AssertionError: S16: submitted (ra=231.1...
+============================== 16 failed in 0.05s ==============================

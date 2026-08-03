@@ -1,0 +1,25 @@
+test cases passed  : 3/3
+self-check failures: 0
+Score              : 1
+pass@1             : 1
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.2, pluggy-1.6.0 -- /usr/local/bin/python3
+rootdir: /bundle/tests
+plugins: json-ctrf-0.3.5
+collecting ... collected 24 items / 18 deselected / 6 selected
+
+../bundle/tests/test_pytest.py::test_selfcheck_wood_anderson_calibration PASSED [ 16%]
+../bundle/tests/test_pytest.py::test_selfcheck_golden_matches_independent_recompute PASSED [ 33%]
+../bundle/tests/test_pytest.py::test_reward_plausible PASSED             [ 50%]
+../bundle/tests/test_pytest.py::test_reward_local_magnitude PASSED       [ 66%]
+../bundle/tests/test_pytest.py::test_reward_not_the_velocity_form PASSED [ 83%]
+../bundle/tests/test_pytest.py::test_selfcheck_isomorphic_invariance PASSED [100%]
+
+=============================== warnings summary ===============================
+test_pytest.py::test_selfcheck_wood_anderson_calibration
+  /usr/local/lib/python3.11/site-packages/obspy/core/util/base.py:26: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---------------- generated xml file: /logs/verifier/results.xml ----------------
+================= 6 passed, 18 deselected, 1 warning in 0.91s ==================

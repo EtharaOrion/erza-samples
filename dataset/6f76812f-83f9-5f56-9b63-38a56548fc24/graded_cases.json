@@ -1,0 +1,27 @@
+{
+ "task_id": "6f76812f-83f9-5f56-9b63-38a56548fc24",
+ "n_outcome_cases_spec": 12,
+ "graded_tests": [
+  "test_arc_mean_vtec[RX-1-SV-K]",
+  "test_arc_mean_vtec[RX-1-SV-P]",
+  "test_arc_mean_vtec[RX-1-SV-R]",
+  "test_arc_mean_vtec[RX-1-SV-W]",
+  "test_arc_mean_vtec[RX-2-SV-M]",
+  "test_arc_mean_vtec[RX-2-SV-R]",
+  "test_arc_mean_vtec[RX-2-SV-T]",
+  "test_arc_mean_vtec[RX-2-SV-W]",
+  "test_arc_mean_vtec[RX-3-SV-K]",
+  "test_arc_mean_vtec[RX-3-SV-M]",
+  "test_arc_mean_vtec[RX-3-SV-P]",
+  "test_arc_mean_vtec[RX-3-SV-T]"
+ ],
+ "guard_tests": [
+  "test_frozen_reference_matches_live_recompute",
+  "test_isomorphic_invariance_under_relabel_and_rescale",
+  "test_plausibility_and_guess_resistance",
+  "test_tolerances_are_positive_and_bind"
+ ],
+ "granularity": "per-case",
+ "needs_review": false,
+ "basis": "name-pattern classification from shipped run reports; see scripts/generate_graded_manifests.py"
+}

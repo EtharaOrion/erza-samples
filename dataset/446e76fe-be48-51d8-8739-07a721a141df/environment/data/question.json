@@ -1,0 +1,12 @@
+{
+  "event_time_utc": "2021-06-05T17:55:58.820000Z",
+  "event_lat": 33.14,
+  "event_lon": -115.6348333,
+  "event_depth_km": 5.78,
+  "station": "CI.SWS",
+  "station_lat": 32.94508,
+  "station_lon": -115.79988,
+  "epicentral_distance_km": 26.552,
+  "output_path": "/root/results.json",
+  "note": "compute the local magnitude ML from this station record"
+}

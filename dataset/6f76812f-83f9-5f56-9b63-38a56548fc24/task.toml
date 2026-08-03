@@ -1,0 +1,52 @@
+schema_version = "2.0"
+
+[task]
+id   = "6f76812f-83f9-5f56-9b63-38a56548fc24"
+slug = "ionosphere-arc-vtec-calibration"
+name = "Ionosphere Arc Vtec Calibration"
+
+[metadata]
+author_name = "Erza FORGE"
+category    = "natural-science"
+subcategory = "ionospheric-physics"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = "Turning a pair of code pseudoranges into a usable electron content is arithmetic; turning it into a *calibrated* one is not. Both ranges carry the hardware delay of the transmitting satellite and of the receiving station on the exact signal each of them tracked, and those delays are nanosecond-scale quantities an analysis centre measures over a whole network and republishes every day. A nanosecond of uncorrected delay is nearly three TECU, so leaving them in moves every arc here by 30 to 260 times the tolerance - larger than the diurnal signal being measured. The delays cannot be recovered from the record supplied: each arc has its own free electron-content level, no station coordinates or azimuths are given, and the mapping factor varies too gently across an arc for its shape to pin the offset against the code scatter. The receivers, satellites and epochs carry opaque labels, so the published values cannot be looked up from any index either; they are supplied only in the reference the skill mounts. Given those values the remaining work is real but ordinary: pick the entries that match the signals each receiver actually reports, combine the satellite and station sides, reduce every epoch to the vertical, and average each arc."
+task_type   = ["calculation", "analysis"]
+modality    = ["csv", "time-series"]
+interface   = ["terminal", "python"]
+skill_type  = ["domain-procedure", "file-format-knowledge"]
+tags        = ["gnss", "ionosphere", "total-electron-content", "pseudorange", "code-bias", "geodesy"]
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 2
+memory_mb         = 4096
+build_timeout_sec = 900.0
+
+[agent]
+timeout_sec = 3600.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[verifier.hardening]
+cleanup_conftests = true
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "forge.task_id.v1"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "5db8a93b67c241da07711cde20e9d73054ba85343822ae0003d47f9daf10ecb7"
+source_slug     = "ionosphere-arc-vtec-calibration"
+source_origin   = "re-freeze"
+provenance_date = "2026-07-27"
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

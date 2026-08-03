@@ -1,0 +1,52 @@
+schema_version = "2.0"
+
+[task]
+id   = "446e76fe-be48-51d8-8739-07a721a141df"
+slug = "local-magnitude-seismology"
+name = "Local Magnitude Seismology"
+
+[metadata]
+author_name = "Ethara.AI"
+category    = "natural-science"
+subcategory = "seismology"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = "Requires reading miniSEED + StationXML, removing the instrument response correctly (pre-filter + water level, correct output units), simulating a Wood-Anderson seismograph with the IASPEI standard constants, measuring the maximum-horizontal peak amplitude in millimetres, and applying the Southern California distance-correction (Hutton & Boore -logA0) to obtain the local magnitude. The dominant failure is the Wood-Anderson response itself: it acts on displacement and therefore carries two zeros at the origin, but the one-zero velocity form is what most circulated code contains, and it understates the magnitude by ~0.80. Skipping the response removal or using a generic magnitude formula also fail."
+task_type   = ["analysis", "calculation"]
+modality    = ["time-series", "scientific-data"]
+interface   = ["terminal", "python"]
+skill_type  = ["domain-procedure", "library-api-usage", "mathematical-method"]
+tags        = ["seismology", "earthquake", "local-magnitude", "wood-anderson", "obspy", "instrument-response", "miniseed"]
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 1
+memory_mb         = 4096
+build_timeout_sec = 900.0
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[verifier.hardening]
+cleanup_conftests = true
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "forge.task_id.v1"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "8a53b4bf1e423379909166fba700ad095d8c6d5784cb02c4902ee81233b89bbb"
+source_slug     = "local-magnitude-seismology"
+source_origin   = "original"
+provenance_date = "2026-07-27"
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

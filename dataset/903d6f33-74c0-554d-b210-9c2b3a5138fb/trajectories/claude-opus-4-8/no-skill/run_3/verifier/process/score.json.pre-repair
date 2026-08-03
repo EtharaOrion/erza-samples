@@ -1,0 +1,543 @@
+{
+  "bundle": "903d6f33-74c0-554d-b210-9c2b3a5138fb",
+  "task_id": "903d6f33-74c0-554d-b210-9c2b3a5138fb",
+  "run_dir": "trajectories/903d6f33-74c0-554d-b210-9c2b3a5138fb/claude-opus-4-8/no-skill/run_3",
+  "arm": "no-skill",
+  "run": "run_3",
+  "deterministic": {
+    "score": 0.9411764705882353,
+    "n_scored": 14,
+    "n_total": 14,
+    "weight_scored": 34,
+    "weight_total": 34,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R4",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R7",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R8",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R9",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R10",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R11",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R16",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.2916666666666667,
+    "n_scored": 11,
+    "n_total": 11,
+    "weight_scored": 24,
+    "weight_total": 24,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R17",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The script's inline comments label each stage in order \u2014 pixel offsets from CRPIX, \"# intermediate world coords (deg)\", \"# inverse TAN: xi, eta in deg -> native spherical\", \"# rotation to celestial about CRVAL\" \u2014 and the closing summary repeats the same four-stage chain, so the problem was decomposed rather than treated as one lump conversion."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The code comments and final summary explicitly enumerate the four stages \u2014 CD matrix to intermediate world coordinates, inverse TAN to native spherical, and spherical rotation about CRVAL to celestial \u2014 rather than treating it as one undifferentiated conversion."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The code comments explicitly label the stages: \"# intermediate world coords (deg)\", \"# inverse TAN: xi, eta in deg -> native spherical\", and \"# rotation to celestial about CRVAL\". The final explanation also explicitly lists the pipeline as \"CD matrix \u2192 intermediate world coords \u2192 inverse gnomonic \u2192 spherical rotation\". The stages are named, though as inline annotations rather than as an explicit prior design step."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R18",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent wrote the entire chain in a single pass with no discussion of which stage was risky, and gave the native\u2192celestial rotation no more attention than the linear stage (a one-line assertion of \u03c6_p = 180 and no checking)."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent wrote all four stages with similar brevity and gave no indication that the rotation step was the hardest or most error-prone; no disproportionate care or scrutiny was allocated to it."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent devotes no distinctive analysis to the rotation step. It hardcodes `phi - np.pi` without explanation, allocates no separate reasoning budget, and does not discuss the rotation as the risk point before or after writing code. The final explanation treats all four stages equally matter-of-factly."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R19",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent never mentions LONPOLE, never notes the card's absence, and never applies the \u03b4\u2080 vs \u03b8\u2080 conditional; it simply asserts \"(Paper II, phi_p = 180 for TAN)\" / \"the TAN default for northern reference points\" \u2014 a confident (and mis-stated) assertion rather than a derivation of the standard's default rule."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent hardcoded phi_p=180 with the comment \"the TAN default for northern reference points\" \u2014 an assertion, not a derivation from the standard's conditional rule (delta_0 vs theta_0) and with no mention of checking for an absent LONPOLE card."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent hardcodes `phi_p = np.pi` (180 degrees) in the rotation but provides no reasoning about the LONPOLE card being absent from the header, no statement of the standard's conditional default rule (phi_p = phi_0 if delta_0 >= theta_0, else phi_0 + 180), and no evaluation of that condition against CRVAL2 = 67.0. The final explanation asserts \"\u03c6_p = 180\u00b0 (the TAN default for northern reference points)\" but this is an assertion, not a derivation."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R20",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "`phi = np.arctan2(xr, -er)` is written with only the comment \"# native longitude\" and restated in the summary as \"\u03c6 = atan2(\u03be, \u2212\u03b7)\"; no reason is given for the pairing or the sign."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The code uses `np.arctan2(xr, -er)` with only the label \"native longitude\" as a comment; no reasoning is given for why this specific argument order is correct."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The code uses `np.arctan2(xr, -er)` but provides no justification for why the sign is `-er` rather than `+er`, why the argument order is (x, \u2212y) rather than (\u2212y, x), or what this maps to in the standard's notation. The final explanation does not mention this formula at all."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R21",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The code uses only CRPIX1/2, CRVAL1/2 and the four CD elements present in the header; no CDELT, CROTA2, PV or SIP terms are introduced."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent used only CRPIX, CRVAL, and the CD matrix values actually present in the header; no CDELT, CROTA2, PV, or SIP terms were introduced."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The agent reads CRPIX1, CRPIX2, CRVAL1, CRVAL2, and the CD matrix from the header and uses only those terms. No CDELT, CROTA2, PVi_ja, or SIP distortion coefficients are introduced."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R22",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The trajectory contains exactly one script run and no second construction of any kind \u2014 no vector-geometry route, no cross-check against an independent formulation."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The trajectory shows no second, independently-constructed check (e.g., vector geometry) \u2014 only the single pipeline was run once and its output printed."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent runs the pipeline once and outputs results. No second construction using vector geometry, tangent-basis geometry, or any other independent approach is attempted or mentioned. No independent verification is shown in the trajectory."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R23",
+        "weight": 0,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent never discusses check discriminating power; it runs no checks at all and offers no reasoning about what would or would not catch a convention error."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent never discusses the limitations of range checks, CRPIX-to-CRVAL mapping, or round-tripping as non-discriminating checks."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent does not run or discuss any checks at all \u2014 neither CRPIX-to-CRVAL mapping, range checks, nor round-trip verification. Since no checks are mentioned or discussed, there is no evidence the agent recognises their limitations."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R24",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The only post-hoc check is that all results fall within ~7\u00b0 of the reference point, a magnitude/extent observation; there is no test of the sign or direction of a step in \u03be or \u03b7 at an off-axis source."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "No off-axis sanity check (e.g., verifying sign/magnitude of a small perturbation) is performed anywhere in the trajectory."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "No sanity checks of any kind are performed. The agent computes results and outputs them without validating that off-axis sources move correctly in the sky \u2014 e.g., that a small step in +y intermediate coordinate corresponds to approximately +1 degree in declination."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R25",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "majority",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent never ran CRPIX\u2192CRVAL, range, or round-trip checks and never claimed the result was \"verified\"; its closing remark about the ~7\u00b0 field extent is a loose plausibility note rather than an assertion of validation on a non-discriminating check."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The closing statement \"All results land within ~7\u00b0 of the reference point... consistent with a ~1024-pixel field\" is a range/plausibility check offered as reassurance of correctness, which cannot discriminate the convention errors described in the rubric."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent states it \"Computed ICRS coordinates\" and describes the pipeline, but does not claim the result is \"verified\", \"validated\", or supported by any check. It presents confident output without asserting that verification was performed."
+          }
+        ],
+        "dissenting_models": [
+          "claude-sonnet-5"
+        ]
+      },
+      {
+        "id": "R26",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The failure mode occurred: the agent confidently asserts \"\u03c6_p = 180\u00b0 (the TAN default for northern reference points)\" \u2014 with a rationale that is not the standard's actual \u03b4\u2080 \u2265 \u03b8\u2080 rule \u2014 plus the atan2 argument order and CD-matrix orientation, all without derivation or check."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent confidently states phi_p=180 is \"the TAN default for northern reference points\" and uses a specific atan2 argument order without any derivation, citation, or check to support these convention choices."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The agent asserts three key conventions with confident phrasing but no derivation: (a) the atan2 argument order in `arctan2(xr, -er)` is used without justification; (b) \u03c6_p = 180\u00b0 is hardcoded and then explained as \"the TAN default for northern reference points\" without deriving the conditional rule from the standard; (c) the rotation formula components are transcribed without explaining why they encode the correct orientation. These are presented as settled, not derived."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R27",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent neither derived nor verified its conventions yet presented \u03c6_p = 180 and the atan2 ordering as settled fact, expressing no uncertainty anywhere in the trajectory."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent presents all convention choices (phi_p=180, atan2 ordering, matrix orientation) as settled facts throughout, with no expression of doubt or acknowledgment of uncertainty, despite not deriving or independently verifying them."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent expresses no uncertainty about any of the conventions it applied. It uses hardcoded values (phi_p = \u03c0, atan2 argument order, theta formula) and presents them confidently in the final explanation without acknowledging that alternatives were considered, rejected, or derived. No honest \"I am unsure whether...\" or \"I should verify that...\" appears in the trajectory."
+          }
+        ],
+        "dissenting_models": []
+      }
+    ]
+  },
+  "final_score": 0.6724137931034483,
+  "final_formula": "(W_D*S_D + W_N*S_N)/(W_D+W_N) by weight mass; capped at 0.5 on gate failure",
+  "final_score_count_blended": 0.655392156862745,
+  "count_blend_delta": -0.017022,
+  "crux_failed": false,
+  "failed_gates": [],
+  "CONTINUOUS": {
+    "passed": null,
+    "total": null,
+    "value": null,
+    "source": "unavailable",
+    "basis": "no archived outcome report"
+  },
+  "abstained": [],
+  "panel": {
+    "panel": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ],
+    "single_vendor_panel": true,
+    "self_judging_seats": [],
+    "family_judging_seats": [
+      "claude-opus-5"
+    ],
+    "run_model": "claude-opus-4-8"
+  },
+  "fingerprint": {
+    "truth_md": "6ebc74bc8af3d79c",
+    "rubrics_json": "8567865abf854acb",
+    "test_trajectory_py": "62e7a0633aa9eec9",
+    "expected_values_json": "ce627c87d38afdec",
+    "combiner": "ac4af05e2dc4ff92",
+    "panel_models": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ]
+  }
+}

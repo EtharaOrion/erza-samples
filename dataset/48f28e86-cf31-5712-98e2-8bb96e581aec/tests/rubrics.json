@@ -1,0 +1,228 @@
+{
+  "task_id": "geomagnetic-declination-survey",
+  "task_name": "geomagnetic declination survey (IGRF-13 azimuth reduction)",
+  "truth": "TRUTH.md",
+  "note": "Every criterion is a question about the agent's PROCESS, derived from TRUTH.md. `channel` decides who answers it: `deterministic` -> a pytest function of the same id in verifier/test_trajectory.py; `non_deterministic` -> the LLM judge in judge/judge.py. `is_positive:false` marks a guardrail - satisfied means the bad behaviour occurred, and it subtracts. TRUTH.md is answer-free, so no criterion is graded against a ground-truth value; each is decidable from the trajectory alone.",
+  "criteria": [
+    {
+      "id": "R1",
+      "channel": "outcome",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+      "truth_ref": "Close — properties a correct answer has",
+      "weight_evidence": "Structural role: the outcome channel's shape check. Weight 3 (contract conformance, outcome-breaking): a correct calculation serialised outside the declared contract scores zero on the reward instrument. Route-independent - it grades the answer's shape, never how the answer was reached, and it is satisfied by a solver in any language or by a hand-written answer file. Not a nested duplicate of R2: the separating trajectory is the common one that emits a well-formed answer with a wrong value, which fails the tolerance criterion alone.",
+      "is_gate": false
+    },
+    {
+      "id": "R2",
+      "channel": "outcome",
+      "weight": 5,
+      "is_positive": true,
+      "is_gate": true,
+      "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+      "truth_ref": "Close — properties a correct answer has",
+      "weight_evidence": "GATE, weight 5: this is the outcome itself, and REQ-9 requires the wrong-answer gate (OUTCOME-FAILED) to cap final at 0.5 exactly as CRUX-FAILED does. The reference and the tolerance are the task's own frozen, control-measured values in verifier/expected_values.json - not a value invented for the rubric. Route-independent by construction: it reads only the answer, so every correct route satisfies it. Outcome mass is deliberately modest (8 of the rubric's total weight mass) - the channel's authority is the gate, not the mass."
+    },
+    {
+      "id": "R3",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent opened the shipped stations.csv rather than working only from the prose task.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Hygiene tier (weight 1): orientation precondition. Every graded azimuth is a property of the shipped station rows, so a run that never opens them cannot be measuring the right thing; low blast radius on its own.",
+      "is_gate": false
+    },
+    {
+      "id": "R4",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent authored a solver (a file write or a python heredoc/-c) rather than emitting numbers directly.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Hygiene tier (weight 1): structural role. Twelve stations x a spherical-harmonic synthesis cannot be done by inspection inside the budget. It constrains how the work is done, not what is known, and accepts a file, a heredoc or `python -c` equally so no authoring style is privileged.",
+      "is_gate": false
+    },
+    {
+      "id": "R5",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent executed python (the answer was computed, not asserted).",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Hygiene tier (weight 1): separates a produced artifact from an unrun draft.",
+      "is_gate": false
+    },
+    {
+      "id": "R6",
+      "channel": "deterministic",
+      "weight": 5,
+      "is_positive": true,
+      "criterion": "THE crux against the no-skill route. The run synthesises the field from the supplied Gauss coefficients (reads igrf13coeffs / builds g,h arrays / does an IGRF spherical-harmonic sum) rather than reading a single declination off the chart.",
+      "truth_ref": "Step 2",
+      "is_gate": true,
+      "weight_evidence": "CRUX, weight 5, GATE. TRUTH.md Step 1: declination must be computed from the field model, not read off a chart. The chart route is the dominant no-skill failure this task was built to separate, and the outcome verifier's own guess-resistance self-check records that the old-chart declination applied uniformly fails at every station. Route-independent: satisfied by loading the shipped coefficient file, by naming the model, or by building the Legendre / spherical-harmonic machinery by hand - no library and no spelling is required."
+    },
+    {
+      "id": "R7",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Crux part 1. A WGS84 geodetic->geocentric conversion appears (the WGS84 constants or a prime-vertical/geocentric-colatitude construction), not the geodetic latitude used raw as geocentric.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "Outcome-breaking (weight 3): crux part 1 (TRUTH.md Step 3). Treating the geodetic latitude as geocentric biases the synthesis position and moves the declination; TRUTH.md states the conversion is not optional. Weight 3 rather than 5 because it is a refinement inside the model route, which the gate already covers. Accepts the WGS84 constants, the named conversion, or a prime-vertical construction.",
+      "is_gate": false
+    },
+    {
+      "id": "R8",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Crux part 2. Schmidt semi-normalised associated Legendre functions are used (an explicit Schmidt factor or normalised recurrence), not bare/unnormalised functions.",
+      "truth_ref": "Step 4",
+      "weight_evidence": "Outcome-breaking (weight 3), re-weighted from the doctrine-invalid 2 (REQ-9 requires |w| in {5,3,1,0}). Crux part 2 (TRUTH.md Step 4): unnormalised or fully normalised Legendre functions rescale every term of the sum, which breaks the outcome rather than degrading it - the 3 tier, not the 1 tier. Accepts the named normalisation or the equivalent sqrt((n-m)!/(n+m)!) factor written out, so a hand-rolled route is not penalised.",
+      "is_gate": false
+    },
+    {
+      "id": "R9",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The true azimuth is wrapped into [0, 360) with a modulo.",
+      "truth_ref": "Step 6",
+      "weight_evidence": "Hygiene tier (weight 1): contract conformance. On this survey the unwrapped azimuths do not leave [0, 360), so there is no measured outcome coupling on this data; it is graded as the contract hygiene it is.",
+      "is_gate": false
+    },
+    {
+      "id": "R10",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run emitted true_azimuth_deg under the stations contract.",
+      "truth_ref": "Step 7",
+      "weight_evidence": "Hygiene tier (weight 1): emitting the declared key. Weight 1 rather than 3 because the outcome channel now grades contract conformance end to end (R1), and charging the same question twice would double its authority.",
+      "is_gate": false
+    },
+    {
+      "id": "R11",
+      "channel": "deterministic",
+      "weight": 0,
+      "is_positive": false,
+      "criterion": "GUARDRAIL: the run computed no field synthesis at all (no coefficients, no Legendre) - the chart/estimate route.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "REPORT-ONLY (weight 0), demoted from 3. MUTUAL EXCLUSIVITY (REQ-9): this guardrail and R6 both reduce to the same predicate - the presence of field synthesis in the code - so no trajectory can fail exactly one of them. They are one question charged twice, and because channels blend by weight mass the duplication silently doubled the crux's authority. The narrower row is kept, report-only, for its diagnostic message. It also carried a POSITIVE weight while flagged as a guardrail, which inverted its sign in the blend.",
+      "is_gate": false
+    },
+    {
+      "id": "R12",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "truth_ref": "Step 5",
+      "criterion": "After synthesising the geocentric field components, the run rotated the (B_theta, B_r) pair into the geodetic north/up frame before forming the declination - by the geodetic-minus-geocentric latitude difference, by an explicit rotation matrix, or by any equivalent construction. The east component needs no rotation.",
+      "weight_evidence": "Outcome-breaking (weight 3), and coverage of TRUTH.md Step 5, which no criterion reached before (REQ-9 collective exhaustiveness). TRUTH.md states the rotation changes the north component and therefore the declination, so omitting it moves the graded quantity. Distinct evidence from R7: that criterion is decided by the POSITION conversion before the synthesis, this one by the FIELD rotation after it, and a run can fail exactly one - converting the position and forgetting the back-rotation is the common form. Route-independent: any spelling of the rotation satisfies it.",
+      "is_gate": false
+    },
+    {
+      "id": "R13",
+      "channel": "deterministic",
+      "weight": -1,
+      "is_positive": false,
+      "criterion": "GUARDRAIL, DEGREE-OF-ERROR: the run synthesised the field but treated the geodetic latitude as geocentric (no WGS84 conversion). What it grades beyond R7 is that the omission happened on a run that DID build the model - the substantive form of the error rather than its absence-of-everything form.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "Guardrail, re-weighted from the doctrine-invalid +2 (magnitude outside {5,3,1,0}, and a guardrail must carry a negative weight). It earns its own row under REQ-9 because it is separable from R7: it fires only on a run that DID synthesise the field and then used the geodetic latitude as geocentric, while a run that synthesised nothing fails the positive and leaves this quiet. That is a degree of the error, not the presence or absence of one behaviour. MUTUAL EXCLUSIVITY (Stage 2 rule 7), MAGNITUDE REDUCED 3 -> 1: the predicate is `not _has_synthesis(code) or _has_geodetic_conversion(code)`, whose failure requires `not _has_geodetic_conversion(code)` - which is precisely R7 failing. Firing therefore ENTAILS the positive's failure, so at -3 beside a +3 positive the skip-the-conversion route lost 6 units of channel mass on one fact and that question's assigned authority silently doubled. The rule applied across this dataset is that a guardrail whose firing entails a positive's failure sits ONE TIER below that positive. The row and the detector are kept: the degree it isolates is real and its diagnostic message names it.",
+      "is_gate": false
+    },
+    {
+      "id": "R14",
+      "channel": "non_deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning recognises that survey-precision declination must be computed from the geomagnetic field model, not recalled or taken from the old chart.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "Judged twin of the deterministic gate (weight 3): whether the reasoning earned the crux, not whether the code did it. Weight 3 as a behavioural claim with a work product; it does not gate, because panel noise disqualifies a judged verdict from a verdict-flipping role.",
+      "is_gate": false
+    },
+    {
+      "id": "R15",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning engages with the supplied old-chart declination and explicitly sets it aside as inapplicable to the per-station reduction, rather than adopting it.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "Narration tier (weight 1), re-weighted from the doctrine-invalid 2. Noticing the chart distractor aloud is a speech act any style-tuned model can emit without doing the work; the doctrine caps narration at 1. The behaviour it shadows is already graded by R6.",
+      "is_gate": false
+    },
+    {
+      "id": "R16",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning treats the geodetic->geocentric conversion as a load-bearing step it must get right, rather than ignoring the geodetic/geocentric distinction.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "Narration tier (weight 1), re-weighted from the doctrine-invalid 2. A stated reason for the geodetic conversion is narration; the conversion itself is a work product graded by R7, and the pair is the deliberate d_/n_ twin exception to mutual exclusivity - same subject, different evidence, separable in both directions.",
+      "is_gate": false
+    },
+    {
+      "id": "R17",
+      "channel": "non_deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The agent verifies its result against something that could actually disagree (an independent field route, a check value, or a sign/magnitude sanity check), not only by re-running its own code.",
+      "truth_ref": "Step 8",
+      "weight_evidence": "Behavioural with a work product (weight 3), re-weighted from the doctrine-invalid 2. A second construction that shares no machinery with the first leaves an artifact in the trajectory, which is the 3 tier rather than the narration tier; TRUTH.md Step 8 asks for exactly that. Not 5: correct runs exist without it, so it cannot be crux-tier.",
+      "is_gate": false
+    }
+  ],
+  "mece": "REQ-9: the criterion set is MECE across the outcome and process instruments jointly. MUTUALLY EXCLUSIVE - no two criteria are decided by the same evidence; for every pair there is a trajectory that fails exactly one, argued in each criterion's weight_evidence. The deliberate exception is a d_ criterion and its judged twin on the same subject: they rest on different evidence (what the code did vs. what the reasoning earned) and are separable in both directions. COLLECTIVELY EXHAUSTIVE - see the `coverage` block. THREE CHANNELS - `outcome` (o_*: pytest that re-derives the final answer by probe re-execution of the run's own solver), `deterministic` (d_*: mechanics over the trajectory), `non_deterministic` (n_*: the judged rubric) - blended by weight mass with TWO gates capping identically at 0.5: CRUX-FAILED and OUTCOME-FAILED.",
+  "mutual_exclusivity_review": {
+    "note": "VERIFIER_PIPELINE Stage 2 rule 7 audit. Operative test: can a run fail exactly one of the two criteria? This bundle ships NO verification/negative_fixtures_test.py, so _qc/criterion_independence.py can only run its static arm here and every verdict below is argued from the predicates rather than measured over fixtures. That gap is the finding to carry forward: the empirical arm of rule 7 cannot be run on this bundle at all.",
+    "removed_criteria": [
+      {
+        "id": "R11",
+        "status": "kept as report-only (weight 0), NOT deleted",
+        "reason": "identical predicate with R6 - both reduce to _has_synthesis(code), so no trajectory fails exactly one. This is the canonical example in VERIFIER_PIPELINE Stage 2 rule 7."
+      }
+    ],
+    "pairs": [
+      {
+        "pair": ["R7", "R13"],
+        "shape": "nested subset / complement",
+        "verdict": "SEPARABLE, re-weighted",
+        "separating_trajectory": "The chart route: no synthesis at all. R7 fails (no conversion appears) while the guardrail stays quiet, because its predicate is satisfied by `not _has_synthesis`. The reverse never happens - the guardrail's firing requires the conversion to be absent, which is the positive failing.",
+        "action": "R13 -3 -> -1, one tier below the positive whose failure it entails."
+      },
+      {
+        "pair": ["R6", "R11"],
+        "shape": "identical predicate",
+        "verdict": "DUPLICATE, already report-only",
+        "separating_trajectory": "None exists. Both are decided by _has_synthesis(code).",
+        "action": "confirmed; the earlier demotion to weight 0 stands and the row is kept for its diagnostic message."
+      },
+      {
+        "pair": ["R7", "R12"],
+        "shape": "adjacent steps, suspected overlap",
+        "verdict": "SEPARABLE, no change",
+        "separating_trajectory": "Converting the POSITION to geocentric and forgetting the back-rotation of the FIELD is the common form and fails only the second; a run that rotates by an explicitly named latitude difference while feeding the synthesis a raw geodetic latitude fails only the first. Different predicates over different bytes.",
+        "action": "none"
+      },
+      {
+        "pair": ["R2", "any deterministic criterion"],
+        "shape": "answer-correctness overlap",
+        "verdict": "NO OVERLAP",
+        "separating_trajectory": "No d_ criterion reads a graded declination; each reads the route.",
+        "action": "none"
+      }
+    ]
+  },
+  "coverage": {
+    "note": "REQ-9 collective exhaustiveness / VERIFIER_PIPELINE Stage 2 rule 8: every TRUTH.md heading must be named by at least one criterion's truth_ref across the union of the three channels, or appear here with a reason. Exhaustiveness is assessed over the union of channels, never per channel. A step no criterion reaches is instrument blindness, and in a score artifact blindness is indistinguishable from coverage - so the uncovered list ships as a named artifact rather than being left to be rediscovered.",
+    "uncheckable": [
+      {
+        "truth_ref": "Close — properties a correct answer has",
+        "reason": "Closing properties section. Now covered by the outcome channel, whose two criteria grade exactly these properties; retained here for the record."
+      }
+    ]
+  }
+}

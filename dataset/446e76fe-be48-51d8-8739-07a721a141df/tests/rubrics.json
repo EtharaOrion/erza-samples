@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0",
+  "task": "local-magnitude-ml-broadband-station",
+  "task_id": "c7bbb75d-7bc7-57a5-845e-f4909bd3f51d",
+  "doctrine": "VERIFIER_PIPELINE.md Stage 5-6. Magnitudes are 5 / 3 / 1 / 0 and nothing between. Weight 5 = the crux, traced to the TRUTH.md crux step AND to a measured control. Weight 3 = outcome-breaking (a measured control that clears the graded tolerance, or an output-contract violation that zeroes the score). Weight 1 = hygiene, structural preconditions, and ALL narration. Weight 0 = report-only: the verdict is printed in the per-criterion vector and contributes nothing to any aggregate. Guardrails carry NEGATIVE weight (sign = polarity, magnitude = importance); -5 is reserved for a failure that invalidates GRADING ITSELF. Exactly one criterion on this task qualifies: R15, because the corrected golden lands 0.107x tolerance from the event's catalogue magnitude, so a run that recalls that number rather than measuring one is scored reward 1 by the outcome channel and contaminates Delta invisibly. R17 stays at -3: it corrupts one run's inputs but the outcome verifier still grades what it should. Every criterion carries weight_evidence. Only deterministic criteria may gate, and only with measured precision ~1 for outcome failure on the recorded runs - which no criterion on this task has, so NOTHING here carries is_gate.",
+  "weight_evidence_source": "Measured control ledger for this task: single-lever variants of the oracle chain, each re-solved and differenced against the golden ML. `x_tol` is |dML| divided by the graded tolerance (tolerance_ml_abs = 0.3, verifier/expected_values.json; reference_ml = 4.422). Ledger: skip the Wood-Anderson simulation |dML| 3.318 = 11.06x; amplitude left in metres not millimetres 3.000 = 10.00x; report the catalogue Mw instead of measuring 0.828 = 2.76x (verifier/expected_values.json: attractor_gap_mw_minus_ml); peak-to-peak instead of zero-to-peak 0.301 = 1.00x (marginal - it clears the tolerance by 0.3% and by nothing more); Wood-Anderson magnification 2800 instead of 2080 0.129 = 0.43x (NOT outcome-breaking); epicentral distance instead of hypocentral 0.012 = 0.04x (NOT outcome-breaking). Every one of these six figures is re-derived and asserted in verification/rederivation_test.py, together with a seventh derived there: replacing the Hutton & Boore distance terms by the bare 100-km reference constant is 0.766 = 2.55x tolerance at this event's distance.",
+  "deliberate_non_criteria": [
+    "HYPOCENTRAL vs EPICENTRAL DISTANCE. Measured at 0.04x tolerance. No criterion requires the quadrature combination, because no-skill run_5 used the epicentral distance directly and PASSED the outcome; a criterion demanding the oracle's spelling would have failed a correct run.",
+    "WOOD-ANDERSON MAGNIFICATION 2800 vs 2080. Measured at 0.43x tolerance. R8 accepts either magnification, so a run on the pre-IASPEI convention is not charged for it.",
+    "MAX vs MEAN OF THE TWO HORIZONTALS. Not in the measured ledger. Three of the four passing no-skill runs averaged the horizontals (or the two per-component magnitudes) rather than taking the maximum, and all three passed the outcome. R9 is deliberately silent on the combination rule and grades only the peak measurement and the unit conversion.",
+    "PRE-FILTER CORNERS AND WATER LEVEL. Not in the measured ledger. Four recorded runs used pre-filter bands different from the oracle's and two omitted the water level entirely; all four passed. TRUTH.md Step 3 pins the OUTPUT UNITS and explicitly declines to pin the corners.",
+    "THE LINEAR 0.00189 TERM OF THE DISTANCE CORRECTION. Derived at 0.46x tolerance (verification/rederivation_test.py). R10 requires only the logarithmic distance term, whose omission is 2.09x. Requiring the linear term as well would fail a run that still lands inside tolerance - the same over-reading the ledger's two sub-tolerance levers warn against."
+  ],
+  "criteria": [
+    {
+      "id": "R1",
+      "channel": "outcome",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+      "truth_ref": "Closing properties (hold for a correct run, and state no values)",
+      "weight_evidence": "Structural role: the outcome channel's shape check. Weight 3 (contract conformance, outcome-breaking): a correct calculation serialised outside the declared contract scores zero on the reward instrument. Route-independent - it grades the answer's shape, never how the answer was reached, and it is satisfied by a solver in any language or by a hand-written answer file. Not a nested duplicate of R2: the separating trajectory is the common one that emits a well-formed answer with a wrong value, which fails the tolerance criterion alone.",
+      "is_gate": false
+    },
+    {
+      "id": "R2",
+      "channel": "outcome",
+      "weight": 5,
+      "is_positive": true,
+      "is_gate": true,
+      "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+      "truth_ref": "Closing properties (hold for a correct run, and state no values)",
+      "weight_evidence": "GATE, weight 5: this is the outcome itself, and REQ-9 requires the wrong-answer gate (OUTCOME-FAILED) to cap final at 0.5 exactly as CRUX-FAILED does. The reference and the tolerance are the task's own frozen, control-measured values in verifier/expected_values.json - not a value invented for the rubric. Route-independent by construction: it reads only the answer, so every correct route satisfies it. Outcome mass is deliberately modest (8 of the rubric's total weight mass) - the channel's authority is the gate, not the mass."
+    },
+    {
+      "id": "R3",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Opened the shipped inputs - the waveform, the station metadata or the question file - rather than working only from the prose task statement.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Structural role: orientation precondition. TRUTH.md Step 0 exists because the epicentral distance, the depth and the catalogue-magnitude-type flag live only in the shipped question file; a run that never opens it cannot have established either the distance the correction needs or that the catalogue value is a decoy. No control in the measured ledger isolates this, so doctrine puts it in the hygiene tier (weight 1) rather than letting an unmeasured claim carry outcome-tier weight - low blast radius alone, but every later step depends on it.",
+      "is_gate": false
+    },
+    {
+      "id": "R4",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Authored solver source - a python file, a heredoc, or an inline `python -c` program.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Structural role: a submission exists only if the run authored its own source; nothing in the image computes a local magnitude end to end. Hygiene tier (weight 1), unmeasured by construction - there is no control for 'wrote no program'.",
+      "is_gate": false
+    },
+    {
+      "id": "R5",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Executed python to compute the magnitude.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "Structural role: an authored-but-unexecuted program yields no measurement and no submission for the outcome verifier to grade. Hygiene tier (weight 1), unmeasured by construction.",
+      "is_gate": false
+    },
+    {
+      "id": "R6",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Restricted the amplitude measurement to horizontal components, by a component-code test, by naming horizontal channel codes, or by any equivalent selection.",
+      "truth_ref": "Step 1",
+      "weight_evidence": "Traced to TRUTH.md Step 1, but NOT measured: the control ledger contains no vertical-component variant, so the size of the error is unknown on this instance. Doctrine forbids outcome-tier weight without a measured control, so this is capped at the hygiene tier even though the Southern-California scale is defined on horizontals and substituting the vertical is a real method error. Reported in the per-criterion vector for diagnosis; deliberately near-weightless in the aggregate.",
+      "is_gate": false
+    },
+    {
+      "id": "R7",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Deconvolved the full instrument response from the station metadata AND requested displacement output, rather than velocity, acceleration or a bare scalar sensitivity.",
+      "truth_ref": "Step 3",
+      "weight_evidence": "Traced to TRUTH.md Step 3, but NOT measured: the ledger has no velocity-output variant, and the grading environment has no obspy, so no control could be run to quantify it here. Capped at the hygiene tier by the same doctrine rule as R6 - the method error is severe (the trace fed to the crux has the wrong physical dimension) but its x-tolerance figure is unknown, and an unsourced weight is a vibe with decimals. Deliberately reported rather than silently upweighted.",
+      "is_gate": false
+    },
+    {
+      "id": "R8",
+      "channel": "deterministic",
+      "weight": 5,
+      "is_positive": true,
+      "is_gate": true,
+      "criterion": "Simulated a Wood-Anderson torsion seismograph on the response-removed traces - a simulation call carrying the Wood-Anderson instrument, identified by name, by the conventional paz identifier, by its static magnification, or by the conjugate pole pair encoding a 0.8 s free period and 0.7 damping.",
+      "truth_ref": "Step 4",
+      "weight_evidence": "GATE (3b): this bundle declared no gate at all, so score.py's CRUX-FAILED branch was unreachable dead code. Step 4 is the step TRUTH.md marks CRUX, and this is its detector. Gated in preference to R13, the other weight-5 criterion on the same step: that detector passes VACUOUSLY when the run never writes its own Wood-Anderson zeros list (a run using an obspy WA constant has not spelled out a paz to get wrong), and a criterion that can be satisfied by absence must not flip a verdict. This one fails only on a run that simulated no Wood-Anderson at all, which is unambiguously the crux step unattempted. Only one criterion gates: the two would otherwise double the step's authority. || previous receipt: CRUX. Traced to TRUTH.md Step 4, the step marked 'Everything before it is bookkeeping'. Measured on the control that omits the Wood-Anderson simulation and changes nothing else: |dML| 3.318 = 11.06x the graded tolerance, the largest gap in the ledger, and the dML is exactly log10 of the instrument's static magnification - skipping the simulation drops the magnification bodily. GATE FLAG WITHHELD (is_gate: false). Doctrine requires a gate to be observed on the recorded runs to have precision ~1 for outcome failure. On this task's ten recorded runs the criterion NEVER fires: all ten simulated the Wood-Anderson, and the single run that failed the outcome (no-skill run_3) passes this criterion. Precision for outcome failure is therefore unestablished, not ~1, and the flag is not earned. The weight stays 5 because the weight is a claim about the measured size of the failure mode, which is not in doubt; the flag is a claim about observed precision, which is."
+    },
+    {
+      "id": "R9",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Took a peak absolute amplitude from the simulated trace and converted it from metres to millimetres before it entered the magnitude relation.",
+      "truth_ref": "Step 5",
+      "weight_evidence": "Outcome-breaking, measured. The control that leaves the amplitude in metres and changes nothing else moves the magnitude by |dML| 3.000 = 10.00x the graded tolerance - exactly log10(1000), a clean order-of-magnitude offset that no later step can detect and that produces a perfectly well-formed number. Weight 3 rather than 5: it is a unit-layer defect on an otherwise correct chain, distinct from the crux step, and recoverable by any check that asks whether the amplitude is of the size a Wood-Anderson drum would have written (TRUTH.md Step 8's discriminating check). The criterion is scoped to the peak measurement and the conversion only; it deliberately says nothing about how the two horizontals are combined.",
+      "is_gate": false
+    },
+    {
+      "id": "R10",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Applied the Southern-California -logA0 distance correction carrying its region-specific LOGARITHMIC distance term, not a bare 100-km reference constant or a generic attenuation curve.",
+      "truth_ref": "Step 6",
+      "weight_evidence": "Outcome-breaking, measured - and the controls are DERIVED HERE rather than taken from the ledger, because they need no waveform. Holding the golden amplitude fixed and perturbing only the correction: replacing both distance-dependent terms by the bare 100-km reference constant (the generic textbook ML = log10(A) + 3) is |dML| 0.766 = 2.55x the graded tolerance; dropping only the logarithmic term is 0.628 = 2.09x. verification/rederivation_test.py computes and asserts both figures from expected_values.json and question.json alone. The criterion demands ONLY the logarithmic term: dropping only the small linear coefficient is a measured 0.138 = 0.46x tolerance, i.e. NOT outcome-breaking, so requiring it would fail a run that still lands inside tolerance. An earlier draft of the detector did require both; a mutation run against the fixture suite exposed it and the fixture that now binds the correction is test_dropping_only_the_linear_distance_term_stays_green. Weight 3, not 5: distinct from the crux step, and a run that quotes the wrong region's relation is caught by any check that compares two published corrections.",
+      "is_gate": false
+    },
+    {
+      "id": "R11",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "Formed the magnitude as the base-10 logarithm of the amplitude plus the distance correction.",
+      "truth_ref": "Step 7",
+      "weight_evidence": "Structural role: this relation IS the magnitude, so a run without it has produced no ML at all rather than a wrong one. Unmeasured by construction - the ledger's controls all perturb an input to this relation rather than the relation itself - so the hygiene tier applies. In practice uncontested: all ten recorded runs satisfy it, and it contributes nothing to discrimination.",
+      "is_gate": false
+    },
+    {
+      "id": "R12",
+      "channel": "deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "Emitted the contracted results file at the contracted path, carrying the single contracted key.",
+      "truth_ref": "Step 9",
+      "weight_evidence": "Output-contract violation that zeroes the score, which doctrine places at weight 3 without needing a control. verifier/test_outputs.py reads /root/results.json and asserts the key 'local_magnitude_ml' is present before it reads any number; a missing file or a differently-named key fails the outcome regardless of how good the measurement was. Weight 3, not 5: a presentation-layer defect on an otherwise correct chain.",
+      "is_gate": false
+    },
+    {
+      "id": "R13",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "CONDITIONAL, and the condition is part of what is graded: IF the run wrote its own Wood-Anderson poles-and-zeros description, that description carries TWO zeros at the origin, as the instrument's displacement response requires. A run that simulated the Wood-Anderson from a library constant never spelled out a paz to get wrong and satisfies this criterion VACUOUSLY - it is not evidence that the run understood the zero structure, and must not be read as such.",
+      "truth_ref": "Step 4",
+      "weight_evidence": "THE CRUX, at weight 5: traced to the TRUTH.md crux step (Step 4) AND to a measured control. The one-zero (velocity) form on a displacement input understates the amplitude by |2*pi*f| = 6.257 at this record's 0.996 Hz dominant frequency, i.e. 0.796 ML = 2.654x the graded tolerance (control_gaps.one_zero_velocity_form_wa), so it zeroes the outcome. This criterion previously asserted the OPPOSITE -- that exactly one zero was correct -- and was scored REPORT-ONLY at weight 0 on the grounds that it had no measured control and was fitted in-sample on n = 1. The n = 1 it referred to was no-skill run_3 of the predecessor pilot, the single run that wrote zeros=[0j,0j]. That run was the only one to get the physics RIGHT, and the then-wrong outcome verifier graded it 0. The criterion had detected the defect and the coincidence was reasoned away. It is now the other four runs -- which wrote zeros=[0j] and were graded 1 -- that the corrected verifier fails, and the direction of evidence is measured, not fitted. NOT is_gate: doctrine permits a gate only at measured precision ~1 on recorded runs, and the runs recorded against this bundle's new id do not exist yet. Revisit after the re-pilot. MUTUAL EXCLUSIVITY (Stage 2 rule 7), RE-TIERED 5 -> 3: the pair (R8, this) IS separable in both directions - a run that never simulates fails the gate while this passes vacuously, and a run that simulates a WA it spelled with one zero fails this while the gate passes - so both rows stand and neither is deleted. What is not defensible is the MASS: at 5 and 5 the two rows put 10 of the deterministic channel's weight on one instrument fact, and this row awards its half BY ABSENCE for the whole class of runs that use a library WA constant. A criterion that is satisfied by not writing something cannot hold the crux tier; the crux tier belongs to the gate. Weight 3 is the tier its own control measures - 2.654x the graded tolerance is outcome-breaking, which is exactly what tier 3 is for. The detector is untouched, so no run that fails this criterion now passes it. POLARITY: reclassified is_positive:false (weight sign flipped, magnitude and predicate unchanged) - this is an ABSENCE check, satisfied vacuously by a run that does nothing, which is the defining shape of a guardrail. The detector, its test, and every recorded verdict are unchanged; the reclassification only stops a null run collecting this row's mass through the null-run guardrail floor.",
+      "control_ref": "control_gaps.one_zero_velocity_form_wa",
+      "is_gate": false
+    },
+    {
+      "id": "R14",
+      "channel": "deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "truth_ref": "Step 2",
+      "criterion": "The horizontal traces were detrended (or demeaned) and tapered before any frequency-domain operation. Any spelling of either operation counts, including obspy's detrend/taper, a manual polynomial removal, or a window applied by hand.",
+      "weight_evidence": "Hygiene tier (weight 1), and coverage of TRUTH.md Step 2, which no criterion reached before (REQ-9 collective exhaustiveness). It is preprocessing for the deconvolution rather than a lever: no control in expected_values.json isolates it, and its amplitude effect on this record is well inside tolerance, so the doctrine caps it at 1. Distinct evidence from every other criterion: it is decided by the presence of detrend/taper calls, which no other detector reads.",
+      "is_gate": false
+    },
+    {
+      "id": "R15",
+      "channel": "deterministic",
+      "weight": -5,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the run reported a catalogue magnitude as its answer instead of measuring one from the record.",
+      "truth_ref": "Step 0",
+      "weight_evidence": "-5, THE ONLY -5 ON THIS TASK, and the weight changed direction for a concrete reason. Under the predecessor's wrong golden the catalogue value sat 0.828 ML = 2.76x tolerance from the answer, so it was outcome-breaking and doctrine placed it at -3. With the physics corrected the true ML is 5.2179 and the catalogue Mw is 5.25: 0.107x tolerance apart. Reporting the catalogue value now PASSES the outcome verifier. That is what promotes it. Doctrine reserves -5 for a failure that invalidates GRADING ITSELF, and this one does exactly that: the outcome channel cannot distinguish a recalled 5.25 from a measured 5.2179, so a run that never measured anything is recorded as reward 1 and silently contaminates Delta. This guardrail is the only channel that can see it. The catalogue magnitude has been removed from question.json so the value is no longer handed over, but the event is real and catalogued and the number may be recallable, so the failure mode survives the removal. Specificity is load-bearing in the other direction too: naming or discussing a catalogue magnitude must stay quiet; only a data path into the emitted answer fires.",
+      "is_gate": false
+    },
+    {
+      "id": "R16",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - a peak-to-peak swing was used as the amplitude without being halved to a zero-to-peak value.",
+      "truth_ref": "Step 5",
+      "weight_evidence": "Outcome-breaking, measured, but MARGINALLY so: |dML| 0.301 = 1.00x the graded tolerance - exactly log10(2). It clears the tolerance boundary by 0.3% and by nothing more, so a run carrying this defect alongside any small opposing error could land either side of the line. Magnitude 3 because the measured control does exceed the tolerance and therefore zeroes the score; explicitly NOT 5, because the margin is within rounding of the boundary and doctrine reserves 5 for failures that move the outcome far beyond tolerance. Specificity is fixture-bound in both directions: two recorded runs print raw-counts min/max diagnostics that are not amplitude measurements, and a peak-to-peak swing that IS halved recovers the correct amplitude; neither fires.",
+      "is_gate": false
+    },
+    {
+      "id": "R17",
+      "channel": "deterministic",
+      "weight": -3,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the run wrote into, deleted from, or edited in place the shipped input directory.",
+      "truth_ref": "Step 10",
+      "weight_evidence": "Magnitude 3, and the doctrine's sole -5 exemption DELIBERATELY DOES NOT APPLY on this task. That exemption is for a failure that invalidates grading itself, i.e. the verifier recomputes truth from the shipped inputs at grade time. This task's outcome verifier does not: verifier/test_outputs.py compares the submission against a frozen reference_ml in expected_values.json and never touches /root/data, so a mutated input leaves the grade perfectly well-defined. What it does destroy is provenance - the reported magnitude would no longer be a measurement of the record it claims to describe. The measured ledger bounds how far corrupting the amplitude chain can move ML (11.06x and 10.00x for the two amplitude-chain controls), which is why this sits at the outcome-breaking tier rather than at hygiene. Specificity is load-bearing and fixture-bound in both directions: a read-direction copy of the inputs OUT mutates nothing and must stay quiet.",
+      "is_gate": false
+    },
+    {
+      "id": "R18",
+      "channel": "deterministic",
+      "weight": -1,
+      "is_positive": false,
+      "criterion": "GUARDRAIL - the run attempted a network fetch or a package install.",
+      "truth_ref": "Step 10",
+      "weight_evidence": "Hygiene tier. The task declares network_mode: no-network (task.md), so the attempt cannot succeed and cannot change the answer; measured outcome impact is exactly zero. It costs the run time and signals it did not read its working conditions. Magnitude 1 for that reason, not because the behaviour is acceptable.",
+      "is_gate": false
+    },
+    {
+      "id": "R19",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run established WHY a Wood-Anderson simulation is required - that the local magnitude scale is defined on the amplitude that instrument would have written, so the response-removed ground displacement is not the quantity the scale takes - rather than applying the simulation as an unexplained step or omitting it. Equivalent routes count: deriving it from the definition of ML, from the instrument's role in the -logA0 calibration, or from a units argument about what the amplitude term means, are all satisfactory provided the run shows why the simulation is load-bearing rather than cosmetic.",
+      "truth_ref": "Step 4",
+      "weight_evidence": "NARRATION - capped at 1 by doctrine ('ALL narration'), re-tiered from the crux weight. What this row asks the judge for is what the run SAYS about the instrument, and a style-tuned model can say it without doing it; the panel's +/-5-point noise was already conceded in the gate-flag refusal. The measured backing (skip-the-simulation control, |dML| 3.318 = 11.06x the graded tolerance) belongs to the behaviour, which R8 scores at the crux weight - holding the crux weight here as well doubled the mass on one instrument fact and paid the second half to prose, the same mass defect this bundle re-tiered R13 for. This criterion grades the reasoning; its deterministic twin grades the code.",
+      "is_gate": false
+    },
+    {
+      "id": "R20",
+      "channel": "non_deterministic",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checked its magnitude against something that could actually have disagreed - the second horizontal component, the same chain on the other band code, the alternative distance convention with the size of the shift quoted, or an order-of-magnitude check on the simulated amplitude itself. Re-running the same script and getting the same number does not count, and neither does 'the value looks plausible' or agreement with the catalogue magnitude.",
+      "truth_ref": "Step 8",
+      "weight_evidence": "BEHAVIOURAL, with a work product: a second measurement either exists in the trajectory or it does not, which is what separates this from a narration criterion and earns weight 3 rather than 1. Backed by the ledger's structure: every measured failure mode except the metres-for-millimetres slip returns a number inside the physically plausible band, so plausibility is not a check - only a second construction, or an amplitude-scale check, can disagree. TRUTH.md Step 8 tabulates exactly which checks discriminate.",
+      "is_gate": false
+    },
+    {
+      "id": "R21",
+      "channel": "non_deterministic",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The run said which convention it was adopting at each branch that has one - displacement versus velocity output, millimetres versus metres, zero-to-peak versus peak-to-peak, which distance it fed the correction - rather than only emitting code.",
+      "truth_ref": "Step 7",
+      "weight_evidence": "NARRATION - capped at 1. The channel grades work, not speeches, and a terse correct run and a lucky confident run read identically here. Doctrine is explicit that confident phrasing must not be rewarded; this criterion exists to make convention-blindness visible in the per-criterion vector, not to move the score.",
+      "is_gate": false
+    }
+  ],
+  "mece": "REQ-9: the criterion set is MECE across the outcome and process instruments jointly. MUTUALLY EXCLUSIVE - no two criteria are decided by the same evidence; for every pair there is a trajectory that fails exactly one, argued in each criterion's weight_evidence. The deliberate exception is a d_ criterion and its judged twin on the same subject: they rest on different evidence (what the code did vs. what the reasoning earned) and are separable in both directions. COLLECTIVELY EXHAUSTIVE - see the `coverage` block. THREE CHANNELS - `outcome` (o_*: pytest that re-derives the final answer by probe re-execution of the run's own solver), `deterministic` (d_*: mechanics over the trajectory), `non_deterministic` (n_*: the judged rubric) - blended by weight mass with TWO gates capping identically at 0.5: CRUX-FAILED and OUTCOME-FAILED.",
+  "mutual_exclusivity_review": {
+    "note": "VERIFIER_PIPELINE Stage 2 rule 7 audit, corroborated by _qc/criterion_independence.py. Operative test: can a run fail exactly one of the two criteria? Nothing was deleted - a criterion that loses weight keeps its row and its detector so the firing table still records it.",
+    "removed_criteria": [],
+    "pairs": [
+      {
+        "pair": [
+          "R8",
+          "R13"
+        ],
+        "shape": "two weight-5 criteria on one instrument fact",
+        "verdict": "SEPARABLE both ways, RE-TIERED for mass",
+        "separating_trajectory": "Fails the gate alone: a run that removes the response and never simulates a Wood-Anderson - R13 passes VACUOUSLY, because a run that wrote no paz has not written a wrong one. Fails the zero-structure criterion alone: a run that simulates a WA it spelled itself with zeros=[0j], the one-zero velocity form, which the gate accepts by name. Both directions are realised, so rule 7 is satisfied and both rows stand.",
+        "action": "R13 5 -> 3. Not because the pair is inseparable but because of what the vacuous pass does to the MASS: at 5 and 5 the two rows put 10 of this channel's weight on one instrument fact, and for the whole class of runs that simulate from a library constant the second row awards its half by ABSENCE. A criterion satisfied by not writing something cannot hold the crux tier. Weight 3 is the tier its own measured control names (2.654x the graded tolerance is outcome-breaking). The detector is untouched: no run that failed it now passes."
+      },
+      {
+        "pair": [
+          "R14",
+          "R10"
+        ],
+        "shape": "identical columns over the shipped fixtures",
+        "verdict": "ARTIFACT of coarse fixtures, no change",
+        "separating_trajectory": "The detectors share no expression - one looks for detrend/demean AND a taper or window, the other for the region's logarithmic distance coefficient - and the separating run is ordinary: detrend and taper the traces, then apply the bare 100-km reference constant. Every negative fixture in the suite happens to omit both, which is why the columns coincide. A fixture-suite work item.",
+        "action": "none; recorded so the identical column is not read as duplicated weight"
+      },
+      {
+        "pair": [
+          "R1",
+          "R2"
+        ],
+        "shape": "nested subset (suspected)",
+        "verdict": "SEPARABLE, no change",
+        "separating_trajectory": "The commonest trajectory on any of these tasks: a well-formed answer carrying every graded case as a finite number, with a wrong value. The shape check passes and the tolerance gate fails.",
+        "action": "none"
+      },
+      {
+        "pair": [
+          "R2",
+          "any deterministic criterion"
+        ],
+        "shape": "answer-correctness overlap",
+        "verdict": "NO OVERLAP",
+        "separating_trajectory": "No d_ criterion in this bundle reads a graded VALUE - every one reads the route. A hand-transcribed correct answer satisfies the outcome gate and fails R4 / R5; a run on the blessed route can still miss tolerance through an arithmetic slip.",
+        "action": "none"
+      }
+    ]
+  },
+  "coverage": {
+    "note": "REQ-9 collective exhaustiveness / VERIFIER_PIPELINE Stage 2 rule 8: every TRUTH.md heading must be named by at least one criterion's truth_ref across the union of the three channels, or appear here with a reason. Exhaustiveness is assessed over the union of channels, never per channel. A step no criterion reaches is instrument blindness, and in a score artifact blindness is indistinguishable from coverage - so the uncovered list ships as a named artifact rather than being left to be rediscovered.",
+    "uncheckable": []
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "task_name": "wcs-astrometry-v3",
+  "rollout_name": "wcs-astrometry-v3__bdd92684",
+  "rewards": {
+    "reward": 0.0
+  },
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "no-skill",
+  "skill_source": "none",
+  "requested_skills_dir": null,
+  "effective_skills_dir": null,
+  "skills_sandbox_dir": null,
+  "include_task_skills": false,
+  "n_tool_calls": 4,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 4,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 253970,
+    "n_output_tokens": 1937,
+    "n_cache_read_tokens": 120865,
+    "n_cache_creation_tokens": 5251,
+    "total_tokens": 129791,
+    "cost_usd": 0.15036625,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 253970,
+    "total_completion_tokens": 1937,
+    "total_cached_tokens": 120865,
+    "total_cost_usd": 0.15036625
+  },
+  "trajectory_summary": {
+    "steps": 9,
+    "tool_call_steps": 4,
+    "user_message_steps": 1,
+    "agent_message_steps": 1,
+    "agent_thought_steps": 3,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 3,
+      "tool_call": 4,
+      "agent_message": 1
+    },
+    "tool_call_status_counts": {
+      "completed": 4
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "auto",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-21 15:31:00.999567",
+  "finished_at": "2026-07-21 15:33:00.331536",
+  "timing": {
+    "environment_setup": 3.3,
+    "agent_setup": 9.1,
+    "agent_execution": 60.0,
+    "verifier": 3.6,
+    "total": 119.3
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "task_digest": "sha256:5f06cce33b2cfcab1a2b5353cbb0752e70190f151646400339f375fbf6967148",
+  "sandbox_id": null
+}

@@ -1,0 +1,23 @@
+{
+ "spec": "REQUIREMENTS.md section 10 (v0.3, 2026-07-29)",
+ "R_rl": 0.029412,
+ "R_eval": 0.03509,
+ "outcome": 0.0,
+ "S_D": 0.7941176470588235,
+ "S_N": 0.2916666666666667,
+ "process": 0.596533,
+ "p_tilde_rl": 0.5,
+ "crux_capped": false,
+ "gate": 1,
+ "gate_fired_criterion": null,
+ "gate_rule": "gate=0 iff a deterministic guardrail with weight <= -5 scored 0.0 (invalidating guardrail: verifier tampering / graded-file writes) or a 'mutated_input' guardrail scored 0.0. Network/install guardrails (w=-3) do NOT gate: the no-network sandbox is the load-bearing layer (REQUIREMENTS 10.2); they remain scored in S_D.",
+ "alpha_t_static": 0.029412,
+ "alpha_used_rl": 0.029411764705882353,
+ "N_outcome_cases": 16,
+ "kappa_f": 0.648102,
+ "w_r": 0.648102,
+ "kappa_pooling": "mean pairwise Cohen's kappa pooled per task-family ('fits-wcs') over all delivery panel votes, both grader fingerprints pooled (panels are identical model/stance sets)",
+ "rollout_group": "903d6f33-74c0-554d-b210-9c2b3a5138fb/no-skill (n=3)",
+ "degenerate_at_success": false,
+ "notes": "R_rl is group-relative (GRPO-style); R_eval is absolute. Delta/DeltaDelta read pure outcome only (10.8)."
+}

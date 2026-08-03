@@ -1,0 +1,52 @@
+schema_version = "2.0"
+
+[task]
+id   = "48f28e86-cf31-5712-98e2-8bb96e581aec"
+slug = "48f28e86-cf31-5712-98e2-8bb96e581aec"
+name = "48F28E86 Cf31 5712 98E2 8Bb96E581Aec"
+
+[metadata]
+author_name = "Erza FORGE"
+category    = "natural-science"
+subcategory = "geomagnetism"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = "Reducing magnetic-referenced survey azimuths to true azimuths requires the local magnetic declination at each station for the survey epoch. Declination is not a quantity that can be recalled or estimated to survey precision: it must be evaluated from the geomagnetic field model, which is a spherical-harmonic synthesis of a large set of region-independent Gauss coefficients. The naive routes - applying the single rounded value from the supplied old chart, or leaving the bearings unreduced - are wrong at every station by many degrees (tens to hundreds of times the tolerance). Even with the coefficients in hand the computation has a load-bearing subtlety: the station coordinates are geodetic and must be converted to geocentric before the harmonic synthesis, and treating the geodetic latitude as geocentric displaces every station past tolerance."
+task_type   = ["calculation", "analysis"]
+modality    = ["csv", "scientific-data"]
+interface   = ["terminal", "python"]
+skill_type  = ["domain-procedure", "mathematical-method"]
+tags        = ["geomagnetism", "magnetic-declination", "geodesy", "survey", "spherical-harmonics", "field-reduction"]
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 2
+memory_mb         = 4096
+build_timeout_sec = 900.0
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[verifier.hardening]
+cleanup_conftests = true
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "benchflow.task_digest.v1+uuid5"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "6336eb262bd229986926aa546bedfd7e4a4879f9a92742d9eb356de4900c6513"
+source_slug     = ""
+source_origin   = "original"
+provenance_date = ""
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

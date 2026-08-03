@@ -1,0 +1,26 @@
+{
+ "task_id": "e9474235-0323-5e54-9171-c5b80089ad7e",
+ "n_outcome_cases_spec": 12,
+ "graded_tests": [
+  "test_height[TG-A-t1]",
+  "test_height[TG-A-t2]",
+  "test_height[TG-A-t3]",
+  "test_height[TG-A-t4]",
+  "test_height[TG-B-t1]",
+  "test_height[TG-B-t2]",
+  "test_height[TG-B-t3]",
+  "test_height[TG-B-t4]",
+  "test_height[TG-C-t1]",
+  "test_height[TG-C-t2]",
+  "test_height[TG-C-t3]",
+  "test_height[TG-C-t4]"
+ ],
+ "guard_tests": [
+  "test_frozen_golden_matches_live_recompute",
+  "test_isomorphic_invariance",
+  "test_plausibility_guess_resistance"
+ ],
+ "granularity": "per-case",
+ "needs_review": false,
+ "basis": "name-pattern classification from shipped run reports; see scripts/generate_graded_manifests.py"
+}

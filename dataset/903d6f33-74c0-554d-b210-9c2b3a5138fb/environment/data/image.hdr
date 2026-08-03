@@ -1,0 +1,25 @@
+SIMPLE  =                    T / conforms to FITS standard
+BITPIX  =                  -32 / 32-bit floating point pixels
+NAXIS   =                    2 / number of image axes
+NAXIS1  =                 1024 / length of axis 1
+NAXIS2  =                 1024 / length of axis 2
+WCSAXES =                    2 / number of world coordinate axes
+CTYPE1  =           'RA---TAN' / axis 1 type and projection
+CTYPE2  =           'DEC--TAN' / axis 2 type and projection
+CUNIT1  =                'deg' / units of axis 1
+CUNIT2  =                'deg' / units of axis 2
+CRPIX1  =                512.5 / reference pixel on axis 1
+CRPIX2  =                512.5 / reference pixel on axis 2
+CRVAL1  =              213.742 / world coordinate at reference pixel, axis 1
+CRVAL2  =                 67.0 / world coordinate at reference pixel, axis 2
+CD1_1   =     -0.0138075728018 / linear transformation matrix element
+CD1_2   =     0.00440973254713 / linear transformation matrix element
+CD2_1   =     0.00586096692734 / linear transformation matrix element
+CD2_2   =      0.0144235852486 / linear transformation matrix element
+EQUINOX =               2000.0 / equinox of coordinates
+RADESYS =               'ICRS' / celestial reference system
+MJD-OBS =          60428.19407 / modified Julian date of observation
+EXPTIME =                120.0 / exposure time in seconds
+FILTER  =                  'r' / filter band
+INSTRUME=             'WFPC-A' / instrument name
+END

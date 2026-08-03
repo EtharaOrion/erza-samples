@@ -1,0 +1,316 @@
+{
+  "bundle": "d427488f-59b7-505a-bd03-bed97d147e38",
+  "task_id": "d427488f-59b7-505a-bd03-bed97d147e38",
+  "run_dir": "trajectories/d427488f-59b7-505a-bd03-bed97d147e38/claude-opus-4-8/no-skill/run_3",
+  "arm": "no-skill",
+  "run": "run_3",
+  "deterministic": {
+    "score": 0.7037037037037037,
+    "n_scored": 11,
+    "n_total": 11,
+    "weight_scored": 27,
+    "weight_total": 27,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R8",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R9",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R10",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R11",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "failure mode occurred"
+      },
+      {
+        "id": "R12",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.0,
+    "n_scored": 4,
+    "n_total": 4,
+    "weight_scored": 8,
+    "weight_total": 8,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R14",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent explicitly mapped ERZA-RB1 onto \"the canonical ISO 13528 robust-statistics machinery (Algorithm A + zeta)\", using the textbook 1.5 clamp and fixed 1.134 consistency factor, mean (not median) within-lab reduction, and no closed-form beta(c) debias \u2014 a published method substituted rather than the house spec."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent explicitly assumed at step [8] that the described spec elements \"map precisely onto the canonical ISO 13528 robust-statistics machinery\" and proceeded to implement that textbook method (1.5\u00b7s* clamp, fixed 1.134 consistency factor) rather than deriving or pinning house-specific constants like beta(c) or a 1.25 clamp."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent implemented a generic robust-statistics iteration (clamp 1.5\u00b7s, bias factor 1.134, mean-based within-lab reduction) without establishing that ERZA-RB1's specific house constants differ from textbook ISO 13528. The ground truth specifies house clamp c=1.25 and closed-form beta(c)\u22481.2288 computed from the standard normal CDF/PDF; the agent used the textbook clamp 1.5 and textbook fixed factor 1.134 without deriving or checking either. Most critically, Step 1 of the ground truth mandates MEDIAN within-lab reduction; the agent used arithmetic MEANS. The agent did not cite, derive, or verify any ERZA-RB1\u2013specific constants before coding."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R15",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The run acknowledged the prompt \"withheld the six procedural elements\" but then claimed the decoy block \"acts as a calibration key\" that \"confirms the reduction rule and locks the ERZA-RB1 procedure\" onto the textbook machinery \u2014 presenting the substitute as established fact rather than naming it a best-effort stand-in."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent never flagged that it lacked the true ERZA-RB1 specification or that its ISO 13528 substitution was a best-effort guess; instead it declared the decoy match \"confirms the reduction rule and locks the ERZA-RB1 procedure onto the canonical robust-consensus machinery\" with full confidence."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent asserted with confidence that it \"reconstructed\" ERZA-RB1 from the decoy block and applied it correctly. It states \"That exact match confirms the within-lab reduction rule...and pins the round onto the canonical robust-consensus machinery, where ERZA-RB1 replaces...\" \u2014 asserting certainty about the house method's identity. The agent offered no hedge such as \"lacking the full spec, I assume ERZA-RB1 follows the standard approach\" or \"I cannot verify these are the house constants.\" No uncertainty was stated; confident application was declared."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R16",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The only check performed was reproducing the two decoy values to full precision, which the ground truth explicitly excludes; there was no beta(c) self-check, no printed convergence trajectory (only an unsupported \"Iteration converged\" assertion), no sensitivity bound on alternate forks, and no independent reimplementation."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The only checks performed were reproducing the decoy's plain-mean/SD and standard-z values (explicitly excluded by the rubric) and a plausibility check that zeta was within \u00b12; no beta(c) self-check, convergence trajectory inspection, sensitivity bounding of forks, or independent reimplementation was done."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The agent verified only that its reduction reproduced the decoy's plain-mean-scale and standard-z values, and stated convergence occurred. Per the ground truth Step 8, agreement with the decoy is \"evidence *against*, not for\" and does not discriminate. The agent performed none of the actually-discriminating checks: no beta(c) self-check against 1.2288; no convergence trajectory inspection; no sensitivity recomputation with plausible wrong forks (textbook clamp, no debias, mean vs. median); no independent reimplementation."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R17",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The final summary asserts without hedging that \"ERZA-RB1 replaces the two naive quantities\" via \"ISO 13528 Algorithm A: seed with median / 1.483\u00b7MAD, then iterate the Winsorizing clamp at 1.5\u00b7s* with bias-correction factor 1.134\", claiming the decoy match \"pins the round onto\" this machinery \u2014 a textbook recipe presented as the definite house SOP with no specification or discriminating check behind it."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent presented the textbook ISO 13528 Algorithm A (1.5 clamp, 1.134 debias, mean reduction) as the definite ERZA-RB1 house method, using the decoy match as false confirmation rather than as a warning sign, exactly the failure mode described."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The agent states \"I closed out the ERZA-RB1 round and wrote `/root/results.json`\" and summarizes \"L03's \u03b6\u2032 is comfortably within \u00b12, so despite its one aberrant replicate (4.4195), the lab passes on the robust score\" \u2014 presenting the computed result as the ERZA-RB1 answer with confident finality. No source, specification, or verification is cited for the house constants (clamp, beta, coverage factor, within-lab median rule). The agent's actual implementation does not follow the ERZA-RB1 spec (it used mean reduction, textbook clamp 1.5, textbook factor 1.134) yet is presented as definitive ERZA-RB1. This is exactly the failure mode the guardrail names."
+          }
+        ],
+        "dissenting_models": []
+      }
+    ]
+  },
+  "final_score": 0.5,
+  "final_formula": "(W_D*S_D + W_N*S_N)/(W_D+W_N) by weight mass; capped at 0.5 on gate failure",
+  "final_score_count_blended": 0.5,
+  "count_blend_delta": 0.0,
+  "crux_failed": true,
+  "failed_gates": [
+    "R8"
+  ],
+  "CONTINUOUS": {
+    "passed": 2,
+    "total": 4,
+    "value": 0.5,
+    "source": "verifier/ctrf.json",
+    "basis": "all cases"
+  },
+  "abstained": [],
+  "panel": {
+    "panel": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ],
+    "single_vendor_panel": true,
+    "self_judging_seats": [],
+    "family_judging_seats": [
+      "claude-opus-5"
+    ],
+    "run_model": "claude-opus-4-8"
+  },
+  "fingerprint": {
+    "truth_md": "a87a685121b160fa",
+    "rubrics_json": "2ab8843f36a23f6d",
+    "test_trajectory_py": "d631d260583d48e1",
+    "expected_values_json": "366e313c6acc11e4",
+    "combiner": "ac4af05e2dc4ff92",
+    "panel_models": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ]
+  }
+}

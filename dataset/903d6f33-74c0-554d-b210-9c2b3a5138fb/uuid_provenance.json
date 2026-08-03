@@ -1,0 +1,134 @@
+{
+  "recipe": "forge.task_id.v1",
+  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+  "canonical_content_hash": "47396b86a0c6323cd08fc9ab5fd5d46fe0b1848e33a7a3a718229ff3176fcad3",
+  "task_id": "903d6f33-74c0-554d-b210-9c2b3a5138fb",
+  "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
+  "format": "standardised benchmark layout (tests/) - re-sealed 2026-07-31 after the format change and audit-layer restoration; supersedes the pre-format seal.",
+  "manifest": [
+    {
+      "relpath": "TRUTH.md",
+      "sha256": "6ebc74bc8af3d79c102d704592c9d1f66f9c7742ae71dcb9fb80d61126cc7461"
+    },
+    {
+      "relpath": "environment/Dockerfile",
+      "sha256": "4c9a46525f49eb67ca0eff84aa81997a5ba458c02c610d50902b70b0fa5545b9"
+    },
+    {
+      "relpath": "environment/data/image.hdr",
+      "sha256": "f1071112424a4da442a9451293bea2030cc8af72570b88935c848d286f066103"
+    },
+    {
+      "relpath": "environment/data/sources.csv",
+      "sha256": "39509015d1f578f852944668a36cf7d1f4f520f06c4120962b50624bfae60fcd"
+    },
+    {
+      "relpath": "environment/skills/fits-wcs-tan-astrometry/SKILL.md",
+      "sha256": "7fec02f23617292d5569dd29b6c43bc483a3697595085847dd5516be7324534d"
+    },
+    {
+      "relpath": "environment/skills/fits-wcs-tan-astrometry/references/header-and-output.md",
+      "sha256": "8be11d923c67f5b10304074fa86defff491d5efc4161e966143ec93c832ebbef"
+    },
+    {
+      "relpath": "environment/skills/fits-wcs-tan-astrometry/references/paper-ii-tan.md",
+      "sha256": "6ab78cb19f0bbbc8a34dc402fe7402be1001007baefdd61d58b44fad807b4a0c"
+    },
+    {
+      "relpath": "environment/skills/fits-wcs-tan-astrometry/references/verification.md",
+      "sha256": "8cfddc660322cb2e19ba1056554a51df1049e5f98cb15021023aa6e061b55ff4"
+    },
+    {
+      "relpath": "instruction.md",
+      "sha256": "59934650a6be17573df97a8e60de1d2d9c85a6249af389411cd35df6540df5ce"
+    },
+    {
+      "relpath": "oracle/solve.py",
+      "sha256": "cce2041a9d297e4b5c5d575ab0fc98e292cdd7f91dbe7be02350b5b398781b32"
+    },
+    {
+      "relpath": "oracle/solve.sh",
+      "sha256": "4947f941e42b4987002f56c747e65833ffd247f9eba920c83bc17bd0e94e293e"
+    },
+    {
+      "relpath": "oracle/wcs_pipeline.py",
+      "sha256": "e30b8b1e4d4bc2ba3247ead7a2c110ed1fd55d563ef5484ff14392e73e689d24"
+    },
+    {
+      "relpath": "task.toml",
+      "sha256": "d9cece331120a135b71e1823bd4b93a9264b790787b2e9804e82f4a1e99c1a32"
+    },
+    {
+      "relpath": "tests/expected_values.json",
+      "sha256": "ce627c87d38afdec9da27b2b5121db64dafbfadb766bb922b3b45e623f365dae"
+    },
+    {
+      "relpath": "tests/judge.py",
+      "sha256": "abb87f2527cf9128f4d06fd97137afb60f26dba247e43ac4576b771c1a0c689f"
+    },
+    {
+      "relpath": "tests/lib/trajectory.py",
+      "sha256": "316fc2247c08af098681a51f73f120f650d0aab23938bebb3eec1592d98e1d85"
+    },
+    {
+      "relpath": "tests/lib/wcs_pipeline.py",
+      "sha256": "e30b8b1e4d4bc2ba3247ead7a2c110ed1fd55d563ef5484ff14392e73e689d24"
+    },
+    {
+      "relpath": "tests/rubrics.json",
+      "sha256": "c3791c5c18f79eb7b21e08ba373c75e3541200eb39c0eb9ad13449cf00437d50"
+    },
+    {
+      "relpath": "tests/score.py",
+      "sha256": "7900528498a1da86f314e526777589dba556c6c356cb0dc173f05ce95ec1cbfb"
+    },
+    {
+      "relpath": "tests/test.sh",
+      "sha256": "b39b7d53d890a8acf63f5773d58628668f1f8be9067397b3b25cf03192ae2dad"
+    },
+    {
+      "relpath": "tests/test_pytest.py",
+      "sha256": "222863a39d409cbf77a9c794d06600f476d083a3e87a33acb76d80c934346ae4"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_pytest.xml",
+      "sha256": "6423204b046f817ae5ce4d0fcec904a320a3a5141beed0799cf2dea744f6ef14"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_result.json",
+      "sha256": "28e3059abdc2ab91652f5c12ee6f03b6eeac0dd062ade9f3fabd254771ed7b3d"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/results.json",
+      "sha256": "83760238e546eb1b32bddf2f500d5681ab9def244e4d74e3e64a48754849f50c"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/trajectory/llm_trajectory.jsonl",
+      "sha256": "2ca91f7bbb68a87197cbdd4dc04f37c231ecbc49bd734f7807717a00fe0e2fb2"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/pass_at_1.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "relpath": "tests/truth_armed/golden_run/verifier/reward.txt",
+      "sha256": "b4e088f864db15584d519f8675237536319ae00e0d40e1dba206514474d1a179"
+    },
+    {
+      "relpath": "tests/truth_armed/outcome_verifier.log",
+      "sha256": "368fbd852c5e3e8b8ad1fcbe973814908d96f9df510608dda1f4608905dbaac3"
+    },
+    {
+      "relpath": "tests/verification/make_fixtures.py",
+      "sha256": "43dd273edf41328265815b1a8e9f356429e46f0979bf91d431831c5fdbc56262"
+    },
+    {
+      "relpath": "tests/verification/negative_fixtures_test.py",
+      "sha256": "37911713a09bec3b0a51c5c2b8a35fd9316336ce1bbaf8d4e6cedc79920f0db0"
+    },
+    {
+      "relpath": "tests/verification/run_fixtures.py",
+      "sha256": "faa582458458624385c177de4c72d1302f937305b415b5c5eb93bcfd79507331"
+    }
+  ]
+}

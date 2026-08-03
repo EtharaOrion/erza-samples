@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="13" time="0.026" timestamp="2026-07-29T19:28:04.022871+05:30" hostname="Agasthhyas-Mac-2.local"><testcase classname="verifier.test_trajectory" name="test_R3" time="0.003" /><testcase classname="verifier.test_trajectory" name="test_R4" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R5" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R6" time="0.001"><failure message="AssertionError: no harmonic synthesis from the gauge's own constants: the run never accumulated a cosine over that gauge's constituent list with a per-constituent amplitude and phase lag&#10;assert False&#10; +  where False = &lt;function uses_station_constants at 0x106140c20&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function uses_station_constants at 0x106140c20&gt; = checks.uses_station_constants">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R6(traj):
+&gt;       assert checks.uses_station_constants(traj), \
+            ("no harmonic synthesis from the gauge's own constants: the run never "
+             "accumulated a cosine over that gauge's constituent list with a "
+             "per-constituent amplitude and phase lag")
+E       AssertionError: no harmonic synthesis from the gauge's own constants: the run never accumulated a cosine over that gauge's constituent list with a per-constituent amplitude and phase lag
+E       assert False
+E        +  where False = &lt;function uses_station_constants at 0x106140c20&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function uses_station_constants at 0x106140c20&gt; = checks.uses_station_constants
+
+verifier/test_trajectory.py:38: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R7" time="0.000"><failure message="AssertionError: the astronomical mean longitudes were never evaluated from the Schureman time origin: a different epoch is 19.67x-25.36x the graded tolerance&#10;assert False&#10; +  where False = &lt;function astronomical_arguments at 0x106140cc0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function astronomical_arguments at 0x106140cc0&gt; = checks.astronomical_arguments">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R7(traj):
+&gt;       assert checks.astronomical_arguments(traj), \
+            ("the astronomical mean longitudes were never evaluated from the Schureman "
+             "time origin: a different epoch is 19.67x-25.36x the graded tolerance")
+E       AssertionError: the astronomical mean longitudes were never evaluated from the Schureman time origin: a different epoch is 19.67x-25.36x the graded tolerance
+E       assert False
+E        +  where False = &lt;function astronomical_arguments at 0x106140cc0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function astronomical_arguments at 0x106140cc0&gt; = checks.astronomical_arguments
+
+verifier/test_trajectory.py:45: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R8" time="0.000"><failure message="AssertionError: no equilibrium argument: the Doodson numbers were never combined with the mean longitudes, or the `semi` phase constant was never added&#10;assert False&#10; +  where False = &lt;function equilibrium_argument at 0x106140d60&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function equilibrium_argument at 0x106140d60&gt; = checks.equilibrium_argument">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R8(traj):
+&gt;       assert checks.equilibrium_argument(traj), \
+            ("no equilibrium argument: the Doodson numbers were never combined with the "
+             "mean longitudes, or the `semi` phase constant was never added")
+E       AssertionError: no equilibrium argument: the Doodson numbers were never combined with the mean longitudes, or the `semi` phase constant was never added
+E       assert False
+E        +  where False = &lt;function equilibrium_argument at 0x106140d60&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function equilibrium_argument at 0x106140d60&gt; = checks.equilibrium_argument
+
+verifier/test_trajectory.py:51: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R9" time="0.000"><failure message="AssertionError: no 18.6-year nodal factor/angle applied [measured at 0.93x the graded tolerance on this instance - hygiene tier, weight 1]&#10;assert False&#10; +  where False = &lt;function nodal_correction at 0x106140e00&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function nodal_correction at 0x106140e00&gt; = checks.nodal_correction">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R9(traj):
+&gt;       assert checks.nodal_correction(traj), \
+            ("no 18.6-year nodal factor/angle applied [measured at 0.93x the graded "
+             "tolerance on this instance - hygiene tier, weight 1]")
+E       AssertionError: no 18.6-year nodal factor/angle applied [measured at 0.93x the graded tolerance on this instance - hygiene tier, weight 1]
+E       assert False
+E        +  where False = &lt;function nodal_correction at 0x106140e00&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function nodal_correction at 0x106140e00&gt; = checks.nodal_correction
+
+verifier/test_trajectory.py:57: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R10" time="0.000"><failure message="AssertionError: the gauge's datum offset was never added to the constituent sum: the answer is an oscillation about the wrong level (17.28x tolerance)&#10;assert False&#10; +  where False = &lt;function datum_offset at 0x106140ea0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function datum_offset at 0x106140ea0&gt; = checks.datum_offset">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R10(traj):
+&gt;       assert checks.datum_offset(traj), \
+            ("the gauge's datum offset was never added to the constituent sum: the "
+             "answer is an oscillation about the wrong level (17.28x tolerance)")
+E       AssertionError: the gauge's datum offset was never added to the constituent sum: the answer is an oscillation about the wrong level (17.28x tolerance)
+E       assert False
+E        +  where False = &lt;function datum_offset at 0x106140ea0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function datum_offset at 0x106140ea0&gt; = checks.datum_offset
+
+verifier/test_trajectory.py:63: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R11" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R12" time="0.000"><failure message="AssertionError: the recent observed water level was piped into the emitted predictions instead of a computed height (8.43x the graded tolerance on the mean)&#10;assert not True&#10; +  where True = &lt;function failure_decoy_as_answer at 0x106140fe0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?&quot;, tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))&#10; +    where &lt;function failure_decoy_as_answer at 0x106140fe0&gt; = checks.failure_decoy_as_answer">traj = Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0)
+
+    def test_R12(traj):
+&gt;       assert not checks.failure_decoy_as_answer(traj), \
+            ("the recent observed water level was piped into the emitted predictions "
+             "instead of a computed height (8.43x the graded tolerance on the mean)")
+E       AssertionError: the recent observed water level was piped into the emitted predictions instead of a computed height (8.43x the graded tolerance on the mean)
+E       assert not True
+E        +  where True = &lt;function failure_decoy_as_answer at 0x106140fe0&gt;(Trajectory(run_dir='trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/no-skill/run_1', turns=[Turn(rol...e I should be pointed at, or should I proceed differently?", tool_name='', tool_input={})], reward=0.0833, pass_at_1=0))
+E        +    where &lt;function failure_decoy_as_answer at 0x106140fe0&gt; = checks.failure_decoy_as_answer
+
+verifier/test_trajectory.py:76: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R13" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R14" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R15" time="0.000" /></testsuite></testsuites>

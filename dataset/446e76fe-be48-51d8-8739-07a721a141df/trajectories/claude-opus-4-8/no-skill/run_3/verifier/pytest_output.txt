@@ -1,0 +1,30 @@
+ML_RAW: got=5.150 ref=5.218 err=0.068 tol=0.3 -> OK
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-8.3.2, pluggy-1.6.0 -- /usr/local/bin/python3.11
+rootdir: /root
+configfile: ../dev/null
+plugins: json-ctrf-0.3.5
+collecting ... collected 6 items
+
+::test_wood_anderson_calibration PASSED                                  [ 16%]
+::test_golden_matches_independent_recompute PASSED                       [ 33%]
+::test_plausible PASSED                                                  [ 50%]
+::test_local_magnitude PASSED                                            [ 66%]
+::test_not_the_velocity_form PASSED                                      [ 83%]
+::test_isomorphic_invariance PASSED                                      [100%]
+
+=============================== warnings summary ===============================
+::test_wood_anderson_calibration
+  /usr/local/lib/python3.11/site-packages/obspy/core/util/base.py:26: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED ::test_wood_anderson_calibration
+PASSED ::test_golden_matches_independent_recompute
+PASSED ::test_plausible
+PASSED ::test_local_magnitude
+PASSED ::test_not_the_velocity_form
+PASSED ::test_isomorphic_invariance
+========================= 6 passed, 1 warning in 4.68s =========================

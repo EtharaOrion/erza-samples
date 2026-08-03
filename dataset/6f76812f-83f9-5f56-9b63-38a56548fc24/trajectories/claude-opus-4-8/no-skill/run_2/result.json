@@ -1,0 +1,193 @@
+{
+  "task_name": "ionosphere-arc-vtec-calibration",
+  "rollout_name": "ionosphere-arc-vtec-calibration__ab1f6078",
+  "rewards": {
+    "reward": 0.0
+  },
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "no-skill",
+  "skill_source": "none",
+  "requested_skills_dir": null,
+  "effective_skills_dir": null,
+  "skills_sandbox_dir": null,
+  "include_task_skills": false,
+  "n_tool_calls": 25,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 25,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 2290266,
+    "n_output_tokens": 114266,
+    "n_cache_read_tokens": 1090902,
+    "n_cache_creation_tokens": 53222,
+    "total_tokens": 1260408,
+    "cost_usd": 3.7448285,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 2290266,
+    "total_completion_tokens": 114266,
+    "total_cached_tokens": 1090902,
+    "total_cost_usd": 3.7448285
+  },
+  "trajectory_summary": {
+    "steps": 73,
+    "tool_call_steps": 25,
+    "user_message_steps": 1,
+    "agent_message_steps": 23,
+    "agent_thought_steps": 24,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 24,
+      "agent_message": 23,
+      "tool_call": 25
+    },
+    "tool_call_status_counts": {
+      "completed": 23,
+      "failed": 1,
+      "pending": 1
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "auto",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-28 13:31:27.279036",
+  "finished_at": "2026-07-28 14:30:34.135334",
+  "timing": {
+    "environment_setup": 4.5,
+    "agent_setup": 49.9,
+    "agent_execution": 3258.6,
+    "verifier": 15.9,
+    "total": 3546.9
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "source": {
+    "type": "github",
+    "repo": "Ethara-Ai/erza-harness",
+    "requested_ref": "main",
+    "resolved_sha": "a45214b569b439381ad556292a9810df786d782b",
+    "path": "tasks/ionosphere-arc-vtec-calibration",
+    "dirty": true,
+    "file_hashes": {
+      "build/dsb_map.json": "sha256:c542e1cfdbe922e66e43411e53858ecfb7a0d2460fae3a19510b318d8deec011",
+      "build/extract_dsb.py": "sha256:4a6da15a2c8977e12e8b57b43d6cf1f2c77d240b174d39d8222d246afd062724",
+      "build/independent_check.py": "sha256:508511212d4ddc75622b6b70edfee40d9bd09cf13acf0fc9237d2472b9e9886e",
+      "environment/Dockerfile": "sha256:b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3",
+      "environment/data/observations.csv": "sha256:25c5ae30c2a13bd357fd00e955d3b3765137fc5295b2852d790f135a313a3ea3",
+      "environment/data/question.json": "sha256:0fc18397a85aad754cb6fc79b029d3af5b011aae186e61aeebef61429f2f7572",
+      "environment/data/receivers.csv": "sha256:c32755db14808ee629a02e5abfbede942f752f683087fbc487c556fedd0241e8",
+      "environment/skills/gnss-signal-bias-referencing/SKILL.md": "sha256:72fe5ab74ed827ae459d5597b4e49ed0f8eb12181eb8758d5cfef4d0c74c82cb",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_rec_RX-1.tsv": "sha256:dcb9aecf7bf2bbf123aee3cd7042952bdfd878955a69def66152f7460b95248c",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_rec_RX-2.tsv": "sha256:bc747839fdf11ab01940439a89fb76c48c254ab65e8c9ba0bae5ad65ba87971b",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_rec_RX-3.tsv": "sha256:c40ca9179d2dd956c85aa20dd03fa4d0a7e3b8eb5efe0ba0b5400f8bb6f9f5d2",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-K.tsv": "sha256:986efbabd3f3272f555002244efc4664a416e543177cb8ab11e57a9ea66ca88c",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-M.tsv": "sha256:7516179050f31404913db194e164df52b8bc3dc166dd059dc07de9f5cb7b42a5",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-P.tsv": "sha256:23f003288b7a19c8bacf95cd66d018bf8c975e1a8459af691b19c2aa620159bd",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-R.tsv": "sha256:635259986c405ed7e262820e630c4f5d826e35deb4a5f671811f76b1a5b1bd0e",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-T.tsv": "sha256:b97fab817a2b2cbd82738a407bfa5d581760883cb360506f4eb569ba456a39cc",
+      "environment/skills/gnss-signal-bias-referencing/references/dsb_sat_SV-W.tsv": "sha256:35392e4d6dcc5919c1a0b960b61fa8b3f40aa972fb587ef9e3983ee3ac4d5886",
+      "environment/skills/gnss-signal-bias-referencing/references/method.md": "sha256:0e4630ffccbb1eac4a1d6c3e88ba1a9eb51e5746e4418c3cc9684a03ea0cf6bc",
+      "oracle/dsb/dsb_rec_RX-1.tsv": "sha256:dcb9aecf7bf2bbf123aee3cd7042952bdfd878955a69def66152f7460b95248c",
+      "oracle/dsb/dsb_rec_RX-2.tsv": "sha256:bc747839fdf11ab01940439a89fb76c48c254ab65e8c9ba0bae5ad65ba87971b",
+      "oracle/dsb/dsb_rec_RX-3.tsv": "sha256:c40ca9179d2dd956c85aa20dd03fa4d0a7e3b8eb5efe0ba0b5400f8bb6f9f5d2",
+      "oracle/dsb/dsb_sat_SV-K.tsv": "sha256:986efbabd3f3272f555002244efc4664a416e543177cb8ab11e57a9ea66ca88c",
+      "oracle/dsb/dsb_sat_SV-M.tsv": "sha256:7516179050f31404913db194e164df52b8bc3dc166dd059dc07de9f5cb7b42a5",
+      "oracle/dsb/dsb_sat_SV-P.tsv": "sha256:23f003288b7a19c8bacf95cd66d018bf8c975e1a8459af691b19c2aa620159bd",
+      "oracle/dsb/dsb_sat_SV-R.tsv": "sha256:635259986c405ed7e262820e630c4f5d826e35deb4a5f671811f76b1a5b1bd0e",
+      "oracle/dsb/dsb_sat_SV-T.tsv": "sha256:b97fab817a2b2cbd82738a407bfa5d581760883cb360506f4eb569ba456a39cc",
+      "oracle/dsb/dsb_sat_SV-W.tsv": "sha256:35392e4d6dcc5919c1a0b960b61fa8b3f40aa972fb587ef9e3983ee3ac4d5886",
+      "oracle/dsb.py": "sha256:9ceeab6e81ca701fb02b60604ba39ec6c4534f36910fcf3584e15683674dbed7",
+      "oracle/generate.py": "sha256:82a8eada6942b1af90c2c14467936a44aa68b3ddbe93ec9e07b36220496d5aa1",
+      "oracle/solve.py": "sha256:7ce3a3767dfe92282a6ce54d999519506d411076aa3f9fbaec84a204c9f0d3fb",
+      "oracle/solve.sh": "sha256:33d9ecd14e27e55cfcdc6a2777e2c70aeda5fdec3c08ece465bfd5877058eca0",
+      "oracle/tec.py": "sha256:0b8ece945426ab7173fe2199d384695de2efedb3f61470e1e0743ea27062a024",
+      "task.md": "sha256:c9026876256768b6309a6380cda40fef0519e9af78ff35b377e6a51fef589946",
+      "uuid_provenance.json": "sha256:ef1ed8d7e485aa84b50ae6f2ca6dd1acdfb757b60552fd471b71fa688b73eb4a",
+      "verifier/dsb/dsb_rec_RX-1.tsv": "sha256:dcb9aecf7bf2bbf123aee3cd7042952bdfd878955a69def66152f7460b95248c",
+      "verifier/dsb/dsb_rec_RX-2.tsv": "sha256:bc747839fdf11ab01940439a89fb76c48c254ab65e8c9ba0bae5ad65ba87971b",
+      "verifier/dsb/dsb_rec_RX-3.tsv": "sha256:c40ca9179d2dd956c85aa20dd03fa4d0a7e3b8eb5efe0ba0b5400f8bb6f9f5d2",
+      "verifier/dsb/dsb_sat_SV-K.tsv": "sha256:986efbabd3f3272f555002244efc4664a416e543177cb8ab11e57a9ea66ca88c",
+      "verifier/dsb/dsb_sat_SV-M.tsv": "sha256:7516179050f31404913db194e164df52b8bc3dc166dd059dc07de9f5cb7b42a5",
+      "verifier/dsb/dsb_sat_SV-P.tsv": "sha256:23f003288b7a19c8bacf95cd66d018bf8c975e1a8459af691b19c2aa620159bd",
+      "verifier/dsb/dsb_sat_SV-R.tsv": "sha256:635259986c405ed7e262820e630c4f5d826e35deb4a5f671811f76b1a5b1bd0e",
+      "verifier/dsb/dsb_sat_SV-T.tsv": "sha256:b97fab817a2b2cbd82738a407bfa5d581760883cb360506f4eb569ba456a39cc",
+      "verifier/dsb/dsb_sat_SV-W.tsv": "sha256:35392e4d6dcc5919c1a0b960b61fa8b3f40aa972fb587ef9e3983ee3ac4d5886",
+      "verifier/dsb.py": "sha256:9ceeab6e81ca701fb02b60604ba39ec6c4534f36910fcf3584e15683674dbed7",
+      "verifier/expected_values.json": "sha256:fff21b1f4e8c60a31406e0b177f43f53a311797afaa83776d0608099d1bc7e84",
+      "verifier/golden.json": "sha256:46254e72b7743806c508740da79367f31f084f8f2902457ed6d56e1d84e09fb9",
+      "verifier/process/.gitignore": "sha256:a6d5279f4150d160af32c62d5a9d95b4078246b726aef0f8f4e602af98bcde66",
+      "verifier/process/README.md": "sha256:805a3c37b50c083fa761e312b7acb8744ca5c362928fb1d94fbd3059afce5952",
+      "verifier/process/TRUTH.md": "sha256:af865c83c746ddbd266f6de8e90e645acd9eea9bc64fd7893eb4f8d54d2eaf74",
+      "verifier/process/judge/judge.py": "sha256:7d14b9a50d46415ed869b301e27fe6693d0f2180983b060eb833243521c4d570",
+      "verifier/process/rubrics.json": "sha256:c14f678721ede3b1e5e296663509cab1c3f514ae5ba90186b5eadbce4d020644",
+      "verifier/process/run.sh": "sha256:e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2",
+      "verifier/process/score.py": "sha256:4464ef06228b78ea231fd40faf943e23470aaa6deeb0da0328515eef2b681bdd",
+      "verifier/process/verification/negative_fixtures_test.py": "sha256:1b3d06d5f502c7773cb6d1c4ddc275c6e3e40730f908a3f9976c802badddb4a9",
+      "verifier/process/verification/rederivation_test.py": "sha256:bcef3ff03ee9f261e7c90b1fd961030737e69d475cb557357cbc46beeac1169a",
+      "verifier/process/verifier/checks.py": "sha256:3b05482d2d9cad9c389c6781f5c7f3c302593582dcfba71e772fc4fb5b0a101a",
+      "verifier/process/verifier/conftest.py": "sha256:2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23",
+      "verifier/process/verifier/test_trajectory.py": "sha256:c76bead8b9a0664b8dcb49efbc12b3da0e474cc65d429445e8374968c59db06b",
+      "verifier/process/verifier/trajectory.py": "sha256:fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012",
+      "verifier/rubric.yaml": "sha256:1c6e92bb918893c96f3318a6714fbbc1c216b1cb2acbd3476019c16ddf287612",
+      "verifier/tec.py": "sha256:0b8ece945426ab7173fe2199d384695de2efedb3f61470e1e0743ea27062a024",
+      "verifier/test.sh": "sha256:664f5bcd14ffd93f5ecd1276d6e007a56fe278e1e1fdd245dbff62e49acf872b",
+      "verifier/test_outputs.py": "sha256:76a993d9196badb13c3db7aeff18b5d1db46504530aa40dd637cf749c484f531",
+      "verifier/truth.md": "sha256:e481f31ccf3d2e8ccdca868af92e11a6035bfdcf7afdc7837ddaa906cac7fdb8"
+    }
+  },
+  "task_digest": "sha256:deff60c608232070c79fede890f904adc62ddf4fe26cf6b83224bf8428edf5b9",
+  "sandbox_id": null
+}

@@ -1,0 +1,49 @@
+schema_version = "2.0"
+
+[task]
+id   = "d427488f-59b7-505a-bd03-bed97d147e38"
+slug = "d427488f-59b7-505a-bd03-bed97d147e38"
+name = "D427488F 59B7 505A Bd03 Bed97D147E38"
+
+[metadata]
+author_name = "Ethara.AI"
+category    = "natural-science"
+subcategory = "metrology"
+category_confidence = "high"
+difficulty  = "hard"
+difficulty_explanation = "Requires computing an interlaboratory proficiency-testing consensus by a bespoke house method (ERZA-RB1) rather than a textbook summary, and chaining several brittle steps without error: (1) reducing each lab by the MEDIAN of its replicates, not the mean, so a single spiked replicate cannot move the lab value; (2) running an Algorithm-A style clamped robust location/scale iteration to convergence with the fixed house clamp constant; (3) applying the closed-form beta(c) Fisher-consistency bias correction to the clamped scale, computed from the normal CDF/PDF via the error function; (4) forming the combined uncertainty with the house coverage factor; and (5) reporting the robust SCALE plus a robust zeta-prime for a nominated lab. Reporting the naive plain-mean scale / standard-z decoy supplied in the inputs, reducing by the mean, omitting the beta debias, or using a different clamp each miss at least one required output."
+task_type   = ["analysis", "calculation"]
+modality    = ["tabular", "scientific-data"]
+interface   = ["terminal", "python"]
+skill_type  = ["domain-procedure", "mathematical-method"]
+tags        = ["metrology", "proficiency-testing", "interlaboratory", "robust-statistics", "algorithm-a", "consensus", "zeta-score", "uncertainty"]
+
+[environment]
+network_mode      = "no-network"
+os                = "linux"
+arch              = "linux/amd64"
+cpus              = 1
+memory_mb         = 4096
+build_timeout_sec = 900.0
+
+[agent]
+timeout_sec = 1800.0
+
+[verifier]
+timeout_sec   = 300.0
+reward_family = "binary"
+
+[oracle]
+entrypoint = "oracle/solve.sh"
+
+[provenance]
+recipe    = "forge.task_id.v1"
+namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
+canonical_content_hash = "c80c024feed46785b2f5fed9c7b9c8f8ebd9d87d123ca9fe3309c163a9777365"
+source_slug     = ""
+source_origin   = "original"
+provenance_date = ""
+
+# NOTE: canonical_content_hash is carried over from the v1
+# uuid_provenance.json and describes the v1 file layout. It must be
+# re-sealed against this layout before the bundle is treated as frozen.

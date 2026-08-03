@@ -1,0 +1,12 @@
+# Differential signal biases, nanoseconds, copied verbatim from the
+# CAS/IGG multi-GNSS DCB product CAS0MGXRAP_20221000000_01D_01D_DCB.BSX
+# (Bias-SINEX 1.00; Wang et al. 2016, DOI 10.1007/s00190-015-0867-4).
+# value_ns is BD(obs1,obs2) = B(obs1) - B(obs2) for the row's observables.
+# Identities are replaced by opaque labels.
+# Receiver entries for label RX-3.
+obs1	obs2	value_ns	std_dev_ns
+C1C	C1W	-2.3300	0.0145
+C1C	C2W	4.5880	0.0485
+C1C	C5Q	-6.2680	0.0870
+C1W	C2W	6.8860	0.0440
+C2W	C2L	-6.1760	0.0205

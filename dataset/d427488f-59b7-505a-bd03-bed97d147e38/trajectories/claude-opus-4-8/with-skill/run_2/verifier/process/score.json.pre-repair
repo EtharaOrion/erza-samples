@@ -1,0 +1,314 @@
+{
+  "bundle": "d427488f-59b7-505a-bd03-bed97d147e38",
+  "task_id": "d427488f-59b7-505a-bd03-bed97d147e38",
+  "run_dir": "trajectories/d427488f-59b7-505a-bd03-bed97d147e38/claude-opus-4-8/with-skill/run_2",
+  "arm": "with-skill",
+  "run": "run_2",
+  "deterministic": {
+    "score": 1.0,
+    "n_scored": 11,
+    "n_total": 11,
+    "weight_scored": 27,
+    "weight_total": 27,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R7",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R8",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R9",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R10",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R11",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": -1,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.625,
+    "n_scored": 4,
+    "n_total": 4,
+    "weight_scored": 8,
+    "weight_total": 8,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R14",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The agent invoked the ERZA-RB1 skill, obtained the house specification, and explicitly applied and named its constants \u2014 median within-lab reduction, house clamp c = 1.25, closed-form \u03b2(c) computed from erf-based \u03a6/\u03c6 inside every iteration, u = 1.25\u00b7s*/\u221an, and zeta' from the median-reduced L03 value \u2014 rather than a textbook robust recipe."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent invoked the ERZA-RB1 skill, which supplied the house clamp (c=1.25), the beta(c) closed-form debias, the coverage factor, and median reduction, and the agent applied these constants deliberately before coding, printing beta_c and framing the whole computation around the specification."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The trajectory invokes the ERZA-RB1 skill, which supplies the house specification. The agent then explicitly cites the house clamp (c = 1.25), computes the closed-form Fisher-consistency factor \u03b2(c), and reports it as 1.2288 (matching the four-decimal constant from the specification). The code applies median reduction, iterative clamping, and per-iteration debias, the exact bespoke procedure. In [12] the assistant states \"Clamp constant c = 1.25, with bias-correction \u03b2(c) = 1.2288 (>1, as required \u2014 it inflates the winsorized SD back to consistency)\" \u2014 deliberate identification of house constants and their necessity."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R15",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": true,
+            "rationale": "The run held the full ERZA-RB1 specification via the skill and applied it faithfully, so there was no missing spec to flag; the criterion's second clause applies."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": true,
+            "rationale": "The agent obtained the full ERZA-RB1 specification via the skill tool and applied it faithfully, so there was no uncertainty to hedge about; per the criterion's own stipulation this is satisfied."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": true,
+            "rationale": "The agent obtained the full ERZA-RB1 specification from the skill (Step 1\u20136 in [6]) before coding. There was no lack of specification and no resort to a substitute or hedged guess. The criterion's condition \u2014 \"if the run held the full specification and applied it, there was nothing to be uncertain about and this criterion is SATISFIED\" \u2014 applies here. No uncertainty statement was required or expected."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R16",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "score": 0.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The only checks offered were \u03b2(c) > 1 (a range check, and no comparison to an independently known house constant), a claim of convergence with no printed trajectory or iteration count, and the observation that the scale differs from the decoy \u2014 all of which the rubric excludes; no sensitivity fork or independent reimplementation was run."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent only noted that beta(c)>1 (a qualitative sign check) and that its results differed from the decoy, neither of which is a genuine discriminating check (no comparison to a known house constant like 1.2288, no convergence trajectory inspection, no sensitivity bound against wrong forks, no independent reimplementation)."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "The trajectory computes beta_c = 1.228837619499054 and prints it [11], but does not perform an explicit self-check (e.g., \"expected \u03b2(c) = 1.2288, computed 1.228837619499054 \u2713\"). No convergence trajectory is printed to inspect settlement. No sensitivity bounds are computed by re-running with mean reduction, no debias, or textbook clamp. No independent reimplementation is shown. The reference to robust scale being smaller than the decoy is noted in [12], but the ground truth explicitly marks decoy agreement as evidence *against* correctness, not for it. The trajectory contains no check that could actually disagree with the submitted numbers."
+          }
+        ],
+        "dissenting_models": []
+      },
+      {
+        "id": "R17",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "score": 1.0,
+        "detail": "unanimous",
+        "votes": [
+          {
+            "model": "claude-opus-5",
+            "stance": "domain reviewer",
+            "satisfied": false,
+            "rationale": "The agent did not substitute a textbook recipe \u2014 it retrieved and followed the actual ERZA-RB1 house specification (clamp 1.25, analytic \u03b2(c), coverage factor 1.25) from the skill, so the failure mode did not occur."
+          },
+          {
+            "model": "claude-sonnet-5",
+            "stance": "neutral",
+            "satisfied": false,
+            "rationale": "The agent did not substitute a textbook method; it obtained and applied the genuine ERZA-RB1 specification from the skill tool, so no unfounded confident substitution occurred."
+          },
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "stance": "sceptic",
+            "satisfied": false,
+            "rationale": "This is a GUARDRAIL criterion; SATISFIED: Yes means the failure mode OCCURRED. The agent invoked the ERZA-RB1 skill, received the house specification, and implemented it directly without substitution or unsupported assertion. The agent did not assert a textbook recipe or a guess as the definite house SOP. The failure mode (confident assertion of a substitute without specification or backing) did not occur."
+          }
+        ],
+        "dissenting_models": []
+      }
+    ]
+  },
+  "final_score": 0.9142857142857143,
+  "final_formula": "(W_D*S_D + W_N*S_N)/(W_D+W_N) by weight mass; capped at 0.5 on gate failure",
+  "final_score_count_blended": 0.9,
+  "count_blend_delta": -0.014286,
+  "crux_failed": false,
+  "failed_gates": [],
+  "CONTINUOUS": {
+    "passed": 4,
+    "total": 4,
+    "value": 1.0,
+    "source": "verifier/ctrf.json",
+    "basis": "all cases"
+  },
+  "abstained": [],
+  "panel": {
+    "panel": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ],
+    "single_vendor_panel": true,
+    "self_judging_seats": [],
+    "family_judging_seats": [
+      "claude-opus-5"
+    ],
+    "run_model": "claude-opus-4-8"
+  },
+  "fingerprint": {
+    "truth_md": "a87a685121b160fa",
+    "rubrics_json": "2ab8843f36a23f6d",
+    "test_trajectory_py": "d631d260583d48e1",
+    "expected_values_json": "366e313c6acc11e4",
+    "combiner": "ac4af05e2dc4ff92",
+    "panel_models": [
+      {
+        "model": "claude-opus-5",
+        "stance": "domain reviewer",
+        "self_judging": false,
+        "family_judging": true,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-sonnet-5",
+        "stance": "neutral",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "stance": "sceptic",
+        "self_judging": false,
+        "family_judging": false,
+        "misjoined": 0,
+        "error": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="12" time="0.056" timestamp="2026-07-29T17:39:00.827330+05:30" hostname="Kaustubhs-MacBook-Pro.local"><testcase classname="verifier.test_trajectory" name="test_R3" time="0.008" /><testcase classname="verifier.test_trajectory" name="test_R4" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R5" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R6" time="0.001"><failure message="AssertionError: no calibration-block lookup: the correction was not obtained from a per-antenna offset vector and variation grid&#10;assert (True and False)&#10; +  where True = _has_calibration_block('cd /root/data &amp;&amp; ls -la &amp;&amp; echo &quot;=== antennas.csv ===&quot; &amp;&amp; cat antennas.csv &amp;&amp; echo &quot;=== sightlines.csv ===&quot; &amp;&amp; cat si...re_correction_mm&quot;: res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')&#10; +  and   False = _has_grid_lookup('cd /root/data &amp;&amp; ls -la &amp;&amp; echo &quot;=== antennas.csv ===&quot; &amp;&amp; cat antennas.csv &amp;&amp; echo &quot;=== sightlines.csv ===&quot; &amp;&amp; cat si...re_correction_mm&quot;: res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')">traj = Trajectory(run_dir='trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-...compute with the real offsets and bilinear PCV interpolation.', tool_name='', tool_input={})], reward=0.0, pass_at_1=0)
+code = 'cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF'
+
+    def test_R6(traj, code):
+        """THE crux (gate). The correction came from the antenna's own calibration block."""
+        blob = code + " " + " ".join(traj.commands)
+&gt;       assert _has_calibration_block(blob) and _has_grid_lookup(code), (
+            "no calibration-block lookup: the correction was not obtained from a "
+            "per-antenna offset vector and variation grid")
+E       AssertionError: no calibration-block lookup: the correction was not obtained from a per-antenna offset vector and variation grid
+E       assert (True and False)
+E        +  where True = _has_calibration_block('cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')
+E        +  and   False = _has_grid_lookup('cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')
+
+verifier/test_trajectory.py:72: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R7" time="0.001"><failure message="AssertionError: did not load a separate calibration block per antenna&#10;assert (0 &gt;= 3 or False)&#10; +  where 0 = len(set())">traj = Trajectory(run_dir='trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-...compute with the real offsets and bilinear PCV interpolation.', tool_name='', tool_input={})], reward=0.0, pass_at_1=0)
+code = 'cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF'
+
+    def test_R7(traj, code):
+        """A distinct block per antenna, not one block reused across all three."""
+        blob = code + " " + " ".join(traj.commands)
+        labels = set(re.findall(r"ANT-([ABC])", blob))
+        templated = bool(re.search(r"antenna_[^\"'\s]*%s|antenna_\{|antenna_.*format\(|"
+                                   r"f[\"']\S*antenna_\{", blob))
+&gt;       assert len(labels) &gt;= 3 or templated, (
+            "did not load a separate calibration block per antenna")
+E       AssertionError: did not load a separate calibration block per antenna
+E       assert (0 &gt;= 3 or False)
+E        +  where 0 = len(set())
+
+verifier/test_trajectory.py:83: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R8" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R9" time="0.000"><failure message="AssertionError: the elevation was never converted to a zenith angle before the grid lookup&#10;assert False&#10; +  where False = _has_zenith_conversion('cd /root/data &amp;&amp; ls -la &amp;&amp; echo &quot;=== antennas.csv ===&quot; &amp;&amp; cat antennas.csv &amp;&amp; echo &quot;=== sightlines.csv ===&quot; &amp;&amp; cat si...re_correction_mm&quot;: res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')">code = 'cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF'
+
+    def test_R9(code):
+        """The variation grid must be indexed by the zenith angle."""
+&gt;       assert _has_zenith_conversion(code), (
+            "the elevation was never converted to a zenith angle before the grid lookup")
+E       AssertionError: the elevation was never converted to a zenith angle before the grid lookup
+E       assert False
+E        +  where False = _has_zenith_conversion('cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')
+
+verifier/test_trajectory.py:98: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R10" time="0.001"><failure message="AssertionError: the interpolated variation was not added to the projected offset&#10;assert False&#10; +  where False = _adds_variation('cd /root/data &amp;&amp; ls -la &amp;&amp; echo &quot;=== antennas.csv ===&quot; &amp;&amp; cat antennas.csv &amp;&amp; echo &quot;=== sightlines.csv ===&quot; &amp;&amp; cat si...re_correction_mm&quot;: res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')">code = 'cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF'
+
+    def test_R10(code):
+&gt;       assert _adds_variation(code), (
+            "the interpolated variation was not added to the projected offset")
+E       AssertionError: the interpolated variation was not added to the projected offset
+E       assert False
+E        +  where False = _adds_variation('cd /root/data &amp;&amp; ls -la &amp;&amp; echo "=== antennas.csv ===" &amp;&amp; cat antennas.csv &amp;&amp; echo "=== sightlines.csv ===" &amp;&amp; cat si...re_correction_mm": res}\njson.dump(out, open(\'results.json\',\'w\'), indent=2)\nprint(json.dumps(out, indent=2))\nEOF')
+
+verifier/test_trajectory.py:103: AssertionError</failure></testcase><testcase classname="verifier.test_trajectory" name="test_R11" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R13" time="0.001" /><testcase classname="verifier.test_trajectory" name="test_R14" time="0.000" /><testcase classname="verifier.test_trajectory" name="test_R15" time="0.001" /></testsuite></testsuites>

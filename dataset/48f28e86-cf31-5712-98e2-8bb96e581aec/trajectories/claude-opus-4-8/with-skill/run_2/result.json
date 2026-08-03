@@ -1,0 +1,162 @@
+{
+  "task_name": "geomagnetic-declination-survey",
+  "rollout_name": "geomagnetic-declination-survey__14007c63",
+  "rewards": {
+    "reward": 1.0
+  },
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "with-skill",
+  "skill_source": "task_bundled",
+  "requested_skills_dir": "tasks/geomagnetic-declination-survey/environment/skills",
+  "effective_skills_dir": "/var/folders/b0/5pf3p9cj4h94cxl67pppfw0h0000gn/T/benchflow-task-689a28iu/geomagnetic-declination-survey/environment/skills",
+  "skills_sandbox_dir": "/skills",
+  "include_task_skills": true,
+  "n_tool_calls": 10,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 10,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 645448,
+    "n_output_tokens": 5041,
+    "n_cache_read_tokens": 305165,
+    "n_cache_creation_tokens": 16613,
+    "total_tokens": 328711,
+    "cost_usd": 0.39189875,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 645448,
+    "total_completion_tokens": 5041,
+    "total_cached_tokens": 305165,
+    "total_cost_usd": 0.39189875
+  },
+  "trajectory_summary": {
+    "steps": 19,
+    "tool_call_steps": 10,
+    "user_message_steps": 1,
+    "agent_message_steps": 4,
+    "agent_thought_steps": 4,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 4,
+      "agent_message": 4,
+      "tool_call": 10
+    },
+    "tool_call_status_counts": {
+      "completed": 9,
+      "failed": 1
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "required",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-24 17:23:26.992714",
+  "finished_at": "2026-07-24 17:26:09.287929",
+  "timing": {
+    "environment_setup": 5.0,
+    "agent_setup": 4.6,
+    "agent_execution": 90.0,
+    "verifier": 3.6,
+    "total": 162.3
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "source": {
+    "type": "github",
+    "repo": "Ethara-Ai/erza-harness",
+    "requested_ref": "main",
+    "resolved_sha": "90a5d0a34f3f63304b8e958a8657a8c75d327231",
+    "path": "tasks/geomagnetic-declination-survey",
+    "dirty": true,
+    "file_hashes": {
+      "build/independent_check.py": "sha256:afbf96386dd964d4c65064a88a47cf38415935a34921866457c8920e635992d3",
+      "environment/Dockerfile": "sha256:b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3",
+      "environment/data/question.json": "sha256:d5b74e77d17c073c78968d2bba91adaf382430b2408072e31613048899b1a973",
+      "environment/data/stations.csv": "sha256:53af9932b18e81ebb929179657fdc72d7fac2ccecbdc76c20f8bd1a09638d744",
+      "environment/skills/geomagnetic-declination-igrf/SKILL.md": "sha256:c7005433ead0ddbdbc0c02ad8d427dabf574469fe1fb878e6a2e7766313b002b",
+      "environment/skills/geomagnetic-declination-igrf/references/coefficients-and-synthesis.md": "sha256:06ce91f0b6ef6ae118ce42b085032c4675db9fa566632464a3221681f06f5d3b",
+      "environment/skills/geomagnetic-declination-igrf/references/igrf13coeffs.txt": "sha256:460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425",
+      "oracle/generate.py": "sha256:f13f86280d7e4d2544a4d7e9ec33ebc07465db5324f59de9c41d319643ee4ba5",
+      "oracle/igrf13coeffs.txt": "sha256:460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425",
+      "oracle/igrf_synth.py": "sha256:9e4779f03d9d498cb7961f43d0254983e7f59b3ca7c20c48449ad618989d957e",
+      "oracle/solve.py": "sha256:c87cb1b0e0cc7e29630ba9db9906bb52b2134ed15c8f5b3d0d1bc95f3fd64214",
+      "oracle/solve.sh": "sha256:32c1ad302a2b8e3fe20953f8608bafc1476525f02e73a7f6c86e58dfc756b805",
+      "task.md": "sha256:9e76b61f94bb14cb01fc059dfd8927b22394e155bde2d63bb235680a9b0efc3c",
+      "uuid_provenance.json": "sha256:fdace90da4d09f278fbe4242ddc4aeafc9b9401c848f87caef0f71393acc0ccd",
+      "verifier/expected_values.json": "sha256:c0842ad4b3090a28ab580edb0b7ad2c3d3bf748a37ef7cb158ad6140d49cf59d",
+      "verifier/golden.json": "sha256:c0842ad4b3090a28ab580edb0b7ad2c3d3bf748a37ef7cb158ad6140d49cf59d",
+      "verifier/igrf13coeffs.txt": "sha256:460b8d8beb9b4df84febe4f0b639f0dd54dccfe8ff0970616287b015fa721425",
+      "verifier/igrf_synth.py": "sha256:9e4779f03d9d498cb7961f43d0254983e7f59b3ca7c20c48449ad618989d957e",
+      "verifier/process/.gitignore": "sha256:dcbb1f6d763032a1660a3589054b66bcea51cf3a610843b84fb25fbe7107f941",
+      "verifier/process/README.md": "sha256:e30675a63bf7cb367e40eebbac6f90294cd3878c35c5e6bc2bda56cd34c3a03d",
+      "verifier/process/TRUTH.md": "sha256:facd7c538fdfe5b6cffa1a2af3ff2083e2dc2d99c4d222607f9d52c3e5a55ec3",
+      "verifier/process/judge/judge.py": "sha256:939c2e143f5a827d94d05bdc98bdaae0151fbf55c00a3d7f93ca6df0987e2d45",
+      "verifier/process/report.py": "sha256:371ca5e314e68816cfdb1b7122958fac559f737cf4b55f66dd23fd8e739fd5c0",
+      "verifier/process/rubrics.json": "sha256:ed12bd38cd1922f747021d6ed5bcb3d368e73cc3c4818d75b0555b17caf6c089",
+      "verifier/process/run.sh": "sha256:1482bf78149a53b11042c6c450b84a118f12ddaf7d69753b26669901183aa6b6",
+      "verifier/process/score.py": "sha256:7c331f014f281965c7d26950c4db81551c126efb56012adbc4f6a669f62afe3c",
+      "verifier/process/verification/rederivation_test.py": "sha256:6378fcdabef6d209a35c4d1b22e76c445e18022ac867188610932fd254f33610",
+      "verifier/process/verifier/conftest.py": "sha256:2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23",
+      "verifier/process/verifier/test_trajectory.py": "sha256:4a27410422a58accb16e8878e3b8ec70bded4df1331dd1886d5bf32b99b70023",
+      "verifier/process/verifier/trajectory.py": "sha256:a03f8f77f9457a318f0bc8d2a4740035d665adfabcaed5e200fdbc4d267ae9e2",
+      "verifier/rubric.yaml": "sha256:e3cccac08bf505c24ba2e18307864980711dde6144b3788d6f6858f41c9e62da",
+      "verifier/test.sh": "sha256:4b6b091b93fd5220424259ef55a4b7823320cd95911f4b60f761c4cab9e04164",
+      "verifier/test_outputs.py": "sha256:2d3da9d535a4a5188a04688e8541028abffd8db9abc5f22842cb8753419cba80",
+      "verifier/truth.md": "sha256:32f51b5e346ee95186f5759ac83235c0da6a789cea2c8472c343b84a5a98b940"
+    }
+  },
+  "task_digest": "sha256:40ac03e2ef0e9814ed7279f001b5417988cf0b8e90a0a2a2db223ca7b5807818",
+  "sandbox_id": null
+}

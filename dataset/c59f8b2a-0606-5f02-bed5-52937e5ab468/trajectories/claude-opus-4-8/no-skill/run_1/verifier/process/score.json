@@ -1,0 +1,222 @@
+{
+  "run_dir": "/Users/AgisSpectre/Desktop/erza/delivery/trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-8/no-skill/run_1",
+  "task_id": "antenna-phase-centre-correction",
+  "version_stamp": {
+    "truth_md": "2a062b5d912fc6da",
+    "rubrics_json": "1265879d7ca26645",
+    "test_trajectory_py": "04a690dbeeea144b"
+  },
+  "outcome": {
+    "score": 0.375,
+    "n_scored": 2,
+    "n_total": 2,
+    "weight_scored": 8,
+    "weight_total": 8,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R1",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R2",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      }
+    ]
+  },
+  "deterministic": {
+    "score": 0.6666666666666666,
+    "n_scored": 13,
+    "n_total": 13,
+    "weight_scored": 30,
+    "weight_total": 30,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R3",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The agent opened the shipped sightlines.csv or question.json rather than working only from the prose task.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R4",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The agent authored a solver (a file write or a python heredoc/-c) rather than emitting numbers directly.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R5",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The agent executed python (the answer was computed, not asserted).",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R6",
+        "weight": 5,
+        "is_positive": true,
+        "is_gate": true,
+        "criterion": "THE crux against the no-skill route. The run reads a per-antenna calibration block and takes both the offset vector and the variation grid out of it, rather than manufacturing a correction from the nominal vector supplied for orientation.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R7",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "DISTINCTNESS INCREMENT. Given that a calibration block was consulted at all - which is R6's question, not this one - a DISTINCT block is resolved for each antenna rather than one block applied to all three. What this criterion grades is the per-antenna resolution and nothing else.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R8",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The frequency section is addressed by the three-character carrier code the case names, rather than one section being reused across carriers.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R9",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The variation grid is indexed by the zenith angle, obtained by subtracting the elevation from a right angle, rather than by the elevation itself.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R10",
+        "weight": 3,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The interpolated variation is added to the projected offset with the sign the table carries.",
+        "score": 0.0,
+        "detail": "not satisfied"
+      },
+      {
+        "id": "R11",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The run emitted phase_centre_correction_mm at the declared path in the declared shape.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R12",
+        "weight": 0,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "The offset vector was projected onto the line of sight: a unit vector towards the satellite is built in the local north/east/up frame from the azimuth (clockwise from north) and the elevation, and combined with the offset by a dot product. Any equivalent construction counts - an explicit dot product, a sum of component-wise products, or a spherical formula that expands to the same thing.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R13",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: the run read /oracle, /verifier, expected_values.json, golden.json or truth.md.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R14",
+        "weight": -5,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: the run injected a conftest, edited or deleted a test, or wrote under the verifier path.",
+        "score": 1.0,
+        "detail": "ok"
+      },
+      {
+        "id": "R15",
+        "weight": -3,
+        "is_positive": false,
+        "is_gate": false,
+        "criterion": "GUARDRAIL: the run attempted to fetch a calibration file or any other input over the network.",
+        "score": 1.0,
+        "detail": "ok"
+      }
+    ]
+  },
+  "non_deterministic": {
+    "score": 0.5,
+    "n_scored": 2,
+    "n_total": 2,
+    "weight_scored": 2,
+    "weight_total": 2,
+    "coverage": 1.0,
+    "status": "VALID",
+    "criteria": [
+      {
+        "id": "R16",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "NARRATION: the run states that the phase-centre pattern belongs to the antenna model and cannot be derived from the line-of-sight geometry.",
+        "score": 1.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': True, 'rationale': 'In the final summary the agent explicitly asserts that the real per-antenna offsets and PCV tables \"differ from model to model\" and are \"not recoverable from the geometry\", and reasons from that to conclude the reference values depend on undelivered calibration data.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': True, 'rationale': 'The agent explicitly states in its final summary that \"the real per-antenna offsets and PCV tables ... differ from model to model\" and \"are not recoverable from the geometry,\" directly echoing the task\\'s own framing that the pattern belongs to the antenna model, not the line-of-sight geometry.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': True, 'rationale': 'In the final summary (message [21]), the agent explicitly states: \"The task statement is explicit that the real per-antenna offsets and PCV tables \\'differ from model to model\\' and are \\'not recoverable from the geometry\\'\". The agent clearly acknowledges that the phase-centre pattern is model-specific and cannot be derived from line-of-sight geometry, quoting the distinction between the antenna\\'s own calibration block and geometric recovery.'}]",
+        "rationales": []
+      },
+      {
+        "id": "R17",
+        "weight": 1,
+        "is_positive": true,
+        "is_gate": false,
+        "criterion": "NARRATION: the run identifies the nominal offset supplied for orientation as orientation rather than as the basis for the answer.",
+        "score": 0.0,
+        "detail": "unanimous votes=[{'model': 'claude-opus-5', 'stance': 'domain reviewer', 'satisfied': False, 'rationale': 'Although the agent noted the nominal block was labelled \"for orientation only\", it nonetheless used those nominal offsets (with PCV=0) as the basis for every reported number, i.e. it manufactured the answer from the distractor rather than treating it as orientation.'}, {'model': 'claude-sonnet-5', 'stance': 'neutral', 'satisfied': False, 'rationale': 'Although the agent quotes that the nominal_reference block is \"explicitly labelled \\'for orientation only\\'\" and flags this as a caveat, it nevertheless plugs those nominal offsets directly into the formula as (N,E,U) and writes the resulting numbers to results.json, i.e., it used the distractor vector as the actual basis for the reported answer rather than withholding it or seeking the true per-antenna block further.'}, {'model': 'claude-haiku-4-5-20251001', 'stance': 'sceptic', 'satisfied': False, 'rationale': 'The agent correctly identifies the nominal offset as \"for orientation only\" (message [17]: \"explicitly labelled \\'for orientation only\\'\" and [21]: \"explicitly labelled *\\'for orientation only\\'*\"). However, the agent then uses this nominal offset as the direct basis for computing the answers, applying it with PCV=0 when no calibration file is found. While the identification is correct, the agent\\'s actual solution implements exactly the \"route available without the antenna\\'s own block\" that the ground truth describes as failing. The criterion requires identifying the nominal offset as orientation *rather than as the basis for the answer*, but the agent\\'s final computation (message [18]) makes it the basis, contradicting the proper handling.'}]",
+        "rationales": []
+      }
+    ]
+  },
+  "coverage_floor": 0.6666666666666666,
+  "verdict": "CRUX-FAILED + OUTCOME-FAILED",
+  "crux_failed": true,
+  "outcome_failed": true,
+  "failed_gates": [
+    "R6"
+  ],
+  "unevaluated_gates": [],
+  "gates_unevaluated": false,
+  "failed_outcome_gates": [
+    "R2"
+  ],
+  "crux_cap": 0.5,
+  "final_score": 0.5,
+  "final_formula": "(n_D * S_D + n_N * S_N) / (n_D + n_N), over VALID channels only, capped at 0.5 when a gate fails",
+  "CONTINUOUS": {
+    "passed": 0,
+    "total": 12,
+    "value": 0.0,
+    "source": "verifier/pytest_output.txt"
+  },
+  "guardrail_floor_excluded": [],
+  "abstained": [],
+  "outcome_score": 0.0,
+  "outcome_pass_at_1": 0.0
+}
