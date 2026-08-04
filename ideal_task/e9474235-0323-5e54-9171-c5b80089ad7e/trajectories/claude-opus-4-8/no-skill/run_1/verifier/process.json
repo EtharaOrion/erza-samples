@@ -1,0 +1,292 @@
+{
+ "run": "no-skill/run_1",
+ "outcome": {
+  "score": 0.0833,
+  "cases_passed": 1,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_height[TG-A-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t3]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t3]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t3]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_height[TG-C-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 3,
+  "selfchecks_total": 3,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_frozen_golden_matches_live_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.004
+   },
+   {
+    "name": "test_selfcheck_plausibility_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "deterministic": {
+  "cases_passed": 8,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_R1",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R2",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "outcome_channel_route": "LITERAL answer file /root/results.json (run's own final emission)"
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R16",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run correctly noted that gauge-specific amplitudes and Greenwich phases were indispensable and that the observation represented only one instant, but it ultimately substituted that observed value as a constant at every target instant\u2014the failure mode the criterion explicitly excludes."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R17",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The only validation was parsing the output JSON and counting its cases. The run did not evaluate an independent harmonic prediction at the observation timestamp or perform any check capable of detecting a wrong epoch, phase sign, or datum offset."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R18",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run explicitly said the decoy values were \u201csingle instant, one earlier time\u201d and \u201cnot to be used for prediction,\u201d and later reiterated that they were not the target-instant predictions."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R19",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run never implemented harmonic synthesis or stated the required epoch, UTC/Greenwich convention, equilibrium-argument units, or phase-lag subtraction convention."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "pass_at_1": 0
+}

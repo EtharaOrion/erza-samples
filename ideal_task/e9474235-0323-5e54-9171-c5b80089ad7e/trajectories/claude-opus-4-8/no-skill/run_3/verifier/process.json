@@ -1,0 +1,292 @@
+{
+ "run": "no-skill/run_3",
+ "outcome": {
+  "score": 0.0833,
+  "cases_passed": 1,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_height[TG-A-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t3]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-A-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-B-t3]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_height[TG-B-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t1]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t2]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t3]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_height[TG-C-t4]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 3,
+  "selfchecks_total": 3,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_frozen_golden_matches_live_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.004
+   },
+   {
+    "name": "test_selfcheck_plausibility_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "deterministic": {
+  "cases_passed": 8,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_R1",
+    "classname": "",
+    "status": "passed",
+    "time": 0.517
+   },
+   {
+    "name": "test_R2",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.007
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "outcome_channel_route": "probe re-execution (docker erza-ta-e9474235:latest, cwd=.) from <heredoc-15>.py"
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R16",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run explicitly identified per-gauge amplitudes, Greenwich phase lags, and datum offsets as indispensable, load-bearing inputs and explained that without them faithful harmonic prediction was not computable. It also distinguished the lone observation as a random-phase sample of the tidal oscillation rather than sufficient information to reconstruct the curve, even though it ultimately used that value as a declared fallback estimate."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R17",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run never implemented a harmonic method or evaluated it at the recent observation timestamp, so it performed no independent check capable of exposing a wrong epoch, phase sign, or datum offset. Its checks concerned file availability and output shape only."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R18",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run repeatedly stated that the decoy value was \u201ca single water level per gauge at 2025-01-01T00:00Z,\u201d applied to an earlier instant, and was not a target-time prediction."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R19",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run did not state or implement the astronomical epoch, UTC/Greenwich convention, equilibrium-argument units, or phase-lag subtraction convention; it emitted constant fallback values without performing those branches."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "pass_at_1": 0
+}
