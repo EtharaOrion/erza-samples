@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "id": "n_treats_positions_as_absolute",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning treats the layout as a map of absolute character positions whose gaps are deliberate, rather than as an ordered list of fields to concatenate.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The agent built a 750-character buffer and used `put(start, end, val)` with explicit 1-based inclusive offsets for every field, leaving reserved ranges deliberately blank rather than closing gaps or merely packing fields in order."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_verification_that_can_disagree",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checks its result against something that could actually have disagreed - slicing the finished line back apart and reading fields out, checking the length, checking that the field table's own lengths sum to it - rather than treating 'the script ran' as verification.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The run checked table contiguity and total length, asserted every emitted line was 750 characters, and sliced R0001 back apart by the defined ranges to inspect decoded fields; it also independently spot-checked indicators and tails in R0002 and R0003."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_states_layout_source",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which specification, revision and per-form table the positions came from.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "The agent explicitly identified \u201cIRS Publication 1220 (Tax Year 2025) Payee \u2018B\u2019 Record\u201d as the layout source, but it did not state the specific 1099-MISC per-form table from which the return-specific tail positions came."
+        }
+      ],
+      "rationales": []
+    }
+  ],
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+}

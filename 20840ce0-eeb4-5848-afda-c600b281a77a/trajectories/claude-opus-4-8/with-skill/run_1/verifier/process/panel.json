@@ -1,0 +1,72 @@
+{
+  "criteria": [
+    {
+      "id": "n_treats_positions_as_absolute",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning treats the layout as a map of absolute character positions whose gaps are deliberate, rather than as an ordered list of fields to concatenate.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The emitter uses a 750-character buffer and writes fields through `Rec.put(first, last, ...)` at explicit one-based ranges, leaving reserved gaps intact rather than packing fields together."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_verification_that_can_disagree",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checks its result against something that could actually have disagreed - slicing the finished line back apart and reading fields out, checking the length, checking that the field table's own lengths sum to it - rather than treating 'the script ran' as verification.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "After building the records, the run asserts each line\u2019s length and slices the completed lines at fixed offsets to compare name control, TIN, name, city, state, and ZIP against the source data; it also performs additional slice-based spot checks."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_states_layout_source",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which specification, revision and per-form table the positions came from.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The agent identifies IRS Publication 1220, Tax Year 2025, and uses the common B-record layout plus the Form 1099-MISC-specific positions 544\u2013750 table supplied by the skill."
+        }
+      ],
+      "rationales": []
+    }
+  ],
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+}

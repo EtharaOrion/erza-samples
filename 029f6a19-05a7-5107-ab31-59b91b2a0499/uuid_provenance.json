@@ -1,142 +1,146 @@
 {
- "recipe": "forge.task_id.v1",
- "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
- "canonical_content_hash": "ffc1ce1d8aeb0b88729b1a8272560127430933e9f0b2fabce014c13179f6c93f",
- "task_id": "029f6a19-05a7-5107-ab31-59b91b2a0499",
- "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
- "format": "standardised benchmark layout (tests/) - re-sealed 2026-08-04 after the format change; supersedes the pre-format seal.",
- "manifest": [
-  {
-   "relpath": "TRUTH.md",
-   "sha256": "2c84957ed65dfab782ce7c5584702aa4296cc5a22bd5b17872d1cb0f6fbfcaf4"
-  },
-  {
-   "relpath": "environment/Dockerfile",
-   "sha256": "b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3"
-  },
-  {
-   "relpath": "environment/data/area_profile.csv",
-   "sha256": "ccb5630a479e88e1a5b814f299e236b76a9c7a8cbb42d6430ad5eb0e859563ec"
-  },
-  {
-   "relpath": "environment/data/question.json",
-   "sha256": "304fe84c19175735dff05effb155e1d3d807ef147f627a5a6b3074cb9fa63b65"
-  },
-  {
-   "relpath": "environment/data/response_records.csv",
-   "sha256": "c2efd726be63920c68e975bff290bf15be15be92aaf8e35f613b358a70cb6dae"
-  },
-  {
-   "relpath": "environment/skills/nhis-primary-race-bridging/SKILL.md",
-   "sha256": "ece31abfb2e128b11d3edb670d2275eeda4403a8747d142733dce94de9f954bf"
-  },
-  {
-   "relpath": "instruction.md",
-   "sha256": "18c3c0abf36f847c7a73b9bdb95a267b50d6392540c781f11c0e5657eec576fe"
-  },
-  {
-   "relpath": "oracle/bridging_models.py",
-   "sha256": "ee67bff81ad563afdc8a43f48eafba32a52fa4b10783eb558cc1c8eaec643af6"
-  },
-  {
-   "relpath": "oracle/solve.py",
-   "sha256": "0287162a4b88440431cb1fe075d4086033d1f3dbba8a223c8a09587e4f3ab354"
-  },
-  {
-   "relpath": "oracle/solve.sh",
-   "sha256": "30a0de442fab424a54cc1205a16ae04533f01643fcf40603643421774e9815a1"
-  },
-  {
-   "relpath": "task.toml",
-   "sha256": "3b1f8faad0fd8be18a9b45e16879c03b2633917afcdada981dd7b263b9717d32"
-  },
-  {
-   "relpath": "tests/anchor_table9.csv",
-   "sha256": "8e931b4074ed970b70e365ab6f4aa622bb60b7caedf8e220a9d6e46ebb9b3333"
-  },
-  {
-   "relpath": "tests/cell_universe.npz",
-   "sha256": "efc71316f294fbd86cc4602f6b3e8ad58ea2654c4cdee3e0871313ba79f85bc5"
-  },
-  {
-   "relpath": "tests/expected_values.json",
-   "sha256": "c39954248adc7cfa893264781c885d58f5af06aecd04c7a1f9ffb025c8b850f2"
-  },
-  {
-   "relpath": "tests/independent_bridging.py",
-   "sha256": "827c0e7df4ca822a4f38d70630c79d1b43a17a73e1c9e874a37b20b426834143"
-  },
-  {
-   "relpath": "tests/process/README.md",
-   "sha256": "ed61e43b6c59437dff14495d73c8c8d5ae5aba0f18835d72bf6eb18183f8830d"
-  },
-  {
-   "relpath": "tests/process/TRUTH.md",
-   "sha256": "d13ea6dea20fa7998863d7f1579149b936e903bdaad028b91ff06cd8b3fe382d"
-  },
-  {
-   "relpath": "tests/process/judge/judge.py",
-   "sha256": "959c5facb3bb23c94bc5bf76cb955cf3f322bfa3670088254d91741d5a69bbba"
-  },
-  {
-   "relpath": "tests/process/report.py",
-   "sha256": "f87ff65907c6fddb8b6956c4fcac56e27f4cbbcb4912e402216de8ba7c00b4ec"
-  },
-  {
-   "relpath": "tests/process/rubrics.json",
-   "sha256": "5cdfa4845142cb929c5cb1db8e1c912888970da67a432512a0517b59e7477ec2"
-  },
-  {
-   "relpath": "tests/process/run.sh",
-   "sha256": "e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2"
-  },
-  {
-   "relpath": "tests/process/score.py",
-   "sha256": "a49e7e7a20418a35aa934ef37e89599d4521aed3e99126bf962344abd4e67699"
-  },
-  {
-   "relpath": "tests/process/verification/check_refs.py",
-   "sha256": "bc5c36e04a635ae480dd6aa05dd91f957153f6626e9e52c6bba11649a3f333a3"
-  },
-  {
-   "relpath": "tests/process/verification/negative_fixtures_test.py",
-   "sha256": "3fb08ede26ae268751f44e9ccf035441b33b66e7b090f7863affbff51bcf7c3d"
-  },
-  {
-   "relpath": "tests/process/verification/rederivation_test.py",
-   "sha256": "b70338e82b477a63a3b03b7eb33cd951f72faa41985008208fb6b35d0ae62655"
-  },
-  {
-   "relpath": "tests/process/verifier/checks.py",
-   "sha256": "4dff903462eda5f7980f641186e5b56df00228df9e280e4cac74aa00b9b67cca"
-  },
-  {
-   "relpath": "tests/process/verifier/conftest.py",
-   "sha256": "2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23"
-  },
-  {
-   "relpath": "tests/process/verifier/test_trajectory.py",
-   "sha256": "6c6b46dbf933a4d7364df1eb4cbd44b157ce15507ca3135350322715348b77f1"
-  },
-  {
-   "relpath": "tests/process/verifier/trajectory.py",
-   "sha256": "fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012"
-  },
-  {
-   "relpath": "tests/rubric.yaml",
-   "sha256": "d74a93bf4fe889ccbf879f688194ca423f962df7d80dadadc5bea2b84429d321"
-  },
-  {
-   "relpath": "tests/test.sh",
-   "sha256": "524bccba49195e0d7f5a9e8c640a390dd1a543c1e4df180b388e2e6c3e29b4d8"
-  },
-  {
-   "relpath": "tests/test_outputs.py",
-   "sha256": "e81681a455e4563d4694c7aaa07d0c6e34c5a06165e26a44e038b46196cd4ab5"
-  },
-  {
-   "relpath": "tests/truth.md",
-   "sha256": "0c605d9399bd41e4fd168396848e79cb7758d500ea17c028fadf94f5de209713"
-  }
- ]
+  "recipe": "forge.task_id.v1",
+  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
+  "canonical_content_hash": "359ee8e4c4616ce5bf946935a84cb1d55fc87dfb11a13a38890ca9be4906d718",
+  "task_id": "029f6a19-05a7-5107-ab31-59b91b2a0499",
+  "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
+  "format": "standardised benchmark layout (tests/) - re-sealed 2026-08-04 after the format change; re-sealed 2026-08-04 after the verifier-conformance repair (Stage-7 resolver, panel disclosure, version stamp); supersedes the prior seal. task_id retained. re-sealed 2026-08-04 after the panel disclosures were regenerated from the recorded panels (they had drifted, disclosing a self-judging seat the single gpt-5.6-sol panel does not have); supersedes the prior seal. task_id retained. re-sealed 2026-08-04 after panel disclosures regenerated from the recorded panels; supersedes the prior seal. task_id retained.",
+  "manifest": [
+    {
+      "relpath": "TRUTH.md",
+      "sha256": "2c84957ed65dfab782ce7c5584702aa4296cc5a22bd5b17872d1cb0f6fbfcaf4"
+    },
+    {
+      "relpath": "environment/Dockerfile",
+      "sha256": "b32ab620f8c736972f8c56ee807d05c0f6dfc4eea0c91a7ae043313db4248aa3"
+    },
+    {
+      "relpath": "environment/data/area_profile.csv",
+      "sha256": "ccb5630a479e88e1a5b814f299e236b76a9c7a8cbb42d6430ad5eb0e859563ec"
+    },
+    {
+      "relpath": "environment/data/question.json",
+      "sha256": "304fe84c19175735dff05effb155e1d3d807ef147f627a5a6b3074cb9fa63b65"
+    },
+    {
+      "relpath": "environment/data/response_records.csv",
+      "sha256": "c2efd726be63920c68e975bff290bf15be15be92aaf8e35f613b358a70cb6dae"
+    },
+    {
+      "relpath": "environment/skills/nhis-primary-race-bridging/SKILL.md",
+      "sha256": "ece31abfb2e128b11d3edb670d2275eeda4403a8747d142733dce94de9f954bf"
+    },
+    {
+      "relpath": "instruction.md",
+      "sha256": "18c3c0abf36f847c7a73b9bdb95a267b50d6392540c781f11c0e5657eec576fe"
+    },
+    {
+      "relpath": "oracle/bridging_models.py",
+      "sha256": "ee67bff81ad563afdc8a43f48eafba32a52fa4b10783eb558cc1c8eaec643af6"
+    },
+    {
+      "relpath": "oracle/solve.py",
+      "sha256": "0287162a4b88440431cb1fe075d4086033d1f3dbba8a223c8a09587e4f3ab354"
+    },
+    {
+      "relpath": "oracle/solve.sh",
+      "sha256": "30a0de442fab424a54cc1205a16ae04533f01643fcf40603643421774e9815a1"
+    },
+    {
+      "relpath": "task.toml",
+      "sha256": "3b1f8faad0fd8be18a9b45e16879c03b2633917afcdada981dd7b263b9717d32"
+    },
+    {
+      "relpath": "tests/anchor_table9.csv",
+      "sha256": "8e931b4074ed970b70e365ab6f4aa622bb60b7caedf8e220a9d6e46ebb9b3333"
+    },
+    {
+      "relpath": "tests/cell_universe.npz",
+      "sha256": "efc71316f294fbd86cc4602f6b3e8ad58ea2654c4cdee3e0871313ba79f85bc5"
+    },
+    {
+      "relpath": "tests/expected_values.json",
+      "sha256": "c39954248adc7cfa893264781c885d58f5af06aecd04c7a1f9ffb025c8b850f2"
+    },
+    {
+      "relpath": "tests/independent_bridging.py",
+      "sha256": "827c0e7df4ca822a4f38d70630c79d1b43a17a73e1c9e874a37b20b426834143"
+    },
+    {
+      "relpath": "tests/process/PANEL_DISCLOSURE.md",
+      "sha256": "d9ff370478cfd7c2650af27c395947d22f30079f7d50607913b0210117f2bc25"
+    },
+    {
+      "relpath": "tests/process/README.md",
+      "sha256": "ed61e43b6c59437dff14495d73c8c8d5ae5aba0f18835d72bf6eb18183f8830d"
+    },
+    {
+      "relpath": "tests/process/TRUTH.md",
+      "sha256": "d13ea6dea20fa7998863d7f1579149b936e903bdaad028b91ff06cd8b3fe382d"
+    },
+    {
+      "relpath": "tests/process/judge/judge.py",
+      "sha256": "959c5facb3bb23c94bc5bf76cb955cf3f322bfa3670088254d91741d5a69bbba"
+    },
+    {
+      "relpath": "tests/process/report.py",
+      "sha256": "f87ff65907c6fddb8b6956c4fcac56e27f4cbbcb4912e402216de8ba7c00b4ec"
+    },
+    {
+      "relpath": "tests/process/rubrics.json",
+      "sha256": "5cdfa4845142cb929c5cb1db8e1c912888970da67a432512a0517b59e7477ec2"
+    },
+    {
+      "relpath": "tests/process/run.sh",
+      "sha256": "e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2"
+    },
+    {
+      "relpath": "tests/process/score.py",
+      "sha256": "3f4ef93152b4ff0578f2869851f7b3e68144faf779cd7e919ad3a4718d02db0b"
+    },
+    {
+      "relpath": "tests/process/verification/check_refs.py",
+      "sha256": "bc5c36e04a635ae480dd6aa05dd91f957153f6626e9e52c6bba11649a3f333a3"
+    },
+    {
+      "relpath": "tests/process/verification/negative_fixtures_test.py",
+      "sha256": "3fb08ede26ae268751f44e9ccf035441b33b66e7b090f7863affbff51bcf7c3d"
+    },
+    {
+      "relpath": "tests/process/verification/rederivation_test.py",
+      "sha256": "b70338e82b477a63a3b03b7eb33cd951f72faa41985008208fb6b35d0ae62655"
+    },
+    {
+      "relpath": "tests/process/verifier/checks.py",
+      "sha256": "4dff903462eda5f7980f641186e5b56df00228df9e280e4cac74aa00b9b67cca"
+    },
+    {
+      "relpath": "tests/process/verifier/conftest.py",
+      "sha256": "2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23"
+    },
+    {
+      "relpath": "tests/process/verifier/test_trajectory.py",
+      "sha256": "6c6b46dbf933a4d7364df1eb4cbd44b157ce15507ca3135350322715348b77f1"
+    },
+    {
+      "relpath": "tests/process/verifier/trajectory.py",
+      "sha256": "fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012"
+    },
+    {
+      "relpath": "tests/rubric.yaml",
+      "sha256": "d74a93bf4fe889ccbf879f688194ca423f962df7d80dadadc5bea2b84429d321"
+    },
+    {
+      "relpath": "tests/test.sh",
+      "sha256": "524bccba49195e0d7f5a9e8c640a390dd1a543c1e4df180b388e2e6c3e29b4d8"
+    },
+    {
+      "relpath": "tests/test_outputs.py",
+      "sha256": "e81681a455e4563d4694c7aaa07d0c6e34c5a06165e26a44e038b46196cd4ab5"
+    },
+    {
+      "relpath": "tests/truth.md",
+      "sha256": "0c605d9399bd41e4fd168396848e79cb7758d500ea17c028fadf94f5de209713"
+    }
+  ]
 }

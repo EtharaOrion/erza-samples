@@ -1,145 +1,63 @@
 {
-  "bundle": "6f76812f-83f9-5f56-9b63-38a56548fc24",
-  "run_dir": "trajectories/6f76812f-83f9-5f56-9b63-38a56548fc24/claude-opus-4-8/no-skill/run_3",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
+ "criteria": [
+  {
+   "id": "R18",
+   "voted": true,
+   "satisfied": false,
+   "resolution": "single",
+   "votes": [
     {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": false,
+     "rationale": "The run never found or used published ordered-pair bias rows, so it did not distinguish direct pairs from pairs requiring chained assembly. Instead, it treated all arcs uniformly through a joint network-estimated station-plus-satellite bias model."
     }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
-  "criteria": [
+   ],
+   "rationales": []
+  },
+  {
+   "id": "R19",
+   "voted": true,
+   "satisfied": false,
+   "resolution": "single",
+   "votes": [
     {
-      "id": "R18",
-      "weight": 3,
-      "is_positive": true,
-      "criterion": "The reasoning distinguishes the arcs whose ordered pair is published directly from those whose pair has to be assembled from other rows, rather than treating every arc as the same lookup.",
-      "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent never engaged with the RINEX signal-code pairs at all beyond reading receivers.csv once; it searched for a bias product, found none, and replaced the lookup entirely with a network least-squares fit, so it never distinguished directly-published ordered pairs from pairs needing chained assembly."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The agent never located or used a published differential-bias reference product; instead it attempted to estimate biases via network least-squares from the observations themselves, so it never engaged with the notion of a directly-published ordered pair versus a chained/assembled one."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent never engages with bias lookup, precedence rules (direct pair, reversed pair, chain assembly), or the mounted reference product described in the ground truth. Instead, at step [16] and [45], it explicitly pivots to solving for biases via network least-squares estimation from the data alone, stating biases are \"not recoverable from a single station's own record\" but bypassing the resolution machinery entirely. The trajectory contains no evidence of distinguishing which arcs would resolve via direct pair vs. reversed pair vs. chain assembly."
-        }
-      ],
-      "dissenting_models": []
-    },
-    {
-      "id": "R19",
-      "weight": 3,
-      "is_positive": true,
-      "criterion": "The reasoning checks the calibrated result against a physical expectation - vertical content positive and of order tens of TECU, a nanosecond of uncorrected delay worth several TECU - rather than reporting whatever came out.",
-      "voted": true,
-      "satisfied": true,
-      "resolution": "majority",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": true,
-          "rationale": "The agent ran an explicit validation asserting all 12 arc values are positive (\"all positive: True\") and separately quantified the physical sensitivity (d(VTEC)/dDCB \u2248 8.4 TECU per metre of differential delay, i.e. the equivalent of the \"nanosecond is worth several TECU\" check), tying the reported tens-of-TECU results to a physical expectation rather than reporting blindly."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "At the end the agent explicitly validated that all reported VTEC values are positive (\"all positive: True\") and the values it produced are in the tens-of-TECU range, matching the expected physical order of magnitude, though it did not explicitly invoke the \"nanosecond worth several TECU\" heuristic."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent verifies at step [50] that \"all positive: True\" and confirms the final values are in the 13\u201351 TECU range. However, it does not articulate an explicit sanity check against the physical expectation stated in the ground truth \u2014 namely, that \"vertical content is positive and of order tens of TECU, and one nanosecond of uncorrected delay is worth several TECU.\" The agent checks positivity but does not reason through whether the observed magnitudes are plausible given the DCB magnitudes (~1\u20133 m) or the decoy reference values (~3\u201365 TECU uncorrected)."
-        }
-      ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
-    },
-    {
-      "id": "R20",
-      "weight": 1,
-      "is_positive": true,
-      "criterion": "The agent states which instrumental values it applied and where they came from.",
-      "voted": true,
-      "satisfied": true,
-      "resolution": "majority",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": true,
-          "rationale": "The agent printed the exact instrumental terms it applied (station terms c = {RX-1: 1.380, RX-2: 1.2758, RX-3: -0.9447}, satellite terms d, and per-arc DCB = c_s + d_v) and stated plainly in its summary that these came from its own joint bipartite-network least-squares fit with a sum-of-satellite-biases-zero gauge, not from any file \u2014 so the values and their provenance are explicitly stated (even though that provenance is the invalid route per the reference method)."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent explicitly reports the numeric station and satellite bias values (c and d arrays) it applied and explains they were derived from its own joint network least-squares fit across all epochs/arcs, clearly stating the origin of the instrumental values it used (even though this origin is not the actual published bias product)."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent applies instrumental constants (f1=1575.42e6 Hz, f2=1227.60e6 Hz, K=40.3082, R=6371.0 km, H=450.0 km) in the code at steps [21] and [46] but never explicitly states where these values came from. Although all are precisely those given in the task statement, the trajectory contains no statement attributing them to the problem definition, the task statement, or any other source."
-        }
-      ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": false,
+     "rationale": "The run explicitly validated that all final values were positive and the displayed results are of order tens of TECU, but it did not perform or state the specified sanity check that one nanosecond of uncorrected delay corresponds to several TECU."
     }
-  ],
-  "fingerprint": {
-    "truth_md": "af865c83c746ddbd",
-    "rubrics_json": "c14f678721ede3b1",
-    "test_trajectory_py": "c76bead8b9a0664b",
-    "expected_values_json": "fff21b1f4e8c60a3",
-    "judge_impl": "7014897be87fe4dd",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+   ],
+   "rationales": []
+  },
+  {
+   "id": "R20",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "The transcript lists the estimated station biases, satellite biases, and resulting per-arc DCB values, and states that they came from a joint least-squares fit to the observation network. It also says those fitted arc DCBs were subtracted from each arc's geometry-free observable."
+    }
+   ],
+   "rationales": []
   }
+ ],
+ "panel_disclosure": {
+  "seats": [
+   {
+    "model": "gpt-5.6-sol",
+    "stance": "single"
+   }
+  ],
+  "panel_size": 1,
+  "graded_model": "claude-opus-4-8",
+  "single_vendor": "openai",
+  "self_judging_seats": [],
+  "panels_run": 1,
+  "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+ }
 }

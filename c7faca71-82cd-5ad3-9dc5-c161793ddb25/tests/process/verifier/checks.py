@@ -70,10 +70,26 @@ def _strip_comments(src: str) -> str:
 def _minutes_written(src: str) -> set[int]:
     """Every duration in the source, in minutes, whatever spelling it used.
 
-    Three spellings are seen in the wild and all three count:
+    Four spellings are seen in the wild and all four count:
       * whole minutes            690
       * an h:mm string           "11:30"
-      * decimal or arithmetic    11.5 * 60, 11 * 60 + 30
+      * arithmetic               11.5 * 60, 11 * 60 + 30
+      * a bare decimal hour      11.5   (in a table converted at lookup)
+
+    The last one was missing and cost a CRUX. A run that stores the matrix in
+    decimal hours and converts once at lookup --
+
+        TABLE_B = [..., [12, 12, 12, 12, 11.5, 11, 10.5], ...]
+        return int(round(row[col] * 60))
+
+    -- has written every half-hour cell down, but no literal here is adjacent to
+    a `* 60`, and the integer pattern deliberately refuses digits touching a dot,
+    so `11.5` matched nothing at all. The check then read a complete, correctly
+    indexed matrix as an absent one.
+
+    Broadening this cannot manufacture a pass: every caller intersects the result
+    with the published cell constants, so a number only counts if the run wrote a
+    value that IS a published cell.
     """
     found: set[int] = set()
     for m in re.finditer(r"(?<![\w.])(\d{1,4})(?![\w.])", src):
@@ -84,6 +100,8 @@ def _minutes_written(src: str) -> set[int]:
         found.add(int(round(float(m.group(1)) * 60)))
     for m in re.finditer(r"(\d{1,2})\s*\*\s*60\s*\+\s*(\d{1,2})", src):
         found.add(int(m.group(1)) * 60 + int(m.group(2)))
+    for m in re.finditer(r"(?<![\w.])(\d{1,2}\.\d+)(?![\w.])", src):
+        found.add(int(round(float(m.group(1)) * 60)))
     return found
 
 
@@ -246,16 +264,52 @@ def enumerates_all_limits(traj) -> bool:
     return bool(loaded and per_code)
 
 
+# The pairing's own contribution, however the run named it. `\b(fdp|duty|flight)\w*`
+# cannot match `net_fdp` or `sched_flt` -- `_` is a word character, so there is no
+# boundary before `fdp` -- and those are the names runs actually choose.
+#
+# This is used ONLY immediately after an arithmetic operator. It must not be used
+# in the reverse direction: the dict KEY on these lines is itself called
+# `cumulative_fdp_168h`, so a pattern this broad searching backwards matches the
+# label and the criterion becomes unfailable. The negative fixture for this
+# criterion catches exactly that, and did.
+_ADDED_TERM = r"\w*(?:fdp|duty|flight|flt)\w*"
+# Narrow form, safe to search backwards: cannot match inside `cumulative_fdp_168h`.
+_DUTY_TERM = r"\b(?:fdp|duty|flight)\w*"
+
+
 def includes_pairing_in_rolling_totals(traj) -> bool:
-    """The pairing's own duty and flight time enter the rolling totals."""
+    """The pairing's own duty and flight time enter the rolling totals.
+
+    The history column may be added directly, or -- more usually, and more
+    readably -- bound to a local first and the arithmetic done on that:
+
+        prior_fdp_7 = hm(r["prior_fdp_rolling_7d"])
+        ...
+        "cumulative_fdp_168h": 60*60 - (prior_fdp_7 + net_fdp)
+
+    Matching only the raw column name next to the operator read that as the
+    pairing never entering the total, which is the opposite of what it does. So
+    each history column's aliases are resolved first and counted the same way.
+    """
     src = _strip_comments(_code(traj))
     hits = 0
     for hist in (r"prior_fdp_rolling_7d", r"prior_fdp_rolling_28d",
                  r"prior_flight_rolling_28d"):
-        if re.search(hist + r"[^\n]{0,80}[-+][^\n]{0,40}\b(fdp|duty|flight)\w*",
-                     src) or \
-           re.search(r"\b(fdp|duty|flight)\w*[^\n]{0,60}" + hist, src):
-            hits += 1
+        names = [hist]
+        # `X = ...<hist>...` binds X to this history column.
+        names += re.findall(r"(?m)^\s*(\w+)\s*=\s*[^\n]*" + hist, src)
+        found = False
+        for name in names:
+            pat = re.escape(name) if name != hist else hist
+            # Forward: the history term, then an operator, then the pairing's own
+            # quantity as the very next token. Anchoring the term to the operator
+            # is what keeps a nearby dict key from standing in for a real addend.
+            if re.search(pat + r"[^\n]{0,80}?[-+]\s*\(?\s*" + _ADDED_TERM, src) or \
+               re.search(_DUTY_TERM + r"[^\n]{0,60}" + pat, src):
+                found = True
+                break
+        hits += 1 if found else 0
     return hits >= 2
 
 

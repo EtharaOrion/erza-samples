@@ -1,0 +1,90 @@
+{
+  "criteria": [
+    {
+      "id": "n_evaluates_the_published_equations",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning shows the fitted constants being EVALUATED for a record, not merely held: a covariate vector assembled in the published order and paired one-to-one with the coefficients of the chosen equation, a linear predictor formed from that pairing, and that predictor turned into a share. Equivalent routes count - logistic on a single contrast, exponentiate-and-normalise over the named categories, or any algebraically identical statement. Quoting the constants, naming the tables, or asserting that the published models were applied earns nothing on its own.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The code assembles ordered covariate arrays, pairs them with the selected Table 7 or Table 8 coefficient vectors using `zip`, sums the products into linear predictors, and converts those predictors through logistic or exponentiate-and-normalize calculations into shares."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_group_specific_model_choice",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning states that different response groups are governed by different equation families, and why - rather than treating the eleven groups as one problem with a shared rule.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The trajectory explicitly separates five two-category Table 7 models, the separate AIAN+BLACK+WHITE multinomial model, and five composite Table 8 groups, explaining that the applicable family depends on the response group."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_verification_that_can_disagree",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checks its result against something that could actually have disagreed - confirming that the shares of a response group sum to one over the categories it named, comparing a value against the published range for its own series, recomputing by a second route, or an equivalent - rather than treating 'the script ran' as verification.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "For every record, the script computes all named-category shares and asserts that they sum to one; it also investigates the implausibly tiny R-23 result, identifies a transform error, fixes it, and reruns the computation."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_states_constant_source",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which fitted constants it applied to which response group and where they came from.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The trajectory identifies the coefficient sets as NCHS Tables 7 and 8 from Ingram et al., Vital Health Statistics 2(135), and its model dictionaries and final summary state which table columns are applied to each response-group family."
+        }
+      ],
+      "rationales": []
+    }
+  ],
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+}

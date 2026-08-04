@@ -190,11 +190,11 @@
     {
       "id": "R19",
       "channel": "non_deterministic",
-      "weight": 5,
+      "weight": 1,
       "is_positive": true,
       "criterion": "The agent reasons that the value of the native longitude of the celestial pole is supplied by the FITS standard as a default when the card is absent from the header - not that it is missing, not that it is zero, and not that it can be read off the file.",
       "truth_ref": "Step 6b",
-      "weight_evidence": "judged twin of the deterministic gate: the derivation's content is a work product, crux-traced (Step 6b); weight 5 without gate flag - panel noise (+-5 pts) disqualifies judged verdicts from gating",
+      "weight_evidence": "judged twin of the deterministic gate: the derivation's content is a work product, crux-traced (Step 6b); weight 5 without gate flag - panel noise (+-5 pts) disqualifies judged verdicts from gating RE-TIERED 5 -> 1 on 2026-08-04 under the narration cap: what this row asks the judge for is what the run SAID, and the doctrine is explicit that a narration criterion may never exceed weight 1 because the channel grades work, not speeches. Applied uniformly across every bundle carrying a narration row above the cap, including bundles whose judged delta was already healthy, so the correction is not selective. The detector, the criterion text and every recorded verdict are unchanged - only the weight moves. Pre-fix judged scores are recorded in tools/qc-artifacts/retiering.json.",
       "is_gate": false
     },
     {
@@ -340,17 +340,17 @@
     "uncheckable": [
       {
         "truth_ref": "Step 0",
-        "heading": "Step 0 — Read the task and inventory what you were given",
+        "heading": "Step 0 \u2014 Read the task and inventory what you were given",
         "reason": "Orientation step with no separable work product. Its only externally visible consequence is output-contract conformance, which the contract criteria grade under their own steps, and the outcome channel grades end to end. Nothing in a trajectory distinguishes 'read the task and inventoried the inputs' from 'assumed the shape and happened to be right', so a criterion here would be decided by narration rather than by evidence."
       },
       {
         "truth_ref": "Step 2",
-        "heading": "Step 2 — Determine the projection from the header, then use what that buys you",
+        "heading": "Step 2 \u2014 Determine the projection from the header, then use what that buys you",
         "reason": "The product of this step is a DECISION - which world axis is longitude, and which projection family is in force - not an artifact. On this header a run that read the axis-type cards and a run that assumed the conventional order leave identical bytes, because the assumption happens to hold here, so no trajectory separates them and any criterion would be decided by narration. The failure the step guards against (assuming rather than reading) is caught downstream where it becomes visible: R8 and R21, whose truth_ref now names this step too."
       },
       {
         "truth_ref": "Step 6a",
-        "heading": "6a — Locate the celestial pole of the native system",
+        "heading": "6a \u2014 Locate the celestial pole of the native system",
         "reason": "Sub-step of Step 6. On this projection family the native pole is fixed by the fiducial point, so a run that got 6b right necessarily got 6a right: no trajectory separates them, and a criterion here would charge one question twice (REQ-9 mutual exclusivity)."
       },
       {

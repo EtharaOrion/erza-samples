@@ -108,11 +108,32 @@ _FIELD_ROW_RE = re.compile(
 _RESERVED_NAME = r"reserv|blank|filler|unused|spare|rsvd|resv|\bgap\b"
 
 
+# A width-bearing emission: the width is the call's last integer argument, and
+# the callee is what the run named that piece of the record.
+#   blanks(114)                                  -> ("blanks", 114)
+#   alnum(p.get("special_data_entries", ""), 60) -> ("alnum", 60)
+# One level of nested parentheses is allowed so a `.get(...)` default does not
+# hide the width.
+_BUILDER_ROW_RE = re.compile(
+    r"(\w+)\s*\(\s*(?:[^()]*(?:\([^()]*\))?[^()]*,\s*)?(\d{1,4})\s*\)")
+
+
 def _layout_rows(code: str):
     """(field name, declared width) for every layout row the run wrote down.
 
     Accepts `("name", 288, 40)`, `("name", 40)` and `"name": 40` alike - the
     optional middle integer is a start position, where the run recorded one.
+
+    Also accepts the builder idiom, where the layout is not a table at all but a
+    sequence of width-bearing emissions:
+
+        parts.append(blanks(114))                      # 549-662
+        parts.append(alnum(p.get("special_data", ""), 60))
+
+    That run has written the block's widths down every bit as explicitly as a
+    table would; it just wrote them as code. Reading only the declarative form
+    parsed such a run as ZERO layout rows, so every check resting on the widths
+    silently reported that the run never laid out the record.
     """
     rows = []
     for m in _FIELD_ROW_RE.finditer(code):
@@ -120,6 +141,13 @@ def _layout_rows(code: str):
         width = m.group(2) or m.group(4)
         if name and width:
             rows.append((name, int(width)))
+    for m in _BUILDER_ROW_RE.finditer(code):
+        rows.append((m.group(1), int(m.group(2))))
+    # `' ' * 114` is the same reserved run written as a string repeat. A run of
+    # spaces IS a blank run, so it is named as one; without this the repeat
+    # idiom left the 114-wide reserved field invisible.
+    for m in re.finditer(r"[\"']([ 0])[\"']\s*\*\s*(\d{1,4})", code):
+        rows.append(("blank" if m.group(1) == " " else "zerofill", int(m.group(2))))
     return rows
 
 
@@ -239,11 +267,26 @@ def emits_return_specific_tail(traj) -> bool:
 
 
 def amount_fields_right_justified_zero_filled(traj) -> bool:
-    """Payment amounts padded right-justified and zero-filled to their width."""
+    """Payment amounts padded right-justified and zero-filled to their width.
+
+    The width may be a literal or a name bound to 12. A helper like
+
+        def amt(s, length=12):
+            return str(cents(s)).rjust(length, "0")[-length:]
+
+    pads to exactly the same twelve characters as `rjust(12, "0")` does; reading
+    only the literal made this criterion turn on whether the run inlined a
+    constant or named it, which is a spelling difference, not a behavioural one.
+    """
     code = _code(traj)
-    return bool(re.search(
-        r"zfill\s*\(\s*12\s*\)|rjust\s*\(\s*12\s*,\s*[\"']0[\"']\s*\)"
-        r"|%\s*012d|:\s*0?12d|:>012|\{[^}]*:012", code))
+    if re.search(r"zfill\s*\(\s*12\s*\)|rjust\s*\(\s*12\s*,\s*[\"']0[\"']\s*\)"
+                 r"|%\s*012d|:\s*0?12d|:>012|\{[^}]*:012", code):
+        return True
+    # Names bound to 12, whether as a parameter default or a plain assignment.
+    widths = set(re.findall(r"(\w+)\s*=\s*12(?![\d.])", code))
+    return any(re.search(r"zfill\s*\(\s*%s\s*\)" % re.escape(w) +
+                         r"|rjust\s*\(\s*%s\s*,\s*[\"']0[\"']\s*\)" % re.escape(w), code)
+               for w in widths)
 
 
 def sequence_number_zero_filled(traj) -> bool:

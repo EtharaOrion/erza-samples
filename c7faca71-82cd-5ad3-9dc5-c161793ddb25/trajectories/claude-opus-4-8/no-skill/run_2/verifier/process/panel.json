@@ -1,0 +1,93 @@
+{
+ "criteria": [
+  {
+   "id": "n_reconstructs_the_matrix_reading",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "P12 is reconstructable from the transcript: it is identified as augmented, its 17:26 report is placed in Table C's 17:00\u201323:59 row, the roster supplies class_1 and four pilots for the column, and the rerun shows the resulting 1020-minute maximum FDP cell."
+    }
+   ],
+   "rationales": []
+  },
+  {
+   "id": "n_flight_time_ceiling_source",
+   "voted": true,
+   "satisfied": false,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": false,
+     "rationale": "The agent correctly mentions Table A for unaugmented pairings, but explicitly says flight time does not apply to P11\u2013P17. It never derives the fixed prose ceiling for crews of three or four pilots, as required."
+    }
+   ],
+   "rationales": []
+  },
+  {
+   "id": "n_enumeration_reasoning",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "The agent says it computed all applicable margins and took the tightest as binding, then explicitly lists P12\u2013P16 as examples where limits other than FDP bind."
+    }
+   ],
+   "rationales": []
+  },
+  {
+   "id": "n_verification_that_can_disagree",
+   "voted": true,
+   "satisfied": false,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": false,
+     "rationale": "The purported confirmation only restates the agent's interpretation of the non-acclimation rule and then reruns the script. It does not show an independent matrix-cell reread, direct sign check, hand recomputation, or excluded-rest sanity check."
+    }
+   ],
+   "rationales": []
+  },
+  {
+   "id": "n_states_limit_source",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "The final explanation attributes FDP limits to Part 117 Tables B and C, unaugmented flight time to Table A, the acclimation adjustment to \u00a7117.11(b), and identifies the rest, free-period, and cumulative limits applied."
+    }
+   ],
+   "rationales": []
+  }
+ ],
+ "panel_disclosure": {
+  "seats": [
+   {
+    "model": "gpt-5.6-sol",
+    "stance": "single"
+   }
+  ],
+  "panel_size": 1,
+  "graded_model": "claude-opus-4-8",
+  "single_vendor": "openai",
+  "self_judging_seats": [],
+  "panels_run": 1,
+  "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+ }
+}

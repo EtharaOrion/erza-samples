@@ -175,6 +175,16 @@
       "truth_ref": "Where it breaks",
       "weight_evidence": "P-06 narration cap. Recorded for R-21 distractor-engagement attribution; it does not move the outcome.",
       "is_gate": false
+    },
+    {
+      "id": "R18",
+      "channel": "non_deterministic",
+      "weight": 3,
+      "is_gate": false,
+      "is_positive": true,
+      "truth_ref": "Verify with something that can actually disagree",
+      "criterion": "The run checked its result against something that could actually have disagreed - recomputing a case with a different antenna's block and confirming the number moves, separating the projected offset from the interpolated variation and confirming both terms are present and of comparable order, evaluating the grid either side of the zenith direction, or deliberately reading the azimuth-averaged row and confirming it disagrees. Any equivalent construction that would return a different number under a wrong reading counts. Confirming only that the output is finite, parses, lies in a plausible millimetre range, or reproduces when the same program is re-run does NOT count: every failure mode this task discriminates passes all of those.",
+      "weight_evidence": "BEHAVIOURAL, with a work product, added 2026-08-04. Weight 3 by the doctrine tier for a judged criterion that leaves an artifact: a second computation either exists in the trajectory or it does not, which is what separates it from a narration row and earns 3 rather than 1. COVERAGE, and that is why it was authored: TRUTH.md carried no verification step at all, so the judged channel of this bundle contained no criterion with a work product and graded only what the run said. A step no criterion reaches is instrument blindness. The verification section it anchors to was written from this bundle's own 'Where it breaks' list with the reference values out of view, and states which checks discriminate and which cannot - every named failure route returns a well-formed millimetre value, so only a check that can disagree separates them. NOT gated: doctrine permits only deterministic criteria to gate. MUTUAL EXCLUSIVITY: no existing criterion asks whether the run verified - R16 and R17 are narration rows about the pattern's provenance and the distractor, and the deterministic rows grade the computation itself, not a check on it."
     }
   ],
   "mece": "REQ-9: the criterion set is MECE across the outcome and process instruments jointly. MUTUALLY EXCLUSIVE - no two criteria are decided by the same evidence; for every pair there is a trajectory that fails exactly one, argued in each criterion's weight_evidence. The deliberate exception is a d_ criterion and its judged twin on the same subject: they rest on different evidence (what the code did vs. what the reasoning earned) and are separable in both directions. COLLECTIVELY EXHAUSTIVE - see the `coverage` block. THREE CHANNELS - `outcome` (o_*: pytest that re-derives the final answer by probe re-execution of the run's own solver), `deterministic` (d_*: mechanics over the trajectory), `non_deterministic` (n_*: the judged rubric) - blended by weight mass with TWO gates capping identically at 0.5: CRUX-FAILED and OUTCOME-FAILED.",
@@ -183,35 +193,50 @@
     "removed_criteria": [],
     "pairs": [
       {
-        "pair": ["R6", "R7"],
+        "pair": [
+          "R6",
+          "R7"
+        ],
         "shape": "nested subset",
         "verdict": "SEPARABLE one way, re-tiered",
         "separating_trajectory": "Five fixtures fail R7 while the gate passes - one antenna's block used for all three. No fixture fails the gate without also failing R7, which is the nesting.",
         "action": "R7 3 -> 1, text re-scoped to the per-antenna increment."
       },
       {
-        "pair": ["R7", "R8"],
+        "pair": [
+          "R7",
+          "R8"
+        ],
         "shape": "duplicate column",
         "verdict": "FIXTURE GAP, no change",
         "separating_trajectory": "Exists but is not in the suite: a run that loads all three antenna blocks and reads the L1 section for an L2 case fails R8 alone. The predicates read different evidence - ANT-A/B/C labels vs. three-character carrier codes - and every negative fixture is terse enough to miss both, which is why the columns coincide. A fixture-suite work item, not duplicated weight.",
         "action": "none; recorded"
       },
       {
-        "pair": ["R12", "everything"],
+        "pair": [
+          "R12",
+          "everything"
+        ],
         "shape": "no discrimination",
         "verdict": "DEMOTED to report-only",
         "separating_trajectory": "None: the criterion fires on all 16 fixtures INCLUDING the clean GOOD run. Before a criterion can be independent it has to be quiet on a correct run.",
         "action": "weight 3 -> 0, report_only, reason recorded in its weight_evidence. Row, truth_ref and detector kept."
       },
       {
-        "pair": ["R4", "R5"],
+        "pair": [
+          "R4",
+          "R5"
+        ],
         "shape": "duplicate column",
         "verdict": "FIXTURE GAP, no change",
         "separating_trajectory": "A run that authors the solver and never runs it fails R5 alone; the suite has no such fixture.",
         "action": "none; recorded"
       },
       {
-        "pair": ["R2", "any deterministic criterion"],
+        "pair": [
+          "R2",
+          "any deterministic criterion"
+        ],
         "shape": "answer-correctness overlap",
         "verdict": "NO OVERLAP",
         "separating_trajectory": "No d_ criterion reads a graded correction value; each reads the route.",

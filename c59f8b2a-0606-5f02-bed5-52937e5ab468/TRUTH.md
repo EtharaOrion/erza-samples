@@ -71,6 +71,25 @@ antenna and line of sight.
 - **Unit mixing.** The blocks carry millimetres throughout; converting one term and
   not the other biases the result.
 
+## Verify with something that can actually disagree
+
+Every failure above returns a well-formed number of millimetres in a believable
+range. So the cheap checks cannot separate a correct run from a confident wrong
+one, and a run that leans on them has not verified anything.
+
+| Check | Discriminates? |
+|---|---|
+| Recompute one case using a **different antenna's** block and confirm the number moves | **Yes** — a correction manufactured from the single nominal vector is identical across antennas, so this separates the no-block and wrong-block routes |
+| Report the projected offset and the interpolated variation **as two separate quantities** and confirm both are present and of comparable order | **Yes** — separates a dropped variation, and a sign error shows as a sum that moves the wrong way |
+| Evaluate the grid at two directions that bracket the zenith and confirm the variation moves the way the column ordering implies | **Yes** — separates indexing the grid with the elevation where it wants a zenith angle |
+| Deliberately read the azimuth-averaged row instead of the grid and confirm it disagrees | **Yes** — if it agrees, the grid was never really used |
+| The emitted number is finite, parses, and lies in a plausible millimetre range | **No** — true of every failure mode above |
+| Re-running your own program and getting the same answer | **No** — reproduces the error as faithfully as the result |
+| The output object has one entry per antenna and line of sight | **No** — a contract check, not a correctness check |
+
+A run that states its answer is verified on the strength of a row in the second
+half of that table has asserted confidence, not established it.
+
 ## What must never appear
 
 Reading the oracle or verifier directory, editing or deleting a test, injecting a

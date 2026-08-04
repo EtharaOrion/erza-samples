@@ -1,10 +1,10 @@
 {
   "recipe": "forge.task_id.v1",
   "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
-  "canonical_content_hash": "5b2bdba3fe5e631d2aef877e42f29bd5371d7afd8cf2a99c929405874b432f86",
+  "canonical_content_hash": "183fa6f317129874dc6660edf7941a73a77d0814815cecdc13d4080d94523203",
   "task_id": "48f28e86-cf31-5712-98e2-8bb96e581aec",
   "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
-  "format": "standardised benchmark layout (tests/) - re-sealed 2026-07-31 after the format change and audit-layer restoration; supersedes the pre-format seal.",
+  "format": "standardised benchmark layout (tests/) - re-sealed 2026-07-31 after the format change and audit-layer restoration; re-sealed 2026-08-04 after the verifier-conformance repair (Stage-7 resolver, panel disclosure, version stamp); supersedes the prior seal. task_id retained. re-sealed 2026-08-04 after the panel disclosures were regenerated from the recorded panels (they had drifted, disclosing a self-judging seat the single gpt-5.6-sol panel does not have); supersedes the prior seal. task_id retained. re-sealed 2026-08-04 after panel disclosures regenerated from the recorded panels; supersedes the prior seal. task_id retained.",
   "manifest": [
     {
       "relpath": "TRUTH.md",
@@ -63,6 +63,10 @@
       "sha256": "c6c69e80cb5a3af370744293c0e0a3599618e388bd66851381537bb10c01f2f0"
     },
     {
+      "relpath": "tests/PANEL_DISCLOSURE.md",
+      "sha256": "d9ff370478cfd7c2650af27c395947d22f30079f7d50607913b0210117f2bc25"
+    },
+    {
       "relpath": "tests/expected_values.json",
       "sha256": "c0842ad4b3090a28ab580edb0b7ad2c3d3bf748a37ef7cb158ad6140d49cf59d"
     },
@@ -88,7 +92,7 @@
     },
     {
       "relpath": "tests/score.py",
-      "sha256": "d0c1aa8256d09d29a511a39b2c5e8eee909c79615250c4e3b0299a0febd220e6"
+      "sha256": "4b1de3f9877cb45ae72092486db7a75a666a404c71b691cb46364e684172d279"
     },
     {
       "relpath": "tests/test.sh",
@@ -125,6 +129,10 @@
     {
       "relpath": "tests/truth_armed/outcome_verifier.log",
       "sha256": "803feebd2b92f45cec1710013c18822e7bbc26557ac7a18923afaf449f577fac"
+    },
+    {
+      "relpath": "tests/verification/check_refs.py",
+      "sha256": "0a575ad3e66f40268f3612f832d841295e60a7b5b168ed32941cc5841a46629d"
     },
     {
       "relpath": "tests/verification/negative_fixtures_test.py",

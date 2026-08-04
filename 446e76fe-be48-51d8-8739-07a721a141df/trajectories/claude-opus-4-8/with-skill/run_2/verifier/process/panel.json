@@ -1,71 +1,22 @@
 {
-  "bundle": "446e76fe-be48-51d8-8739-07a721a141df",
-  "run_dir": "trajectories/446e76fe-be48-51d8-8739-07a721a141df/claude-opus-4-8/with-skill/run_2",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
-    {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
   "criteria": [
     {
       "id": "R19",
-      "weight": 5,
+      "weight": 1,
       "is_positive": true,
       "criterion": "The run established WHY a Wood-Anderson simulation is required - that the local magnitude scale is defined on the amplitude that instrument would have written, so the response-removed ground displacement is not the quantity the scale takes - rather than applying the simulation as an unexplained step or omitting it. Equivalent routes count: deriving it from the definition of ML, from the instrument's role in the -logA0 calibration, or from a units argument about what the amplitude term means, are all satisfactory provided the run shows why the simulation is load-bearing rather than cosmetic.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "majority",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent's own reasoning never explains why the WA simulation is load-bearing \u2014 it simply says \"let me verify the WA paz calibration\" and lists the simulation as a pipeline step in the summary; the justification (ML defined on WA amplitude, two zeros for displacement input) appears only in the skill document handed to it, not in any derivation or argument the run itself produced."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The invoked skill (loaded into the trajectory) explicitly states that \"ML is defined as the amplitude a Wood-Anderson (WA) torsion seismograph would record\" and explains why the response-removed displacement is not the quantity the scale is defined on, distinguishing displacement vs. velocity response forms; the agent then acted on and validated this reasoning by running the 1mm-displacement calibration test before proceeding, showing the WA step is load-bearing (tied to the instrument's static magnification) rather than cosmetic."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent received the Wood-Anderson requirement fully explained in the skill description ([6]), then applied it via code without independently deriving WHY the simulation is load-bearing for ML. The agent did verify the WA paz calibration ([13-14]), showing 1 mm displacement yields ~2034 mm output, which demonstrates understanding that the WA is defined by its static magnification. However, this calibration check is verification of the instrument's definition, not derivation of why the simulation is necessary for measuring ML \u2014 the agent never articulated from first principles that \"ML is defined as the amplitude a WA would record, therefore we must simulate it rather than measure raw displacement directly.\""
+          "rationale": "The invoked skill explicitly established that ML is defined by the amplitude a Wood-Anderson instrument would record and that response-removed ground displacement alone is insufficient; the run then applied and independently calibrated that simulation."
         }
       ],
-      "dissenting_models": [
-        "claude-sonnet-5"
-      ]
+      "rationales": []
     },
     {
       "id": "R20",
@@ -74,28 +25,16 @@
       "criterion": "The run checked its magnitude against something that could actually have disagreed - the second horizontal component, the same chain on the other band code, the alternative distance convention with the size of the shift quoted, or an order-of-magnitude check on the simulated amplitude itself. Re-running the same script and getting the same number does not count, and neither does 'the value looks plausible' or agreement with the catalogue magnitude.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent re-ran the entire chain on the other band code (BH at 40 Hz vs HH at 100 Hz) and compared results (ML 5.218 both), and separately ran the static-magnification calibration of the WA paz (1 mm in \u2192 2034 mm out), both of which are checks that could have disagreed."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent ran the WA-paz calibration check (1 mm ground displacement \u2192 ~2034 mm, an order-of-magnitude/definitional check on the simulated amplitude) and separately reran the entire chain on the other band code (BH vs HH), both of which are checks that could have disagreed and are explicitly endorsed as discriminating checks in the ground truth."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The agent performed two independent checks that could have disagreed: (i) calibration of the WA paz by driving it with a 1 mm test sinusoid at 5 Hz and confirming output ~2034 mm ([13-14]), which is an order-of-magnitude check on simulated amplitude; (ii) re-running the same chain on both BH (40 Hz) and HH (100 Hz) band codes and confirming both yielded ML=5.218 ([18-20]), which is the \"same chain on the other band code\" check listed as discriminating. Both are methods that could have revealed inconsistency."
+          "rationale": "The run measured both horizontal components and repeated the complete chain on the independent BH and HH band codes, finding component amplitudes and matching band-specific magnitudes; either check could have exposed a trace- or band-specific discrepancy."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R21",
@@ -104,40 +43,30 @@
       "criterion": "The run said which convention it was adopting at each branch that has one - displacement versus velocity output, millimetres versus metres, zero-to-peak versus peak-to-peak, which distance it fed the correction - rather than only emitting code.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The final summary explicitly names each branch: \"deconvolved to displacement (metres)\", \"max of the two horizontals, zero-to-peak = 962.9 mm\" (with the \u00d71000 m\u2192mm conversion in code), and \"hypocentral distance r = \u221a(26.552\u00b2 + 5.78\u00b2) = 27.17 km\" fed to the Hutton & Boore correction."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent's final summary explicitly names the conventions used at each branch \u2014 displacement output in metres, zero-to-peak (not peak-to-peak) amplitude converted to mm, max of the two horizontals, and hypocentral (not epicentral) distance fed into the correction \u2014 rather than leaving these implicit in code alone."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The agent states all four explicitly branching conventions in the final summary ([25]): displacement output (\"deconvolved to displacement (metres)\"), unit conversion (\"zero-to-peak = 962.9 mm\"), amplitude form (\"zero-to-peak\" not peak-to-peak), and distance choice (\"hypocentral distance r = \u221a(26.552\u00b2 + 5.78\u00b2)\"). These are stated explicitly, not merely encoded in code. The criterion asks the run to say which convention it adopted \"rather than only emitting code,\" and [25] satisfies this."
+          "rationale": "The run explicitly stated its choices of displacement output rather than velocity, metres-to-millimetres conversion, horizontal zero-to-peak amplitude rather than peak-to-peak, and hypocentral distance rather than epicentral distance, both in the invoked method and the final summary."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     }
   ],
-  "fingerprint": {
-    "truth_md": "1ae81cf726294995",
-    "rubrics_json": "92e64b07b311eab7",
-    "test_trajectory_py": "dd1d753fc020e96f",
-    "expected_values_json": "8df07efa077802e5",
-    "judge_impl": "85dcdcbaee0a63c8",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
 }

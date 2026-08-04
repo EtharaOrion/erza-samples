@@ -143,6 +143,46 @@ def _grader_fingerprint() -> dict[str, str]:
     return out
 
 
+def _panel_disclosure(jd, run_dir):
+    """REQ.9: self-judging seats and single-vendor limitations are disclosed
+    beside any judged score.
+
+    A seat drawn from the graded model's own family carries an unmeasured
+    self-leniency, and a panel whose seats all come from one vendor shares that
+    vendor's blind spots however different its stances read. Neither fact is
+    recoverable from the score alone, so it is recorded next to it.
+    """
+    seats = {}
+    for crit in (jd or {}).get("criteria", []) or []:
+        for vote in crit.get("votes") or []:
+            model = vote.get("model")
+            if model:
+                seats[model] = vote.get("stance", "")
+    graded = os.path.basename(os.path.dirname(os.path.dirname(
+        os.path.abspath(run_dir))))
+
+    def family(name):
+        return (name or "").split("-")[0]
+
+    vendors = sorted({family(m) for m in seats if m})
+    return {
+        "seats": [{"model": m, "stance": s} for m, s in sorted(seats.items())],
+        "panel_size": len(seats),
+        "graded_model": graded,
+        "single_vendor": vendors[0] if len(vendors) == 1 else None,
+        "self_judging_seats": sorted(m for m in seats
+                                     if family(m) and family(m) == family(graded)),
+        "stance_is_confounded_with_model": len(seats) == len({s for s in seats.values()}),
+        "panels_run": 1,
+        "stability_caveat": (
+            "One panel per run. The judged channel is a single draw; repeat "
+            "panels on this instrument have moved a channel score by ~5 points "
+            "and have returned contradictory unanimous verdicts. Do not compare "
+            "two runs whose S_N differ by less than that."
+        ),
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -154,6 +194,7 @@ def main() -> int:
     spec = load_spec()
     det_pass = read_junit(args.junit) if args.junit else {}
 
+    jd: dict = {}
     judge_by_id: dict[str, dict] = {}
     if args.judge and os.path.exists(args.judge):
         with open(args.judge) as f:
@@ -277,7 +318,6 @@ def main() -> int:
         "final_formula": "(W_O*S_O + W_D*S_D + W_N*S_N) / (W_O+W_D+W_N), by weight mass; capped at 0.5 by CRUX-FAILED and/or OUTCOME-FAILED"
                          f"{GATE_CAP} on gate failure",
         "verdict": verdict,
-        "verdict": verdict,
         "crux_failed": crux_failed,
         "outcome_failed": outcome_failed,
         "failed_gates": failed_gates,
@@ -290,6 +330,7 @@ def main() -> int:
         "abstained": [r["id"] for r in out_rows + det_rows + nd_rows
                       if r["score"] is None and not r["report_only"]],
         "grader_fingerprint": _grader_fingerprint(),
+        "panel_disclosure": _panel_disclosure(jd, args.run_dir),
         **legacy,
     }
 

@@ -169,11 +169,11 @@
     {
       "id": "R16",
       "channel": "non_deterministic",
-      "weight": 5,
+      "weight": 1,
       "is_positive": true,
       "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
       "truth_ref": "Step 2",
-      "weight_evidence": "Judged twin of the crux, at the crux weight but WITHOUT any gate flag - doctrine permits only deterministic criteria to gate, and the panel's +/-5-point noise is disqualifying for a verdict-flipping role. Same measured backing as R6: the two no-constants routes the bundle's ledger measures are 8.43x and 7.31x the graded tolerance on the mean, 25.81x and 18.53x at worst. This criterion grades the reasoning; its deterministic twin grades the code, and the pair is the one place where a run that reasoned correctly but could not obtain the table separates from one that never saw the problem.",
+      "weight_evidence": "Judged twin of the crux, at the crux weight but WITHOUT any gate flag - doctrine permits only deterministic criteria to gate, and the panel's +/-5-point noise is disqualifying for a verdict-flipping role. Same measured backing as R6: the two no-constants routes the bundle's ledger measures are 8.43x and 7.31x the graded tolerance on the mean, 25.81x and 18.53x at worst. This criterion grades the reasoning; its deterministic twin grades the code, and the pair is the one place where a run that reasoned correctly but could not obtain the table separates from one that never saw the problem. RE-TIERED 5 -> 1 on 2026-08-04 under the narration cap: what this row asks the judge for is what the run SAID, and the doctrine is explicit that a narration criterion may never exceed weight 1 because the channel grades work, not speeches. Applied uniformly across every bundle carrying a narration row above the cap, including bundles whose judged delta was already healthy, so the correction is not selective. The detector, the criterion text and every recorded verdict are unchanged - only the weight moves. Pre-fix judged scores are recorded in tools/qc-artifacts/retiering.json.",
       "is_gate": false
     },
     {
@@ -213,28 +213,40 @@
     "removed_criteria": [],
     "pairs": [
       {
-        "pair": ["R12", "R18"],
+        "pair": [
+          "R12",
+          "R18"
+        ],
         "shape": "d_/n_ twin on one subject",
         "verdict": "EXEMPT BY DOCTRINE, no change",
         "separating_trajectory": "Both directions are on record rather than hypothetical. The recorded no-skill runs argue at length that the observation is not the answer and then emit it anyway: R18 is satisfied, the deterministic guardrail fires. The converse is a run that never mentions the orientation value and computes the harmonic sum correctly: R18 fails, the guardrail stays quiet. Different evidence - a data path into the emitted answer vs. a statement in the narration - which is precisely the exception rule 7 states, not a violation of it.",
         "action": "none"
       },
       {
-        "pair": ["R6", "R12"],
+        "pair": [
+          "R6",
+          "R12"
+        ],
         "shape": "complement (suspected)",
         "verdict": "SEPARABLE, no change",
         "separating_trajectory": "The second no_skill_route control - reporting the MEAN water level at every instant - fails the gate while leaving this guardrail quiet, because no decoy value reaches the answer. The guardrail is specific to one data path, not to the absence of the harmonic sum, and _qc/criterion_independence.py measures two fixtures separating them in that direction.",
         "action": "none"
       },
       {
-        "pair": ["R7", "R8"],
+        "pair": [
+          "R7",
+          "R8"
+        ],
         "shape": "nested subset",
         "verdict": "SEPARABLE, no change",
         "separating_trajectory": "One fixture fails R8 while R7 passes - the astronomical arguments are computed and then not assembled into the equilibrium argument. The reverse is the nesting and costs nothing extra: the two rows are 3 and 3 on adjacent steps, not a crux charged twice.",
         "action": "none"
       },
       {
-        "pair": ["R2", "any deterministic criterion"],
+        "pair": [
+          "R2",
+          "any deterministic criterion"
+        ],
         "shape": "answer-correctness overlap",
         "verdict": "NO OVERLAP",
         "separating_trajectory": "No d_ criterion reads a graded height; each reads the route.",

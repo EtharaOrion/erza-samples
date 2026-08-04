@@ -1,0 +1,90 @@
+{
+  "criteria": [
+    {
+      "id": "n_evaluates_the_published_equations",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The reasoning shows the fitted constants being EVALUATED for a record, not merely held: a covariate vector assembled in the published order and paired one-to-one with the coefficients of the chosen equation, a linear predictor formed from that pairing, and that predictor turned into a share. Equivalent routes count - logistic on a single contrast, exponentiate-and-normalise over the named categories, or any algebraically identical statement. Quoting the constants, naming the tables, or asserting that the published models were applied earns nothing on its own.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "The agent explicitly says the fitted constants are unavailable and instead computes a heuristic log-linear reweighting from flat shares and area composition. It never pairs a published coefficient vector with covariates, forms the published linear predictor, or converts such a predictor into a share."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_group_specific_model_choice",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The reasoning states that different response groups are governed by different equation families, and why - rather than treating the eleven groups as one problem with a shared rule.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "Although the agent mentions \u201cone family per response group,\u201d it does not explain the actual model-selection structure or why six groups use separate fitted equations while five use a composite family. Its implemented solver applies one shared reweighting rule to all eleven groups."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_verification_that_can_disagree",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checks its result against something that could actually have disagreed - confirming that the shares of a response group sum to one over the categories it named, comparing a value against the published range for its own series, recomputing by a second route, or an equivalent - rather than treating 'the script ran' as verification.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "The only explicit validation checks record count, keys, and whether target values lie in [0,1]. It does not check full group closure, published series ranges, or an independently recomputed result."
+        }
+      ],
+      "rationales": []
+    },
+    {
+      "id": "n_states_constant_source",
+      "weight": 1,
+      "is_positive": true,
+      "criterion": "The agent states which fitted constants it applied to which response group and where they came from.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "The agent states that it did not have or apply the fitted constants, rather than identifying which constants were applied to each response group and their source. Naming the NCHS publication without using its constants does not satisfy this criterion."
+        }
+      ],
+      "rationales": []
+    }
+  ],
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+}

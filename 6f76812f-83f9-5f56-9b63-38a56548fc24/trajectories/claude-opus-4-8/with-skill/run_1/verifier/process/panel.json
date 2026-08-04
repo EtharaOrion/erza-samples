@@ -1,141 +1,63 @@
 {
-  "bundle": "6f76812f-83f9-5f56-9b63-38a56548fc24",
-  "run_dir": "trajectories/6f76812f-83f9-5f56-9b63-38a56548fc24/claude-opus-4-8/with-skill/run_1",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
+ "criteria": [
+  {
+   "id": "R18",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
     {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "The agent explicitly separates direct-row cases from chained cases, identifying RX-1 and most satellite sides as direct while RX-2 receiver and RX-3 sides require signed chains."
     }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
-  "criteria": [
+   ],
+   "rationales": []
+  },
+  {
+   "id": "R19",
+   "voted": true,
+   "satisfied": false,
+   "resolution": "single",
+   "votes": [
     {
-      "id": "R18",
-      "weight": 3,
-      "is_positive": true,
-      "criterion": "The reasoning distinguishes the arcs whose ordered pair is published directly from those whose pair has to be assembled from other rows, rather than treating every arc as the same lookup.",
-      "voted": true,
-      "satisfied": true,
-      "resolution": "unanimous",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": true,
-          "rationale": "The final summary explicitly separates rule-1 direct rows (RX-1 C1C/C2W and most satellite sides) from arcs requiring assembly (RX-2 receiver side chained C1W\u2192C1C\u2192C2W = \u22122.6710 + 7.5090, RX-3 both sides chained via C2W), and the resolver code implements the precedence direct \u2192 reversed \u2192 shortest signed chain."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The final summary explicitly separates RX-1 (direct published rows, rule 1) from RX-2 and RX-3 (chained resolutions via intermediate observables, rule 3), and the code implements the same precedence explicitly."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "In [20], the agent explicitly distinguishes three cases: \"RX-1 (`C1C`/`C2W`) and most sat sides \u2014 **direct published row** (rule 1); RX-2 (`C1W`/`C2W`) receiver side \u2014 no direct row, **chained**; RX-3 (`C1C`/`C2L`) both sides \u2014 **chained via the reference observable**.\" This shows differentiation between arcs with published pairs and those requiring assembly from other rows, not treating all lookups the same."
-        }
-      ],
-      "dissenting_models": []
-    },
-    {
-      "id": "R19",
-      "weight": 3,
-      "is_positive": true,
-      "criterion": "The reasoning checks the calibrated result against a physical expectation - vertical content positive and of order tens of TECU, a nanosecond of uncorrected delay worth several TECU - rather than reporting whatever came out.",
-      "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The only post-hoc check offered is the unverified claim that \"the values sit sensibly below the uncorrected slant decoys,\" which is in fact false for several arcs (RX-1 SV-R 3.966\u219223.129, RX-2 SV-W 0.019\u219217.793), and no reasoning ties positivity, order-tens magnitude, or the ns\u2192TECU scale to the outcome."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The agent only remarks that results are \"sensibly below the uncorrected slant decoys\" and that bias resolutions were \"verified by hand,\" but never checks the vertical content against an order-of-magnitude expectation (tens of TECU, positive) or reasons about a nanosecond of bias being worth several TECU as a plausibility check."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The trajectory shows computed VTEC values in [19] and the agent remarks post-hoc in [20] that \"The values sit sensibly below the uncorrected slant decoys.\" However, the code in [18] and reasoning contain no explicit sanity check \u2014 no verification that the computed values are positive, fall in the order-of-tens range, or that one nanosecond of uncorrected delay would correspond to several TECU. The ground truth requires this check to be performed and shown (\"A sound run sanity-checks the outcome here\"), not merely observed in retrospect."
-        }
-      ],
-      "dissenting_models": []
-    },
-    {
-      "id": "R20",
-      "weight": 1,
-      "is_positive": true,
-      "criterion": "The agent states which instrumental values it applied and where they came from.",
-      "voted": true,
-      "satisfied": true,
-      "resolution": "unanimous",
-      "votes": [
-        {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": true,
-          "rationale": "The script prints b_sat, b_rec and b_total in ns for every arc, and the summary names the source explicitly as the gnss-signal-bias-referencing skill's reference tables (CAS/IGG multi-GNSS DCB product), noting no bias file shipped in /root/data/."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent's closing explanation states the biases came from the \"gnss-signal-bias-referencing skill's reference tables (CAS/IGG multi-GNSS DCB product)\" and details per-arc resolution paths and values used."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The agent states in [20] that \"the differential signal biases live in the `gnss-signal-bias-referencing` skill's reference tables (CAS/IGG multi-GNSS DCB product), one file per satellite and per receiver label\" and provides specific examples of resolved values, e.g., \"RX-2 (`C1W`/`C2W`) receiver side \u2014 no direct row, **chained** `C1W\u2192C1C\u2192C2W` = `\u22122.6710 + 7.5090 = 4.8380` ns.\" The source, nature, and resolution method of the instrumental values are all stated."
-        }
-      ],
-      "dissenting_models": []
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": false,
+     "rationale": "The agent notes that the outputs are sensible relative to the uncorrected slant decoys, and the displayed values are positive and in the tens of TECU, but it does not check or state that one nanosecond of residual delay corresponds to several TECU."
     }
-  ],
-  "fingerprint": {
-    "truth_md": "af865c83c746ddbd",
-    "rubrics_json": "c14f678721ede3b1",
-    "test_trajectory_py": "c76bead8b9a0664b",
-    "expected_values_json": "fff21b1f4e8c60a3",
-    "judge_impl": "85dcdcbaee0a63c8",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+   ],
+   "rationales": []
+  },
+  {
+   "id": "R20",
+   "voted": true,
+   "satisfied": true,
+   "resolution": "single",
+   "votes": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single",
+     "satisfied": true,
+     "rationale": "The transcript prints the satellite, receiver, and total bias values applied for every arc and states that they came from the skill's CAS/IGG differential signal-bias reference tables."
+    }
+   ],
+   "rationales": []
   }
+ ],
+ "panel_disclosure": {
+  "seats": [
+   {
+    "model": "gpt-5.6-sol",
+    "stance": "single"
+   }
+  ],
+  "panel_size": 1,
+  "graded_model": "claude-opus-4-8",
+  "single_vendor": "openai",
+  "self_judging_seats": [],
+  "panels_run": 1,
+  "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+ }
 }

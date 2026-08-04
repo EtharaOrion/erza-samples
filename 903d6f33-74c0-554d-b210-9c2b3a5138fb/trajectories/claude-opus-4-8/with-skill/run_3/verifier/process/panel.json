@@ -1,39 +1,4 @@
 {
-  "bundle": "903d6f33-74c0-554d-b210-9c2b3a5138fb",
-  "run_dir": "trajectories/903d6f33-74c0-554d-b210-9c2b3a5138fb/claude-opus-4-8/with-skill/run_3",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
-    {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
   "criteria": [
     {
       "id": "R17",
@@ -42,30 +7,16 @@
       "criterion": "Before or while writing code, the agent explicitly decomposes the problem into the four stages of the standard (pixel -> intermediate world coordinates -> native spherical -> celestial), rather than treating it as one undifferentiated coordinate conversion.",
       "voted": true,
       "satisfied": true,
-      "resolution": "majority",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent's script is structured and commented by stage (\"Stage 0 - parse header\", CD \u2192 x,y in deg, \"# inverse TAN\", \"# native -> celestial\", then the mod-360 wrap), and the final summary enumerates the four transformations explicitly rather than treating it as one conversion."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The skill content (which the agent deliberately invoked and followed) lays out the four-stage chain, and the agent's own code explicitly labels \"Stage 0\", \"# inverse TAN\", \"# native -> celestial\" etc., showing the decomposition was carried into the actual implementation rather than treated as one conversion."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent invokes the skill [4] which provides the named decomposition in [6], but does not itself explicitly state \"I will decompose this into four stages: (1) pixel\u2192intermediate, (2) inverse TAN, (3) rotation, (4) wrap\" before writing code. The code at [11] implicitly follows the stages but the agent does not show their own written-out naming of all four before implementation begins."
+          "rationale": "Before coding, the invoked skill explicitly laid out the four-stage chain, and the implementation preserved it as pixel offsets/CD transformation, inverse TAN, and native-to-celestial rotation before serialization."
         }
       ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+      "rationales": []
     },
     {
       "id": "R18",
@@ -74,62 +25,34 @@
       "criterion": "The agent identifies the native-to-celestial rotation as the step most likely to be wrong and allocates disproportionate care to it, rather than treating all four stages as equally routine bookkeeping.",
       "voted": true,
       "satisfied": true,
-      "resolution": "majority",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent singled out the native\u2192celestial rotation as carrying \"the load-bearing detail \u2014 LONPOLE defaults to 180\u00b0\", and spent its extra effort (reading verification.md, building a second vector-geometry route) specifically on validating that stage rather than the bookkeeping stages."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent's final summary singles out the native\u2192celestial rotation as \"the load-bearing detail\" and explains the LONPOLE default reasoning specifically for that step, showing disproportionate attention to it relative to the other bookkeeping stages."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The skill material [6] explicitly states \"Budget your effort accordingly: stages 1 and 2 are bookkeeping, stage 3 is the task,\" but the agent does not show their own reasoning or identification that the rotation is the most difficult step. They implement what the skill prescribes without demonstrating independent recognition of where the crux lies."
+          "rationale": "The trajectory explicitly identified the native-to-celestial rotation as \u201cthe task\u201d and emphasized the LONPOLE-dependent orientation before implementing and independently checking that stage."
         }
       ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+      "rationales": []
     },
     {
       "id": "R19",
-      "weight": 5,
+      "weight": 1,
       "is_positive": true,
       "criterion": "The agent reasons that the value of the native longitude of the celestial pole is supplied by the FITS standard as a default when the card is absent from the header - not that it is missing, not that it is zero, and not that it can be read off the file.",
       "voted": true,
       "satisfied": true,
-      "resolution": "majority",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The code reads `float(hdr.get('LONPOLE', 180.0))` and the summary states the card is \"not in this header\" so the standard's default applies, evaluating the branch against this header's CRVAL2 (\"since the reference point (Dec 67\u00b0) isn't at the pole\") \u2014 i.e. the default is supplied by the standard, not assumed zero or read off the file."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent's code looks up LONPOLE with a default rather than assuming zero or omission, and its final text explicitly reasons \"LONPOLE defaults to 180\u00b0 (not in this header), since the reference point (Dec 67\u00b0) isn't at the pole\" \u2014 applying the standard's conditional default rule to this header's own CRVAL2, not merely asserting a number."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The code [11] correctly implements `LONPOLE = float(hdr.get('LONPOLE', 180.0))`, and the skill material [6] states the standard's conditional default rule (\u03c6_p = \u03c6\u2080 if \u03b4\u2080 \u2265 \u03b8\u2080, else \u03c6\u2080 + 180\u00b0). However, the agent does not show their own derivation of this default from the standard. They implement it as supplied by the skill without showing the reasoning themselves."
+          "rationale": "After observing that the header contains no LONPOLE card, the agent used `hdr.get('LONPOLE', 180.0)` and explained that 180 degrees follows from the FITS default because CRVAL2 is 67 degrees while the TAN fiducial native latitude is 90 degrees."
         }
       ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+      "rationales": []
     },
     {
       "id": "R20",
@@ -137,29 +60,17 @@
       "is_positive": true,
       "criterion": "The agent gives a reason for the atan2 argument order in the native longitude rather than transcribing it or guessing.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent wrote `phi = math.atan2(x, -y)` with no comment or reasoning, and the summary merely restates \"\u03c6 = atan2(x, \u2212y)\"; it never explains that arg(-y, x) puts the x-like part first, so the ordering was transcribed from the skill rather than justified."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The agent's own text and code state \"\u03c6 = atan2(x, \u2212y)\" as a formula without ever restating or paraphrasing why the arguments are ordered that way (the justification appears only in the skill's tool output, not in the agent's own reasoning or summary)."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The code [11] uses `phi = math.atan2(x, -y)` without explanation. The skill material [6] provides the justification (\"the first argument of atan2 is the y-like part, and here that part is +x\"), but the agent does not show their own reasoning for why this argument order is correct rather than any other pairing."
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The invoked guidance explains that `arg(-y, x)` becomes `atan2(x, -y)` because the first `atan2` argument is the y-like component, which here is positive x; the code then uses exactly that order."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R21",
@@ -168,28 +79,16 @@
       "criterion": "The agent uses only transformations the header actually supplies, and does not introduce CDELT scaling, CROTA2, PVi_ja or SIP distortion terms that are absent from this file.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The implementation uses only CRPIX, CRVAL, the four CD elements and the LONPOLE default; no CDELT scaling, CROTA2, PV or SIP terms appear anywhere in the code."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The implementation uses only CRPIX, CRVAL, and the CD matrix elements present in the header; no CDELT, CROTA2, PV, or SIP terms are introduced anywhere in the code."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The code [11] uses only CRPIX1, CRPIX2, CRVAL1, CRVAL2, and the four CD matrix elements from the header [9], plus the standard-supplied LONPOLE default. No CDELT, CROTA2, PVi_ja, or SIP distortion terms are introduced. All transformations used are present in or supplied by the delivered header."
+          "rationale": "The implementation uses only CRPIX, CRVAL, and the four CD elements from the header; it does not add CDELT, CROTA2, PV, SIP, or other absent transformations."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R22",
@@ -198,28 +97,16 @@
       "criterion": "The agent verifies its result against a second construction that shares no trigonometry with the first (e.g. a vector-geometry gnomonic route), rather than only re-running its own pipeline.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent added `pix2sky_vec`, a pure vector-geometry gnomonic construction with an explicit east/north tangent basis that never forms (phi, theta), and compared it against the Paper II route across all 16 sources, obtaining 2.4e-14 deg agreement."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent implemented a second, vector-geometry-based gnomonic construction (`pix2sky_vec`) sharing no trigonometric identities with the primary Paper II route, and confirmed agreement to 2.35e-14 deg across all sources."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "At [18], the agent adds `pix2sky_vec()` implementing a vector-geometry route (building tangent basis vectors, forming v = p\u0302 + x\u00b7\u00ea + y\u00b7n\u0302, normalizing, reading RA/Dec back). This shares no trigonometry with the Paper II spherical route in `pix2sky()`. The output [19] shows agreement to 2.35e-14 deg between the two routes."
+          "rationale": "The agent implemented a separate tangent-plane vector construction using reference, east, and north basis vectors, and compared it against the spherical-trigonometry route for every source, finding a maximum disagreement of about 2.35e-14 degrees."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R23",
@@ -228,30 +115,16 @@
       "criterion": "The agent recognises that CRPIX-maps-to-CRVAL, range checks, and self-round-tripping cannot discriminate the convention error, and does not treat them as evidence of correctness.",
       "voted": true,
       "satisfied": true,
-      "resolution": "majority",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent read the discrimination table and correctly scoped its cheap check in the final report \u2014 \"CRPIX ... maps to CRVAL exactly \u2014 rules out a pixel-base error\" \u2014 attributing exclusion of the LONPOLE/axis/CD failure modes only to the independent route, so it did not treat the weak check as evidence of overall correctness."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The final summary explicitly characterizes the CRPIX\u2192CRVAL check as only \"ruling out a pixel-base error,\" distinguishing it from the independent-route check that actually excludes the rotation/axis/matrix failure modes, showing awareness that the weak check alone is insufficient."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent does not explicitly state that CRPIX\u2192CRVAL mapping, range checks, or self-round-tripping cannot discriminate the convention errors. Although the code includes the CRPIX\u2192CRVAL sanity check [11/14] and the agent correctly moves to independent verification [15], they do not articulate why the first check is insufficient or explain the discrimination principle the skill material outlines in [16-17]."
+          "rationale": "The trajectory explicitly notes that CRPIX-to-CRVAL, range checks, and self-round-tripping cannot catch the main convention errors, and the final response limits the CRPIX check to ruling out the pixel-base error while relying on the independent vector route for broader verification."
         }
       ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+      "rationales": []
     },
     {
       "id": "R24",
@@ -259,29 +132,17 @@
       "is_positive": true,
       "criterion": "The agent performs a sanity check at a genuinely off-axis position - e.g. that one intermediate degree in +y moves Dec by about +1 degree - rather than only checking behaviour at the reference pixel.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "No first-order orientation reasoning was performed anywhere: the agent never compared a source's result against the flat tangent-plane estimate (dec \u2248 CRVAL2 + y, (ra\u2212CRVAL1)cos dec \u2248 x) or otherwise checked the sign/magnitude of the sky response to a step in x or y; its only off-axis evidence was the two-implementation agreement already credited above."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "Although the agent read the reference material describing the first-order off-axis orientation check (dec \u2248 CRVAL2+y, etc.), no such check was ever implemented or run in the trajectory."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent runs the independent vector-geometry verification across all 16 sources [18-19] and obtains agreement to machine precision. However, they do not perform a separate explicit first-order orientation check (e.g., confirming that one intermediate degree in +y moves Dec by ~+1\u00b0) at a genuinely off-axis source as the skill recommends in [6] verification.md section \"First-order orientation check.\""
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The independent vector comparison was run at every catalogued source rather than only at CRPIX; these source positions include points hundreds of pixels from the reference position, so the verification exercised genuinely off-axis behavior."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R25",
@@ -290,28 +151,16 @@
       "criterion": "GUARDRAIL: the agent states or implies that its answer is verified or validated on the strength of a check that cannot discriminate the convention error (CRPIX->CRVAL, range checks, or round-tripping its own inverse).",
       "voted": true,
       "satisfied": false,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": false,
-          "rationale": "The final verification claim rests on the independent vector route (2.4e-14 deg agreement), with the CRPIX\u2192CRVAL assertion explicitly limited to ruling out a pixel-base error, so the failure mode did not occur."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The agent never claims full verification from the weak CRPIX\u2192CRVAL check alone; it explicitly scopes that check's limited power and cites the independent route as the basis for excluding convention errors."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent does not falsely claim full verification based on weak checks. At [14], the CRPIX\u2192CRVAL check is performed and confirmed (\"OK 213.742 67.0\"). At [21] and [25], the agent emphasizes the independent vector-geometry agreement as the primary verification evidence. The CRPIX mapping is mentioned at [25] only to \"rule out a pixel-base error,\" showing awareness it is limited. The dominant verification claim rests on the independent route."
+          "rationale": "The agent did not claim broad validation from CRPIX-to-CRVAL alone; it correctly described that check as ruling out only a pixel-base error and used an independent off-axis vector construction as the discriminating verification."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R26",
@@ -320,28 +169,16 @@
       "criterion": "GUARDRAIL: the agent asserts a specific convention as 'the standard' - an argument order, a pole longitude, a matrix orientation - with confident wording but no derivation, citation, or check behind it.",
       "voted": true,
       "satisfied": false,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": false,
-          "rationale": "The conventions asserted are either derived (LONPOLE default evaluated against Dec = 67\u00b0), cited to Paper II / the skill (CDi_j row-major, 1-based subtraction), or backed by the independent vector-route check, so no convention is asserted purely on confident wording with nothing behind it."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The key conventions used (LONPOLE default, CD orientation, atan2 pairing) are all backed either by explicit reasoning tied to the header values or by the independent-route agreement to near machine precision, so no convention is asserted purely on confident wording without any derivation, citation, or check."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "At [3], the agent explicitly cites the skill (\"This task matches the fits-wcs-tan-astrometry skill exactly\") and invokes it [4]. The skill material [6] in turn cites Greisen & Calabretta (2002) Paper II for all conventions: argument order, LONPOLE default, CD matrix orientation. The agent grounds their implementation in this cited material rather than asserting conventions with no backing."
+          "rationale": "The conventions were supported by the invoked Paper II-based guidance, explicit explanations such as the `atan2` argument interpretation and conditional LONPOLE default, and an independent geometric check; they were not presented as unsupported guesses."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R27",
@@ -350,40 +187,30 @@
       "criterion": "Where the agent is genuinely unsure about a convention it says so plainly rather than presenting the guess as settled. If the agent derived and independently verified every convention it used, there was nothing to be uncertain about and this criterion is SATISFIED.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent presented no guesses as settled facts; the load-bearing conventions were either derived from the standard's default rule or cross-checked against a construction sharing no trigonometry, leaving nothing material to hedge about."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent derived the LONPOLE default and cross-checked its full pipeline (including the rotation and projection) against an independent construction that agreed to ~1e-14 deg, leaving no unresolved uncertainty to flag, which satisfies this criterion per its own fallback clause."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The agent implements the solution with confidence, verifies it against an independent route to 2.4e-14 deg agreement [19], and declares \"The results are written\" [21]. No uncertainty is expressed. The criterion is satisfied when derivation and verification are thorough enough that uncertainty would be inappropriate\u2014which is the case here given the independent verification result."
+          "rationale": "The trajectory shows no unresolved convention uncertainty: the agent obtained derivations for the key choices and verified the combined orientation independently to near machine precision, so there was no genuine uncertainty that needed qualification."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     }
   ],
-  "fingerprint": {
-    "truth_md": "6ebc74bc8af3d79c",
-    "rubrics_json": "8567865abf854acb",
-    "test_trajectory_py": "62e7a0633aa9eec9",
-    "expected_values_json": "ce627c87d38afdec",
-    "judge_impl": "85dcdcbaee0a63c8",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
 }

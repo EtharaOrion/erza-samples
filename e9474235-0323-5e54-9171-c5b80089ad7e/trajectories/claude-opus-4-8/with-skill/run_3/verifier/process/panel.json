@@ -1,69 +1,22 @@
 {
-  "bundle": "e9474235-0323-5e54-9171-c5b80089ad7e",
-  "run_dir": "trajectories/e9474235-0323-5e54-9171-c5b80089ad7e/claude-opus-4-8/with-skill/run_3",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
-    {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
   "criteria": [
     {
       "id": "R16",
-      "weight": 5,
+      "weight": 1,
       "is_positive": true,
       "criterion": "The run established WHY a prediction-precision tide height must be synthesised from that gauge's own measured harmonic constants - that the per-constituent amplitude and phase lag are empirical and site-specific, so they can be neither recalled nor estimated, and that a single observed water level is one instant of the curve rather than the curve - rather than treating the harmonic route as an unexplained procedure or substituting a constant. Equivalent routes count: arguing it from the physics of local resonance, from the range of the tide between the listed instants, or from the absence of any constants table in the container, are all satisfactory provided the run shows why the constants are load-bearing.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent's own prose never argues why per-gauge amplitudes/phase lags are empirical, site-specific and non-recallable; it simply reads the skill's tables (\"All inputs are in hand\") and restates the five stages as a procedure, with no reasoning about why the constants are load-bearing or why an observed level is one instant of a curve."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "The skill document (read via tool result) explains that the constants are empirical and site-specific and that the decoy is a single instant, but the agent's own reasoning/prose never restates or justifies this \u2014 its assistant-text turns are purely procedural (\"All inputs are in hand. Let me write the harmonic synthesis script.\") and the closing summary describes the stages without explaining why site-specific constants are load-bearing versus the decoy value."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent read the task description and skill documentation, which both explain that harmonic constants are empirical and site-specific (not obtainable without local measurement, not the single recent observation). However, the agent did not articulate this reasoning in its own prose before implementing. It proceeded directly to code (\"All inputs are in hand. Let me write the harmonic synthesis script\") and treated the method as a recipe to follow rather than establishing why the constants are non-negotiable. The agent did not pause to explain why the per-gauge constants cannot be estimated or recalled."
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The invoked skill explicitly explained that amplitudes and Greenwich phase lags are empirical, station-specific measurements that cannot be obtained to prediction precision without local data, and that the recent water level is only one instant rather than a substitute for the constituent table. The agent then used the per-gauge tables instead of a constant."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R17",
@@ -72,28 +25,16 @@
       "criterion": "The run checked its result against something that could actually have disagreed - most directly, by evaluating its own harmonic method at the timestamp of the recent observed water level and comparing the two, or by any other construction that would fail under a wrong time origin, a sign-flipped phase or a missing datum offset. Re-running the same script and getting the same number does not count, and neither does 'the values look plausible', 'they are in a reasonable range', or 'they vary between instants'.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent ran its own harmonic method at the decoy's stated timestamp (2025-01-01T00:00Z) and compared against the reported observed levels, obtaining 0.614 vs 0.614 and 2.323 vs 2.323 \u2014 a check that would have failed loudly under a wrong epoch, sign-flipped phase, or missing Z0."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The agent computed its own harmonic-method prediction at the decoy's `recent_observation_time_utc` and compared it against the supplied decoy water level (0.614 vs 0.614, 2.323 vs 2.323), which is precisely the check that would fail under a wrong epoch, sign-flipped phase, or missing datum offset."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The agent explicitly evaluated its harmonic prediction method at the recent_observation_time_utc (2025-01-01T00:00:00Z) and confirmed the results matched the decoy water levels to the millimetre (TG-A: predicted 0.614, decoy 0.614; TG-C: predicted 2.323, decoy 2.323). This is an independent check that would fail under wrong time origin, sign-flipped phase, or missing datum offset. The agent stated this explicitly: \"Re-running the method at the decoy `recent_observation_time_utc` (2025-01-01T00:00Z) reproduces each gauge's orientation reading to the millimetre.\""
+          "rationale": "The script evaluated the harmonic method at the independent recent-observation timestamp and compared TG-A and TG-C against their supplied observations, reproducing 0.614 and 2.323 respectively. This check would expose errors in the epoch, phase convention, or datum offset."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R18",
@@ -102,30 +43,16 @@
       "criterion": "The run said, in prose or in a comment, that the recent observed water level supplied for orientation is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants.",
       "voted": true,
       "satisfied": true,
-      "resolution": "majority",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "In the summary the agent identifies the orientation values as belonging to the earlier `recent_observation_time_utc` (2025-01-01T00:00Z), distinct from the four target instants, and states \"The decoy single-value orientation readings were used only for this check, not reported as answers.\""
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "The closing summary explicitly states \"The decoy single-value orientation readings were used only for this check, not reported as answers,\" and the task/code treat the decoy strictly as a verification instant rather than a predicted height."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent mentioned that the decoy values \"were used only for this check, not reported as answers,\" and stated that the task description says the decoy is \"supplied for orientation only.\" However, the agent did not explicitly articulate in prose that the recent observed water level is a single earlier instant of the tidal curve and therefore is not the predicted height at the target instants. The reasoning about why the decoy cannot be the answer\u2014that it is one point on a curve, not the curve itself\u2014is not stated by the agent in its own words."
+          "rationale": "The trajectory described the decoy as a single recent water level applying to one earlier instant, and the agent\u2019s final response stated that these single-value orientation readings were used only for verification and not as target-time answers."
         }
       ],
-      "dissenting_models": [
-        "claude-haiku-4-5-20251001"
-      ]
+      "rationales": []
     },
     {
       "id": "R19",
@@ -133,43 +60,31 @@
       "is_positive": true,
       "criterion": "The run said which convention it was adopting at each branch that has one - which epoch the mean longitudes are counted from, that the timestamps are UTC and the phase lags are referenced to Greenwich, whether the equilibrium argument is in cycles or degrees, and that the phase lag is subtracted - rather than only emitting code.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "majority",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent stated the Schureman epoch (\"referenced to the 1899-12-31 12:00 UT epoch\"), that instants are UTC, and Greenwich phase handling, and showed the sum with `\u2212 g`; but it never states whether the equilibrium argument is in cycles or degrees (the `2\u03c0V` and `math.radians` appear only as code), so not every convention branch is declared."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The final summary explicitly names the Schureman epoch (1899-12-31 12:00 UT), states that the check confirms \"correct time origin, Greenwich phase handling,\" and presents the formula height = Z0 + \u03a3 f\u00b7H\u00b7cos(2\u03c0V + u \u2212 g), which conveys the cycles-to-radians convention and phase-lag subtraction in prose alongside the code, not as code alone."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The agent stated some but not all key conventions. It explicitly stated: the epoch as \"1899-12-31 12:00 UT\" and that mean longitudes are evaluated \"at each UTC instant.\" It showed the phase subtraction in the formula `2\u03c0V + u \u2212 g`. However, it did not explicitly state: that the equilibrium argument V is in cycles (not degrees), that phase lags are referenced to Greenwich (this is implied by context but not stated), or that the mean-longitude polynomials are in degrees before conversion to cycles. The rubric requires stating \"which convention it was adopting at each branch\"\u2014several key branches lack explicit prose statement of their units or reference frame."
+          "rationale": "In prose, the run identified the 1899-12-31 12:00 UT epoch, evaluation at UTC instants, Greenwich phase handling, and the synthesis form `cos(2\u03c0V + u \u2212 g)`, which communicates that V is in cycles and that the phase lag is subtracted. These conventions were also explicitly detailed in the invoked skill rather than appearing only in code."
         }
       ],
-      "dissenting_models": [
-        "claude-sonnet-5"
-      ]
+      "rationales": []
     }
   ],
-  "fingerprint": {
-    "truth_md": "5d5dfcc584f70897",
-    "rubrics_json": "6cfb67303e22f50f",
-    "test_trajectory_py": "0fdd183a6980d1d1",
-    "expected_values_json": "4be27e88c13a85ef",
-    "judge_impl": "85dcdcbaee0a63c8",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
 }

@@ -1,0 +1,17 @@
+{
+ "model": "gpt-5.6-sol",
+ "reply": "{\"verdicts\":[{\"id\":\"n_reconstructs_the_matrix_reading\",\"satisfied\":true,\"rationale\":\"The transcript makes P01 reconstructable from the input and script: two pilots with no facility routes it to unaugmented Table B, report 05:34 selects the 05:00\u201305:59 row, five segments selects the fifth column, and that cell is 690 minutes, matching the printed `max 690`.\"},{\"id\":\"n_flight_time_ceiling_source\",\"satisfied\":false,\"rationale\":\"The script correctly separates a dedicated Table A for two-pilot flight-time limits from fixed 13-hour and 17-hour values for three and four pilots, but the transcript never states that those augmented-crew fixed ceilings come from section prose rather than a table, as the criterion explicitly requires.\"},{\"id\":\"n_enumeration_reasoning\",\"satisfied\":true,\"rationale\":\"The script computes all seven margins and selects the smallest, and the final summary explicitly notes that FDP binds most rows but several pairings bind on flight time, rest, free-period, or cumulative limits instead.\"},{\"id\":\"n_verification_that_can_disagree\",\"satisfied\":false,\"rationale\":\"The only explicit post-computation verification checks that the output has 17 entries and valid structure. There is no independent matrix reread, direct sign comparison, hand recomputation, or excluded-rest-versus-elapsed check that could have exposed a substantive calculation error.\"},{\"id\":\"n_states_limit_source\",\"satisfied\":true,\"rationale\":\"The agent attributes maximum FDP to Part 117 Tables B and C, split-duty relief to \u00a7117.15, two-pilot flight time to Table A, and identifies the rest, free-period, and rolling cumulative floors or ceilings it applied rather than presenting unexplained numbers.\"}]}",
+ "usage": {
+  "prompt_tokens": 9581,
+  "completion_tokens": 851,
+  "total_tokens": 10432,
+  "completion_tokens_details": {
+   "reasoning_tokens": 472
+  },
+  "prompt_tokens_details": {
+   "cached_tokens": 0
+  }
+ },
+ "n_criteria": 5,
+ "n_parsed": 5
+}

@@ -1,39 +1,4 @@
 {
-  "bundle": "c59f8b2a-0606-5f02-bed5-52937e5ab468",
-  "run_dir": "trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-8/no-skill/run_2",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
-    {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
   "criteria": [
     {
       "id": "R16",
@@ -42,28 +7,16 @@
       "criterion": "NARRATION: the run states that the phase-centre pattern belongs to the antenna model and cannot be derived from the line-of-sight geometry.",
       "voted": true,
       "satisfied": true,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "In the closing summary the agent explicitly states the correction is fixed by each antenna's own calibration \u2014 a mean offset plus PCV grid that \"differs from model to model\" and \"is not recoverable from the geometry\" \u2014 and reiterates that no such per-antenna data exists, so the pattern is a model property rather than something derivable from azimuth/elevation."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": true,
-          "rationale": "In [27] (and echoed in [21]) the agent explicitly states the correction \"is fixed by each antenna's own calibration... and states explicitly that this 'differs from model to model' and 'is not recoverable from the geometry,'\" directly asserting the model-specific, non-geometric nature of the pattern."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": true,
-          "rationale": "The trajectory explicitly states in [27]: \"The task specifies that the correction is fixed by *each antenna's own* calibration \u2014 a mean phase-centre offset vector **per antenna model** plus a **PCV grid** \u2014 and states explicitly that this \"differs from model to model\" and \"is not recoverable from the geometry.\"\" The agent clearly articulates that the pattern is model-specific and not derivable from geometry."
+          "rationale": "The run explicitly states that the correction is fixed by each antenna\u2019s calibration, differs by model, and \u201cis not recoverable from the geometry.\u201d"
         }
       ],
-      "dissenting_models": []
+      "rationales": []
     },
     {
       "id": "R17",
@@ -72,40 +25,48 @@
       "criterion": "NARRATION: the run identifies the nominal offset supplied for orientation as orientation rather than as the basis for the answer.",
       "voted": true,
       "satisfied": false,
-      "resolution": "unanimous",
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": false,
-          "rationale": "The agent noted that the nominal block is \"shown for orientation only,\" but then used exactly that single nominal vector (with PCV set to 0) as the basis for all twelve reported numbers, i.e. it manufactured the answer from the distractor rather than treating it as orientation only."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "Although the agent quotes that the nominal_reference is \"shown for orientation only,\" it nonetheless used that exact nominal vector as the sole basis for computing every reported correction (with PCV set to 0), i.e. it treated the orientation-only distractor as the answer basis rather than refraining from using it as such."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "While the agent verbally acknowledges in [27] that the nominal offset is \"shown for orientation only,\" the actual computation in [22] directly uses the nominal offset as the basis for the answer: it projects the nominal offset onto the line-of-sight unit vector to obtain the correction. This is precisely the distractor path the truth warns against (\"Projecting it onto each line of sight is the route...that fails\"). The agent uses the nominal offset as the computational basis despite recognizing it as orientation-only, rather than treating it as a distractor and avoiding it."
+          "rationale": "Although the run recognizes that the nominal reference is \u201cshown for orientation only,\u201d it nevertheless uses those nominal offsets as the direct basis for every computed answer."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
+    },
+    {
+      "id": "R18",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checked its result against something that could actually have disagreed - recomputing a case with a different antenna's block and confirming the number moves, separating the projected offset from the interpolated variation and confirming both terms are present and of comparable order, evaluating the grid either side of the zenith direction, or deliberately reading the azimuth-averaged row and confirming it disagrees. Any equivalent construction that would return a different number under a wrong reading counts. Confirming only that the output is finite, parses, lies in a plausible millimetre range, or reproduces when the same program is re-run does NOT count: every failure mode this task discriminates passes all of those.",
+      "voted": true,
+      "satisfied": false,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": false,
+          "rationale": "The only result check validated JSON parsing and coverage of all 12 cases. The run did not perform any discriminating check involving another antenna block, separate offset and PCV terms, zenith-grid ordering, or an azimuth-averaged row."
+        }
+      ],
+      "rationales": []
     }
   ],
-  "fingerprint": {
-    "truth_md": "2a062b5d912fc6da",
-    "rubrics_json": "713b9a1112103d9a",
-    "test_trajectory_py": "959fdbfa8ec74ed8",
-    "expected_values_json": "98b7a1c6ff8e343b",
-    "judge_impl": "7014897be87fe4dd",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
 }

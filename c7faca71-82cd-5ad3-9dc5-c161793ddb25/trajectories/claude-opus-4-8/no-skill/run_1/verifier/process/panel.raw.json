@@ -1,0 +1,17 @@
+{
+ "model": "gpt-5.6-sol",
+ "reply": "{\"verdicts\":[{\"id\":\"n_reconstructs_the_matrix_reading\",\"satisfied\":false,\"rationale\":\"The transcript names Table B/Table C and prints report times, segment counts, and maxima, but never identifies an actual report-time band and corresponding column for any one pairing. Thus no matrix cell is reconstructable from both coordinates.\"},{\"id\":\"n_flight_time_ceiling_source\",\"satisfied\":false,\"rationale\":\"The agent says the 8/9-hour flight-time cap applies only to unaugmented pairings and that flight time is omitted for augmented pairings. It does not identify the fixed prose ceiling for crews of three or four pilots and does not distinguish the flight-time table's boundaries from the FDP matrix boundaries.\"},{\"id\":\"n_enumeration_reasoning\",\"satisfied\":true,\"rationale\":\"The agent explicitly computes seven signed margins and defines the binding limit as the smallest margin. Its results also identify several non-FDP binding limits, including rest, cumulative limits, and the free-period floor.\"},{\"id\":\"n_verification_that_can_disagree\",\"satisfied\":false,\"rationale\":\"The displayed checks validate split-duty qualification, output count, and schema, but do not independently reread a matrix cell, directly check margin signs, hand-recompute a complete pairing, or verify that excluded rest never made FDP exceed elapsed duty. The final validation is only a clean output/schema check.\"},{\"id\":\"n_states_limit_source\",\"satisfied\":true,\"rationale\":\"The final explanation identifies the applied FDP, flight-time, prior-rest, free-period, and cumulative limits and attributes them to Part 117 provisions, including Tables B/C and \u00a7\u00a7117.11, 117.15, 117.23, and 117.25.\"}]}",
+ "usage": {
+  "prompt_tokens": 10788,
+  "completion_tokens": 604,
+  "total_tokens": 11392,
+  "completion_tokens_details": {
+   "reasoning_tokens": 238
+  },
+  "prompt_tokens_details": {
+   "cached_tokens": 0
+  }
+ },
+ "n_criteria": 5,
+ "n_parsed": 5
+}

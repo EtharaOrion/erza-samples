@@ -1,39 +1,4 @@
 {
-  "bundle": "c59f8b2a-0606-5f02-bed5-52937e5ab468",
-  "run_dir": "trajectories/c59f8b2a-0606-5f02-bed5-52937e5ab468/claude-opus-4-8/with-skill/run_3",
-  "run_model": "claude-opus-4-8",
-  "channel": "non_deterministic",
-  "panel": [
-    {
-      "model": "claude-opus-5",
-      "stance": "domain reviewer",
-      "self_judging": false,
-      "family_judging": true,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-sonnet-5",
-      "stance": "neutral",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    },
-    {
-      "model": "claude-haiku-4-5-20251001",
-      "stance": "sceptic",
-      "self_judging": false,
-      "family_judging": false,
-      "misjoined": 0,
-      "error": null
-    }
-  ],
-  "single_vendor_panel": true,
-  "self_judging_seats": [],
-  "family_judging_seats": [
-    "claude-opus-5"
-  ],
   "criteria": [
     {
       "id": "R16",
@@ -41,31 +6,17 @@
       "is_positive": true,
       "criterion": "NARRATION: the run states that the phase-centre pattern belongs to the antenna model and cannot be derived from the line-of-sight geometry.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "majority",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent's own narration only describes mechanics (\"Parsing each antenna's own ANTEX calibration block\", projecting PCO, interpolating PCV); it never states that the phase-centre pattern is a property of the antenna model nor that it cannot be derived from line-of-sight geometry \u2014 that claim appears only in the skill's tool output, not in the run's own reasoning."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
+          "model": "gpt-5.6-sol",
+          "stance": "single",
           "satisfied": true,
-          "rationale": "The agent deliberately invoked the antex-receiver-antenna-calibration skill, which explicitly states in the loaded content \"Both are properties of the antenna model, not of the site or of the constellation... Nothing in the geometry of a line of sight predicts them; the antenna's own calibration table is required.\" The agent read and acted on this guidance throughout its process (loading per-antenna blocks rather than deriving from geometry)."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The trajectory contains extensive documentation (in the skill description [8] and task description [1]) stating that phase-centre patterns are model-specific and cannot be derived from geometry, but the agent itself never explicitly articulates this principle in their own reasoning or summary. The agent invoked the skill, read the provided documentation, and implemented the algorithm without stating the foundational principle in their own words."
+          "rationale": "The loaded calibration skill explicitly states that PCO and PCV are properties of the antenna model determined by measurement and that \u201cnothing in the geometry of a line of sight predicts them\u201d; the run consequently loaded each antenna\u2019s own ANTEX block."
         }
       ],
-      "dissenting_models": [
-        "claude-sonnet-5"
-      ]
+      "rationales": []
     },
     {
       "id": "R17",
@@ -73,41 +24,49 @@
       "is_positive": true,
       "criterion": "NARRATION: the run identifies the nominal offset supplied for orientation as orientation rather than as the basis for the answer.",
       "voted": true,
-      "satisfied": false,
-      "resolution": "unanimous",
+      "satisfied": true,
+      "resolution": "single",
       "votes": [
         {
-          "model": "claude-opus-5",
-          "stance": "domain reviewer",
-          "satisfied": false,
-          "rationale": "The agent never mentions the `nominal_reference` block anywhere after reading question.json; although it in fact used the per-antenna ATX PCOs (e.g. ANT-A G01 = 0.77/0.32/64.24 vs nominal 0.12/1.25/90.09) and thus avoided the distractor in practice, the trajectory contains no statement identifying the nominal offset as orientation-only rather than the basis for the answer."
-        },
-        {
-          "model": "claude-sonnet-5",
-          "stance": "neutral",
-          "satisfied": false,
-          "rationale": "Although the agent correctly ignored the nominal_reference block and used each antenna's own ANTEX calibration file for the computation, at no point in its own reasoning, comments, or final summary does the agent explicitly identify or comment on the nominal_reference block as a distractor/orientation-only value; it simply never references it after reading question.json."
-        },
-        {
-          "model": "claude-haiku-4-5-20251001",
-          "stance": "sceptic",
-          "satisfied": false,
-          "rationale": "The trajectory shows the agent correctly implementing the solution using antenna-specific calibration blocks from ANTEX files and completely ignoring the nominal_reference field in question.json. However, the agent never explicitly identifies or states that the nominal offset is \"for orientation only\" or a distractor, nor do they articulate why it should not be used. The correct behavior is present but the explicit identification is absent from the agent's own reasoning."
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The run displayed `question.json`, where the nominal block is explicitly labeled \u201cShown for orientation only,\u201d and then based every computation on the antenna-specific ANTEX files rather than that nominal block."
         }
       ],
-      "dissenting_models": []
+      "rationales": []
+    },
+    {
+      "id": "R18",
+      "weight": 3,
+      "is_positive": true,
+      "criterion": "The run checked its result against something that could actually have disagreed - recomputing a case with a different antenna's block and confirming the number moves, separating the projected offset from the interpolated variation and confirming both terms are present and of comparable order, evaluating the grid either side of the zenith direction, or deliberately reading the azimuth-averaged row and confirming it disagrees. Any equivalent construction that would return a different number under a wrong reading counts. Confirming only that the output is finite, parses, lies in a plausible millimetre range, or reproduces when the same program is re-run does NOT count: every failure mode this task discriminates passes all of those.",
+      "voted": true,
+      "satisfied": true,
+      "resolution": "single",
+      "votes": [
+        {
+          "model": "gpt-5.6-sol",
+          "stance": "single",
+          "satisfied": true,
+          "rationale": "The run evaluated the same E08 direction using ANT-A, ANT-B, and ANT-C\u2019s distinct blocks and obtained substantially different corrections, directly demonstrating antenna-block sensitivity. It also printed projected-offset and interpolated-PCV terms separately for every requested case and validated the implementation against independent supplied check values."
+        }
+      ],
+      "rationales": []
     }
   ],
-  "fingerprint": {
-    "truth_md": "2a062b5d912fc6da",
-    "rubrics_json": "713b9a1112103d9a",
-    "test_trajectory_py": "959fdbfa8ec74ed8",
-    "expected_values_json": "98b7a1c6ff8e343b",
-    "judge_impl": "85dcdcbaee0a63c8",
-    "panel": [
-      "claude-opus-5",
-      "claude-sonnet-5",
-      "claude-haiku-4-5-20251001"
-    ]
+  "panel_disclosure": {
+    "seats": [
+      {
+        "model": "gpt-5.6-sol",
+        "stance": "single"
+      }
+    ],
+    "panel_size": 1,
+    "graded_model": "claude-opus-4-8",
+    "single_vendor": "openai",
+    "self_judging_seats": [],
+    "panels_run": 1,
+    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
 }
