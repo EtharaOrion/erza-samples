@@ -1,49 +1,14 @@
 {
  "recipe": "forge.task_id.v1",
  "namespace": "c53e8f3b-526f-52c0-a04e-89e2269b237d",
- "canonical_content_hash": "4bd641c94a4455e7634da70c800802122ff8fc9b51a7fff2736d184abad8d836",
+ "canonical_content_hash": "ffc1ce1d8aeb0b88729b1a8272560127430933e9f0b2fabce014c13179f6c93f",
  "task_id": "029f6a19-05a7-5107-ab31-59b91b2a0499",
- "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest below, sorted by POSIX relpath, joined without a trailing newline. Paths are relative to the bundle root (path-independent). Skips .git, __pycache__, .DS_Store, *.pyc and this uuid_provenance.json (self-referential).",
- "source": {
-  "origin": "content-rekey",
-  "human_slug": "bridged-race-population-estimates",
-  "staged_from": "harness/tasks | harness/tasks-salvage",
-  "duplicate_staged_copies": [],
-  "supersede_reason": "The canonical content hash moved because files OUTSIDE the grading layer changed, so the agent-visible surface IS different: solution/TRUTH.md, solution/_truth_template.py, solution/grounding.yaml, solution/recompute.py. Any measurement recorded against 4fba4f14-52f4-521d-9f9f-684c30cd0471 describes bytes this bundle no longer has and must not be reported as a result for this id.",
-  "supersedes": "4fba4f14-52f4-521d-9f9f-684c30cd0471"
- },
+ "canonical_hash_construction": "sha256 over newline-joined 'relpath:sha256' lines of the manifest, sorted by relpath (path-independent; excludes this file).",
+ "format": "standardised benchmark layout (tests/) - re-sealed 2026-08-04 after the format change; supersedes the pre-format seal.",
  "manifest": [
   {
-   "relpath": "build/build_report.json",
-   "sha256": "d1b03b42e1cbe9f2624ab517bb6c9f1c64755aa54b6321768bde89d380552d9f"
-  },
-  {
-   "relpath": "build/gen.py",
-   "sha256": "c86bd1a97f2dc62ba3249492cbc3eb4364af903ab9ea107023e3f64fe7c44714"
-  },
-  {
-   "relpath": "build/source/bridged2010_county_check.npz",
-   "sha256": "d78cdce054a563d76c26a8765ed16c06405f955228637d0353d9ac9845dfe283"
-  },
-  {
-   "relpath": "build/source/census2000_group_cells.npz",
-   "sha256": "f1d434443b032754a295bb3705e5f572031b64a6aa25971f640919012ecfadb2"
-  },
-  {
-   "relpath": "build/source/nchs_area_covariates_census2000.csv",
-   "sha256": "558daf3e6e4cc0fa3922681f75b0fd18c05b7f3c36c28432611d19deacb66260"
-  },
-  {
-   "relpath": "build/source/sr02_135_table7.csv",
-   "sha256": "6c8d7cbb0d957a319490170fa10c3cb80cacbbfc3eda0845bade0688e5cb114f"
-  },
-  {
-   "relpath": "build/source/sr02_135_table8.csv",
-   "sha256": "b54719a683b0f9efba19419218e3bfa770fa22da9e649df1dc119320930fa2d5"
-  },
-  {
-   "relpath": "build/source/sr02_135_table9.csv",
-   "sha256": "8e931b4074ed970b70e365ab6f4aa622bb60b7caedf8e220a9d6e46ebb9b3333"
+   "relpath": "TRUTH.md",
+   "sha256": "2c84957ed65dfab782ce7c5584702aa4296cc5a22bd5b17872d1cb0f6fbfcaf4"
   },
   {
    "relpath": "environment/Dockerfile",
@@ -70,31 +35,15 @@
    "sha256": "18c3c0abf36f847c7a73b9bdb95a267b50d6392540c781f11c0e5657eec576fe"
   },
   {
-   "relpath": "solution/TRUTH.md",
-   "sha256": "2c84957ed65dfab782ce7c5584702aa4296cc5a22bd5b17872d1cb0f6fbfcaf4"
-  },
-  {
-   "relpath": "solution/_truth_template.py",
-   "sha256": "d54d40368619049f0da5454bc2f21cf78e38f1cb48b55b9e49fbcd3e14925752"
-  },
-  {
-   "relpath": "solution/bridging_models.py",
+   "relpath": "oracle/bridging_models.py",
    "sha256": "ee67bff81ad563afdc8a43f48eafba32a52fa4b10783eb558cc1c8eaec643af6"
   },
   {
-   "relpath": "solution/grounding.yaml",
-   "sha256": "7ed2d0c687af3c28aa92c53005f81972e1b34ce6581f21241a27609daa902d8b"
-  },
-  {
-   "relpath": "solution/recompute.py",
-   "sha256": "d5546e10b3b56e10f92981e5466b938306cbf4e10b11b95f3864a97e727e7cf7"
-  },
-  {
-   "relpath": "solution/solve.py",
+   "relpath": "oracle/solve.py",
    "sha256": "0287162a4b88440431cb1fe075d4086033d1f3dbba8a223c8a09587e4f3ab354"
   },
   {
-   "relpath": "solution/solve.sh",
+   "relpath": "oracle/solve.sh",
    "sha256": "30a0de442fab424a54cc1205a16ae04533f01643fcf40603643421774e9815a1"
   },
   {
@@ -189,15 +138,5 @@
    "relpath": "tests/truth.md",
    "sha256": "0c605d9399bd41e4fd168396848e79cb7758d500ea17c028fadf94f5de209713"
   }
- ],
- "supersede_history": [
-  {
-   "superseded_task_id": "5fac86f1-fe3c-5a32-a310-c76e9fb33a5b",
-   "superseded_canonical_content_hash": "c85c51d40479af1d3e323911f5628752014731aa3c6ea564e30b90cdf60b864d",
-   "date": "2026-08-03",
-   "reason": "QC repair pass. Defects corrected: engineered a discriminating tolerance for a gated crux case whose tolerance exceeded its own reference value; added fail-closed reward pre-seeding; repaired pre-Harbor path references (oracle/ -> solution/, verifier/ -> tests/, task.md -> instruction.md) that broke every build-time independent check; widened process-instrument detectors that were bound to a single spelling in violation of the REQ-9 route-restriction ban; repaired guardrail false-positive patterns; brought rubric weights, weight_evidence, gate declarations and TRUTH.md step coverage into conformance with REQ-9. See QC_REPORT.md.",
-   "grading_affected": false
-  }
- ],
- "supersedes": "5fac86f1-fe3c-5a32-a310-c76e9fb33a5b"
+ ]
 }

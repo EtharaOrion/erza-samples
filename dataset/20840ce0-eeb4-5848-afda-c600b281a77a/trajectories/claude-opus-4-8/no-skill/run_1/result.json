@@ -1,6 +1,6 @@
 {
-  "task_name": "information-return-brecord-emission",
-  "rollout_name": "information-return-brecord-emission__c74a50c2",
+  "task_name": "20840ce0-eeb4-5848-afda-c600b281a77a",
+  "rollout_name": "20840ce0-eeb4-5848-afda-c600b281a77a__cdcfbc30",
   "rewards": {
     "reward": 0.7742
   },
@@ -13,49 +13,49 @@
   "effective_skills_dir": null,
   "skills_sandbox_dir": null,
   "include_task_skills": false,
-  "n_tool_calls": 6,
+  "n_tool_calls": 5,
   "n_skill_invocations": 0,
   "n_prompts": 1,
   "agent_result": {
-    "n_tool_calls": 6,
+    "n_tool_calls": 5,
     "n_skill_invocations": 0,
     "n_prompts": 1,
-    "n_input_tokens": 419357,
-    "n_output_tokens": 21647,
-    "n_cache_read_tokens": 171072,
-    "n_cache_creation_tokens": 37810,
-    "total_tokens": 232122,
-    "cost_usd": 0.8709885,
+    "n_input_tokens": 343198,
+    "n_output_tokens": 15869,
+    "n_cache_read_tokens": 163000,
+    "n_cache_creation_tokens": 7868,
+    "total_tokens": 188199,
+    "cost_usd": 0.53471,
     "usage_source": "provider_response",
     "price_source": "litellm"
   },
   "final_metrics": {
-    "total_prompt_tokens": 419357,
-    "total_completion_tokens": 21647,
-    "total_cached_tokens": 171072,
-    "total_cost_usd": 0.8709885
+    "total_prompt_tokens": 343198,
+    "total_completion_tokens": 15869,
+    "total_cached_tokens": 163000,
+    "total_cost_usd": 0.53471
   },
   "trajectory_summary": {
-    "steps": 18,
-    "tool_call_steps": 6,
+    "steps": 13,
+    "tool_call_steps": 5,
     "user_message_steps": 1,
-    "agent_message_steps": 6,
-    "agent_thought_steps": 5,
+    "agent_message_steps": 3,
+    "agent_thought_steps": 4,
     "other_steps": 0,
     "event_type_counts": {
       "user_message": 1,
-      "agent_thought": 5,
-      "agent_message": 6,
-      "tool_call": 6
+      "agent_thought": 4,
+      "tool_call": 5,
+      "agent_message": 3
     },
     "tool_call_status_counts": {
-      "completed": 6
+      "completed": 5
     },
     "partial_trajectory": false,
     "trajectory_source": "acp"
   },
   "usage_tracking": {
-    "requested": "required",
+    "requested": "auto",
     "status": "enabled",
     "environment": "docker",
     "endpoint_kind": "host",
@@ -75,14 +75,14 @@
   "suspected_api_error_info": null,
   "partial_trajectory": false,
   "trajectory_source": "acp",
-  "started_at": "2026-07-29 12:48:15.202393",
-  "finished_at": "2026-07-29 12:54:46.674182",
+  "started_at": "2026-08-04 00:13:14.076572",
+  "finished_at": "2026-08-04 00:17:29.759451",
   "timing": {
-    "environment_setup": 3.8,
-    "agent_setup": 9.8,
-    "agent_execution": 300.1,
-    "verifier": 4.2,
-    "total": 391.5
+    "environment_setup": 3.2,
+    "agent_setup": 4.3,
+    "agent_execution": 210.0,
+    "verifier": 3.1,
+    "total": 255.7
   },
   "scenes": [
     {
@@ -112,47 +112,6 @@
   "loop": {
     "strategy": "single-shot"
   },
-  "source": {
-    "type": "github",
-    "repo": "Ethara-Ai/erza-harness",
-    "requested_ref": "main",
-    "resolved_sha": "a45214b569b439381ad556292a9810df786d782b",
-    "path": "tasks/information-return-brecord-emission",
-    "dirty": true,
-    "file_hashes": {
-      "build/build_report.json": "sha256:fa820bed6b9ff0ae9e8b416afb951cd2960c94524230a1ae3fdb42489f1d2161",
-      "build/gen.py": "sha256:9c36af530a8054a4995e1657eec71f9930e5d23649097435a599146208aa8fca",
-      "build/independent_check.py": "sha256:a8113d52610613b9e34ce955ef4c96c3773f1123d29c079aa0d0012ac5027457",
-      "environment/Dockerfile": "sha256:47b30082f22f216bfd42cd5f62620858428bf6966adeb24ca0d3ac2788d68cfe",
-      "environment/data/payees.json": "sha256:2115d6343757feae4c387c3074dbe54e30acac4a985baa986eaa9d3e9f3e12fe",
-      "environment/data/question.json": "sha256:57d623ad21711a9914c63e64e9e4b5ac51ae63dbcd34dd1590e6ec5cc51cc692",
-      "environment/skills/fixed-width-filing-record-emission/SKILL.md": "sha256:3cd85ab67f676538d5e0e8335ad845ea6e522fe224b084e1f8f1d3b5ff134e15",
-      "oracle/layout.py": "sha256:95a0428efc89fcf4fa7b12648264dca668608ac8fe7a745abbf11a570c9704e0",
-      "oracle/solve.py": "sha256:36fc9e6f0bf704a659d7c8ebf2f40aa2df302a1e2cb05b7880543f563685e3a6",
-      "oracle/solve.sh": "sha256:f7a5aeca3166fe8ce8f591eee24152ff2ce9ffc8445afb3e7c8c704b5e498c1e",
-      "task.md": "sha256:09f69016fec0391c4c0efb3dc22966fc8a74a8349bd4c188250964785ce0b174",
-      "verifier/brecord_layout.py": "sha256:b0a1593fd9be40e1a5e43fae5b0f8a41d4ff11b1f53089a5f280e7b081ab4d03",
-      "verifier/expected_values.json": "sha256:cf0588ca6d4bdb038db7b1f163b6b94859c59af900d16c307a099d24ea038423",
-      "verifier/process/README.md": "sha256:d4179e4753931b4cbe67f960e8028be271006289a88044b5f46ab84ac0d3212c",
-      "verifier/process/TRUTH.md": "sha256:88630d30387598d5e67adda5990d6ddcf9b607278438c279729fddccab44d339",
-      "verifier/process/judge/judge.py": "sha256:61e74c6e2bb8d6e8a7b25391cc78b3b92150e9a826356764188bbae72c40bd8e",
-      "verifier/process/report.py": "sha256:371ca5e314e68816cfdb1b7122958fac559f737cf4b55f66dd23fd8e739fd5c0",
-      "verifier/process/rubrics.json": "sha256:c9c7f42dd290b10c6eb89f8eb4a86f165d63331bec871ebbaadef0fb399a06a9",
-      "verifier/process/run.sh": "sha256:e34dc200cff1974df30a8a8a37f4d40dd1abc14193a0db55a4608ab8152637e2",
-      "verifier/process/score.py": "sha256:5cf00719f873695a893cb24dba03262bc460f21ba45c21665a741d9707ab46e3",
-      "verifier/process/verification/check_refs.py": "sha256:bc5c36e04a635ae480dd6aa05dd91f957153f6626e9e52c6bba11649a3f333a3",
-      "verifier/process/verification/negative_fixtures_test.py": "sha256:60a3fa6225891db174d91b479cddf23433a4e0911dd411ff49e6aa6ab302c3a7",
-      "verifier/process/verification/rederivation_test.py": "sha256:202ec07031f41d6b35559c69544829e71f5c0cefae8109e4fd8fc654915d200c",
-      "verifier/process/verifier/checks.py": "sha256:74d17bd346c67ea070acb5728aff86c2e53b7a6da90feb086712300b139f9e74",
-      "verifier/process/verifier/conftest.py": "sha256:2ca6a97b933ead0a0bc1d526035337136cb1d44751aaeb6f16d44ba85c7e0f23",
-      "verifier/process/verifier/test_trajectory.py": "sha256:d2cdbd39945403d8a5b79389b71dafc35e092075d893f6f939605d305ff3cd02",
-      "verifier/process/verifier/trajectory.py": "sha256:fd57e32e265269bba5c19d21dc41998c0903f8977c7d7a12d3fec34695fe4012",
-      "verifier/rubric.yaml": "sha256:8055a4b7263ab30f891fda458b6387528f168efc0f5dd40f71e79098ae0ee1d3",
-      "verifier/test.sh": "sha256:5d032a8d26c695c942ad75b609aa472371900f56900fb50345691e9a81b33431",
-      "verifier/test_outputs.py": "sha256:d6d2dd0c20b04615ea3852bb922f4aa3b18702638af9c3c8f0444db13c189dbc",
-      "verifier/truth.md": "sha256:86ef7aadb9211d929c5ea214a1095eea89fa009685cd35d8d691178695cdcd1f"
-    }
-  },
-  "task_digest": "sha256:d393e38ae2495516b01819991e85fa07e6db6025f98f39264965cb979faeda4a",
+  "task_digest": "sha256:8e537ab56382a101d01f108d6fa1fe51f51870bb7cad13d73c721e2f50162f25",
   "sandbox_id": null
 }

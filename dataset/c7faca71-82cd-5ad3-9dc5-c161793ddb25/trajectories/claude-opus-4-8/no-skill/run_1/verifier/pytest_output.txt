@@ -5,26 +5,26 @@ configfile: ../dev/null
 collecting ... collected 61 items
 
 ::test_graded_case[P01-fdp_margin_min] PASSED                            [  1%]
-::test_graded_case[P01-binding_limit] FAILED                             [  3%]
-::test_graded_case[P01-binding_margin_min] FAILED                        [  4%]
+::test_graded_case[P01-binding_limit] PASSED                             [  3%]
+::test_graded_case[P01-binding_margin_min] PASSED                        [  4%]
 ::test_graded_case[P02-fdp_margin_min] PASSED                            [  6%]
 ::test_graded_case[P02-binding_limit] PASSED                             [  8%]
 ::test_graded_case[P02-binding_margin_min] PASSED                        [  9%]
-::test_graded_case[P03-fdp_margin_min] FAILED                            [ 11%]
-::test_graded_case[P03-binding_limit] FAILED                             [ 13%]
-::test_graded_case[P03-binding_margin_min] FAILED                        [ 14%]
+::test_graded_case[P03-fdp_margin_min] PASSED                            [ 11%]
+::test_graded_case[P03-binding_limit] PASSED                             [ 13%]
+::test_graded_case[P03-binding_margin_min] PASSED                        [ 14%]
 ::test_graded_case[P04-fdp_margin_min] PASSED                            [ 16%]
 ::test_graded_case[P04-binding_limit] PASSED                             [ 18%]
 ::test_graded_case[P04-binding_margin_min] PASSED                        [ 19%]
 ::test_graded_case[P05-fdp_margin_min] PASSED                            [ 21%]
 ::test_graded_case[P05-binding_limit] PASSED                             [ 22%]
 ::test_graded_case[P05-binding_margin_min] PASSED                        [ 24%]
-::test_graded_case[P06-fdp_margin_min] PASSED                            [ 26%]
-::test_graded_case[P06-binding_limit] PASSED                             [ 27%]
-::test_graded_case[P06-binding_margin_min] PASSED                        [ 29%]
-::test_graded_case[P07-fdp_margin_min] FAILED                            [ 31%]
+::test_graded_case[P06-fdp_margin_min] FAILED                            [ 26%]
+::test_graded_case[P06-binding_limit] FAILED                             [ 27%]
+::test_graded_case[P06-binding_margin_min] FAILED                        [ 29%]
+::test_graded_case[P07-fdp_margin_min] PASSED                            [ 31%]
 ::test_graded_case[P07-binding_limit] PASSED                             [ 32%]
-::test_graded_case[P07-binding_margin_min] FAILED                        [ 34%]
+::test_graded_case[P07-binding_margin_min] PASSED                        [ 34%]
 ::test_graded_case[P08-fdp_margin_min] PASSED                            [ 36%]
 ::test_graded_case[P08-binding_limit] PASSED                             [ 37%]
 ::test_graded_case[P08-binding_margin_min] PASSED                        [ 39%]
@@ -37,7 +37,7 @@ collecting ... collected 61 items
 ::test_graded_case[P11-fdp_margin_min] PASSED                            [ 50%]
 ::test_graded_case[P11-binding_limit] FAILED                             [ 52%]
 ::test_graded_case[P11-binding_margin_min] FAILED                        [ 54%]
-::test_graded_case[P12-fdp_margin_min] PASSED                            [ 55%]
+::test_graded_case[P12-fdp_margin_min] FAILED                            [ 55%]
 ::test_graded_case[P12-binding_limit] PASSED                             [ 57%]
 ::test_graded_case[P12-binding_margin_min] PASSED                        [ 59%]
 ::test_graded_case[P13-fdp_margin_min] PASSED                            [ 60%]
@@ -52,7 +52,7 @@ collecting ... collected 61 items
 ::test_graded_case[P16-fdp_margin_min] PASSED                            [ 75%]
 ::test_graded_case[P16-binding_limit] PASSED                             [ 77%]
 ::test_graded_case[P16-binding_margin_min] PASSED                        [ 78%]
-::test_graded_case[P17-fdp_margin_min] FAILED                            [ 80%]
+::test_graded_case[P17-fdp_margin_min] PASSED                            [ 80%]
 ::test_graded_case[P17-binding_limit] FAILED                             [ 81%]
 ::test_graded_case[P17-binding_margin_min] FAILED                        [ 83%]
 ::test_frozen_reference_matches_independent_recompute PASSED             [ 85%]
@@ -67,54 +67,28 @@ collecting ... collected 61 items
 ::test_roster_carries_no_compliance_label PASSED                         [100%]
 
 =================================== FAILURES ===================================
-_____________________ test_graded_case[P01-binding_limit] ______________________
-/verifier/test_outputs.py:99: in test_graded_case
+_____________________ test_graded_case[P06-fdp_margin_min] _____________________
+/tests/test_outputs.py:107: in test_graded_case
+    assert abs(got - item["ref"]) <= item["tolerance"], \
+E   AssertionError: P06-fdp_margin_min: got 168.000, expected -22.000 (tol 1.000)
+E   assert 190.0 <= 1.0
+E    +  where 190.0 = abs((168.0 - -22))
+_____________________ test_graded_case[P06-binding_limit] ______________________
+/tests/test_outputs.py:99: in test_graded_case
     assert value.strip() == item["ref"], \
-E   AssertionError: P01-binding_limit: got 'flight_time', expected 'flight_duty_period'
-E   assert 'flight_time' == 'flight_duty_period'
+E   AssertionError: P06-binding_limit: got 'rest_before_duty', expected 'flight_duty_period'
+E   assert 'rest_before_duty' == 'flight_duty_period'
 E     
 E     - flight_duty_period
-E     + flight_time
-___________________ test_graded_case[P01-binding_margin_min] ___________________
-/verifier/test_outputs.py:107: in test_graded_case
+E     + rest_before_duty
+___________________ test_graded_case[P06-binding_margin_min] ___________________
+/tests/test_outputs.py:107: in test_graded_case
     assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P01-binding_margin_min: got -15.000, expected 23.000 (tol 1.000)
-E   assert 38.0 <= 1.0
-E    +  where 38.0 = abs((-15.0 - 23))
-_____________________ test_graded_case[P03-fdp_margin_min] _____________________
-/verifier/test_outputs.py:107: in test_graded_case
-    assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P03-fdp_margin_min: got -23.000, expected 7.000 (tol 1.000)
-E   assert 30.0 <= 1.0
-E    +  where 30.0 = abs((-23.0 - 7))
-_____________________ test_graded_case[P03-binding_limit] ______________________
-/verifier/test_outputs.py:99: in test_graded_case
-    assert value.strip() == item["ref"], \
-E   AssertionError: P03-binding_limit: got 'flight_time', expected 'flight_duty_period'
-E   assert 'flight_time' == 'flight_duty_period'
-E     
-E     - flight_duty_period
-E     + flight_time
-___________________ test_graded_case[P03-binding_margin_min] ___________________
-/verifier/test_outputs.py:107: in test_graded_case
-    assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P03-binding_margin_min: got -35.000, expected 7.000 (tol 1.000)
-E   assert 42.0 <= 1.0
-E    +  where 42.0 = abs((-35.0 - 7))
-_____________________ test_graded_case[P07-fdp_margin_min] _____________________
-/verifier/test_outputs.py:107: in test_graded_case
-    assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P07-fdp_margin_min: got -101.000, expected -41.000 (tol 1.000)
-E   assert 60.0 <= 1.0
-E    +  where 60.0 = abs((-101.0 - -41))
-___________________ test_graded_case[P07-binding_margin_min] ___________________
-/verifier/test_outputs.py:107: in test_graded_case
-    assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P07-binding_margin_min: got -101.000, expected -41.000 (tol 1.000)
-E   assert 60.0 <= 1.0
-E    +  where 60.0 = abs((-101.0 - -41))
+E   AssertionError: P06-binding_margin_min: got 30.000, expected -22.000 (tol 1.000)
+E   assert 52.0 <= 1.0
+E    +  where 52.0 = abs((30.0 - -22))
 _____________________ test_graded_case[P11-binding_limit] ______________________
-/verifier/test_outputs.py:99: in test_graded_case
+/tests/test_outputs.py:99: in test_graded_case
     assert value.strip() == item["ref"], \
 E   AssertionError: P11-binding_limit: got 'flight_duty_period', expected 'flight_time'
 E   assert 'flight_duty_period' == 'flight_time'
@@ -122,19 +96,19 @@ E
 E     - flight_time
 E     + flight_duty_period
 ___________________ test_graded_case[P11-binding_margin_min] ___________________
-/verifier/test_outputs.py:107: in test_graded_case
+/tests/test_outputs.py:107: in test_graded_case
     assert abs(got - item["ref"]) <= item["tolerance"], \
 E   AssertionError: P11-binding_margin_min: got 11.000, expected -24.000 (tol 1.000)
 E   assert 35.0 <= 1.0
 E    +  where 35.0 = abs((11.0 - -24))
-_____________________ test_graded_case[P17-fdp_margin_min] _____________________
-/verifier/test_outputs.py:107: in test_graded_case
+_____________________ test_graded_case[P12-fdp_margin_min] _____________________
+/tests/test_outputs.py:107: in test_graded_case
     assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P17-fdp_margin_min: got -81.000, expected 9.000 (tol 1.000)
-E   assert 90.0 <= 1.0
-E    +  where 90.0 = abs((-81.0 - 9))
+E   AssertionError: P12-fdp_margin_min: got 44.000, expected 14.000 (tol 1.000)
+E   assert 30.0 <= 1.0
+E    +  where 30.0 = abs((44.0 - 14))
 _____________________ test_graded_case[P17-binding_limit] ______________________
-/verifier/test_outputs.py:99: in test_graded_case
+/tests/test_outputs.py:99: in test_graded_case
     assert value.strip() == item["ref"], \
 E   AssertionError: P17-binding_limit: got 'flight_duty_period', expected 'flight_time'
 E   assert 'flight_duty_period' == 'flight_time'
@@ -142,23 +116,19 @@ E
 E     - flight_time
 E     + flight_duty_period
 ___________________ test_graded_case[P17-binding_margin_min] ___________________
-/verifier/test_outputs.py:107: in test_graded_case
+/tests/test_outputs.py:107: in test_graded_case
     assert abs(got - item["ref"]) <= item["tolerance"], \
-E   AssertionError: P17-binding_margin_min: got -81.000, expected -14.000 (tol 1.000)
-E   assert 67.0 <= 1.0
-E    +  where 67.0 = abs((-81.0 - -14))
+E   AssertionError: P17-binding_margin_min: got 9.000, expected -14.000 (tol 1.000)
+E   assert 23.0 <= 1.0
+E    +  where 23.0 = abs((9.0 - -14))
 ---------------- generated xml file: /logs/verifier/results.xml ----------------
 =========================== short test summary info ============================
-FAILED ::test_graded_case[P01-binding_limit] - AssertionError: P01-binding_li...
-FAILED ::test_graded_case[P01-binding_margin_min] - AssertionError: P01-bindi...
-FAILED ::test_graded_case[P03-fdp_margin_min] - AssertionError: P03-fdp_margi...
-FAILED ::test_graded_case[P03-binding_limit] - AssertionError: P03-binding_li...
-FAILED ::test_graded_case[P03-binding_margin_min] - AssertionError: P03-bindi...
-FAILED ::test_graded_case[P07-fdp_margin_min] - AssertionError: P07-fdp_margi...
-FAILED ::test_graded_case[P07-binding_margin_min] - AssertionError: P07-bindi...
+FAILED ::test_graded_case[P06-fdp_margin_min] - AssertionError: P06-fdp_margi...
+FAILED ::test_graded_case[P06-binding_limit] - AssertionError: P06-binding_li...
+FAILED ::test_graded_case[P06-binding_margin_min] - AssertionError: P06-bindi...
 FAILED ::test_graded_case[P11-binding_limit] - AssertionError: P11-binding_li...
 FAILED ::test_graded_case[P11-binding_margin_min] - AssertionError: P11-bindi...
-FAILED ::test_graded_case[P17-fdp_margin_min] - AssertionError: P17-fdp_margi...
+FAILED ::test_graded_case[P12-fdp_margin_min] - AssertionError: P12-fdp_margi...
 FAILED ::test_graded_case[P17-binding_limit] - AssertionError: P17-binding_li...
 FAILED ::test_graded_case[P17-binding_margin_min] - AssertionError: P17-bindi...
-======================== 12 failed, 49 passed in 0.17s =========================
+========================= 8 failed, 53 passed in 0.08s =========================

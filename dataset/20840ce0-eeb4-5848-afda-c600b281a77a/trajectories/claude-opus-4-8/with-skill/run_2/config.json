@@ -1,0 +1,69 @@
+{
+  "task_path": "20840ce0-eeb4-5848-afda-c600b281a77a",
+  "agent": "claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "reasoning_effort": null,
+  "environment": "docker",
+  "environment_manifest": null,
+  "skill_mode": "with-skill",
+  "skill_source": "custom_runtime",
+  "requested_skills_dir": "/Users/AgisSpectre/Downloads/erza-unpublished-USEFUL/dataset/20840ce0-eeb4-5848-afda-c600b281a77a/environment/skills",
+  "effective_skills_dir": "/Users/AgisSpectre/Downloads/erza-unpublished-USEFUL/dataset/20840ce0-eeb4-5848-afda-c600b281a77a/environment/skills",
+  "skills_sandbox_dir": "/skills",
+  "include_task_skills": false,
+  "sandbox_user": "agent",
+  "sandbox_locked_paths": [
+    "/oracle",
+    "/solution",
+    "/verifier",
+    "/tests",
+    "/testbed_verify"
+  ],
+  "sandbox_setup_timeout": 120,
+  "skip_install": false,
+  "agent_install_timeout": 900,
+  "context_root": null,
+  "base_image_override": null,
+  "timeout_sec": 1800,
+  "concurrency": 4,
+  "agent_idle_timeout_sec": 600,
+  "started_at": "2026-08-04 01:38:45.374536",
+  "agent_env": {
+    "BENCHFLOW_PROVIDER_MODEL": "claude-opus-4-8",
+    "ANTHROPIC_MODEL": "claude-opus-4-8",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "BENCHFLOW_DISALLOW_WEB_TOOLS": "1"
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "usage_tracking": {
+    "requested": "auto"
+  },
+  "task_digest": "sha256:8e537ab56382a101d01f108d6fa1fe51f51870bb7cad13d73c721e2f50162f25"
+}
