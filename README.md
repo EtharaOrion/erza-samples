@@ -25,7 +25,7 @@ This is a curated 10-task sample from Erza. Each task is a self-contained, conta
 
 Tasks are grouped into five difficulty tiers (Trivial, Easy, Medium, Hard, Expert), calibrated from observed unaided difficulty on this sample, and cover 10 subcategories across 2 domains.
 
-Skill efficacy grows as unaided difficulty rises, reaching +100 pp on the Expert tier where the unaided model scores zero. See [Results](#results-skill-efficacy-vs-unaided-difficulty) for how the tiers are defined.
+The curated arm scores 1.000 on every task here, so Δ is set by whatever the unaided arm leaves on the table, reaching +100 pp on the Expert tier where the unaided model scores nothing at all. See [Results](#results-skill-efficacy-vs-unaided-difficulty) for how the tiers are defined and why their slope is not itself a finding.
 
 ![Mean score by difficulty tier](images/score_by_tier.png)
 
@@ -52,7 +52,7 @@ Skill efficacy is reported over three task sets. The first covers everything shi
 | no-Skills mean score (A)               |        0.299 |            0.258 |           0.272 |
 | curated-Skills mean score (B)          |        1.000 |            1.000 |           1.000 |
 | Skill efficacy (Δ = B - A)             |    +70.1 pp  |        +74.2 pp  |       +72.8 pp  |
-| Normalized gain `g = Δ / (1 - A)`      |         100% |             100% |            100% |
+| Normalised gain `g = Δ / (1 - A)`      |         100% |             100% |            100% |
 | no-Skills pass rate (all cases passed) | 13.3% (4/30) |      7.4% (2/27) |     4.8% (1/21) |
 | curated-Skills pass rate               | 100% (30/30) |     100% (27/27) |    100% (21/21) |
 
@@ -75,9 +75,7 @@ Conditions are `no-skill` and `with-skill`; `N` runs 1 to 3. Unlike a split data
 
 ## Difficulty tiers
 
-The 10 tasks are stratified into five tiers by observed difficulty on this sample: the unaided (no-Skills) mean score A of each task, binned at fixed cut-points. Expert is A = 0 exactly, Hard is 0 < A < 0.3, Medium is 0.3 <= A < 0.6, Easy is 0.6 <= A < 0.8, and Trivial is A >= 0.8. Trivial tasks are largely solved by the unaided model; Expert tasks never are. This is an outcome-based stratification, computed from the runs shipped here, so the tiers describe what the model met rather than any property fixed in advance. Every `task.toml` declares `difficulty = "hard"` while observed A spans 0.000 to 0.882, which is why the declared field is not used for the axis.
-
-![Mean score by difficulty tier](images/score_by_tier.png)
+The 10 tasks are stratified into five tiers by observed difficulty on this sample: the unaided (no-Skills) mean score A of each task, binned at fixed cut-points. Expert is A = 0 exactly, Hard is 0 < A < 0.3, Medium is 0.3 <= A < 0.6, Easy is 0.6 <= A < 0.8, and Trivial is A >= 0.8. Trivial tasks are largely solved by the unaided model; Expert tasks never are. This is an outcome-based stratification, computed from the runs shipped here, so the tiers describe what the model met rather than any property fixed in advance. Every `task.toml` declares `difficulty = "hard"` while observed A spans 0.000 to 0.882, which is why the declared field is not used for the axis. The figure above plots these tiers.
 
 | Tier        |   n | Tasks                                | mean A | mean Δ |
 | :---------- | --: | :----------------------------------- | -----: | -----: |
@@ -130,6 +128,19 @@ Per-task scores (per-run score is graded cases passed / total; sorted by A). The
 
 With 10 tasks across five tiers, these are an average tendency on a small, curated sample rather than a precise law.
 
+Alongside the graded outcome, seven of the ten tasks ship a process score for every run at `verifier/process/score.json`. It grades how the answer was reached rather than whether it was right, combining an outcome channel, a deterministic channel and a judged channel by weight mass, and it never enters the reward. A run that fails a crux or outcome gate has its process score capped at 0.500, so any unaided figure at that value is a ceiling rather than a graded quantity. The three newer tasks (`029f6a19`, `20840ce0`, `c7faca71`) ship no process artifacts and are absent from this table:
+
+| Task       | no-skill runs           |     A | with-skill runs         |     B |      Δ |
+| :--------- | :---------------------- | ----: | :---------------------- | ----: | -----: |
+| `e9474235` | 0.347, 0.449, 0.347     | 0.381 | 0.857, 0.857, 0.878     | 0.864 | +0.483 |
+| `6f76812f` | 0.500, 0.500, 0.500     | 0.500 | 0.948, 1.000, 1.000     | 0.983 | +0.483 |
+| `c59f8b2a` | 0.500, 0.500, 0.500     | 0.500 | 0.975, 0.975, 0.950     | 0.967 | +0.467 |
+| `d427488f` | 0.500, 0.500, 0.500     | 0.500 | 0.930, 0.930, 0.930     | 0.930 | +0.430 |
+| `903d6f33` | 0.500, 0.500, 0.738     | 0.579 | 0.938, 0.938, 0.938     | 0.938 | +0.359 |
+| `446e76fe` | 0.500, 0.500, 0.959     | 0.653 | 0.980, 0.980, 0.980     | 0.980 | +0.327 |
+| `48f28e86` | 0.500, 0.500, 1.000     | 0.667 | 1.000, 1.000, 1.000     | 1.000 | +0.333 |
+| **Mean**   |                         | **0.540** |                     | **0.952** | **+0.412** |
+
 In contrast to accuracy, inference cost does not track difficulty. The unaided arm spends $1.168 per run against $0.348 for the curated arm, a ratio of 3.35x, while emitting 32,598 output tokens against 5,291 and making 10.3 tool calls against 6.6. Against the tier axis the two arms separate everywhere except Medium, where they nearly meet.
 
 ![Mean agent cost per run by difficulty tier](images/cost_by_tier.png)
@@ -144,7 +155,11 @@ Pass rate and mean score tell different stories, and only one of them is usable.
 
 Unaided failures land on the levers each procedure documents. In `d427488f` the unaided runs report `0.255886`, the value produced by taking a mean rather than a median within-lab reduction. In `446e76fe` they land on `4.390`, which the bundle identifies as the one-zero velocity-form Wood-Anderson path. In `20840ce0` they place the opening fields correctly and then drift at the reserved position that the published layout hides mid-record. Each failing run is a well-formed and confidently wrong answer of the kind a domain sanity-check waves straight through.
 
-Score distribution splits by domain. Among the seven natural-science tasks, 3 of 21 unaided runs land strictly between 0 and 1, and all three belong to a single task, `e9474235`; the other six science tasks return only 0.000 or 1.000 on every unaided run, because each turns on one procedural decision applied to one computation, so a wrong choice fails every graded case together. The three office tasks behave differently: 7 of their 9 unaided runs land strictly inside the interval, since their graded cases decompose into separable units, the field groups of a fixed-width record and the per-pairing legality findings, and an unaided run gets some of those units right. That contrast is why the tier figure shows a graded slope at the easy end and an all-or-nothing cliff at the hard end.
+Only 3 of the 21 unaided runs on natural-science tasks land strictly between 0 and 1, and all three come from one task, `e9474235`. The other six science tasks return 0.000 or 1.000 on every unaided run, because each turns on a single procedural decision applied to one computation, so a wrong choice fails every graded case together. The three office tasks behave differently: 7 of their 9 unaided runs land strictly inside the interval, since their graded cases decompose into separable units, the field groups of a fixed-width record and the per-pairing legality findings, and an unaided run gets some of those units right. That contrast is why the tier figure shows a graded slope at the easy end and an all-or-nothing cliff at the hard end.
+
+The process score shows that the unaided arm is not flailing. On the seven tasks carrying that channel its process Δ is +0.412, well short of the +0.798 outcome Δ those same seven tasks produce, and the gap is the interesting part. All 21 curated runs return a verdict of `ok` and score between 0.857 and 1.000. Of the 21 unaided runs, 17 carry a failed gate and 15 sit exactly at the 0.500 cap that a failed crux or outcome gate imposes, which means their underlying weighted score was clipped down to that value rather than earned at it. `6f76812f` run_1 is the shape of the whole arm: a deterministic channel of 0.814 and a judged channel of 0.143, an outcome of 0.375, capped to 0.500. Read together with the failure modes above, the picture is of runs executing recognisable procedure competently down a branch the house method rejects, which is why a domain reviewer skimming the work would not catch them.
+
+Read the panel's own disclosure before using any of those numbers. Each of the 42 panels seats three models under assigned stances, `claude-opus-5` as domain reviewer, `claude-sonnet-5` as neutral and `claude-haiku-4-5-20251001` as sceptic, and every panel records `single_vendor_panel: true`, because all three come from the same vendor as the model under test. No seat grades itself, `self_judging_seats` being empty on all 42, but `family_judging_seats` lists `claude-opus-5`, so one seat shares a family with the graded `claude-opus-4-8` and carries an unmeasured leniency toward it. The seats do disagree: across 186 judged criteria 150 resolved unanimously and 36 by majority, so roughly a fifth carried real dissent rather than a rubber stamp. Each run is judged by one panel, so within-run stability is unmeasured. Every score is stamped with hashes of `TRUTH.md`, `rubrics.json` and the test file, one stamp per task across its six runs; stamps differ between tasks, which makes the per-task rows sound and the mean across them the weaker figure.
 
 These separations hold only because the scores resist gaming. Grading is deterministic `pytest`, the agent never sees the oracle or the tests, and every curated `SKILL.md` carries class-level procedure instead of answers. The evidence for each of those claims is listed in [Verification](#verification-and-quality-assurance).
 
@@ -204,7 +219,10 @@ trajectories/claude-opus-4-8/<condition>/run_N/   # condition ∈ {no-skill, wit
     ├── reward.txt pass_at_1.txt      # scalars
     ├── pytest_output.txt             # raw grader output, the scoring source
     ├── test-stdout.txt               # header + tail
-    └── process/                      # process-channel panel, on 7 of 10 tasks
+    └── process/                      # process channel, on 7 of 10 tasks
+        ├── score.json                # the run's process score and verdict
+        ├── panel.json panel.raw.json # judged-channel seats, votes and rationales
+        └── results.xml verifiers.jsonl
 ```
 
 Key `result.json` fields: `rewards.reward` (the run's score, agrees with `verifier/reward.txt` on all 60 runs), `task_digest` (the frozen-bundle-bytes binding), `agent_result` (token usage, `cost_usd`, `n_tool_calls`), and `config`, which records the agent budget in `timeout_sec`. The raw graded record is `verifier/pytest_output.txt`, the authoritative scoring source. Do not use `agent_result.n_skill_invocations`, which reads 0 on all 60 runs including every curated one; Skill usage is evidenced in `trajectory/acp_trajectory.jsonl`.
@@ -234,10 +252,10 @@ per-run score:    r = graded cases passed / graded cases total
 per-task score:   s[t,c] = mean over the 3 runs of r
 condition mean:   Score(c) = mean over tasks t of s[t,c]
 efficacy:         delta = Score(curated) - Score(no-Skills)
-normalized gain:  g = delta / (1 - Score(no-Skills))
+normalised gain:  g = delta / (1 - Score(no-Skills))
 ```
 
-Grading is deterministic `pytest` inside the container, with no LLM-as-judge in the reward path. Each `tests/test.sh` pre-seeds the reward artifacts to 0 (a crash grades 0, never a missing file), parses the score from the JUnit XML report rather than scanning text, identifies scored tests by an explicit name prefix, and excludes grader self-checks from the denominator. A failing self-check trips a kill-switch: the run is a bundle defect, not an agent failure.
+Grading is deterministic `pytest` inside the container, with no LLM-as-judge in the reward path. Each `tests/test.sh` pre-seeds the reward artifacts to 0 (a crash grades 0, never a missing file), parses the score from the JUnit XML report rather than scanning text, identifies scored tests by an explicit name prefix, and excludes grader self-checks from the denominator. A failing self-check trips a kill-switch: the run is a bundle defect, not an agent failure. Seven tasks additionally run a three-seat LLM panel over the trajectory, but that panel feeds only the process score described in [Results](#results-skill-efficacy-vs-unaided-difficulty), and no part of it reaches `reward.txt`.
 
 Every task ships anti-shortcut guards, unscored but blocking. Nine of the ten assert isomorphic invariance, recomputing the reference on a relabelled and reordered instance and asserting it unchanged, so a run cannot pass by keying on instance-specific names or positions; `903d6f33` is the exception. Every task declares `network_mode: no-network` in `task.toml` and bakes `pytest` into the image. Each task also ships a human-authored reference solution (`oracle/`) that passes by construction, guaranteeing the grader is self-consistent; it is not an independent measure of real-world solvability.
 
@@ -290,7 +308,7 @@ This sample passed a QC gate prior to delivery. Each row states a check, the art
 | Skill genuinely used | `trajectory/acp_trajectory.jsonl` | 30 of 30 curated runs show Skill evidence, 0 of 30 unaided runs do |
 | Frozen-bytes binding | `result.json` `task_digest` | one digest per task on 9 of 10; `903d6f33` carries two, split by arm |
 | Budget symmetry | `config.json` `timeout_sec` | symmetric and uniform within task on 8 of 10; `48f28e86` and `e9474235` differ across arms |
-| Anti-memorization | `tests/` guard sources | isomorphic or invariance guards present on 9 of 10; absent on `903d6f33` |
+| Anti-memorisation | `tests/` guard sources | isomorphic or invariance guards present on 9 of 10; absent on `903d6f33` |
 | Fair play | `task.toml`, bundle layout | the agent is never given `oracle/`, `TRUTH.md` or `tests/`; each `SKILL.md` is class-level procedure, not an answer key |
 | Declared difficulty | `task.toml` | all 10 declare `hard`, so the field is unusable as a difficulty axis |
 
@@ -325,6 +343,7 @@ Each limitation is paired with the specific work that would retire it.
 | Per-tier figures rest on 1 to 3 tasks each, and `d427488f` carries only 2 graded cases, so its per-run score can take only the values 0, 0.5 and 1. | Widen each tier to at least 5 tasks and retire or rebuild single-lever bundles with fewer than 10 graded cases. |
 | Model nondeterminism is unquantified here. The same model produces different outputs for the same task, visible in the unaided arm's differing answers at identical scores. | Record per-task score variance across a larger run count and report it beside every mean. |
 | Only one model is evaluated, so nothing here separates Skill efficacy from a property of Claude Opus 4.8. | Run the same 10 bundles against at least two further frontier models and compare Δ per task. |
+| The process score covers 7 of 10 tasks, every panel seats models from the graded model's own vendor, and one seat shares its family. Each run is judged once, so within-run stability is unmeasured, and 15 of 21 unaided runs sit at a gate cap rather than a graded value. | Seat at least one non-Anthropic judge, run repeat panels on a subset to measure per-criterion stability, and report the uncapped channel scores beside the capped final. |
 
 Erza's design commitments are visible in the shipped artifacts rather than asserted in prose. The verifier is deterministic and the agent never touches it, difficulty is measured after the fact rather than declared, and defective measurements are labelled and shipped instead of quietly dropped. Everything in this document recomputes from the files in this repository, and the snippet in [Reproduction](#reproduction) is the shortest path to checking that claim.
 
