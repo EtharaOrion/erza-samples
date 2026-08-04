@@ -10,7 +10,7 @@
 </p>
 
 <p align="center"><sub>
-  <a href="#summary">Summary</a> · <a href="#repository-layout">Layout</a> · <a href="#metric-skill-efficacy-δ">Metric</a> · <a href="#the-tasks">Tasks</a> · <a href="#results">Results</a> · <a href="#analysis">Analysis</a> · <a href="#task-structure">Structure</a> · <a href="#scoring-methodology">Scoring</a> · <a href="#reproduction">Reproduction</a> · <a href="#verification-and-quality-assurance">Verification</a>
+  <a href="#summary">Summary</a> · <a href="#repository-layout">Layout</a> · <a href="#metric-skill-efficacy-δ">Metric</a> · <a href="#the-tasks">Tasks</a> · <a href="#difficulty-tiers">Tiers</a> · <a href="#results">Results</a> · <a href="#analysis">Analysis</a> · <a href="#task-structure">Structure</a> · <a href="#scoring-methodology">Scoring</a> · <a href="#reproduction">Reproduction</a> · <a href="#verification-and-quality-assurance">Verification</a>
 </sub></p>
 
 # Erza: Agent-Skills Efficacy Sample
@@ -25,11 +25,9 @@ A task earns its place in Erza only when it is hard enough to defeat the no-Skil
 separable enough that the Skill recovers it. A task the model already passes unaided is below the
 bar; a task neither arm can solve measures difficulty, not Skill efficacy.
 
-This is a **10-task orientation sample**: ten complete task bundles and 50 graded agent
-trajectories (Claude Opus 4.8). Eight tasks carry the full paired grid of 2 conditions × 3 runs;
-two (`20840ce0`, `c7faca71`) have a single no-Skills run and **no curated arm yet**, so they
-contribute a baseline score and no Δ. The dataset format, trajectory format, and scoring are identical to the
-production Erza harness.
+This is a **10-task orientation sample**: ten complete task bundles and **60 graded agent
+trajectories** (Claude Opus 4.8). Every task carries the full paired grid of 2 conditions × 3 runs.
+The dataset format, trajectory format, and scoring are identical to the production Erza harness.
 
 > **Scope.** This sample exists to show the *shape* of an Erza deliverable end-to-end. Three runs
 > per arm cannot establish an efficacy estimate — see [Limitations](#limitations).
@@ -38,29 +36,28 @@ production Erza harness.
 
 | Property            | Value                                                                          |
 | :------------------ | :----------------------------------------------------------------------------- |
-| Tasks               | **10** — 8 fully paired, 2 (`20840ce0`, `c7faca71`) baseline-only              |
+| Tasks               | **10**, all fully paired                                                        |
 | Domains             | natural-science (7) · office-white-collar (3), across 10 subcategories         |
-| Difficulty          | `hard` on all 10 (declared in `task.toml`)                                     |
+| Difficulty          | `hard` declared on all 10; **5 outcome-based tiers** measured on this sample (see [Tiers](#difficulty-tiers)) |
 | Models evaluated    | Claude Opus 4.8 (`claude-opus-4-8`)                                            |
 | Conditions per task | no-Skills (A) · curated-Skills (B)                                             |
-| Runs & grid         | **50 graded runs** — 8 tasks at a full 2 × 3; 2 tasks at 1 × no-Skills only    |
+| Runs & grid         | **60 graded runs** — full 2 × 3 on all 10 tasks, no gaps                       |
 | Graded cases        | 1 to 51 per task (180 in total)                                                |
 | Score               | graded cases passed / total, per run                                           |
 | Network             | `no-network` on all 10; verifier is deterministic `pytest`, no LLM judge       |
 
-**Measured on this sample.** Δ is computed over the **8 paired tasks only** — `20840ce0` and
-`c7faca71` have no curated arm and are excluded from every Δ figure below:
+**Measured on this sample**, over all 10 paired tasks:
 
-| Metric                                   |   8 paired tasks | Excl. `48f28e86` (see [Known issues](#known-issues)) |
-| :--------------------------------------- | ---------------: | ---------------------------------------------------: |
-| no-Skills mean score (A)                 |     **0.180**  |                                            **0.110** |
-| curated-Skills mean score (B)            |     **1.000**  |                                            **1.000** |
-| **Skill efficacy (Δ = B − A)**           |  **+82.0 pp**  |                                        **+89.0 pp**  |
-| Normalized gain `g = Δ / (1 − A)`        |       **100%** |                                             **100%** |
-| no-Skills pass rate (all cases passed)   |  16.7% (4/24)  |                                          9.5% (2/21) |
-| curated-Skills pass rate                 | 100.0% (24/24) |                                        100.0% (21/21) |
-| Mean agent cost, no-Skills               |      $1.0647   |                                              $1.0549 |
-| Mean agent cost, curated-Skills          |      $0.3409   |                                              $0.3419 |
+| Metric                                   |     10 tasks | Excl. `48f28e86` (see [Known issues](#known-issues)) |
+| :--------------------------------------- | -----------: | ---------------------------------------------------: |
+| no-Skills mean score (A)                 |    **0.299** |                                            **0.258** |
+| curated-Skills mean score (B)            |    **1.000** |                                            **1.000** |
+| **Skill efficacy (Δ = B − A)**           | **+70.1 pp** |                                         **+74.2 pp** |
+| Normalized gain `g = Δ / (1 − A)`        |     **100%** |                                             **100%** |
+| no-Skills pass rate (all cases passed)   | 13.3% (4/30) |                                          7.4% (2/27) |
+| curated-Skills pass rate                 | 100% (30/30) |                                         100% (27/27) |
+| Mean agent cost, no-Skills               |      $1.1677 |                                              $1.1715 |
+| Mean agent cost, curated-Skills          |      $0.3484 |                                              $0.3500 |
 
 ## Repository layout
 
@@ -73,7 +70,7 @@ erza-samples/
         ├── task.toml         # metadata, resource and network policy
         ├── instruction.md    # the prompt presented to the agent
         ├── environment/      # sandbox image, mounted inputs, curated Skill
-        ├── oracle/ solution/ # reference solution, never mounted
+        ├── oracle/           # reference solution + generator, never mounted
         ├── tests/            # deterministic verifier + process rubrics
         └── trajectories/     # the graded agent runs for this task
             └── claude-opus-4-8/<condition>/run_N/ ...
@@ -116,13 +113,37 @@ whenever the output is well-formed, so counting guards inflates the floor — se
 | `446e76fe` | natural-science / seismology                      |            1 | IASPEI Wood-Anderson local magnitude                          |
 | `903d6f33` | natural-science / astronomy                       |           16 | source-position / astrometric reduction                       |
 | `48f28e86` | natural-science / geomagnetism                    |           12 | IGRF spherical-harmonic declination reduction                 |
-| `20840ce0` | office-white-collar / tax-information-reporting   |           31 | fixed-width filing-record emission (**no curated arm yet**)   |
-| `c7faca71` | office-white-collar / aviation-regulatory-compliance |        51 | flight-duty-period legality (**no curated arm yet**)          |
+| `20840ce0` | office-white-collar / tax-information-reporting   |           31 | fixed-width filing-record emission                            |
+| `c7faca71` | office-white-collar / aviation-regulatory-compliance |        51 | flight-duty-period legality                                   |
 
 Every task follows the same shape: a domain-specific **house procedure** the agent must execute
 exactly, and a plausible **decoy** in the inputs that a competent but unaided run tends to fall
 into. `d427488f`, for example, hands the agent a naive plain-mean scale of `0.468704` labelled
 "for orientation ONLY", where the graded answer is the robust clamped scale `0.250368`.
+
+## Difficulty tiers
+
+The 10 tasks are stratified into five tiers by **observed difficulty on this sample**: each task's
+unaided mean score A, binned at fixed cut-points. This is an outcome-based stratification computed
+from the runs shipped here — the tiers describe what the model actually experienced, not a property
+claimed in advance (`task.toml` declares all 10 `hard`).
+
+| Tier        | Rule (unaided A) |   n | Tasks                              | mean A | mean Δ |
+| :---------- | :--------------- | --: | :--------------------------------- | -----: | -----: |
+| **Expert**  | A = 0 exactly    |   3 | `6f76812f` `c59f8b2a` `d427488f`   |  0.000 | +1.000 |
+| **Hard**    | 0 < A < 0.3      |   2 | `029f6a19` `e9474235`              |  0.052 | +0.948 |
+| **Medium**  | 0.3 ≤ A < 0.6    |   2 | `446e76fe` `903d6f33`              |  0.333 | +0.667 |
+| **Easy**    | 0.6 ≤ A < 0.8    |   2 | `20840ce0` `48f28e86`              |  0.667 | +0.333 |
+| **Trivial** | A ≥ 0.8          |   1 | `c7faca71`                         |  0.882 | +0.118 |
+
+![Mean score by difficulty tier](assets/score_by_tier.png)
+
+The green connectors are the per-tier Δ. Two reading notes: the no-Skills line falls across tiers
+*by construction* (the tiers are binned on it); the measured content is the curated line sitting at
+100% in every tier — the Skill closes the entire remaining gap wherever the unaided model lands.
+And with 1–3 tasks per tier, tier means are descriptive, not estimates. `48f28e86` sits in the Easy
+tier but its runs are not a valid paired comparison (see [Known issues](#known-issues)); the tier
+figure includes it for completeness.
 
 ## Results
 
@@ -138,36 +159,32 @@ Per-run score is **graded cases passed / total**, recovered from each run's own
 | `e9474235` |    12 |           0.083 |  0.083 |  0.083 | **0.083** |          1.000 × 3  | 1.000 | **+0.917** |
 | `446e76fe` |     1 |           0.000 |  0.000 |  1.000 | **0.333** |          1.000 × 3  | 1.000 | **+0.667** |
 | `903d6f33` |    16 |           0.000 |  0.000 |  1.000 | **0.333** |          1.000 × 3  | 1.000 | **+0.667** |
+| `20840ce0` |    31 |           0.774 |  0.452 |  0.774 | **0.667** |          1.000 × 3  | 1.000 | **+0.333** |
 | `48f28e86` |    12 |           0.000 |  1.000 |  1.000 | **0.667** |          1.000 × 3  | 1.000 | **+0.333** |
+| `c7faca71` |    51 |           0.843 |  0.863 |  0.941 | **0.882** |          1.000 × 3  | 1.000 | **+0.118** |
 
-**Not paired** — reported separately because they have no curated arm:
+**Cost and effort, by arm** (means over the 3 runs of each arm):
 
-| Task       | Cases |   no-skill run_1 |     **A** | with-skill | **Δ** |
-| :--------- | ----: | ---------------: | --------: | :--------- | :---- |
-| `20840ce0` |    31 | 0.774 (24/31)    | **0.774** | *not run*  | *n/a* |
-| `c7faca71` |    51 | 0.765 (39/51)    | **0.765** | *not run*  | *n/a* |
-
-**Cost and effort, by arm** (means over the 3 runs of each arm; `20840ce0` is a single run):
-
-| Task       | cost A  | cost B  | output tokens A | output tokens B | tool calls A | tool calls B |
+| Task       |  cost A |  cost B | output tokens A | output tokens B | tool calls A | tool calls B |
 | :--------- | ------: | ------: | --------------: | --------------: | -----------: | -----------: |
 | `6f76812f` | $3.1790 | $0.4902 |          95,494 |           7,737 |         21.0 |          8.7 |
+| `c7faca71` | $2.4758 | $0.4749 |          81,346 |          11,086 |          8.3 |          6.0 |
 | `48f28e86` | $1.1331 | $0.3339 |          27,257 |           4,804 |         17.0 |          7.0 |
 | `d427488f` | $1.0781 | $0.1395 |          31,752 |           1,516 |          8.0 |          3.0 |
 | `e9474235` | $1.0210 | $0.3287 |          23,916 |           3,562 |         12.3 |          5.7 |
 | `c59f8b2a` | $0.7639 | $0.3412 |          11,864 |           3,662 |         11.0 |          7.7 |
 | `029f6a19` | $0.7629 | $0.5710 |          22,603 |          10,045 |          8.0 |          9.3 |
+| `20840ce0` | $0.6844 | $0.2816 |          19,300 |           4,020 |          5.3 |          5.3 |
 | `446e76fe` | $0.4427 | $0.2281 |          10,523 |           2,692 |          8.0 |          6.0 |
 | `903d6f33` | $0.1365 | $0.2946 |           1,921 |           3,786 |          4.0 |          7.3 |
-| `20840ce0` | $0.8710 |   *n/a* |          21,647 |           *n/a* |          6.0 |        *n/a* |
-| `c7faca71` | 2.6968 |   *n/a* |         85,373 |           *n/a* |       5.0 |        *n/a* |
 
 ## Analysis
 
 **The Skill moves accuracy and cost in the same direction.** The curated arm scores 1.000 on every
-one of the 48 runs while costing **3.1× less** per run ($0.341 vs $1.065). On seven of eight tasks
-the no-Skills arm also emits far more output — `6f76812f` burns 95k output tokens and $3.18 per run
-to arrive at 0/12. This is the signature of a Skill that supplies *procedure* rather than
+one of the 30 curated runs while costing **3.4× less** per run ($0.348 vs $1.168). On nine of ten
+tasks the no-Skills arm also emits far more output — `6f76812f` burns 95k output tokens and $3.18
+per run to arrive at 0/12, and `c7faca71` spends $2.48 per run re-deriving duty-limit tables the
+Skill simply contains. This is the signature of a Skill that supplies *procedure* rather than
 capability: the unaided arm re-derives a house method it half-remembers, while the curated arm
 reads the SOP and executes it. `903d6f33` is the one inversion, and it is the cheapest task in the
 set either way.
@@ -175,19 +192,22 @@ set either way.
 **Failures land on the documented levers.** The no-Skills failures are not random — they land on
 the exact mistakes each SOP is designed to reject. `d427488f`'s unaided runs report `0.255886`, the
 value a *mean* rather than *median* within-lab reduction produces. `446e76fe`'s land on `4.390`,
-which the bundle identifies as the one-zero velocity-form Wood-Anderson path. Each failing run is a
-well-formed, confidently-wrong answer of the kind a domain sanity-check waves through.
+which the bundle identifies as the one-zero velocity-form Wood-Anderson path. `20840ce0`'s unaided
+runs place the opening fields correctly and then drift at the reserved position runs the published
+layout hides mid-record. Each failing run is a well-formed, confidently-wrong answer of the kind a
+domain sanity-check waves through.
 
-**Scores are near-binary, and that is by construction.** Of 24 no-Skills runs, only **4** score
-strictly between 0 and 1. Each task turns on a single procedural decision applied to one
-computation, and the verifiers require every named wrong path to miss by **≥ 2× tolerance**
-(recorded per task as `control_gaps`). So one wrong choice propagates into every graded case at
-once and they fail together. The runs themselves are *not* identical — on `d427488f` the three
-unaided runs submit three different answers and all score 0.000 — so the invariance is in the
-scoring, not the sampling. Partial credit appears only where a wrong method lands unusually close
-to tolerance: `029f6a19` (2/31) and `e9474235` (1/12) are the only two tasks that show it.
+**The science tasks are near-binary; the office tasks carry real partial credit.** On the eight
+natural-science tasks only 4 of 24 unaided runs score strictly between 0 and 1: each turns on a
+single procedural decision applied to one computation, the verifiers require every named wrong path
+to miss by **≥ 2× tolerance** (recorded per task as `control_gaps`), and so one wrong choice fails
+every graded case together. The two office tasks behave differently — all 6 of their unaided runs
+land strictly between 0 and 1, because their graded cases decompose into genuinely separable units
+(field groups of a fixed-width record; per-pairing legality findings), and an unaided run gets some
+units right. That contrast is why the tier figure can show a graded slope at the easy end while the
+hard end is all-or-nothing.
 
-**Read the direction, not the magnitude.** With n = 3 per arm and one model, `Δ = +82.0 pp` carries
+**Read the direction, not the magnitude.** With n = 3 per arm and one model, `Δ = +70.1 pp` carries
 a wide interval, and `g = 100%` is an artifact of a small denominator. The finding this sample
 supports is directional: the Skill helped, decisively, and did so while spending ~3× less. Treat
 the point estimates as illustration, not measurement.
@@ -207,7 +227,7 @@ dataset/<task-id>/
 │   ├── Dockerfile            # pinned sandbox
 │   ├── data/                 # inputs mounted at /root/data
 │   └── skills/               # mounted ONLY in the curated-Skills arm
-├── oracle/ or solution/      # deterministic generator + reference solution; never mounted
+├── oracle/                   # deterministic generator + reference solution; never mounted
 ├── tests/
 │   ├── test.sh               # entry point; pre-seeds reward 0, parses JUnit XML
 │   ├── test_pytest.py        # outcome assertions + guards + process rubric
@@ -228,8 +248,8 @@ dataset/<task-id>/
 ```
 
 During a run the agent sees only the built environment, the `instruction.md` prompt body, and — in
-the curated arm — the mounted Skills directory. `oracle/`, `solution/`, `TRUTH.md` and `tests/` are
-used exclusively by the verifier and are never exposed to the agent.
+the curated arm — the mounted Skills directory. `oracle/`, `TRUTH.md` and `tests/` are used
+exclusively by the verifier and are never exposed to the agent.
 
 ## Scoring methodology
 
@@ -242,8 +262,8 @@ run is a bundle defect, not an agent failure.
 
 Every task also ships **anti-shortcut guards**, unscored but blocking. The most important is
 isomorphic invariance: the reference is recomputed on a relabelled and reordered instance and
-asserted unchanged, so a run cannot pass by keying on instance-specific names or positions. Seven
-of the eight tasks carry one.
+asserted unchanged, so a run cannot pass by keying on instance-specific names or positions. Nine of
+the ten tasks carry one.
 
 Tasks run `network_mode: no-network`, so the image bakes in `pytest` and the agent cannot look the
 answer up. Each task ships a human-authored reference solution that passes by construction,
@@ -274,11 +294,11 @@ for run in glob.glob("dataset/*/trajectories/*/*/run_*"):
     scores[task][cond].append(sum(status[k] == "PASSED" for k in graded) / len(graded))
 
 per_task = {t: {c: sum(v) / len(v) for c, v in arms.items()} for t, arms in scores.items()}
-paired = [s for s in per_task.values() if "with-skill" in s]   # 20840ce0 has no curated arm
+paired = [s for s in per_task.values() if "with-skill" in s]
 A = sum(s["no-skill"] for s in paired) / len(paired)
 B = sum(s["with-skill"] for s in paired) / len(paired)
 print(f"A = {A:.3f}  B = {B:.3f}  delta = {B - A:+.3f}  g = {(B - A) / (1 - A):.3f}")
-# -> A = 0.180  B = 1.000  delta = +0.820  g = 1.000   (over the 8 paired tasks)
+# -> A = 0.299  B = 1.000  delta = +0.701  g = 1.000   (over all 10 paired tasks)
 ```
 
 The score is read from the **raw pytest record**, not from the `test cases passed` header in
@@ -287,19 +307,21 @@ The score is read from the **raw pytest record**, not from the `test cases passe
 
 ## Verification and quality assurance
 
-- **Structure.** 10 self-contained task directories. Eight carry a complete 2 × 3 grid;
-  `20840ce0` and `c7faca71` each ship a single no-Skills run and an intentionally empty curated
-  arm. Every scoring-relevant file is present and non-empty in all 50 runs.
-- **Provenance.** Every bundle carries a `uuid_provenance.json` sha256 manifest and every listed
-  file matches it. Seven of the eight bundles are byte-identical to their source in the upstream
-  Erza delivery repository.
+- **Structure.** 10 self-contained task directories, each carrying a complete 2 × 3 grid. Every
+  scoring-relevant file is present and non-empty in all 60 runs.
+- **Provenance.** Every bundle carries a `uuid_provenance.json` sha256 manifest, every listed file
+  matches it, and the manifest's canonical hash re-verifies on all 10 bundles. Three bundles
+  (`029f6a19`, `20840ce0`, `c7faca71`) were re-sealed 2026-08-04 after standardisation to the
+  common layout; their run grids are byte-identical to their upstream Erza delivery source.
 - **Score integrity.** Every score is recomputed from the run's own raw pytest record;
-  `verifier/reward.txt` agrees with `result.json` on all 50 runs, and with `pass_at_1.txt`.
-- **Paired isolation.** `prompts.json` is **byte-identical across both arms on all 8 paired tasks** — the
-  Skill is delivered by filesystem mount, never by prompt injection. The two arms differ in exactly
-  one variable.
-- **The Skill was genuinely used.** All 24 curated runs record an explicit launch of their task's
-  Skill in `trajectory/acp_trajectory.jsonl`; all 26 no-Skills runs record none. (Do not use
+  `verifier/reward.txt` agrees with `result.json` on all 60 runs, and with `pass_at_1.txt`.
+- **Paired isolation.** `prompts.json` is **byte-identical across both arms on all 10 tasks** — the
+  Skill is delivered by filesystem mount, never by prompt injection. Agent budgets are uniform
+  (1800 s) across both arms on nine tasks (`48f28e86` is the exception — see
+  [Known issues](#known-issues)), and each task's runs share a single `task_digest`, so both arms
+  measured the same frozen bundle bytes. The two arms differ in exactly one variable.
+- **The Skill was genuinely used.** All 30 curated runs record an explicit launch of their task's
+  Skill in `trajectory/acp_trajectory.jsonl`; all 30 no-Skills runs record none. (Do not use
   `agent_result.n_skill_invocations` — see [Known issues](#known-issues).)
 - **Fair play.** Each curated `SKILL.md` is class-level procedure — the reduction rule, the house
   constants, the uncertainty definitions — not an answer key. The agent never accesses the oracle
@@ -317,23 +339,26 @@ The score is read from the **raw pytest record**, not from the `test cases passe
   `verifier/test-stdout.txt`, but its own pytest record shows **0 of 12 graded cases passed**; the
   two passes are guards (`test_plausibility_guess_resistance`, `test_isomorphic_invariance`) that
   the header counted into a graded denominator. Its `reward.txt`, `pass_at_1.txt` and `result.json`
-  all correctly read 0. Every other header in the sample agrees with its record. **Score from the
+  all correctly read 0. This is the only such disagreement across all 60 runs. **Score from the
   pytest record, not the header.**
 - **`48f28e86` is a screening bundle.** Its own `trajectories/PROVENANCE.md` states that its runs
   are *not a valid paired comparison* — the agent budget differs across runs (700 s / 900 s /
   1200 s), so the arms are not single-variable and **no Δ should be quoted from it**. Its single
   no-Skills failure is also its only 700 s run. It is shipped for completeness and reported
-  separately in [Summary](#summary); the seven-task column is the honest one.
+  separately in [Summary](#summary); the nine-task column is the honest one.
 - **`029f6a19` runs are a prefix, not the full set.** Its source carries 6 no-Skills and 5 curated
   runs; this sample ships `run_1..3` of each arm — the first three by index, not selected on score.
   The two runs omitted from the no-Skills arm score 0.000 and 0.065, so the shipped prefix is
   representative rather than favourable.
-- **`20840ce0` and `c7faca71` are baseline-only.** Each ships one no-Skills run and no curated
-  arm, so each yields a score and no Δ, and both are excluded from every Δ figure in this
-  document. Their curated-arm directories are kept with a placeholder so the gap is visible
-  rather than silently absent. At n = 1, their scores (0.774 and 0.765) carry no dispersion
-  estimate whatsoever, and both sit high enough that the unaided model may be close to solving
-  these tasks outright — which the curated arm, once run, would have to be read against.
+- **`20840ce0` and `c7faca71` sit high unaided.** At A = 0.667 and A = 0.882 the model largely
+  solves both without the Skill, and their Δ (+0.333, +0.118) are the smallest in the sample.
+  Under Erza's own bar — "a task the model already passes unaided is below the bar" — their
+  inclusion is a judgment call; they are shipped because their pairing is clean (uniform budgets,
+  one prompt, one `task_digest` across all 6 runs) and they are the sample's only source of graded
+  partial credit. Their current grids replaced an earlier superseded single-run generation
+  (2026-07-29 bundle bytes; `c7faca71`'s superseded run scored 0.765 against different frozen
+  bytes). Neither task ships `egress/probe.txt` — that network-seal capture does not exist for
+  this run cohort in any source.
 - **`n_skill_invocations` is unreliable.** `result.json` reports
   `agent_result.n_skill_invocations: 0` for every run, including curated runs that demonstrably
   launched the Skill. Use the trajectory, not this field.
@@ -343,21 +368,27 @@ The score is read from the **raw pytest record**, not from the `test cases passe
   that emitted CTRF; `verifier/results.xml` is a JUnit re-serialisation of those same recorded
   results, and `pytest_output.txt` is the original raw capture. No score changed. It ships without
   `egress/probe.txt` because that network-seal capture does not exist for this task in any source.
-- **`graded_cases.json` is name-pattern derived** and self-flags `needs_review: true`; on at least
-  one task it lists a guard among the graded tests. The reproduction snippet above filters guard
-  names explicitly for this reason.
+- **`graded_cases.json` quality varies by generation.** On the seven older tasks it is
+  name-pattern derived and self-flags `needs_review: true`; on at least one it lists a guard among
+  the graded tests. On the three newer tasks (`029f6a19`, `20840ce0`, `c7faca71`) the graded set
+  is exact — parametrized `test_graded_case[...]` entries — and flags `needs_review: false`. The
+  reproduction snippet above filters guard names explicitly for this reason.
 
 ### Limitations
 
-- **Sample size.** 10 tasks, 3 runs per arm (1 for `20840ce0` and `c7faca71`), one model. The Erza delivery standard is ≥ 5 trials per
-  arm with paired-bootstrap confidence intervals; this sample sits **below that bar by design** — it
-  demonstrates format and method, and is not a powered efficacy estimate.
+- **Sample size.** 10 tasks, 3 runs per arm, one model. The Erza delivery standard is ≥ 5 trials
+  per arm with paired-bootstrap confidence intervals; this sample sits **below that bar by
+  design** — it demonstrates format and method, and is not a powered efficacy estimate.
 - **Single model.** Only Claude Opus 4.8 was run. Δ is not established to generalize across models.
 - **Domain concentration.** Seven of ten tasks are natural-science. Δ is not established across
   the domain distribution.
-- **No score variance to speak of.** All 24 curated runs score exactly 1.000, and only 4 of 24
-  unaided runs score strictly between 0 and 1. The scores are near-binary by construction (see
-  [Analysis](#analysis)), so this sample cannot support a graded difficulty ranking.
+- **Little score variance.** All 30 curated runs score exactly 1.000, and 20 of 30 unaided runs
+  score exactly 0 or 1. Partial credit is concentrated in the two office tasks (see
+  [Analysis](#analysis)), so the difficulty tiers rest on a handful of distinct score values and
+  the tier means carry no dispersion estimates.
+- **Tiers are outcome-based on the same runs they describe.** The [tier](#difficulty-tiers)
+  assignment uses the unaided scores, so the no-Skills slope across tiers is circular by
+  construction; only the curated line and the Δ column are findings.
 - **Selection.** Tasks were drawn from an existing measured pool rather than sampled at random, and
   every task here has positive Δ. Erza's charter keeps and labels zero- and negative-Δ tasks; none
   are represented in this sample, so it is not evidence about the Δ distribution.
