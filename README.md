@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hero.png" alt="Erza-Samples — agent-skills efficacy, measured in paired runs" width="880">
+  <img src="images/hero.png" alt="Erza-Samples — agent-skills efficacy, measured in paired runs" width="880">
 </p>
 
 <p align="center">
@@ -38,7 +38,7 @@ Skill efficacy grows as unaided difficulty rises, saturating at +100 pp on the E
 the unaided model scores zero. See
 [Results](#results-skill-efficacy-vs-unaided-difficulty) for how the tiers are defined.
 
-![Mean score by difficulty tier](assets/score_by_tier.png)
+![Mean score by difficulty tier](images/score_by_tier.png)
 
 > **This is a quality-controlled orientation sample of the Erza corpus,** provided for evaluation.
 > The dataset format, trajectory format, and scoring are identical to the production Erza harness.
@@ -76,13 +76,12 @@ defined; the excluded-task column is explained in
 ```
 erza-samples/
 ├── README.md                 # this document
-├── assets/                   # figures
+├── images/                   # figures
 │   ├── score_by_tier.png     # + score_by_tier.py, its generator
 │   └── cost_by_tier.png      # + cost_by_tier.py, its generator
-└── dataset/                  # one self-contained directory per task-id (10)
-    └── <task-id>/
-        ├── task.toml instruction.md environment/ oracle/ tests/ ...
-        └── trajectories/claude-opus-4-8/<condition>/run_N/ ...
+└── <task-id>/                # one self-contained directory per task-id (10)
+    ├── task.toml instruction.md environment/ oracle/ tests/ ...
+    └── trajectories/claude-opus-4-8/<condition>/run_N/ ...
 ```
 
 `condition ∈ {no-skill, with-skill}`, `N ∈ {1, 2, 3}`. Unlike a split dataset/trajectories layout,
@@ -98,7 +97,7 @@ solved by the unaided model; Expert tasks never are. This is an **outcome-based*
 computed from the runs shipped here, so the tiers describe what the model actually experienced
 rather than any property fixed in advance (`task.toml` declares all 10 `hard`).
 
-![Mean score by difficulty tier](assets/score_by_tier.png)
+![Mean score by difficulty tier](images/score_by_tier.png)
 
 | Tier        |   n | mean A | mean Δ |
 | :---------- | --: | -----: | -----: |
@@ -164,7 +163,7 @@ In contrast to accuracy, inference cost does not track difficulty — the unaide
 how much output it burns re-deriving procedure, and is highest at *both* ends of the tier scale,
 while the curated arm's cost stays flat.
 
-![Mean agent cost per run by difficulty tier](assets/cost_by_tier.png)
+![Mean agent cost per run by difficulty tier](images/cost_by_tier.png)
 
 ## Analysis
 
@@ -227,10 +226,10 @@ pie showData title Tasks by domain
 
 ## Dataset structure
 
-Each task lives under `dataset/<task-id>/` and is fully self-contained:
+Each task lives under `<task-id>/` at the repository root and is fully self-contained:
 
 ```
-dataset/<task-id>/
+<task-id>/
 ├── task.toml                 # metadata, resource + network policy, reward family
 ├── instruction.md            # the prompt presented to the agent
 ├── uuid_provenance.json      # content-addressed integrity manifest (sha256 per file)
@@ -256,7 +255,7 @@ isomorphic-invariance, frozen-golden recompute) check the grader itself and neve
 
 ## Trajectory structure
 
-Each run lives under `dataset/<task-id>/trajectories/claude-opus-4-8/<condition>/run_N/`:
+Each run lives under `<task-id>/trajectories/claude-opus-4-8/<condition>/run_N/`:
 
 ```
 trajectories/claude-opus-4-8/<condition>/run_N/   # condition ∈ {no-skill, with-skill}; N ∈ {1,2,3}
@@ -326,8 +325,8 @@ real-world solvability.
 
 Image-building, agent execution, and scoring are orchestrated by the **Erza harness**. The score
 for every run is in `verifier/reward.txt` and `result.json` (`rewards.reward`), with the raw graded
-record in `verifier/pytest_output.txt`. The figures regenerate from `assets/score_by_tier.py` and
-`assets/cost_by_tier.py` (`uv run --with matplotlib python3 assets/score_by_tier.py`).
+record in `verifier/pytest_output.txt`. The figures regenerate from `images/score_by_tier.py` and
+`images/cost_by_tier.py` (`uv run --with matplotlib python3 images/score_by_tier.py`).
 
 ### Recompute the efficacy yourself
 
@@ -340,10 +339,10 @@ GUARD = re.compile(r'plausib|isomorphic|invarian|guess_resist|frozen_golden|froz
                    r'|tolerances_are|load_bearing|not_the_|wood_anderson_calib|golden_matches')
 scores = collections.defaultdict(lambda: collections.defaultdict(list))
 
-for run in glob.glob("dataset/*/trajectories/*/*/run_*"):
-    task, cond = run.split("/")[1], run.split("/")[-2]
-    spec = json.load(open(f"dataset/{task}/graded_cases.json"))["graded_tests"] \
-        if os.path.exists(f"dataset/{task}/graded_cases.json") else None
+for run in glob.glob("*/trajectories/*/*/run_*"):
+    task, cond = run.split("/")[0], run.split("/")[-2]
+    spec = json.load(open(f"{task}/graded_cases.json"))["graded_tests"] \
+        if os.path.exists(f"{task}/graded_cases.json") else None
     status = dict(re.findall(r'^(?:\S*::)?(\S+)\s+(PASSED|FAILED|ERROR|SKIPPED)\b',
                              open(f"{run}/verifier/pytest_output.txt", errors="ignore").read(), re.M))
     graded = {k for k in status

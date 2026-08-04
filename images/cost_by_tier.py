@@ -59,6 +59,6 @@ ax.set_axisbelow(True)
 ax.legend(loc="upper center", frameon=True, edgecolor=GRID)
 
 fig.tight_layout()
-fig.savefig("/Users/AgisSpectre/erza-samples/assets/cost_by_tier.png",
+fig.savefig("/Users/AgisSpectre/erza-samples/images/cost_by_tier.png",
             bbox_inches="tight")
 print("written")

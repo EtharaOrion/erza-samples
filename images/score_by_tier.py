@@ -88,6 +88,6 @@ ax.set_axisbelow(True)
 ax.legend(loc="lower left", frameon=True, edgecolor=GRID)
 
 fig.tight_layout()
-fig.savefig("/Users/AgisSpectre/erza-samples/assets/score_by_tier.png",
+fig.savefig("/Users/AgisSpectre/erza-samples/images/score_by_tier.png",
             bbox_inches="tight")
 print("written")
