@@ -1,0 +1,226 @@
+{
+ "run": "with-skill/run_1",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 1,
+  "cases_total": 1,
+  "cases": [
+   {
+    "name": "test_score_local_magnitude",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 5,
+  "selfchecks_total": 5,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_wood_anderson_calibration",
+    "classname": "",
+    "status": "passed",
+    "time": 1.804
+   },
+   {
+    "name": "test_selfcheck_golden_matches_independent_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.237
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.207
+   },
+   {
+    "name": "test_selfcheck_plausible",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_selfcheck_not_the_velocity_form",
+    "classname": "",
+    "status": "passed",
+    "time": 0.196
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 15,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.004
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R16",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R17",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R18",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R19",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run established WHY a Wood-Anderson simulation is required - that the local magnitude scale is defined on the amplitude that instrument would have written, so the response-removed ground displacement is not the quantity the scale takes - rather than applying the simulation as an unexplained step or omitting it. Equivalent routes count: deriving it from the definition of ML, from the instrument's role in the -logA0 calibration, or from a units argument about what the amplitude term means, are all satisfactory provided the run shows why the simulation is load-bearing rather than cosmetic.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The invoked skill explicitly established that ML is defined by the amplitude a Wood-Anderson instrument would record and that response-removed ground displacement cannot be used directly; the run then simulated and calibrated that instrument."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R20",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checked its magnitude against something that could actually have disagreed - the second horizontal component, the same chain on the other band code, the alternative distance convention with the size of the shift quoted, or an order-of-magnitude check on the simulated amplitude itself. Re-running the same script and getting the same number does not count, and neither does 'the value looks plausible' or agreement with the catalogue magnitude.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run processed both horizontal components and reported their separate simulated amplitudes, 962.9 mm and 717.3 mm, so the second horizontal provided a check capable of disagreeing with the selected component."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R21",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The run said which convention it was adopting at each branch that has one - displacement versus velocity output, millimetres versus metres, zero-to-peak versus peak-to-peak, which distance it fed the correction - rather than only emitting code.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run explicitly stated displacement output in metres, conversion to millimetres, maximum horizontal zero-to-peak amplitude, and use of hypocentral distance; these conventions also appear directly in its code and final summary."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2",
+  "R14"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 1
+}

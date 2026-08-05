@@ -2,7 +2,7 @@
   "ref_ml": 5.2179,
   "tolerance_ml_abs": 0.3,
 
-  "ref_ml_note": "NOT an answer key. verifier/test_outputs.py derives ML from the baked waveform and station response and asserts this cached value against that derivation (test_golden_matches_independent_recompute); the graded comparison uses the DERIVED value. The predecessor of this task read this field and compared, which is how a wrong Wood-Anderson response survived a full pilot, Gate 1 and publication.",
+  "ref_ml_note": "NOT an answer key. tests/test_output.py derives ML from the baked waveform and station response and asserts this cached value against that derivation (test_golden_matches_independent_recompute); the graded comparison uses the DERIVED value. The predecessor of this task read this field and compared, which is how a wrong Wood-Anderson response survived a full pilot, Gate 1 and publication.",
 
   "published_precision_ambiguity_ml_maxabs": 0.0372,
   "published_precision_ambiguity_note": "Widest spread between defensible readings, measured on this record. (a) Damping convention: the IASPEI poles (-6.2832 +/- 4.7124j) encode h = 0.8 and give ML 5.2179; the h = 0.7 value still widely quoted in textbooks gives ML 5.2551. Spread 0.0372. (b) Deconvolution stabilisation, which no standard pins: water level swept over 30/45/60/90 dB crossed with three pre-filter bands spans ML 5.2147..5.2179, spread 0.0032 (n = 12). The graded tolerance of 0.3 is 8.1x the total band, so no faithful reading of the standard can fail on convention alone.",

@@ -1,8 +1,8 @@
 {
   "task_name": "geomagnetic-declination-survey",
   "rollout_name": "geomagnetic-declination-survey__cb3e4c29",
-  "rewards": {
-    "reward": 1.0
+  "scores": {
+    "score": 1.0
   },
   "agent": "claude-agent-acp",
   "agent_name": "@agentclientprotocol/claude-agent-acp",

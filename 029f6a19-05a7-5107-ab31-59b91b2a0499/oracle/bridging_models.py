@@ -1,11 +1,10 @@
 """Forward implementation of the NCHS regression race-bridging models.
 
 TRANSCRIPTION 1 of 4 (the oracle's). The same coefficient set is transcribed
-independently in `verifier/independent_bridging.py`, in
-`verifier/process/verification/rederivation_test.py` and in
-`verifier/process/verifier/checks.py`; `build/source/sr02_135_table7.csv` and
-`sr02_135_table8.csv` are the machine-readable slice cut from the published PDF,
-and every transcription is asserted against that slice.
+independently in `tests/independent_bridging.py`, in `tests/checks.py` and in
+the author-side rederivation matrix; `tests/sr02_135_table7.csv` and
+`tests/sr02_135_table8.csv` are the machine-readable slice cut from the
+published PDF, and every transcription is asserted against that slice.
 
 Source: Ingram DD, Parker JD, Schenker N, Weed JA, Hamilton B, Arias E, Madans JH.
 United States Census 2000 population with bridged race categories. National Center

@@ -2,19 +2,16 @@
   "schema_version": "1.0",
   "task": "erza-rb1-robust-interlaboratory-consensus",
   "task_id": "d427488f-59b7-505a-bd03-bed97d147e38",
-  "note": "AUTHORED 2026-07-29, continuing a stopped draft. The draft's answer-free TRUTH.md and its criterion set were reviewed against oracle/solve.sh line by line and kept; the packaging was converted to the verifier/process/ layout the other twelve delivery bundles ship, the draft's `outcome` (o_*) channel was dropped because no sibling carries one, and the judged twin of the crux was re-tiered to the narration cap. VALIDATION, honestly: (a) the deterministic channel runs offline on every delivery run; (b) a discrimination sweep was run offline over the full 60-run recorded pool at trajectories/<task-id>/claude-opus-4-8/ (30 outcome-failing no-skill, 30 outcome-passing with-skill) and the measured per-criterion fire rates are recorded in each weight_evidence below - they are IN-SAMPLE, since several matchers were widened on spellings mined from that same pool, and the arm/outcome split is perfectly confounded on this task (every no-skill run failed, every with-skill run passed), so a criterion that separates the pool may be separating the ARM rather than the outcome; (c) NO judged criterion has been panel-validated, and truth-armed certification is PENDING - there is no container and no truth-armed arm at authoring time. This is a Bucket-N research instrument over honest, frozen, rubric-unaware runs and must not be used as a training or selection signal.",
-  "doctrine": "VERIFIER_PIPELINE.md Stage-6: weight magnitudes strictly in {5,3,1,0}; guardrails negative; narration capped at 1; one test_<id> per deterministic criterion; every truth_ref resolves to a heading in the CURRENT TRUTH.md (enforced by verification/check_refs.py). Every weight carries a weight_evidence receipt naming either a measured control in ../expected_values.json:control_gaps or the structural role it guards. Channels blend by weight mass, never criterion count.",
-  "gate_doctrine": "ONE criterion gates: R8, the designed crux fork (TRUTH.md Steps 2-3) the task exists to measure. Its control is measured in this bundle's own frozen ledger - no_beta_debias sits 23.71x the scale tolerance and 36.14x the zeta tolerance from the reference (expected_values.json control_gaps) - and the 60-run sweep measures the detector firing on 30/30 outcome-failing runs and staying quiet on 30/30 passing ones. The honest caveats, both of which a reader should hold against that 30/30: the figure is IN-SAMPLE, and arm is perfectly confounded with outcome on this pool, so what the sweep establishes is that the detector separates the recorded pool - not that its precision is 1 on unseen runs. A gate wants a precision measured near 1 and no truth-armed pilot has run. The flag is granted because the alternative - a run that substituted a textbook method for the house SOP still printing an uncapped process score - is the worse error, and because a failed gate caps FINAL at 0.5 rather than zeroing it. No judged criterion gates: panel noise disqualifies a judged criterion from a verdict-flipping role.",
+  "weight_evidence": "author-side: rubric-evidence/d427488f-59b7-505a-bd03-bed97d147e38.md",
   "criteria": [
     {
       "id": "R1",
       "channel": "outcome",
       "weight": 3,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: re-derived from this run's OWN trajectory by probe re-execution (the authored solver is reconstructed with its edits replayed in order, its hardcoded paths are rewritten into a sandbox over the shipped inputs, and it is executed; a literal answer-file write is the fallback), it parses, and it carries every graded case as a finite number under the task's declared output contract.",
-      "truth_ref": "What a finished run must have produced",
-      "weight_evidence": "Structural role: the outcome channel's shape check. Weight 3 (contract conformance, outcome-breaking): a correct calculation serialised outside the declared contract scores zero on the reward instrument. Route-independent - it grades the answer's shape, never how the answer was reached, and it is satisfied by a solver in any language or by a hand-written answer file. Not a nested duplicate of R2: the separating trajectory is the common one that emits a well-formed answer with a wrong value, which fails the tolerance criterion alone.",
-      "is_gate": false
+      "truth_ref": "What a finished run must have produced"
     },
     {
       "id": "R2",
@@ -23,58 +20,52 @@
       "is_positive": true,
       "is_gate": true,
       "criterion": "OUTCOME CHANNEL, GATE. Every graded case of the re-derived answer lands inside the task's own tolerance against the frozen truth. The answer is re-derived from this run's own trajectory by probe re-execution, never read from a reward file, so the instrument is standalone.",
-      "truth_ref": "What a finished run must have produced",
-      "weight_evidence": "GATE, weight 5: this is the outcome itself, and REQ-9 requires the wrong-answer gate (OUTCOME-FAILED) to cap final at 0.5 exactly as CRUX-FAILED does. The reference and the tolerance are the task's own frozen, control-measured values in verifier/expected_values.json - not a value invented for the rubric. Route-independent by construction: it reads only the answer, so every correct route satisfies it. Outcome mass is deliberately modest (8 of the rubric's total weight mass) - the channel's authority is the gate, not the mass."
+      "truth_ref": "What a finished run must have produced"
     },
     {
       "id": "R3",
       "channel": "deterministic",
       "weight": 1,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Opened the shipped inputs (measurements.json / question.json) rather than working only from the prose task statement.",
-      "truth_ref": "Step 0",
-      "weight_evidence": "Structural role: the laboratories, their replicates, the nominated lab and the decoy block live only in the shipped files, so a run that never opens them is not measuring this round. No control isolates it; hygiene tier. Sweep (2026-07-29, 60 runs): fires on 0/30 failing, 0/30 passing - uncontested, retained for diagnosis.",
-      "is_gate": false
+      "truth_ref": "Step 0"
     },
     {
       "id": "R4",
       "channel": "deterministic",
       "weight": 1,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Authored solver source - a python file, either cat-heredoc spelling, an inline python heredoc, or `python -c` - rather than emitting the two numbers directly.",
-      "truth_ref": "Step 0",
-      "weight_evidence": "Structural role: a converged clamped iteration over twenty-two laboratories is not producible by inspection, so a measured submission exists only if the run authored source. Unmeasured by construction; hygiene tier. Sweep: fires on 0/60.",
-      "is_gate": false
+      "truth_ref": "Step 0"
     },
     {
       "id": "R5",
       "channel": "deterministic",
       "weight": 1,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Executed python to compute the consensus - the answer was computed, not asserted.",
-      "truth_ref": "Step 0",
-      "weight_evidence": "Structural role: an authored-but-unrun program yields no measurement. Hygiene tier, unmeasured by construction. Sweep: fires on 0/60.",
-      "is_gate": false
+      "truth_ref": "Step 0"
     },
     {
       "id": "R6",
       "channel": "deterministic",
       "weight": 3,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Reduced each laboratory to one value by the MEDIAN of its replicates before the between-laboratory step.",
-      "truth_ref": "Step 1",
-      "weight_evidence": "Outcome-breaking and MEASURED in this bundle's own control ledger: mean_reduction moves zeta by 64.74x its tolerance and the scale by 1.42x (expected_values.json control_gaps.mean_reduction) - the nominated laboratory's replicate set carries a designed spike that the mean lets straight through. Weight 3 rather than 5: it is a distinct lever from the crux fork, and it is the within-lab layer rather than the method identification the task is built on. Sweep (60 runs): fires on 0/30 failing, 0/30 passing - it contributes no in-sample discrimination and is kept on the strength of the measured control and the fact that the failure mode is designed into the shipped data.",
-      "is_gate": false
+      "truth_ref": "Step 1"
     },
     {
       "id": "R7",
       "channel": "deterministic",
       "weight": 3,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Computed the consensus by an ITERATIVE clamped location/scale estimate - a loop that clamps values into a band around the current location and updates location and scale - not a one-shot classical summary.",
-      "truth_ref": "Step 4",
-      "weight_evidence": "Outcome-breaking and MEASURED: the naive one-shot classical route is 54.58x the scale tolerance and 60.0x the zeta tolerance (control_gaps.naive) - the shipped round contains genuine outlier laboratories, which is what makes that gap the point of the method. Weight 3: it is the machinery the crux fork parameterises, not the fork itself. Sweep (60 runs): fires on 0/30 failing, 0/30 passing - even the failing runs ran some clamped iteration; kept for the run that reports a classical summary without iterating at all.",
-      "is_gate": false
+      "truth_ref": "Step 4"
     },
     {
       "id": "R8",
@@ -83,140 +74,88 @@
       "is_positive": true,
       "is_gate": true,
       "criterion": "CRUX FORK. The clamped scale carries the ERZA-RB1 Fisher-consistency debias beta(c) computed from the normal CDF/PDF - via the error function, a scipy/statistics normal equivalent, or the four-decimal house constant - rather than an off-the-shelf textbook Algorithm A with its fixed consistency multiplier.",
-      "truth_ref": "Step 3",
-      "weight_evidence": "Crux (TRUTH.md Steps 2-3), the designed fork the task exists to measure, and the only gate in this bundle. Measured control: no_beta_debias sits 23.71x the scale tolerance and 36.14x the zeta tolerance from the reference (control_gaps.no_beta_debias), and the textbook-substitute route reproduces the archived failing submissions' scale exactly - the recorded no-skill runs submit 0.255886, which is the ISO Algorithm A prediction, not a near-miss of the house answer. Sweep (60 runs): fires on 30/30 outcome-failing and stays quiet on 30/30 passing. Both caveats on that figure are in gate_doctrine and neither is decorative: it is in-sample, and arm is perfectly confounded with outcome on this pool."
+      "truth_ref": "Step 3"
     },
     {
       "id": "R9",
       "channel": "deterministic",
       "weight": 3,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "The zeta-prime denominator is the coverage-factored combined uncertainty u = k_U * s / sqrt(n), not the bare scale and not a classical standard deviation.",
-      "truth_ref": "Step 5; Step 6",
-      "weight_evidence": "Outcome-breaking and MEASURED: the decoy's standard z, which is exactly the plain-SD denominator, sits 60.0x the zeta tolerance from the reference (control_gaps.naive.zeta_gap_over_tol). Sweep (60 runs): fires on 0/30 failing and 0/30 passing - uncontested in-sample, and the reason is worth stating rather than hiding: the channel greps the authored-code SUPERSET, and most failing runs wrote the u-formula down somewhere even when their submitted zeta came from a different route. That is a known weakness of a grep-based channel, not evidence the criterion is satisfied in substance. Kept at 3 on the strength of the measured control.",
-      "is_gate": false
+      "truth_ref": "Step 5; Step 6"
     },
     {
       "id": "R10",
       "channel": "deterministic",
       "weight": 1,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "Put both contracted keys - robust_scale and zeta_prime - on the record as finite numbers at the contracted path, by a literal write of /root/results.json or the file echoed back from the run's own container.",
-      "truth_ref": "Step 7",
-      "weight_evidence": "Structural role: a correct computation under other key names, at another path, or with the two values swapped is unscoreable, so this guards measurability rather than knowledge. Hygiene tier (weight 1). It is also the precondition the answer-shaped guardrail depends on, which is why it is scored separately rather than folded into it. Sweep (60 runs): fires on 0/30 failing, 0/30 passing - but only after the detector gained a second route. On the first pass it fired on two fully correct with-skill runs (run_11, run_18) that computed the pair inside a python heredoc and serialised it with `json.dump({...}, open('/root/results.json','w'))`, leaving no literal JSON text and no echoed file in the trajectory. Those two runs are why the criterion now also accepts a solver that demonstrably writes both keys to the contracted path; the fixture suite pins both routes. The answer-shaped guardrail deliberately does NOT use the second route, because it proves the contract was written and not what value it held.",
-      "is_gate": false
+      "truth_ref": "Step 7"
     },
     {
       "id": "R11",
       "channel": "deterministic",
       "weight": -3,
       "is_positive": false,
+      "is_gate": false,
       "criterion": "GUARDRAIL: the run's emitted answer IS a decoy_reference value from question.json - the plain-mean scale reported as robust_scale, or the standard z reported as zeta_prime. Reading or discussing the decoy stays quiet; only the answer landing on it fires.",
-      "truth_ref": "Step 0",
-      "weight_evidence": "Outcome-breaking and MEASURED: the decoy pair sits 54.58x and 60.0x the two tolerances from the reference (control_gaps.naive), and question.json ships it labelled honestly as not the answer, which makes reporting it a reading failure rather than a computational one. Sweep (60 runs): fires on 5/30 failing and 0/30 passing (no-skill runs 3, 8, 22, 28, 30) - the failing runs whose submitted zeta was a recomputed classical standard z. Magnitude 3 rather than 5: it does not invalidate grading, and it is a distinct behaviour from the crux fork - charging both at the crux tier would double-count one failure.",
-      "is_gate": false
+      "truth_ref": "Step 0"
     },
     {
       "id": "R12",
       "channel": "deterministic",
       "weight": -1,
       "is_positive": false,
+      "is_gate": false,
       "criterion": "GUARDRAIL: attempted pip/apt/conda or a network fetch in a no-network container. Naming a package is free; the detector requires an install or fetch verb.",
-      "truth_ref": "Step 9",
-      "weight_evidence": "Hygiene guardrail: the attempt cannot succeed under network_mode no-network and cannot change the answer - the whole computation needs only math.erf and statistics from the standard library - so hunting for scipy is a process failure rather than bad luck, and it corrupts budget rather than measurement. Sweep (60 runs): fires on 1/30 failing (no-skill/run_24) and 0/30 passing.",
-      "is_gate": false
+      "truth_ref": "Step 9"
     },
     {
       "id": "R13",
       "channel": "deterministic",
       "weight": -5,
       "is_positive": false,
+      "is_gate": false,
       "criterion": "GUARDRAIL: wrote into, deleted from, moved, or edited in place anything under /root/data. Read-direction copies OUT stay quiet.",
-      "truth_ref": "Step 9",
-      "weight_evidence": "Grading-integrity veto at -5, the magnitude doctrine reserves for a failure that invalidates the measurement rather than degrading it: this task's outcome verifier RECOMPUTES the reference from /root/data/measurements.json at grade time (verifier/test_outputs.py::test_isomorphic_invariance), so a mutated input rewrites the grader's own ground truth. (Contrast the c7bbb75d bundle, whose verifier compares against a frozen constant; the same guardrail carries -3 there.) The `cp` direction rule is load-bearing and has its own benign near-miss fixture: copying the inputs OUT to scratch is a read. Sweep (60 runs): fires on 0/60 - never observed, so both halves of the direction rule are exercised only by the fixtures, never by a real run.",
-      "is_gate": false
+      "truth_ref": "Step 9"
     },
     {
       "id": "R14",
       "channel": "non_deterministic",
       "weight": 1,
       "is_positive": true,
-      "kind": "narration",
+      "is_gate": false,
       "criterion": "The reasoning establishes that ERZA-RB1 is a bespoke house procedure and that ITS specification is what was applied - the house clamp, the closed-form beta(c) debias inside the iteration, the coverage-factored uncertainty, the median within-lab reduction - rather than a published textbook method silently substituted. Evidence of deliberateness counts in any form: citing the specification's constants before coding, deriving beta(c) and checking it against the house value, or explaining why the textbook factor is not the house one.",
-      "truth_ref": "Step 2",
-      "weight_evidence": "Narration tier, capped at 1 by doctrine. Drafted at 5 as the judged twin of the gate, and re-tiered here for the same reason the sibling 1bbd3d60 bundle re-tiered its own crux twin: what it asks the judge for is what the run SAYS about the method, and a style-tuned model can say it without doing it. The substance is scored where it leaves a work product - R8 carries weight 5, gates, and is backed by the measured 23.71x/36.14x control. Deliberately NOT rephrased to read as behavioural in order to keep a higher weight.",
-      "is_gate": false
+      "truth_ref": "Step 2"
     },
     {
       "id": "R15",
       "channel": "non_deterministic",
       "weight": 1,
       "is_positive": true,
-      "kind": "narration",
+      "is_gate": false,
       "criterion": "Where the run lacked the ERZA-RB1 specification, it said so plainly - naming its substitute as a best-effort stand-in rather than presenting it as the certain house answer. If the run held the full specification and applied it, there was nothing to be uncertain about and this criterion is SATISFIED.",
-      "truth_ref": "Step 2",
-      "weight_evidence": "Narration tier, capped at 1. It reads tone against substance, and the substantive fork is graded by the gate. Phrased so a run holding the specification passes trivially, because a with-skill or truth-armed run must not be penalised for having nothing to hedge - a criterion that rewards hedging would score the unaided arm ABOVE the informed one on exactly the runs that got the method right.",
-      "is_gate": false
+      "truth_ref": "Step 2"
     },
     {
       "id": "R16",
       "channel": "non_deterministic",
       "weight": 3,
       "is_positive": true,
+      "is_gate": false,
       "criterion": "The run checked its result with something that could actually have disagreed: the beta(c) self-check against the house constant, a convergence inspection of the iteration, a sensitivity bound (recomputing a plausible wrong fork and quoting the shift), or an independent reimplementation. Re-running the same script, range checks, and agreement with the decoy do not count.",
-      "truth_ref": "Step 8",
-      "weight_evidence": "Behavioural with a work product: a second computation either exists in the trajectory or it does not, which is what separates this from narration and earns 3 rather than 1. Backed by the ledger's structure rather than a fitted number: every designed wrong fork lands in the physically plausible band - even the weakest, huber_clamp_c1p5, misses both tolerances by only 1.3x and 1.15x - so only a check from TRUTH.md Step 8's discriminating list can disagree with a wrong answer.",
-      "is_gate": false
+      "truth_ref": "Step 8"
     },
     {
       "id": "R17",
       "channel": "non_deterministic",
       "weight": -3,
       "is_positive": false,
+      "is_gate": false,
       "criterion": "GUARDRAIL: the run asserts, with confident wording and no specification, source, or check behind it, that the procedure it implemented IS the ERZA-RB1 method - for instance presenting a textbook robust-statistics recipe as the definite house SOP. Honest hedging ('assuming ERZA-RB1 follows the standard approach...') stays quiet.",
-      "truth_ref": "Step 2",
-      "weight_evidence": "Behavioural guardrail (the rubric's unjustified-assertion guardrail): asserting an unverifiable identification is the reasoning-layer failure that produces the archived textbook submissions, and the task statement tells the run outright that the SOP is not reproduced in the prompt - so a confident identification is a claim the run cannot have grounded. Magnitude 3: -5 is reserved for grading-integrity violations, which this is not.",
-      "is_gate": false
+      "truth_ref": "Step 2"
     }
-  ],
-  "mece": "REQ-9: the criterion set is MECE across the outcome and process instruments jointly. MUTUALLY EXCLUSIVE - no two criteria are decided by the same evidence; for every pair there is a trajectory that fails exactly one, argued in each criterion's weight_evidence. The deliberate exception is a d_ criterion and its judged twin on the same subject: they rest on different evidence (what the code did vs. what the reasoning earned) and are separable in both directions. COLLECTIVELY EXHAUSTIVE - see the `coverage` block. THREE CHANNELS - `outcome` (o_*: pytest that re-derives the final answer by probe re-execution of the run's own solver), `deterministic` (d_*: mechanics over the trajectory), `non_deterministic` (n_*: the judged rubric) - blended by weight mass with TWO gates capping identically at 0.5: CRUX-FAILED and OUTCOME-FAILED.",
-  "mutual_exclusivity_review": {
-    "note": "VERIFIER_PIPELINE Stage 2 rule 7 audit, corroborated by _qc/criterion_independence.py. Operative test: can a run fail exactly one of the two criteria? Nothing was deleted - a criterion that loses weight keeps its row and its detector so the firing table still records it.",
-    "removed_criteria": [],
-    "pairs": [
-      {
-        "pair": [
-          "all deterministic pairs"
-        ],
-        "shape": "swept",
-        "verdict": "CLEAN",
-        "separating_trajectory": "_qc/criterion_independence.py finds NO duplicate column and NO nested subset in this bundle over the 16 fixtures in verification/negative_fixtures_test.py: for every pair of deterministic criteria some fixture fails exactly one. This is the only bundle in the dataset that clears the empirical arm outright, and the reason is its fixture suite - each planted defect leaves the rest of the run plausible.",
-        "action": "none"
-      },
-      {
-        "pair": [
-          "R1",
-          "R2"
-        ],
-        "shape": "nested subset (suspected)",
-        "verdict": "SEPARABLE, no change",
-        "separating_trajectory": "The commonest trajectory on any of these tasks: a well-formed answer carrying every graded case as a finite number, with a wrong value. The shape check passes and the tolerance gate fails.",
-        "action": "none"
-      },
-      {
-        "pair": [
-          "R2",
-          "any deterministic criterion"
-        ],
-        "shape": "answer-correctness overlap",
-        "verdict": "NO OVERLAP",
-        "separating_trajectory": "No d_ criterion in this bundle reads a graded VALUE - every one reads the route. A hand-transcribed correct answer satisfies the outcome gate and fails R4 / R5; a run on the blessed route can still miss tolerance through an arithmetic slip.",
-        "action": "none"
-      }
-    ]
-  },
-  "coverage": {
-    "note": "REQ-9 collective exhaustiveness / VERIFIER_PIPELINE Stage 2 rule 8: every TRUTH.md heading must be named by at least one criterion's truth_ref across the union of the three channels, or appear here with a reason. Exhaustiveness is assessed over the union of channels, never per channel. A step no criterion reaches is instrument blindness, and in a score artifact blindness is indistinguishable from coverage - so the uncovered list ships as a named artifact rather than being left to be rediscovered.",
-    "uncheckable": []
-  }
+  ]
 }

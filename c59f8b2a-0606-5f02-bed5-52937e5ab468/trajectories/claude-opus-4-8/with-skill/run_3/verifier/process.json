@@ -1,0 +1,274 @@
+{
+ "run": "with-skill/run_3",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 12,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_phase_centre_correction[ANT-A-s1]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-A-s2]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-A-s3]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-A-s4]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-B-s1]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-B-s2]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-B-s3]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-B-s4]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-C-s1]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-C-s2]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-C-s3]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_phase_centre_correction[ANT-C-s4]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 5,
+  "selfchecks_total": 5,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_frozen_golden_matches_live_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.014
+   },
+   {
+    "name": "test_selfcheck_plausibility_and_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance_under_rescale",
+    "classname": "",
+    "status": "passed",
+    "time": 0.016
+   },
+   {
+    "name": "test_selfcheck_tolerances_are_positive_and_bind",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_selfcheck_variation_term_is_load_bearing",
+    "classname": "",
+    "status": "passed",
+    "time": 0.013
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 12,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.006
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R16",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "NARRATION: the run states that the phase-centre pattern belongs to the antenna model and cannot be derived from the line-of-sight geometry.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The loaded calibration skill explicitly states that PCO and PCV are properties of the antenna model determined by measurement and that “nothing in the geometry of a line of sight predicts them”; the run consequently loaded each antenna’s own ANTEX block."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R17",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "NARRATION: the run identifies the nominal offset supplied for orientation as orientation rather than as the basis for the answer.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run displayed `question.json`, where the nominal block is explicitly labeled “Shown for orientation only,” and then based every computation on the antenna-specific ANTEX files rather than that nominal block."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R18",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checked its result against something that could actually have disagreed - recomputing a case with a different antenna's block and confirming the number moves, separating the projected offset from the interpolated variation and confirming both terms are present and of comparable order, evaluating the grid either side of the zenith direction, or deliberately reading the azimuth-averaged row and confirming it disagrees. Any equivalent construction that would return a different number under a wrong reading counts. Confirming only that the output is finite, parses, lies in a plausible millimetre range, or reproduces when the same program is re-run does NOT count: every failure mode this task discriminates passes all of those.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run evaluated the same E08 direction using ANT-A, ANT-B, and ANT-C’s distinct blocks and obtained substantially different corrections, directly demonstrating antenna-block sensitivity. It also printed projected-offset and interpolated-PCV terms separately for every requested case and validated the implementation against independent supplied check values."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2",
+  "R12"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 1
+}

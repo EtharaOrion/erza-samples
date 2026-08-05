@@ -1,8 +1,8 @@
 {
   "task_name": "ionosphere-arc-vtec-calibration",
   "rollout_name": "ionosphere-arc-vtec-calibration__6ff36228",
-  "rewards": {
-    "reward": 0.0
+  "scores": {
+    "score": 0.0
   },
   "agent": "claude-agent-acp",
   "agent_name": "@agentclientprotocol/claude-agent-acp",

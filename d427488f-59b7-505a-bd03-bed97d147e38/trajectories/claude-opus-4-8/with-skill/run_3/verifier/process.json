@@ -1,0 +1,201 @@
+{
+ "run": "with-skill/run_3",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 2,
+  "cases_total": 2,
+  "cases": [
+   {
+    "name": "test_score_robust_scale",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_zeta_prime",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 2,
+  "selfchecks_total": 2,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_isomorphic_invariance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_selfcheck_plausible",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 12,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_zz_meta_every_detector_pairs_with_a_rubric_id",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R14",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The trace names the median reduction, house clamp, beta value, iterative result, and coverage factor, but it never derives the closed-form beta correction or establishes that beta was applied inside every iteration rather than merely asserted or applied afterward."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R15",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The run launched the dedicated `erza-rb1-robust-consensus` skill and then applied procedure-specific constants and transformations, so the transcript indicates it held and used the house specification rather than lacking it and needing to hedge."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R16",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run only marks beta as greater than one, without comparing it to the house four-decimal reference, and merely asserts convergence without showing a trajectory or stopping tolerance. Its comparison to the supplied decoy is explicitly not a discriminating verification check."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R17",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "Although the agent confidently says it computed per the SOP, that claim is backed by the dedicated ERZA-RB1 skill invocation and a trace containing house-specific constants and transformations; it is not an unsupported textbook substitution."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 1
+}

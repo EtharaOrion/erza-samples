@@ -15,7 +15,7 @@ never numerically; a run gets the coefficients from the skill, not from this fil
 
 **Self-contained by requirement.** Following this file, the task's output contract, the
 shipped inputs, and the coefficient set the skill supplies must land on the oracle's answer
-exactly. Verified by `verification/rederivation_test.py` (BIT-IDENTICAL).
+exactly. Verified by `the grader self-audit fixtures` (BIT-IDENTICAL).
 
 **Grader-side only.** Never mounted, never shipped to the agent.
 

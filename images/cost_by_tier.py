@@ -52,21 +52,15 @@ plt.rcParams.update(
 
 
 def run_score(task, run_dir):
-    """Graded cases passed / total, read from the raw pytest record."""
-    spec_path = ROOT / task / "graded_cases.json"
-    spec = json.loads(spec_path.read_text())["graded_tests"] if spec_path.exists() else None
-    text = (Path(run_dir) / "verifier" / "pytest_output.txt").read_text(errors="ignore")
-    status = dict(
-        re.findall(r"^(?:\S*::)?(\S+)\s+(PASSED|FAILED|ERROR|SKIPPED)\b", text, re.M)
-    )
-    keep = {t.lstrip(":") for t in spec} if spec else None
-    graded = {
-        k
-        for k in status
-        if (k in keep if keep is not None else k.startswith("test_graded_case"))
-        and not GUARD.search(k)
-    }
-    return sum(status[k] == "PASSED" for k in graded) / len(graded)
+    """Graded cases passed / total, read from the run's structured report.
+
+    The canonical layout ships verifier/process.json, whose `outcome` block
+    already separates the graded `cases` from the grader's own `selfchecks`,
+    so no name-pattern guard is needed to keep guards out of the denominator.
+    """
+    report = json.loads((Path(run_dir) / "verifier" / "process.json").read_text())
+    outcome = report["outcome"]
+    return outcome["cases_passed"] / outcome["cases_total"]
 
 
 def tier_of(a):

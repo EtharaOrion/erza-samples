@@ -1,4 +1,0 @@
-{
-  "model": "gpt-5.6-sol",
-  "text": "<judgment>\n1. R19\n[[RATIONALE: The invoked skill explicitly established that ML is defined by the amplitude a Wood-Anderson instrument would record and that response-removed ground displacement cannot be used directly; the run then simulated and calibrated that instrument.]]\n[[SATISFIED: Yes]]\n\n2. R20\n[[RATIONALE: The run processed both horizontal components and reported their separate simulated amplitudes, 962.9 mm and 717.3 mm, so the second horizontal provided a check capable of disagreeing with the selected component.]]\n[[SATISFIED: Yes]]\n\n3. R21\n[[RATIONALE: The run explicitly stated displacement output in metres, conversion to millimetres, maximum horizontal zero-to-peak amplitude, and use of hypocentral distance; these conventions also appear directly in its code and final summary.]]\n[[SATISFIED: Yes]]\n</judgment>"
-}

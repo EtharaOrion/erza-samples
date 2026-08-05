@@ -1,8 +1,8 @@
 {
   "task_name": "wcs-astrometry-v3",
   "rollout_name": "wcs-astrometry-v3__dfc378b6",
-  "rewards": {
-    "reward": 1.0
+  "scores": {
+    "score": 1.0
   },
   "agent": "claude-agent-acp",
   "agent_name": "@agentclientprotocol/claude-agent-acp",

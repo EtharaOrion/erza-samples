@@ -61,6 +61,12 @@ import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# The outcome verifier (../test.sh) counts ONLY the `test_score_phase_centre_correction` cases toward the
+# score; the grader self-checks in ../test_output.py are excluded there, and are
+# excluded here for the same reason. Counting them would report a denominator the
+# score was never computed against.
+OUTCOME_CASE_PREFIX = "test_score_phase_centre_correction"
+
 
 def _sha(path: str) -> str:
     try:
@@ -78,7 +84,7 @@ def version_stamp() -> dict:
     return {
         "truth_md": _sha(os.path.join(ROOT, "..", "TRUTH.md")),
         "rubrics_json": _sha(os.path.join(ROOT, "rubrics.json")),
-        "test_trajectory_py": _sha(os.path.join(ROOT, "test_pytest.py")),
+        "test_output_py": _sha(os.path.join(ROOT, "test_output.py")),
     }
 
 
@@ -105,6 +111,92 @@ def read_junit(path: str) -> dict[str, bool]:
             continue
         out[cid] = not failed
     return out
+
+
+
+def read_process_dets(run_dir: str) -> dict[str, bool]:
+    """criterion id -> did the test pass, from the run's archived process.json.
+
+    ../test.sh converts pytest's JUnit output in-script and archives it as
+    `<run>/verifier/process.json`; no XML ships. These are the same verdicts
+    read_junit() would have read, so --junit stays an explicit override rather
+    than the only way in.
+    """
+    path = os.path.join(run_dir, "verifier", "process.json")
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    cases = ((doc.get("deterministic") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list):
+        return {}
+    out: dict[str, bool] = {}
+    for c in cases:
+        name = str(c.get("name", ""))
+        status = str(c.get("status", "")).lower()
+        if not name.startswith("test_") or status == "skipped":
+            continue
+        out[name[len("test_"):]] = status == "passed"
+    return out
+
+
+def _outcome_from_process_json(path: str):
+    """Outcome cases from the structured report ../test.sh now emits.
+
+    test.sh converts pytest's JUnit output to `<run>/verifier/process.json` in-script,
+    so this is the primary source. `outcome.cases` carries the GRADED units only:
+    the `test_selfcheck_` entries live in a separate `outcome.selfchecks` block and
+    are excluded here exactly as test.sh excludes them from the score. Conflating
+    the two would report a denominator the score was never computed against.
+    """
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    cases = ((doc.get("outcome") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list) or not cases:
+        return None
+    graded = [c for c in cases
+              if str(c.get("name", "")).startswith(OUTCOME_CASE_PREFIX)
+              and str(c.get("status", "")).lower() != "skipped"]
+    if not graded:
+        return None
+    passed = sum(1 for c in graded if str(c.get("status", "")).lower() == "passed")
+    return passed, len(graded)
+
+
+def _archived_pass_at_1(run_dir: str):
+    """pass@1 as recorded with the run, read from the archived process.json."""
+    try:
+        with open(os.path.join(run_dir, "verifier", "process.json")) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    v = doc.get("pass_at_1") if isinstance(doc, dict) else None
+    return None if v is None else int(v)
+
+
+
+def read_process_judged(run_dir: str) -> dict:
+    """The judged panel as archived with the run.
+
+    `verifier/process/panel.json` no longer ships; the same payload is archived in
+    `<run>/verifier/process.json` under `judged`, alongside the per-criterion
+    rationales in `verifier/verdicts.jsonl`. --judge stays an explicit override
+    rather than the only way in - without this the judged channel would abstain on
+    every archived run and the channel would silently report INVALID.
+    """
+    try:
+        with open(os.path.join(run_dir, "verifier", "process.json")) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    jd = doc.get("judged") if isinstance(doc, dict) else None
+    if isinstance(jd, dict) and isinstance(jd.get("criteria"), list):
+        return jd
+    return {}
 
 
 def score_channel(rows: list[dict]) -> tuple[float | None, float, int, float]:
@@ -145,31 +237,37 @@ def _no_graded_work(rows: list[dict]) -> bool:
 
 
 def read_continuous(run_dir: str) -> dict:
-    """P-10: outcome test cases passed / total, read from the run's own verifier log."""
+    """P-10: outcome test cases passed / total, read from the run's own report.
+
+    ../test.sh converts pytest's JUnit output in-script and archives it as
+    `verifier/process.json`; no XML and no raw log ship, so that is the source.
+    Only the graded `OUTCOME_CASE_PREFIX` cases count - the grader self-checks
+    are archived separately and are excluded from the score, so counting them
+    here would report a denominator the score was never computed against.
+    Falls back to the human-readable log for a run dir that carries one."""
     out: dict = {"passed": None, "total": None, "value": None,
-                 "source": "verifier/pytest_output.txt"}
-    path = os.path.join(run_dir, "verifier", "pytest_output.txt")
-    if not os.path.exists(path):
-        xml_path = os.path.join(run_dir, "verifier", "results.xml")
-        if not os.path.exists(xml_path):
-            out["source"] = "unavailable"
-            return out
-        root = ET.parse(xml_path).getroot()
-        cases = [c for c in root.iter("testcase")
-                 if c.get("name", "").startswith("test_phase_centre_correction")]
-        passed = sum(1 for c in cases
-                     if not any(c.find(t) is not None
-                                for t in ("failure", "error", "skipped")))
-        out.update(passed=passed, total=len(cases), source="verifier/results.xml",
-                   value=(passed / len(cases) if cases else None))
+                 "source": "verifier/process.json"}
+    got = _outcome_from_process_json(
+        os.path.join(run_dir, "verifier", "process.json"))
+    if got:
+        passed, total = got
+        out.update(passed=passed, total=total,
+                   value=(passed / total if total else None))
         return out
-    with open(path) as f:
-        text = f.read()
-    names = re.findall(r"(test_phase_centre_correction\[[^\]]+\])\s+(PASSED|FAILED|ERROR)", text)
-    if names:
-        passed = sum(1 for _n, verdict in names if verdict == "PASSED")
-        out.update(passed=passed, total=len(names),
-                   value=passed / len(names) if names else None)
+    for name in ("test-stdout.md", "test-stdout.txt"):
+        path = os.path.join(run_dir, "verifier", name)
+        if not os.path.exists(path):
+            continue
+        with open(path) as f:
+            text = f.read()
+        names = re.findall(
+            OUTCOME_CASE_PREFIX + r"\[[^\]]+\]\s+(PASSED|FAILED|ERROR)", text)
+        if names:
+            passed = sum(1 for verdict in names if verdict == "PASSED")
+            out.update(passed=passed, total=len(names), source="verifier/" + name,
+                       value=passed / len(names))
+            return out
+    out["source"] = "unavailable"
     return out
 
 
@@ -222,14 +320,15 @@ def main() -> int:
     args = ap.parse_args()
 
     spec = load_spec()
-    det_pass = read_junit(args.junit) if args.junit else {}
+    det_pass = (read_junit(args.junit) if (args.junit and os.path.exists(args.junit))
+                else read_process_dets(args.run_dir))
 
-    jd: dict = {}
-    judge_by_id: dict[str, dict] = {}
     if args.judge and os.path.exists(args.judge):
         with open(args.judge) as f:
             jd = json.load(f)
-        judge_by_id = {c["id"]: c for c in jd["criteria"]}
+    else:
+        jd = read_process_judged(args.run_dir)
+    judge_by_id: dict[str, dict] = {c["id"]: c for c in jd.get("criteria", [])}
 
     det_rows, nd_rows, out_rows = [], [], []
     for c in spec["criteria"]:
@@ -351,11 +450,17 @@ def main() -> int:
     }
 
     legacy = {}
-    for name, key in (("reward.txt", "outcome_score"), ("pass_at_1.txt", "outcome_pass_at_1")):
-        p = os.path.join(args.run_dir, "verifier", name)
-        if os.path.exists(p):
-            with open(p) as f:
-                legacy[key] = float(f.read().strip())
+    p = os.path.join(args.run_dir, "verifier", "score.md")
+    if os.path.exists(p):
+        with open(p) as f:
+            legacy["outcome_score"] = float(f.read().strip())
+    p1 = _archived_pass_at_1(args.run_dir)
+    if p1 is not None:
+        legacy["outcome_pass_at_1"] = p1
+    got = _outcome_from_process_json(
+        os.path.join(args.run_dir, "verifier", "process.json"))
+    if got:
+        legacy["outcome_cases"] = "%d/%d" % got
 
     out = {
         "run_dir": os.path.abspath(args.run_dir),

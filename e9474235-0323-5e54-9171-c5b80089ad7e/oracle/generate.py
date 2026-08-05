@@ -1,11 +1,11 @@
 """Generator for the tidal-harmonic-prediction task (authoring-time only).
 
 Emits the agent-visible inputs (environment/data/stations.csv, question.json) and the
-grader-side ground truth (verifier/expected_values.json + golden.json). Golden heights are
+grader-side ground truth (tests/expected_values.json). Golden heights are
 DERIVED here from the gauge harmonic constants via oracle/tide_predict.py; nothing hand-typed.
 
 Stations are identified only by OPAQUE gauge labels (TG-A/B/C). The real NOAA station
-identities live grader-side only (build/station_map.json, verifier/truth.md) so the
+identities live grader-side only (author-side build inputs, not shipped) so the
 withheld harmonic constants are not fetchable by a networked no-skill agent: the constants
 exist only in the skill, keyed by the opaque label. The agent-visible data carries NO NOAA
 ids, names, or coordinates and NO harmonic constants.

@@ -1,0 +1,197 @@
+{
+ "schema_version": "1.0",
+ "task": "flight-duty-period-legality",
+ "task_id": "c7faca71-82cd-5ad3-9dc5-c161793ddb25",
+ "weight_evidence": "author-side: rubric-evidence/c7faca71-82cd-5ad3-9dc5-c161793ddb25.md",
+ "criteria": [
+  {
+   "id": "d_reads_roster",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Opened the baked roster and contract under /root/data (pairings.csv and/or question.json).",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_writes_solver",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Authored a solver rather than assembling the fifty-one figures by hand.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_executes_solver",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Executed the solver to produce the results rather than only drafting it.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_normalises_to_one_clock",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Reduced every clock time and every duration to whole minutes, and treated a release time earlier on the clock than its report time as the next day - by a modulo, a conditional day addition, a timedelta or a date increment, indifferently. Nothing downstream compares a string.",
+   "truth_ref": "Step 1"
+  },
+  {
+   "id": "d_splits_augmented_regime",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Routed the pairings with more than the minimum crew and an onboard rest facility to their own matrix, on crew size and facility class.",
+   "truth_ref": "Step 2"
+  },
+  {
+   "id": "d_indexes_matrix_on_both_axes",
+   "channel": "deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": true,
+   "criterion": "CRUX. Wrote down the published maximum-duty-period cells and selected one by BOTH the report-time band and the segment count (or, in the augmented regime, the facility class and pilot count) - not by one axis and not by a single flat figure.",
+   "truth_ref": "Step 4; The crux"
+  },
+  {
+   "id": "d_applies_acclimation_reduction",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Reduced the matrix value by the published amount for the pairings whose crew is not acclimated to the theater the report time is expressed in.",
+   "truth_ref": "Step 4"
+  },
+  {
+   "id": "d_tests_split_duty_conditions",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Tested the published conditions on a scheduled accommodation rest before excluding it from the duty period, and left the whole elapsed period on duty when any condition failed.",
+   "truth_ref": "Step 3"
+  },
+  {
+   "id": "d_enumerates_all_limits",
+   "channel": "deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Took a margin against every limit the part imposes on the pairing, including the rolling cumulative ceilings and both rest provisions - not the duty period alone. The seven codes may be typed out or read from the shipped question.json; what is required is that each one carries a computed margin.",
+   "truth_ref": "Step 6; The crux"
+  },
+  {
+   "id": "d_includes_pairing_in_rolling_totals",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Added the pairing's own duty period and flight time to the rolling totals before comparing them with their ceilings.",
+   "truth_ref": "Step 6"
+  },
+  {
+   "id": "d_takes_minimum_margin",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Selected the governing limit as the smallest of the margins - by a minimum, a sort, an argmin or a hand-rolled scan that keeps a running best - rather than by precedence, first violation, or the headline limit.",
+   "truth_ref": "Step 7"
+  },
+  {
+   "id": "d_reports_contract",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Emitted /root/results.json with all three contracted fields for every pairing.",
+   "truth_ref": "Step 7"
+  },
+  {
+   "id": "d_g_flat_duty_ceiling",
+   "channel": "deterministic",
+   "weight": -5,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: a single flat duty ceiling stands in for the matrix - one figure used regardless of report time, segment count, regime or acclimation.",
+   "truth_ref": "Step 4; Delta-lever"
+  },
+  {
+   "id": "d_g_extension_applied_to_schedule",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: the relief for unforeseen operational circumstances was added to a scheduled ceiling.",
+   "truth_ref": "Where runs break"
+  },
+  {
+   "id": "d_g_grader_path_access",
+   "channel": "deterministic",
+   "weight": -5,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: read or probed the grading surface - /verifier, /oracle, expected_values.json, part117.xml, reg_reparse.py, part117_tables.py, truth.md, rubric.yaml or build/.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_g_network_egress",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: attempted to fetch the published part text, or to install a package, from the network.",
+   "truth_ref": "What cannot be done"
+  },
+  {
+   "id": "n_reconstructs_the_matrix_reading",
+   "channel": "non_deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "For at least one pairing the reasoning makes the matrix reading reconstructable: which regime the pairing is in, which report-time band its report time falls in, which column its segment count (or its facility class and pilot count) selects, and the cell that pair of coordinates yields. A reader must be able to follow it to the same cell. Naming the table, asserting that the correct row and column were used, or stating a maximum with no coordinates behind it earns nothing.",
+   "truth_ref": "Step 4; The crux"
+  },
+  {
+   "id": "n_flight_time_ceiling_source",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The reasoning distinguishes where the maximum FLIGHT TIME comes from, and does not take it from the duty-period matrix: that for the minimum required crew it is a report-time band of its own table, whose boundaries are not the duty-period matrix's boundaries, and that for a crew of three or four pilots it is a fixed ceiling stated in the section prose rather than in any table. A single flat flight-time figure applied to every pairing, or a flight-time ceiling read off the duty-period bands, does not satisfy this.",
+   "truth_ref": "Step 5"
+  },
+  {
+   "id": "n_enumeration_reasoning",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The reasoning says that the answer is the tightest of several simultaneous limits and that the duty period is not always the tightest - rather than treating the duty-period matrix as the whole question.",
+   "truth_ref": "Step 6"
+  },
+  {
+   "id": "n_verification_that_can_disagree",
+   "channel": "non_deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run checks its result against something that could actually have disagreed - a second reading of a matrix cell, a sign check against a direct comparison of the two quantities a margin came from, a hand recomputation of one pairing, or a check that no excluded rest made a duty period longer than the elapsed period - rather than treating a clean script run as verification.",
+   "truth_ref": "Step 8"
+  },
+  {
+   "id": "n_states_limit_source",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The agent states which limits it applied and where they come from, rather than presenting the ceilings as unattributed numbers.",
+   "truth_ref": "Sources"
+  }
+ ]
+}

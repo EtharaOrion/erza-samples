@@ -1,4 +1,0 @@
-{
-  "model": "gpt-5.6-sol",
-  "text": "<judgment>\n1. R16\n[[RATIONALE: The run explicitly states that per-antenna offsets and PCV tables \u201cdiffer from model to model\u201d and are \u201cnot recoverable from the geometry,\u201d correctly identifying the calibration pattern as antenna-model-specific.]]\n[[SATISFIED: Yes]]\n\n2. R17\n[[RATIONALE: Although the run notes that the nominal reference is explicitly labelled \u201cfor orientation only,\u201d it nevertheless uses those nominal offsets as the basis for every computed answer.]]\n[[SATISFIED: No]]\n\n3. R18\n[[RATIONALE: The run performed no discriminating verification: it did not load or compare different antenna blocks, separate and validate nonzero offset and PCV terms, test zenith-grid ordering, or compare the azimuth-resolved grid against an averaged row.]]\n[[SATISFIED: No]]\n</judgment>"
-}

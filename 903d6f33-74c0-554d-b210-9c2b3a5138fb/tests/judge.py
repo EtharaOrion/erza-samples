@@ -17,8 +17,8 @@ Design notes
 
 Usage
 -----
-    python judge/judge.py --run-dir <erza run dir> [--judges 3] [--out results/x.json]
-    python judge/judge.py --run-dir <erza run dir> --offline
+    python judge.py --run-dir <erza run dir> [--judges 3] [--out results/x.json]
+    python judge.py --run-dir <erza run dir> --offline
 """
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import trajectory as T  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -278,7 +278,7 @@ def main() -> int:
         with open(args.out, "w") as f:
             f.write(payload + "\n")
         if raw:
-            with open(args.out + ".raw.txt", "w") as f:
+            with open(args.out + ".raw.md", "w") as f:
                 f.write("\n\n===== JUDGE =====\n\n".join(raw))
         print(f"wrote {args.out}", file=sys.stderr)
     else:

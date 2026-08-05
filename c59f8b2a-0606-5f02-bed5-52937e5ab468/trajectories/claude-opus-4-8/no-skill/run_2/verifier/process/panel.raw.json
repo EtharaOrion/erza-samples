@@ -1,4 +1,0 @@
-{
-  "model": "gpt-5.6-sol",
-  "text": "<judgment>\n1. R16\n[[RATIONALE: The run explicitly states that the correction is fixed by each antenna\u2019s calibration, differs by model, and \u201cis not recoverable from the geometry.\u201d]]\n[[SATISFIED: Yes]]\n\n2. R17\n[[RATIONALE: Although the run recognizes that the nominal reference is \u201cshown for orientation only,\u201d it nevertheless uses those nominal offsets as the direct basis for every computed answer.]]\n[[SATISFIED: No]]\n\n3. R18\n[[RATIONALE: The only result check validated JSON parsing and coverage of all 12 cases. The run did not perform any discriminating check involving another antenna block, separate offset and PCV terms, zenith-grid ordering, or an azimuth-averaged row.]]\n[[SATISFIED: No]]\n</judgment>"
-}

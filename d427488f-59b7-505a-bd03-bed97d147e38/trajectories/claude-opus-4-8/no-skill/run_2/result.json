@@ -1,8 +1,8 @@
 {
   "task_name": "d427488f-59b7-505a-bd03-bed97d147e38",
   "rollout_name": "d427488f-59b7-505a-bd03-bed97d147e38__f4823b73",
-  "rewards": {
-    "reward": 0.0
+  "scores": {
+    "score": 0.0
   },
   "agent": "claude-agent-acp",
   "agent_name": "@agentclientprotocol/claude-agent-acp",

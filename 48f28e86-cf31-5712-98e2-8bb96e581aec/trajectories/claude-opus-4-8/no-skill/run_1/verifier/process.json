@@ -1,0 +1,250 @@
+{
+ "run": "no-skill/run_1",
+ "outcome": {
+  "score": 0.0,
+  "cases_passed": 0,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_true_azimuth[GDS01]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.009
+   },
+   {
+    "name": "test_score_true_azimuth[GDS02]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS03]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS04]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS05]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS06]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS07]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS08]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS09]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS10]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS11]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_true_azimuth[GDS12]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 2,
+  "selfchecks_total": 2,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_plausibility_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 8,
+  "cases_total": 10,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.006
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R14",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent explicitly chose to compute station-specific declinations from the WMM2020 spherical-harmonic model with embedded Gauss coefficients, rather than recalling a regional value."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R15",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent explicitly stated that the old-chart 6.5° figure in `decoy_reference` was ignored and contrasted it with the modeled station declinations."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R16",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The stated per-station pipeline explicitly converts geodetic latitude, longitude, and ellipsoidal height to geocentric spherical coordinates on WGS84, then rotates the field back to the geodetic frame."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R17",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent cross-checked the analytic field calculation against an independent finite-difference gradient of the magnetic scalar potential and displayed agreement at multiple points, including station coordinates."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2",
+  "R12"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 0
+}

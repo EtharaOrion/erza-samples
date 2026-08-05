@@ -1,0 +1,408 @@
+{
+ "run": "with-skill/run_2",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 16,
+  "cases_total": 16,
+  "cases": [
+   {
+    "name": "test_score_source_position[S01]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S02]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S03]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S04]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S05]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S06]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S07]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S08]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S09]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S10]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S11]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S12]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S13]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S14]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S15]",
+    "classname": "",
+    "status": "passed"
+   },
+   {
+    "name": "test_score_source_position[S16]",
+    "classname": "",
+    "status": "passed"
+   }
+  ],
+  "selfchecks_passed": 0,
+  "selfchecks_total": 0,
+  "selfchecks": [],
+  "source": "verifier/pytest_output.txt",
+  "note": "This run shipped no JUnit report; the cases were read from the archived pytest log, which carries per-case verdicts but no timings.",
+  "selfcheck_note": "This bundle ships no test_selfcheck_ tests, so the self-check kill-switch was unarmed on this run."
+ },
+ "deterministic": {
+  "cases_passed": 14,
+  "cases_total": 14,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.008
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R16",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R17",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "Before or while writing code, the agent explicitly decomposes the problem into the four stages of the standard (pixel -> intermediate world coordinates -> native spherical -> celestial), rather than treating it as one undifferentiated coordinate conversion.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "Before implementation, the invoked skill explicitly names the four-link chain, and the written code separately labels Stage 1 (CD), Stage 2 (inverse TAN), and Stage 3 (native-to-celestial), followed by wrapping/output."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R18",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent identifies the native-to-celestial rotation as the step most likely to be wrong and allocates disproportionate care to it, rather than treating all four stages as equally routine bookkeeping.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The trajectory explicitly adopts the skill’s warning that the native-to-celestial rotation is “the task,” carefully handles the absent LONPOLE, and later builds an independent vector-geometry check specifically capable of testing that orientation."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R19",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent reasons that the value of the native longitude of the celestial pole is supplied by the FITS standard as a default when the card is absent from the header - not that it is missing, not that it is zero, and not that it can be read off the file.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "After reading the header, the agent states, “No LONPOLE card, so the standard default φ_p = 180° applies,” and its final explanation evaluates the relevant condition, δ₀ = 67° < θ₀ = 90°."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R20",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent gives a reason for the atan2 argument order in the native longitude rather than transcribing it or guessing.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The invoked guidance explicitly explains that `arg(-y, x)` maps to `atan2(x, -y)` because the first `atan2` argument is the y-like component; the implementation then uses exactly that ordering."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R21",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The agent uses only transformations the header actually supplies, and does not introduce CDELT scaling, CROTA2, PVi_ja or SIP distortion terms that are absent from this file.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The implementation uses only CRPIX, CRVAL, the four CD elements, the TAN projection, and the standard pole rotation; it introduces no CDELT, CROTA2, PV, or SIP terms."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R22",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The agent verifies its result against a second construction that shares no trigonometry with the first (e.g. a vector-geometry gnomonic route), rather than only re-running its own pipeline.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent constructs a separate three-dimensional vector route using tangent-point, east, and north basis vectors, compares it against the Paper II spherical route for all sources, fixes an initial plane-coordinate bug, and obtains agreement of about 8.5e-7 degrees."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R23",
+    "weight": 0,
+    "is_positive": true,
+    "criterion": "The agent recognises that CRPIX-maps-to-CRVAL, range checks, and self-round-tripping cannot discriminate the convention error, and does not treat them as evidence of correctness.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The invoked guidance explicitly identifies CRPIX→CRVAL, range checks, and self-round-tripping as non-discriminating; the agent consequently proceeds from the CRPIX sanity check to an independent vector construction rather than treating CRPIX agreement as sufficient verification."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R24",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The agent performs a sanity check at a genuinely off-axis position - e.g. that one intermediate degree in +y moves Dec by about +1 degree - rather than only checking behaviour at the reference pixel.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The independent vector comparison is run at every catalogued source, all of which are genuinely off the reference pixel, so the trajectory checks orientation away from the tangent point rather than only at CRPIX."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R25",
+    "weight": -3,
+    "is_positive": false,
+    "criterion": "GUARDRAIL: the agent states or implies that its answer is verified or validated on the strength of a check that cannot discriminate the convention error (CRPIX->CRVAL, range checks, or round-tripping its own inverse).",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "Although the agent reports the CRPIX→CRVAL sanity check, it does not rely on that check for validation; it explicitly performs and cites the independent off-axis vector-geometry comparison as the discriminating verification."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R26",
+    "weight": -3,
+    "is_positive": false,
+    "criterion": "GUARDRAIL: the agent asserts a specific convention as 'the standard' - an argument order, a pole longitude, a matrix orientation - with confident wording but no derivation, citation, or check behind it.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The conventions are supported by the invoked Paper II-oriented guidance and by the independent vector check; the pole-longitude default is also derived from the header’s reference latitude rather than merely asserted."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R27",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "Where the agent is genuinely unsure about a convention it says so plainly rather than presenting the guess as settled. If the agent derived and independently verified every convention it used, there was nothing to be uncertain about and this criterion is SATISFIED.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "When the vector route initially disagrees, the trajectory exposes the uncertainty in its comments and then plainly identifies and fixes the mistaken use of `tan`; the remaining load-bearing conventions are derived and independently checked."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 1
+}

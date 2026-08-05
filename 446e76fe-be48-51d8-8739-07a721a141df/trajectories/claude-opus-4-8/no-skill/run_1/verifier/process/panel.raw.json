@@ -1,4 +1,0 @@
-{
-  "model": "gpt-5.6-sol",
-  "text": "<judgment>\n1. R19\n[[RATIONALE: The run described Wood-Anderson simulation as the \u201cstandard ML approach\u201d and executed it, but never explained that ML is defined on the amplitude a Wood-Anderson instrument would have written or why response-removed ground motion alone is insufficient.]]\n[[SATISFIED: No]]\n\n2. R20\n[[RATIONALE: The run compared both horizontal components, repeated the chain on the independent HH and BH channel sets, and quantified the epicentral-versus-hypocentral distance effect as approximately 2.21 versus 2.22.]]\n[[SATISFIED: Yes]]\n\n3. R21\n[[RATIONALE: The run explicitly stated that it adopted velocity response output, Wood-Anderson amplitudes in millimetres, maximum horizontal zero-to-peak amplitude, and the supplied epicentral distance for the final correction.]]\n[[SATISFIED: Yes]]\n</judgment>"
-}

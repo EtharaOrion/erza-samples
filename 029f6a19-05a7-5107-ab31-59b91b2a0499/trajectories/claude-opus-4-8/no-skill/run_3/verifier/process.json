@@ -1,0 +1,375 @@
+{
+ "run": "no-skill/run_3",
+ "outcome": {
+  "score": 0.0,
+  "cases_passed": 0,
+  "cases_total": 31,
+  "selfchecks_passed": 10,
+  "selfchecks_total": 10,
+  "selfcheck_failed": 0,
+  "cases": [
+   {
+    "name": "test_graded_case[share-R-01]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-02]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-03]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-04]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-05]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-06]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-07]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-08]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-09]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-10]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-11]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-12]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-13]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-14]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-15]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-16]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-17]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-18]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-19]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-20]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-21]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-22]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-23]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-24]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-25]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-26]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-27]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-28]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[share-R-29]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-30]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_graded_case[share-R-31]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks": [
+   {
+    "name": "test_frozen_reference_matches_independent_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_published_table9_distribution_is_reproduced",
+    "classname": "",
+    "status": "passed",
+    "time": 1.316
+   },
+   {
+    "name": "test_every_graded_case_is_decided_by_the_withheld_models",
+    "classname": "",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_shares_of_a_response_group_sum_to_one",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_every_model_family_and_every_pair_is_exercised",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_plausibility_envelope_and_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_orientation_block_fails_every_graded_case",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_isomorphic_invariance_under_relabelling_and_reordering",
+    "classname": "",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_tolerances_are_positive_and_bind",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_input_data_is_intact",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   }
+  ]
+ },
+ "deterministic": {
+  "recorded": false,
+  "cases_passed": null,
+  "cases_total": null,
+  "cases": [],
+  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
+  "criteria_unevaluated": [
+   "d_reads_input",
+   "d_writes_solver",
+   "d_executes_solver",
+   "d_applies_published_coefficients",
+   "d_selects_model_family_per_group",
+   "d_applies_footnoted_transforms",
+   "d_rescales_composite_over_named_categories",
+   "d_caps_age_at_69",
+   "d_reports_contract",
+   "d_g_arithmetic_split",
+   "d_g_single_model_for_every_group",
+   "d_g_orientation_block_echoed",
+   "d_g_grader_path_access",
+   "d_g_network_egress"
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "n_evaluates_the_published_equations",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The reasoning shows the fitted constants being EVALUATED for a record, not merely held: a covariate vector assembled in the published order and paired one-to-one with the coefficients of the chosen equation, a linear predictor formed from that pairing, and that predictor turned into a share. Equivalent routes count - logistic on a single contrast, exponentiate-and-normalise over the named categories, or any algebraically identical statement. Quoting the constants, naming the tables, or asserting that the published models were applied earns nothing on its own.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The agent explicitly declined to evaluate the fitted equations and instead copied `orientation_flat_shares`; it assembled no covariate vector, coefficient pairing, linear predictor, or model-derived share."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_group_specific_model_choice",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The reasoning states that different response groups are governed by different equation families, and why - rather than treating the eleven groups as one problem with a shared rule.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "Although the agent generally said there was \u201cone family of equations per response group,\u201d it never identified or selected the distinct six group-specific models versus the five composite-model groups, nor explained why those families differ."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_verification_that_can_disagree",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checks its result against something that could actually have disagreed - confirming that the shares of a response group sum to one over the categories it named, comparing a value against the published range for its own series, recomputing by a second route, or an equivalent - rather than treating 'the script ran' as verification.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The run only printed the generated JSON and did not perform a closure check, compare values with published series ranges, or recompute them through an independent route."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_states_constant_source",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent states which fitted constants it applied to which response group and where they came from.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The agent vaguely located coefficients in an \u201cNCHS report appendix,\u201d but stated that it did not possess or apply them and gave no mapping from fitted constants to response groups."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "pass_at_1": 0
+}

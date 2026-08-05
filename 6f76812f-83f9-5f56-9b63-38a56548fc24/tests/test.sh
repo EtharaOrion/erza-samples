@@ -1,62 +1,89 @@
 #!/bin/bash
 # In-container grading entrypoint.
 #
-#  * Reward artifacts are PRE-SEEDED to 0, so a crash, a collection error or a
+#  * Score artifacts are PRE-SEEDED to 0, so a crash, a collection error or a
 #    missing report grades 0 - never a missing file, never a crash that reads
 #    as success.
-#  * The score is parsed from the STRUCTURED report (JUnit XML), never from the
-#    exit code and never from a text scan of the human-readable log.
-#  * Scored tests are identified by the `test_reward_` prefix. Everything else
+#  * The score is parsed from the STRUCTURED report, never from the exit code
+#    and never from a text scan of the human-readable log. pytest still writes
+#    JUnit to a scratch path; this script converts it to `process.json` and the
+#    XML never ships.
+#  * Scored tests are identified by the `test_score_` prefix. Everything else
 #    in the module is either a process-channel test (not selected here) or an
 #    unscored grader self-check excluded from the denominator, so adding a
-#    self-check can never inflate the reward.
+#    self-check can never inflate the score.
 #  * SELF-CHECK KILL-SWITCH: a failing or skipped self-check means the bundle
 #    failed its own audit; the run scores 0 fail-closed and is INVALID for
 #    training composition (a BUNDLE DEFECT, not an agent failure).
-#  * The script always exits 0. The reward file is the verdict.
+#  * The script always exits 0. The score file is the verdict.
 #
-# Reward family: BINARY
+# Score family: BINARY
+#
+# Emits, matching the reference sample layout:
+#   /logs/verifier/score.md      the scalar verdict
+#   /logs/verifier/process.json  outcome block; the post-hoc scorer adds the
+#                                deterministic and judged blocks to this file
+# The full pytest log goes to stdout, which the harness archives as test-stdout.md.
 set -u
 mkdir -p /logs/verifier
-echo "0" > /logs/verifier/reward.txt
-echo "0" > /logs/verifier/Score.txt
-echo "0" > /logs/verifier/pass_at_1.txt
+echo "0" > /logs/verifier/score.md
 
 TESTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export ERZA_BUNDLE_DIR="${ERZA_BUNDLE_DIR:-$(dirname "$TESTS_DIR")}"
 
+JUNIT="$(mktemp -t erza_junit.XXXXXX)"
+PYLOG="$(mktemp -t erza_pytest.XXXXXX)"
+trap 'rm -f "$JUNIT" "$PYLOG"' EXIT
+
 # Markers are registered inline so the bundle needs no conftest.py and no
 # pytest.ini; the harness registers the same three for post-hoc process runs.
-MARKERS=$'outcome: in-container outcome tests, scored into the reward
+MARKERS=$'outcome: in-container outcome tests, scored into the score
 process: post-hoc tests over a recorded trajectory
 selfcheck: unscored grader audit; a failure trips the kill-switch'
 
-python3 -m pytest "$TESTS_DIR/test_pytest.py" -m "outcome or selfcheck" \
+python3 -m pytest "$TESTS_DIR/test_output.py" -m "outcome or selfcheck" \
   -v --tb=short -p no:cacheprovider -o markers="$MARKERS" \
-  --junitxml=/logs/verifier/results.xml \
-  > /logs/verifier/pytest_output.txt 2>&1
+  --junitxml="$JUNIT" \
+  > "$PYLOG" 2>&1
 
-READ=$(python3 - <<'PYEOF'
+READ=$(JUNIT="$JUNIT" python3 - <<'PYEOF'
+import json, os
 import xml.etree.ElementTree as ET
+
+OUT = "/logs/verifier/process.json"
+cases, passed, total, selfcheck_failed = [], 0, 0, 0
 try:
-    root = ET.parse("/logs/verifier/results.xml").getroot()
+    root = ET.parse(os.environ["JUNIT"]).getroot()
 except Exception:
-    print("0 0 1"); raise SystemExit
-passed = total = selfcheck_failed = 0
+    json.dump({"outcome": {"score": 0.0, "cases_passed": 0, "cases_total": 0,
+                           "cases": [], "note": "no parseable report"}},
+              open(OUT, "w"), indent=1)
+    print("0 0 1")
+    raise SystemExit
+
 seen = set()
 for c in root.iter("testcase"):
-    name = c.get("name", ""); key = (c.get("classname", ""), name)
+    name = c.get("name", "")
+    key = (c.get("classname", ""), name)
     if key in seen:
         continue
     seen.add(key)
     bad = any(c.find(t) is not None for t in ("failure", "error"))
     skipped = c.find("skipped") is not None
-    if name.startswith("test_reward_"):
+    cases.append({"name": name, "classname": c.get("classname", ""),
+                  "status": "skipped" if skipped else ("failed" if bad else "passed"),
+                  "time": float(c.get("time") or 0.0)})
+    if name.startswith("test_score_"):
         total += 1
         if not bad and not skipped:
             passed += 1
     elif name.startswith("test_selfcheck_") and (bad or skipped):
         selfcheck_failed += 1
+
+score = 1.0 if (total > 0 and passed >= total and selfcheck_failed == 0) else 0.0
+json.dump({"outcome": {"score": score, "cases_passed": passed, "cases_total": total,
+                       "selfcheck_failed": selfcheck_failed, "cases": cases}},
+          open(OUT, "w"), indent=1)
 print("%d %d %d" % (passed, total, selfcheck_failed))
 PYEOF
 )
@@ -71,25 +98,22 @@ if [ "$SELFCHECK_FAILED" -gt 0 ]; then
   echo "Scoring 0 fail-closed. This run is INVALID for training composition"
   echo "(a bundle defect, NOT an agent failure). Pull the bundle for repair."
   echo "=============================================================="
-  tail -60 /logs/verifier/pytest_output.txt
+  cat "$PYLOG"
   exit 0
 fi
 
 if [ "$TOTAL" -le 0 ]; then
   echo "no scored tests found in the report - grading 0 fail-closed"
-  tail -40 /logs/verifier/pytest_output.txt
+  cat "$PYLOG"
   exit 0
 fi
 
-# BINARY family: reward is 1 iff every scored test passed, else 0.
-if [ "$PASSED" -ge "$TOTAL" ]; then SCORE=1; PASS1=1; else SCORE=0; PASS1=0; fi
+# BINARY family: score is 1 iff every scored test passed, else 0.
+if [ "$PASSED" -ge "$TOTAL" ]; then SCORE=1; else SCORE=0; fi
 
-echo "$SCORE" > /logs/verifier/reward.txt
-echo "$SCORE" > /logs/verifier/Score.txt
-echo "$PASS1" > /logs/verifier/pass_at_1.txt
+echo "$SCORE" > /logs/verifier/score.md
 echo "test cases passed  : $PASSED/$TOTAL"
 echo "self-check failures: $SELFCHECK_FAILED"
 echo "Score              : $SCORE"
-echo "pass@1             : $PASS1"
-tail -40 /logs/verifier/pytest_output.txt
+cat "$PYLOG"
 exit 0

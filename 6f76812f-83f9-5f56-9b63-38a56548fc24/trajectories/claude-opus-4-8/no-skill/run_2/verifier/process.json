@@ -1,0 +1,277 @@
+{
+ "run": "no-skill/run_2",
+ "outcome": {
+  "score": 0.0,
+  "cases_passed": 0,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-K]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.021
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-P]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.026
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-R]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.008
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-W]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.006
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-M]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.004
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-R]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.009
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-T]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.013
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-W]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.03
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-K]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.051
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-M]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.005
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-P]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.006
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-T]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.001
+   }
+  ],
+  "selfchecks_passed": 4,
+  "selfchecks_total": 4,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_frozen_reference_matches_live_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.015
+   },
+   {
+    "name": "test_selfcheck_plausibility_and_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.006
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance_under_relabel_and_rescale",
+    "classname": "",
+    "status": "passed",
+    "time": 0.01
+   },
+   {
+    "name": "test_selfcheck_tolerances_are_positive_and_bind",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 11,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.015
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.003
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.003
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R16",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R17",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_zz_meta_every_detector_pairs_with_a_rubric_id",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R18",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The transcript never locates or resolves published ordered-pair bias rows, and therefore never distinguishes direct-pair lookups from pairs requiring signed chains. Instead, it estimates every arc bias through a common network least-squares model."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R19",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "Although the produced values are positive and mostly of order tens of TECU, the reasoning does not explicitly sanity-check them using both that physical scale and the several-TECU-per-nanosecond bias sensitivity. Its sensitivity discussion is framed in TECU and millimetres rather than the stated physical check."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R20",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent prints the instrumental bias applied for every station-satellite arc under \"bias per arc (TECU)\" and states that these values came from its joint network least-squares estimate of shared station and satellite biases. This source is not the required published reference, but the criterion literally asks whether the applied values and their claimed origin were stated."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2",
+  "R13"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 0
+}

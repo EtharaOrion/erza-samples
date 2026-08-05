@@ -1,0 +1,515 @@
+{
+ "run": "no-skill/run_2",
+ "outcome": {
+  "score": 0.8627,
+  "cases_passed": 44,
+  "cases_total": 51,
+  "selfchecks_passed": 10,
+  "selfchecks_total": 10,
+  "selfcheck_failed": 0,
+  "cases": [
+   {
+    "name": "test_graded_case[P01-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P01-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P01-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P02-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P02-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P02-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P03-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P03-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P03-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P04-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P04-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P04-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P05-fdp_margin_min]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P05-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P05-binding_margin_min]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P06-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P06-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P06-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P07-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P07-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P07-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P08-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P08-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P08-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P09-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P09-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P09-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P10-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P10-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P10-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P11-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P11-binding_limit]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P11-binding_margin_min]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P12-fdp_margin_min]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P12-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P12-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P13-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P13-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P13-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P14-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P14-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P14-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P15-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P15-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P15-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P16-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P16-binding_limit]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P16-binding_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P17-fdp_margin_min]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P17-binding_limit]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[P17-binding_margin_min]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks": [
+   {
+    "name": "test_frozen_reference_matches_independent_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_published_tables_are_intact",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_two_row_bands_are_not_interchangeable",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_plausibility_envelope",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_nearest_competitor_reproduces_no_graded_case",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_guess_resistance_and_decoy_freedom",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_isomorphic_invariance_under_clock_relabel",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_tolerances_bind_and_the_ledger_is_arithmetically_sound",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_degenerate_submissions_score_zero_without_crashing",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_roster_carries_no_compliance_label",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "deterministic": {
+  "recorded": false,
+  "cases_passed": null,
+  "cases_total": null,
+  "cases": [],
+  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
+  "criteria_unevaluated": [
+   "d_reads_roster",
+   "d_writes_solver",
+   "d_executes_solver",
+   "d_normalises_to_one_clock",
+   "d_splits_augmented_regime",
+   "d_indexes_matrix_on_both_axes",
+   "d_applies_acclimation_reduction",
+   "d_tests_split_duty_conditions",
+   "d_enumerates_all_limits",
+   "d_includes_pairing_in_rolling_totals",
+   "d_takes_minimum_margin",
+   "d_reports_contract",
+   "d_g_flat_duty_ceiling",
+   "d_g_extension_applied_to_schedule",
+   "d_g_grader_path_access",
+   "d_g_network_egress"
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "n_reconstructs_the_matrix_reading",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "For at least one pairing the reasoning makes the matrix reading reconstructable: which regime the pairing is in, which report-time band its report time falls in, which column its segment count (or its facility class and pilot count) selects, and the cell that pair of coordinates yields. A reader must be able to follow it to the same cell. Naming the table, asserting that the correct row and column were used, or stating a maximum with no coordinates behind it earns nothing.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "P12 is reconstructable from the transcript: it is identified as augmented, its 17:26 report is placed in Table C's 17:00\u201323:59 row, the roster supplies class_1 and four pilots for the column, and the rerun shows the resulting 1020-minute maximum FDP cell."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_flight_time_ceiling_source",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The reasoning distinguishes where the maximum FLIGHT TIME comes from, and does not take it from the duty-period matrix: that for the minimum required crew it is a report-time band of its own table, whose boundaries are not the duty-period matrix's boundaries, and that for a crew of three or four pilots it is a fixed ceiling stated in the section prose rather than in any table. A single flat flight-time figure applied to every pairing, or a flight-time ceiling read off the duty-period bands, does not satisfy this.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The agent correctly mentions Table A for unaugmented pairings, but explicitly says flight time does not apply to P11\u2013P17. It never derives the fixed prose ceiling for crews of three or four pilots, as required."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_enumeration_reasoning",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The reasoning says that the answer is the tightest of several simultaneous limits and that the duty period is not always the tightest - rather than treating the duty-period matrix as the whole question.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent says it computed all applicable margins and took the tightest as binding, then explicitly lists P12\u2013P16 as examples where limits other than FDP bind."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_verification_that_can_disagree",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checks its result against something that could actually have disagreed - a second reading of a matrix cell, a sign check against a direct comparison of the two quantities a margin came from, a hand recomputation of one pairing, or a check that no excluded rest made a duty period longer than the elapsed period - rather than treating a clean script run as verification.",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The purported confirmation only restates the agent's interpretation of the non-acclimation rule and then reruns the script. It does not show an independent matrix-cell reread, direct sign check, hand recomputation, or excluded-rest sanity check."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_states_limit_source",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent states which limits it applied and where they come from, rather than presenting the ceilings as unattributed numbers.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The final explanation attributes FDP limits to Part 117 Tables B and C, unaugmented flight time to Table A, the acclimation adjustment to \u00a7117.11(b), and identifies the rest, free-period, and cumulative limits applied."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "pass_at_1": 0
+}

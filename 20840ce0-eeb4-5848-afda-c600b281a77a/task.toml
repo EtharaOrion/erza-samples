@@ -1,5 +1,10 @@
 schema_version = "1.3"
 
+[task]
+id   = "20840ce0-eeb4-5848-afda-c600b281a77a"
+slug = "information-return-brecord-emission"
+name = "Information Return Brecord Emission"
+
 [metadata]
 author_name = "Erza FORGE"
 difficulty = "hard"

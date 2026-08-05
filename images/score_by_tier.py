@@ -31,17 +31,46 @@ plt.rcParams.update(
     }
 )
 
-# task means (no-skill, %) grouped into the fixed tiers, easiest -> hardest
-tiers = ["Trivial", "Easy", "Medium", "Hard", "Expert"]
-task_means = {
-    "Trivial": [88.2],
-    "Easy": [66.7, 66.7],
-    "Medium": [33.3, 33.3],
-    "Hard": [2.2, 8.3],
-    "Expert": [0.0, 0.0, 0.0],
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def run_score(run_dir):
+    """Graded cases passed / total, from the run's structured report."""
+    outcome = json.loads((Path(run_dir) / "verifier" / "process.json").read_text())["outcome"]
+    return outcome["cases_passed"] / outcome["cases_total"]
+
+
+def tier_of(a):
+    if a == 0:
+        return "Expert"
+    if a < 0.3:
+        return "Hard"
+    if a < 0.6:
+        return "Medium"
+    if a < 0.8:
+        return "Easy"
+    return "Trivial"
+
+
+# Derived from the shipped runs, not stored: per-task arm means, then tier bins.
+per_task = collections.defaultdict(lambda: collections.defaultdict(list))
+for run in glob.glob(str(ROOT / "*" / "trajectories" / "*" / "*" / "run_*")):
+    parts = Path(run).parts
+    per_task[parts[-5]][parts[-2]].append(run_score(run))
+arm_mean = {
+    t: {c: sum(v) / len(v) for c, v in arms.items()} for t, arms in per_task.items()
 }
-no_skill = [sum(v) / len(v) for v in (task_means[t] for t in tiers)]
-with_skill = [100.0] * 5
+
+tiers = ["Trivial", "Easy", "Medium", "Hard", "Expert"]
+task_means = {t: [] for t in tiers}
+task_means_b = {t: [] for t in tiers}
+for t, arms in arm_mean.items():
+    a = arms["no-skill"]
+    task_means[tier_of(a)].append(a * 100)
+    task_means_b[tier_of(a)].append(arms["with-skill"] * 100)
+
+no_skill = [sum(task_means[t]) / len(task_means[t]) for t in tiers]
+with_skill = [sum(task_means_b[t]) / len(task_means_b[t]) for t in tiers]
 x = range(5)
 
 fig, ax = plt.subplots(figsize=(10, 5), dpi=140)

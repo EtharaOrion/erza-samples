@@ -31,7 +31,7 @@ timeout_sec = 1800.0
 
 [verifier]
 timeout_sec   = 300.0
-reward_family = "binary"
+score_family = "binary"
 
 [verifier.hardening]
 cleanup_conftests = true
@@ -47,6 +47,6 @@ source_slug     = "tidal-harmonic-prediction"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-27"
 
-# NOTE: canonical_content_hash is carried over from the v1
-# uuid_provenance.json and describes the v1 file layout. It must be
-# re-sealed against this layout before the bundle is treated as frozen.
+# NOTE: canonical_content_hash is carried over from the v1 layout and does
+# NOT describe the current file set. It must be re-sealed against this layout
+# before the bundle is treated as frozen.

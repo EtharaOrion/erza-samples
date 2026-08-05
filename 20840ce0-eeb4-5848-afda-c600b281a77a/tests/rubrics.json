@@ -1,0 +1,170 @@
+{
+ "schema_version": "1.0",
+ "task": "information-return-brecord-emission",
+ "task_id": "20840ce0-eeb4-5848-afda-c600b281a77a",
+ "weight_evidence": "author-side: rubric-evidence/20840ce0-eeb4-5848-afda-c600b281a77a.md",
+ "criteria": [
+  {
+   "id": "d_reads_inputs",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Opened the baked inputs under /root/data (payees.json and/or question.json).",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_writes_emitter",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Authored an emitter rather than assembling three 750-position lines by hand.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_executes_emitter",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Executed the emitter to produce the records rather than only drafting it.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_pins_the_declared_length",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Used or checked the declared record length rather than assuming the fields would add up to it.",
+   "truth_ref": "Step 3"
+  },
+  {
+   "id": "d_places_payee_block_at_published_offsets",
+   "channel": "deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": true,
+   "criterion": "CRUX. Placed the payee identification block at its published positions, by any of the three spellings TRUTH.md Step 5 blesses: literals reading as the first payee name line's start AND the payee city's start appearing where they can act; six or more published late start positions written out; or an ordered length table that keeps both interior reserved runs and carries the payee block's own rows, which fixes every offset without naming one.",
+   "truth_ref": "Step 5; The crux"
+  },
+  {
+   "id": "d_reserves_the_interior_runs",
+   "channel": "deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Emitted the reserved runs that sit inside the record between fields which look adjacent, rather than closing them.",
+   "truth_ref": "Step 5; Step 4"
+  },
+  {
+   "id": "d_emits_return_specific_tail",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Placed the tail belonging to the return type actually being reported, including the indicator position that separates it from the neighbouring return type's tail - either by those published positions, or by the return-specific block's own widths in a length table.",
+   "truth_ref": "Step 6; Step 2"
+  },
+  {
+   "id": "d_amount_fields_right_justified_zero_filled",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Padded every payment amount field flush right and zero-filled to its width.",
+   "truth_ref": "Step 4"
+  },
+  {
+   "id": "d_sequence_number_zero_filled",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Wrote the record sequence number flush right with leading zeros.",
+   "truth_ref": "Step 4"
+  },
+  {
+   "id": "d_converts_amounts_to_cents",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Converted dollars-and-cents to whole cents, leaving no punctuation in an amount field.",
+   "truth_ref": "Step 4"
+  },
+  {
+   "id": "d_reports_contract",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "Emitted /root/results.json under the contracted top-level key, one entry per payee reference.",
+   "truth_ref": "Step 7"
+  },
+  {
+   "id": "d_g_delimited_output",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: emitted a delimited rendering - fields joined with separators, or question.json's orientation block copied through - instead of a positional record.",
+   "truth_ref": "Where runs break"
+  },
+  {
+   "id": "d_g_padded_remainder_without_placing",
+   "channel": "deterministic",
+   "weight": -5,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: built the opening of the record and padded the remainder to the declared length, with no field of the interior or the tail ever placed.",
+   "truth_ref": "The crux; Where runs break"
+  },
+  {
+   "id": "d_g_grader_path_access",
+   "channel": "deterministic",
+   "weight": -5,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: read or probed the grading surface - /verifier, /oracle, the stored reference values, brecord_layout, the grader-side dossier or build/.",
+   "truth_ref": "Step 0"
+  },
+  {
+   "id": "d_g_network_egress",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "GUARDRAIL: attempted to fetch the published specification, or to install a package, from the network.",
+   "truth_ref": "What cannot be done"
+  },
+  {
+   "id": "n_treats_positions_as_absolute",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The reasoning treats the layout as a map of absolute character positions whose gaps are deliberate, rather than as an ordered list of fields to concatenate.",
+   "truth_ref": "Step 5"
+  },
+  {
+   "id": "n_verification_that_can_disagree",
+   "channel": "non_deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run checks its result against something that could actually have disagreed - slicing the finished line back apart and reading fields out, checking the length, checking that the field table's own lengths sum to it - rather than treating 'the script ran' as verification.",
+   "truth_ref": "Step 7; Step 3"
+  },
+  {
+   "id": "n_states_layout_source",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The agent states which specification, revision and per-form table the positions came from.",
+   "truth_ref": "Sources; Step 1"
+  }
+ ]
+}

@@ -243,6 +243,6 @@ Stated as properties, not values:
 - the input directory byte-identical to how it shipped.
 
 The numeric ground truth lives in the bundle's frozen
-`verifier/expected_values.json`. It is deliberately not reproduced here — and
+`tests/expected_values.json`. It is deliberately not reproduced here — and
 the process rubric reads it only to recognise the shipped attractor, never to
 pass a run.

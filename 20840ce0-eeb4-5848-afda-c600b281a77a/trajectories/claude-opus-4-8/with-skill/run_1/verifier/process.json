@@ -1,0 +1,358 @@
+{
+ "run": "with-skill/run_1",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 31,
+  "cases_total": 31,
+  "selfchecks_passed": 10,
+  "selfchecks_total": 10,
+  "selfcheck_failed": 0,
+  "cases": [
+   {
+    "name": "test_graded_case[R0001_head_1_54]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_amounts_55_270]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_reserved_and_first_name_271_327]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_second_name_and_address_328_407]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_reserved_and_city_408_487]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_state_and_postal_488_498]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_reserved_and_counter_499_543]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_indicators_and_reserved_544_662]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_free_text_and_state_withholding_663_734]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0001_local_withholding_and_program_code_735_750]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_head_1_54]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_amounts_55_270]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_reserved_and_first_name_271_327]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_second_name_and_address_328_407]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_reserved_and_city_408_487]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_state_and_postal_488_498]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_reserved_and_counter_499_543]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_indicators_and_reserved_544_662]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_free_text_and_state_withholding_663_734]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0002_local_withholding_and_program_code_735_750]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_head_1_54]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_amounts_55_270]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_reserved_and_first_name_271_327]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_second_name_and_address_328_407]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_reserved_and_city_408_487]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_state_and_postal_488_498]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_reserved_and_counter_499_543]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_indicators_and_reserved_544_662]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_free_text_and_state_withholding_663_734]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[R0003_local_withholding_and_program_code_735_750]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_graded_case[answer_file_shape_and_charset]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks": [
+   {
+    "name": "test_field_table_is_contiguous_and_totals_750",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_every_position_belongs_to_exactly_one_graded_group",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_frozen_golden_records_decode_to_the_payee_data",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_permitted_readings_of_the_specification_do_not_false_fail",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_control_paths_are_measured_live_and_clear_the_tolerance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_plausibility_envelope_and_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_no_assembled_record_reaches_the_agent",
+    "classname": "",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_isomorphic_invariance_under_relabel_and_reindex",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_amount_convention_alone_does_not_carry_the_task",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_tolerances_are_positive_and_the_case_set_is_well_formed",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ]
+ },
+ "deterministic": {
+  "recorded": false,
+  "cases_passed": null,
+  "cases_total": null,
+  "cases": [],
+  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
+  "criteria_unevaluated": [
+   "d_reads_inputs",
+   "d_writes_emitter",
+   "d_executes_emitter",
+   "d_pins_the_declared_length",
+   "d_places_payee_block_at_published_offsets",
+   "d_reserves_the_interior_runs",
+   "d_emits_return_specific_tail",
+   "d_amount_fields_right_justified_zero_filled",
+   "d_sequence_number_zero_filled",
+   "d_converts_amounts_to_cents",
+   "d_reports_contract",
+   "d_g_delimited_output",
+   "d_g_padded_remainder_without_placing",
+   "d_g_grader_path_access",
+   "d_g_network_egress"
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "n_treats_positions_as_absolute",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The reasoning treats the layout as a map of absolute character positions whose gaps are deliberate, rather than as an ordered list of fields to concatenate.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The emitter uses a 750-character buffer and writes fields through `Rec.put(first, last, ...)` at explicit one-based ranges, leaving reserved gaps intact rather than packing fields together."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_verification_that_can_disagree",
+    "weight": 3,
+    "is_positive": true,
+    "criterion": "The run checks its result against something that could actually have disagreed - slicing the finished line back apart and reading fields out, checking the length, checking that the field table's own lengths sum to it - rather than treating 'the script ran' as verification.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "After building the records, the run asserts each line\u2019s length and slices the completed lines at fixed offsets to compare name control, TIN, name, city, state, and ZIP against the source data; it also performs additional slice-based spot checks."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "n_states_layout_source",
+    "weight": 1,
+    "is_positive": true,
+    "criterion": "The agent states which specification, revision and per-form table the positions came from.",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent identifies IRS Publication 1220, Tax Year 2025, and uses the common B-record layout plus the Form 1099-MISC-specific positions 544\u2013750 table supplied by the skill."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "pass_at_1": 1
+}

@@ -30,7 +30,7 @@ read from this task's inputs; none is a quantity a step is supposed to produce.
 the output contract, and **the two constant tables the run must obtain** (the per-gauge
 harmonic constants and the constituent definitions) lands on the oracle's answer
 bit-identically. That is not asserted, it is executed:
-`verification/rederivation_test.py` reimplements every step below from this text alone
+`the grader self-audit fixtures` reimplements every step below from this text alone
 and reproduces all twelve reference heights to 1e-6 m.
 
 ---
@@ -81,7 +81,7 @@ sum cannot be evaluated **at all** — not badly, but not at all. This is the fo
 task exists to measure, and it is the fork that separates the recorded arms.
 
 **Do not** substitute any of the following. Each is a measured control, and the figures
-are re-derived and asserted in `verification/rederivation_test.py`:
+are re-derived and asserted in `the grader self-audit fixtures`:
 
 | Substitute | Distance from the reference |
 |---|---|
@@ -287,5 +287,5 @@ the table plus the method above, the twelve heights are deterministic.
   recent observed level and the gauge's mean water level.
 - Each height sits within the gauge's tidal range about its datum offset.
 - The delivered input files are byte-identical to what was delivered.
-- The numeric ground truth lives in `verifier/expected_values.json`. It is not
+- The numeric ground truth lives in `tests/expected_values.json`. It is not
   reproduced here, and no run should have seen it.

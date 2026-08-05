@@ -1,8 +1,8 @@
 {
   "task_name": "antenna-phase-centre-correction",
   "rollout_name": "antenna-phase-centre-correction__dc9f1032",
-  "rewards": {
-    "reward": 0.0
+  "scores": {
+    "score": 0.0
   },
   "agent": "claude-agent-acp",
   "agent_name": "@agentclientprotocol/claude-agent-acp",

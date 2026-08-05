@@ -47,7 +47,7 @@ Every score artifact is version-stamped with the hashes of TRUTH.md, rubrics.jso
 and the test file: scores under different stamps are not comparable.
 
 Usage:
-    python score.py --run-dir <erza run dir> [--junit results/x.xml] \
+    python score.py --run-dir <erza run dir> [--junit results/x.junit.xml] \
                     [--judge results/x.judge.json] [--out results/x.score.json]
 """
 from __future__ import annotations
@@ -65,11 +65,11 @@ COVERAGE_FLOOR = 2 / 3  # two-thirds of a channel's weight mass must be scored
 GOLDEN = os.path.join(ROOT, "expected_values.json")
 
 # The outcome verifier (../test.sh) counts ONLY `test_height[...]` toward the
-# reward: the three grader self-checks in ../test_outputs.py (the freeze guard, the
+# score: the three grader self-checks in ../test_output.py (the freeze guard, the
 # guess-resistance check, the key-wellformedness check) are excluded there, and are
 # excluded here for the same reason. Counting all 15 cases would report 4/15 for a
 # run that scored 1/12, and CONTINUOUS must not drift from the outcome grade.
-OUTCOME_CASE_PREFIX = "test_height"
+OUTCOME_CASE_PREFIX = "test_score_height"
 
 
 def load_spec() -> dict:
@@ -89,8 +89,8 @@ def version_stamp() -> dict:
     return {
         "truth_md": _sha(os.path.join(ROOT, "..", "TRUTH.md")),
         "rubrics_json": _sha(os.path.join(ROOT, "rubrics.json")),
-        "checks_py": _sha(os.path.join(ROOT, "verifier", "checks.py")),
-        "test_trajectory_py": _sha(os.path.join(ROOT, "test_pytest.py")),
+        "checks_py": _sha(os.path.join(ROOT, "checks.py")),
+        "test_output_py": _sha(os.path.join(ROOT, "test_output.py")),
     }
 
 
@@ -107,6 +107,33 @@ def read_junit(path: str) -> dict[str, bool]:
         if case.find("skipped") is not None:
             continue
         out[cid] = not failed
+    return out
+
+
+def read_process_dets(run_dir: str) -> dict[str, bool]:
+    """criterion id -> did the test pass, from the run's archived process.json.
+
+    ../test.sh converts pytest's JUnit output in-script and archives it as
+    `<run>/verifier/process.json`; no XML ships. These are the same verdicts
+    read_junit() would have read, so --junit stays an explicit override rather
+    than the only way in.
+    """
+    path = os.path.join(run_dir, "verifier", "process.json")
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    cases = ((doc.get("deterministic") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list):
+        return {}
+    out: dict[str, bool] = {}
+    for c in cases:
+        name = str(c.get("name", ""))
+        status = str(c.get("status", "")).lower()
+        if not name.startswith("test_") or status == "skipped":
+            continue
+        out[name[len("test_"):]] = status == "passed"
     return out
 
 
@@ -148,13 +175,40 @@ def _no_graded_work(rows: list[dict]) -> bool:
     return bool(positives) and all(r["score"] == 0.0 for r in positives)
 
 
+def _outcome_from_process_json(path: str):
+    """Outcome cases from the structured report ../test.sh now emits.
+
+    test.sh converts pytest's JUnit output to `<run>/verifier/process.json` in-script,
+    so this is the primary source. `outcome.cases` carries one entry per collected
+    test; only the `test_score_height[...]` entries are graded units, and the
+    `test_selfcheck_` entries are deliberately excluded exactly as test.sh excludes
+    them. Falls through (returns None) on an older raw-JUnit process.json.
+    """
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    cases = ((doc.get("outcome") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list) or not cases:
+        return None
+    graded = [c for c in cases
+              if str(c.get("name", "")).startswith(OUTCOME_CASE_PREFIX)
+              and str(c.get("status", "")).lower() != "skipped"]
+    if not graded:
+        return None
+    passed = sum(1 for c in graded if str(c.get("status", "")).lower() == "passed")
+    return passed, len(graded)
+
+
 def _outcome_from_junit(path: str):
     """Outcome cases from the OUTCOME verifier's own junit report.
 
-    ../test.sh runs `pytest /verifier/test_outputs.py --junitxml=/logs/verifier/
-    results.xml`, which benchflow archives as `<run>/verifier/results.xml`. Only the
-    twelve `test_height[...]` cases are the graded units; the three self-checks are
-    not, and ../test.sh excludes them from the reward too.
+    Compatibility path. ../test.sh now writes JUnit to a scratch file, converts it
+    in-script and archives `<run>/verifier/process.json` as JSON, so this reader only
+    fires for older run dirs whose process.json is still raw JUnit XML. Only the twelve
+    `test_score_height[...]` cases are the graded units; the three `test_selfcheck_`
+    tests are not, and ../test.sh excludes them from the score too.
     """
     try:
         root = ET.parse(path).getroot()
@@ -248,7 +302,8 @@ def continuous(run_dir: str) -> tuple[float | None, str]:
     grade because it IS the outcome grade, reported per test case instead of as a
     single number.
     """
-    for name, reader in (("results.xml", _outcome_from_junit),
+    for name, reader in (("process.json", _outcome_from_process_json),
+                         ("process.json", _outcome_from_junit),
                          ("ctrf.json", _outcome_from_ctrf)):
         p = os.path.join(run_dir, "verifier", name)
         if os.path.exists(p):
@@ -310,7 +365,8 @@ def main() -> int:
     args = ap.parse_args()
 
     spec = load_spec()
-    det_pass = read_junit(args.junit) if (args.junit and os.path.exists(args.junit)) else {}
+    det_pass = (read_junit(args.junit) if (args.junit and os.path.exists(args.junit))
+                else read_process_dets(args.run_dir))
 
     jd: dict = {}
     judge_by_id: dict[str, dict] = {}

@@ -17,8 +17,8 @@ Design notes
 
 Usage
 -----
-    python judge/judge.py --run-dir <erza run dir> [--judges 3] [--out results/x.json]
-    python judge/judge.py --run-dir <erza run dir> --offline
+    python judge.py --run-dir <erza run dir> [--judges 3] [--out results/x.json]
+    python judge.py --run-dir <erza run dir> --offline
 """
 from __future__ import annotations
 
@@ -262,7 +262,7 @@ def main() -> int:
         with open(args.out, "w") as f:
             f.write(payload + "\n")
         if raw:
-            with open(args.out + ".raw.txt", "w") as f:
+            with open(args.out + ".raw.md", "w") as f:
                 f.write("\n\n===== JUDGE =====\n\n".join(raw))
         print(f"wrote {args.out}", file=sys.stderr)
     else:

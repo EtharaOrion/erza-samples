@@ -1,0 +1,277 @@
+{
+ "run": "no-skill/run_1",
+ "outcome": {
+  "score": 0.0,
+  "cases_passed": 0,
+  "cases_total": 12,
+  "cases": [
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-K]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.008
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-P]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.009
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-R]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.003
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-1-SV-W]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.007
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-M]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.004
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-R]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.013
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-T]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.007
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-2-SV-W]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.006
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-K]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.004
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-M]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-P]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.005
+   },
+   {
+    "name": "test_score_arc_mean_vtec[RX-3-SV-T]",
+    "classname": "",
+    "status": "failed",
+    "time": 0.002
+   }
+  ],
+  "selfchecks_passed": 4,
+  "selfchecks_total": 4,
+  "selfchecks": [
+   {
+    "name": "test_selfcheck_frozen_reference_matches_live_recompute",
+    "classname": "",
+    "status": "passed",
+    "time": 0.017
+   },
+   {
+    "name": "test_selfcheck_plausibility_and_guess_resistance",
+    "classname": "",
+    "status": "passed",
+    "time": 0.008
+   },
+   {
+    "name": "test_selfcheck_isomorphic_invariance_under_relabel_and_rescale",
+    "classname": "",
+    "status": "passed",
+    "time": 0.017
+   },
+   {
+    "name": "test_selfcheck_tolerances_are_positive_and_bind",
+    "classname": "",
+    "status": "passed",
+    "time": 0.013
+   }
+  ],
+  "source": "verifier/results.xml"
+ },
+ "deterministic": {
+  "cases_passed": 12,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_R3",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.013
+   },
+   {
+    "name": "test_R4",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R5",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R6",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R7",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R8",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_R9",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R10",
+    "classname": "verifier.test_trajectory",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R11",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R14",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R15",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R16",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R17",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_zz_meta_every_detector_pairs_with_a_rubric_id",
+    "classname": "verifier.test_trajectory",
+    "status": "passed",
+    "time": 0.001
+   }
+  ]
+ },
+ "judged": {
+  "criteria": [
+   {
+    "id": "R18",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "The agent never examined published differential-bias rows or distinguished direct, reversed, and chained observable-pair resolutions. Instead, it treated all arcs uniformly through a fitted additive satellite-plus-station bias model."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R19",
+    "voted": true,
+    "satisfied": false,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": false,
+      "rationale": "Although the reported values are mostly positive and in the tens of TECU, the transcript does not show an explicit physical sanity check including the stated nanosecond-to-several-TECU scale; its checks focus on regression residuals, uncertainty, and datum invariance."
+     }
+    ],
+    "rationales": []
+   },
+   {
+    "id": "R20",
+    "voted": true,
+    "satisfied": true,
+    "resolution": "single",
+    "votes": [
+     {
+      "model": "gpt-5.6-sol",
+      "stance": "single",
+      "satisfied": true,
+      "rationale": "The agent printed the satellite and station instrumental terms (`Dsv` and `Dsta`) and stated that the applied per-arc correction was their sum. It also clearly identified their source as its joint network least-squares fit to the observations."
+     }
+    ],
+    "rationales": []
+   }
+  ],
+  "panel_disclosure": {
+   "seats": [
+    {
+     "model": "gpt-5.6-sol",
+     "stance": "single"
+    }
+   ],
+   "panel_size": 1,
+   "graded_model": "claude-opus-4-8",
+   "single_vendor": "openai",
+   "self_judging_seats": [],
+   "panels_run": 1,
+   "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
+  }
+ },
+ "criteria_without_verdict": [
+  "R1",
+  "R2",
+  "R13"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 0
+}

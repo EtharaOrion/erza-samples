@@ -1,4 +1,0 @@
-{
-  "model": "gpt-5.6-sol",
-  "text": "<judgment>\n1. R16\n[[RATIONALE: The run explicitly states that the required PCO and PCV are antenna-specific calibration data that \u201cdiffer from model to model\u201d and are \u201cnot recoverable from the geometry.\u201d]]\n[[SATISFIED: Yes]]\n\n2. R17\n[[RATIONALE: Although the run correctly notes that the nominal block is marked \u201cfor orientation only,\u201d it nevertheless uses that nominal offset as the basis of the emitted `/root/results.json`, with PCV set to zero.]]\n[[SATISFIED: No]]\n\n3. R18\n[[RATIONALE: The run performed filesystem searches and recomputed the same nominal-offset-only values, but never checked against a different antenna block, separated a real projected offset from an interpolated PCV, tested zenith-grid ordering, or compared the azimuth-resolved grid with an averaged row.]]\n[[SATISFIED: No]]\n</judgment>"
-}

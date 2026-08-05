@@ -61,6 +61,12 @@ import os
 import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# The outcome verifier (../test.sh) counts ONLY the `test_score_` cases toward the
+# score; the grader self-checks in ../test_output.py are excluded there, and are
+# excluded here for the same reason. Counting them would report a denominator the
+# score was never computed against.
+OUTCOME_CASE_PREFIX = "test_score_"
 COVERAGE_FLOOR = 2 / 3  # two-thirds of a channel's weight mass must be scored
 GOLDEN = os.path.join(ROOT, "expected_values.json")
 
@@ -82,8 +88,8 @@ def version_stamp() -> dict:
     return {
         "truth_md": _sha(os.path.join(ROOT, "..", "TRUTH.md")),
         "rubrics_json": _sha(os.path.join(ROOT, "rubrics.json")),
-        "checks_py": _sha(os.path.join(ROOT, "verifier", "checks.py")),
-        "test_trajectory_py": _sha(os.path.join(ROOT, "test_pytest.py")),
+        "checks_py": _sha(os.path.join(ROOT, "checks.py")),
+        "test_output_py": _sha(os.path.join(ROOT, "test_output.py")),
     }
 
 
@@ -101,6 +107,92 @@ def read_junit(path: str) -> dict[str, bool]:
             continue
         out[cid] = not failed
     return out
+
+
+
+def read_process_dets(run_dir: str) -> dict[str, bool]:
+    """criterion id -> did the test pass, from the run's archived process.json.
+
+    ../test.sh converts pytest's JUnit output in-script and archives it as
+    `<run>/verifier/process.json`; no XML ships. These are the same verdicts
+    read_junit() would have read, so --junit stays an explicit override rather
+    than the only way in.
+    """
+    path = os.path.join(run_dir, "verifier", "process.json")
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    cases = ((doc.get("deterministic") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list):
+        return {}
+    out: dict[str, bool] = {}
+    for c in cases:
+        name = str(c.get("name", ""))
+        status = str(c.get("status", "")).lower()
+        if not name.startswith("test_") or status == "skipped":
+            continue
+        out[name[len("test_"):]] = status == "passed"
+    return out
+
+
+def _outcome_from_process_json(path: str):
+    """Outcome cases from the structured report ../test.sh now emits.
+
+    test.sh converts pytest's JUnit output to `<run>/verifier/process.json` in-script,
+    so this is the primary source. `outcome.cases` carries the GRADED units only:
+    the `test_selfcheck_` entries live in a separate `outcome.selfchecks` block and
+    are excluded here exactly as test.sh excludes them from the score. Conflating
+    the two would report a denominator the score was never computed against.
+    """
+    try:
+        with open(path) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    cases = ((doc.get("outcome") or {}).get("cases")) if isinstance(doc, dict) else None
+    if not isinstance(cases, list) or not cases:
+        return None
+    graded = [c for c in cases
+              if str(c.get("name", "")).startswith(OUTCOME_CASE_PREFIX)
+              and str(c.get("status", "")).lower() != "skipped"]
+    if not graded:
+        return None
+    passed = sum(1 for c in graded if str(c.get("status", "")).lower() == "passed")
+    return passed, len(graded)
+
+
+def _archived_pass_at_1(run_dir: str):
+    """pass@1 as recorded with the run, read from the archived process.json."""
+    try:
+        with open(os.path.join(run_dir, "verifier", "process.json")) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return None
+    v = doc.get("pass_at_1") if isinstance(doc, dict) else None
+    return None if v is None else int(v)
+
+
+
+def read_process_judged(run_dir: str) -> dict:
+    """The judged panel as archived with the run.
+
+    `verifier/process/panel.json` no longer ships; the same payload is archived in
+    `<run>/verifier/process.json` under `judged`, alongside the per-criterion
+    rationales in `verifier/verdicts.jsonl`. --judge stays an explicit override
+    rather than the only way in - without this the judged channel would abstain on
+    every archived run and the channel would silently report INVALID.
+    """
+    try:
+        with open(os.path.join(run_dir, "verifier", "process.json")) as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    jd = doc.get("judged") if isinstance(doc, dict) else None
+    if isinstance(jd, dict) and isinstance(jd.get("criteria"), list):
+        return jd
+    return {}
 
 
 def score_channel(rows: list[dict]) -> tuple[float | None, float, float, int]:
@@ -147,7 +239,8 @@ def _outcome_from_junit(path: str):
     except (ET.ParseError, OSError):
         return None
     cases = [c for c in root.iter("testcase")
-             if c.find("skipped") is None and c.get("name", "")]
+             if c.find("skipped") is None
+             and c.get("name", "").startswith(OUTCOME_CASE_PREFIX)]
     if not cases:
         return None
     passed = sum(1 for c in cases
@@ -186,11 +279,13 @@ def continuous(run_dir: str) -> tuple[float | None, str]:
     grade because it IS the outcome grade, reported per test case instead of as a
     single bit.
 
-    This task's runs archive that report as `verifier/ctrf.json` (verifier/test.sh
-    invokes pytest with --ctrf); a junit `verifier/results.xml` is read too, for run
-    directories produced by a harness that emits one.
+    ../test.sh converts pytest's JUnit output in-script and archives it as
+    `verifier/process.json`, so that is the primary source; no XML ships. The
+    raw-JUnit and CTRF readers stay as compatibility paths for run directories
+    produced by an older harness.
     """
-    for name, reader in (("results.xml", _outcome_from_junit),
+    for name, reader in (("process.json", _outcome_from_process_json),
+                         ("process.json", _outcome_from_junit),
                          ("ctrf.json", _outcome_from_ctrf)):
         p = os.path.join(run_dir, "verifier", name)
         if os.path.exists(p):
@@ -280,14 +375,15 @@ def main() -> int:
     args = ap.parse_args()
 
     spec = load_spec()
-    det_pass = read_junit(args.junit) if (args.junit and os.path.exists(args.junit)) else {}
+    det_pass = (read_junit(args.junit) if (args.junit and os.path.exists(args.junit))
+                else read_process_dets(args.run_dir))
 
-    jd: dict = {}
-    judge_by_id: dict[str, dict] = {}
     if args.judge and os.path.exists(args.judge):
         with open(args.judge) as f:
             jd = json.load(f)
-        judge_by_id = {c["id"]: c for c in jd["criteria"]}
+    else:
+        jd = read_process_judged(args.run_dir)
+    judge_by_id: dict[str, dict] = {c["id"]: c for c in jd.get("criteria", [])}
 
     det_rows, nd_rows, out_rows = [], [], []
     for c in spec["criteria"]:
