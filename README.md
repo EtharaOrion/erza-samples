@@ -66,14 +66,13 @@ erza-samples/
 ├── images/                   # figures and their generators
 │   ├── score_by_tier.png     # with score_by_tier.py
 │   └── cost_by_tier.png      # with cost_by_tier.py
-├── rubric-evidence/          # weight-justification dossier, one per task-id (10)
-├── author-side/              # grader-side truth dossiers for 3 task-ids
+├── verify_seal.py            # recomputes and checks every canonical_content_hash
 └── <task-id>/                # one directory per task-id (10)
     ├── task.toml instruction.md TRUTH.md environment/ oracle/ tests/
     └── trajectories/claude-opus-4-8/<condition>/run_N/ ...
 ```
 
-Conditions are `no-skill` and `with-skill`; `N` runs 1 to 3. Unlike a split dataset/trajectories layout, each task directory holds the bundle and every run that measures it together, so a task can be read, rebuilt and graded from its own folder; the only task material kept outside it is the author-side prose in `rubric-evidence/` and `author-side/`, which no grading code opens.
+Conditions are `no-skill` and `with-skill`; `N` runs 1 to 3. Unlike a split dataset/trajectories layout, each task directory holds the bundle and every run that measures it together, so a task can be read, rebuilt and graded from its own folder. Nothing outside a task directory is read by any grading code.
 
 ## Difficulty tiers
 
@@ -212,7 +211,7 @@ During a run the agent sees only the built environment, the `instruction.md` pro
 
 `tests/` is flat in all ten bundles, with no subdirectories. `test_output.py` means the same thing everywhere: the graded outcome module `test.sh` runs. It always ships alongside `test.sh`, `score.py`, `judge.py`, `rubrics.json`, `expected_values.json`, a `trajectory.py` helper and the grader's own copies of any reference data. Where the process detectors live is the one layout difference: `029f6a19`, `20840ce0` and `c7faca71` hold theirs in a separate `test_process.py`, and are the only three that ship a `conftest.py` and a `report.py` beside it; the other seven keep theirs inside `test_output.py` behind a `@pytest.mark.process` marker that `test.sh` deselects.
 
-The scoring contract also comes in two forms, and each `test.sh` writes its own. On the seven marker-based bundles, `test.sh` collects `-m "outcome or selfcheck"`, counts every `test_score_`-prefixed case into the denominator and treats every `test_selfcheck_`-prefixed case as an unscored guard. On `029f6a19`, `20840ce0` and `c7faca71`, `test.sh` collects the whole module, counts only the parametrised `test_graded_case` cases, and treats everything else the module collects as an unscored guard — those guards carry descriptive names with no shared prefix. Those three also fix the denominator in the script rather than deriving it from what collected: 31 for `029f6a19`, 31 for `20840ce0` and 51 for `c7faca71`, so a graded case that fails to collect lowers the score instead of shrinking the denominator. In both forms a failing or skipped guard trips the same kill-switch and the run scores 0 fail-closed. Each `rubrics.json` carries only the seven per-criterion fields the grader reads (`id`, `channel`, `weight`, `is_positive`, `is_gate`, `criterion`, `truth_ref`); the weight-justification prose lives in `rubric-evidence/<task_id>.md` at the repository root, so no shipped artifact cites a file that was never published. No bundle ships a separate seal artifact, a `graded_cases.json`, or any compiled Python; the only content hash shipped is `canonical_content_hash`, in the `[provenance]` block of the `task.toml` files that carry one.
+The scoring contract also comes in two forms, and each `test.sh` writes its own. On the seven marker-based bundles, `test.sh` collects `-m "outcome or selfcheck"`, counts every `test_score_`-prefixed case into the denominator and treats every `test_selfcheck_`-prefixed case as an unscored guard. On `029f6a19`, `20840ce0` and `c7faca71`, `test.sh` collects the whole module, counts only the parametrised `test_graded_case` cases, and treats everything else the module collects as an unscored guard — those guards carry descriptive names with no shared prefix. Those three also fix the denominator in the script rather than deriving it from what collected: 31 for `029f6a19`, 31 for `20840ce0` and 51 for `c7faca71`, so a graded case that fails to collect lowers the score instead of shrinking the denominator. In both forms a failing or skipped guard trips the same kill-switch and the run scores 0 fail-closed. Each `rubrics.json` carries only the seven per-criterion fields the grader reads (`id`, `channel`, `weight`, `is_positive`, `is_gate`, `criterion`, `truth_ref`); the weight-justification prose was moved to an author-side dossier that is deliberately not published, which each rubric's `weight_evidence` field names as its location. No bundle ships a separate seal artifact, a `graded_cases.json`, or any compiled Python; the only content hash shipped is `canonical_content_hash`, in the `[provenance]` block of the `task.toml` files that carry one.
 
 This layout is the result of a migration from two earlier generations, applied to every bundle. It re-serialised records without re-grading: all 60 runs' scores are byte-identical to their pre-migration values.
 
@@ -308,7 +307,7 @@ This sample passed a QC gate prior to delivery. Each row states a check, the art
 | Check | Evidence read | Result |
 | :--- | :--- | :--- |
 | Structure | directory tree | 10 tasks, each a full 2 x 3 grid, 60 runs, no gaps |
-| Task identity | `rubrics.json` `task_id` against `task.toml` `[task] id` and the bundle directory | agree on 10 of 10; six `rubrics.json` files previously carried a different `task_id`, and `rubric-evidence/` records the prior value for each |
+| Task identity | `rubrics.json` `task_id` against `task.toml` `[task] id` and the bundle directory | agree on 10 of 10; six `rubrics.json` files previously carried a different `task_id`, corrected during the canonical-layout migration |
 | Score integrity | `verifier/score.md` against `result.json` `scores.score` | agree on 60 of 60 runs, and every score is byte-identical to its pre-migration value |
 | Paired isolation | sha256 of `prompts.json` | one distinct hash per task across both arms, 10 of 10; the Skill is mounted, never injected into the prompt |
 | Skill genuinely used | `trajectory/acp_trajectory.jsonl` | 30 of 30 curated runs show Skill evidence, 0 of 30 unaided runs do |

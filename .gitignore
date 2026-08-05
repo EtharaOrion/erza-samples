@@ -2,3 +2,5 @@ HANDOFF.md
 tools/
 __pycache__/
 *.pyc
+author-side/
+rubric-evidence/
