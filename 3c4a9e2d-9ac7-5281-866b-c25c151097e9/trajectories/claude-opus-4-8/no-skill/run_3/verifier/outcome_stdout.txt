@@ -1,0 +1,17 @@
+  FAIL  co2e-biogas-chp-2024: submitted=2293.902 golden=2368.305492 |delta|=74.4035 tolerance_abs=0.473661 (157.082x tolerance)
+  FAIL  co2e-board-purchased-2024: submitted=280532.168 golden=407858.737776 |delta|=127327 tolerance_abs=81.5717 (1560.915x tolerance)
+  FAIL  co2e-elec-td-2025: submitted=38057.6499 golden=38535.97009 |delta|=478.32 tolerance_abs=7.70719 (62.062x tolerance)
+  FAIL  co2e-food-compost-2024: submitted=509.08 golden=508.156792 |delta|=0.923208 tolerance_abs=0.101631 (9.084x tolerance)
+  FAIL  co2e-gas-volume-2024: submitted=438769.6934 golden=438491.00334 |delta|=278.69 tolerance_abs=87.6982 (3.178x tolerance)
+  FAIL  co2e-gas-volume-2025: submitted=404717.6824 golden=410477.45936 |delta|=5759.78 tolerance_abs=82.0955 (70.159x tolerance)
+  FAIL  co2e-insulation-landfill-2025: submitted=25.9578 golden=28.299712 |delta|=2.34191 tolerance_abs=0.00566 (413.765x tolerance)
+  FAIL  co2e-pellets-boiler-2024: submitted=45204.66 golden=44740.707036 |delta|=463.953 tolerance_abs=8.94814 (51.849x tolerance)
+  FAIL  co2e-petrol-fleet-2024: submitted=96708.0505 golden=96547.3236 |delta|=160.727 tolerance_abs=19.3095 (8.324x tolerance)
+  FAIL  co2e-petrol-fleet-2025: submitted=86201.8887 golden=85429.40892 |delta|=772.48 tolerance_abs=17.0859 (45.212x tolerance)
+  FAIL  co2e-plastic-recycling-2025: submitted=1877.4234 golden=413.276976 |delta|=1464.15 tolerance_abs=0.082655 (17713.949x tolerance)
+  FAIL  co2e-straw-boiler-2025: submitted=9957.2 golden=10716.909467 |delta|=759.709 tolerance_abs=2.14338 (354.444x tolerance)
+  FAIL  co2e-water-supply-2024: submitted=12108.747 golden=10474.40821 |delta|=1634.34 tolerance_abs=2.09488 (780.158x tolerance)
+  FAIL  co2e-water-treatment-2024: submitted=16747.856 golden=11436.56902 |delta|=5311.29 tolerance_abs=2.28731 (2322.063x tolerance)
+
+outcome cases passed : 0/14
+CONTINUOUS (reward)  : 0.000000

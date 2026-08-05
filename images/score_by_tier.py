@@ -44,8 +44,13 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def run_score(run_dir):
     """Graded cases passed / total, from the run's structured report."""
-    outcome = json.loads((Path(run_dir) / "verifier" / "process.json").read_text())["outcome"]
-    return outcome["cases_passed"] / outcome["cases_total"]
+    p = Path(run_dir) / "verifier" / "process.json"
+    if p.exists():
+        outcome = json.loads(p.read_text())["outcome"]
+        return outcome["cases_passed"] / outcome["cases_total"]
+    # dataset-era record (3c4a9e2d): the outcome verifier's own archived report
+    report = json.loads((Path(run_dir) / "verifier" / "outcome_report.json").read_text())
+    return report["passed"] / report["total"]
 
 
 def tier_of(a):

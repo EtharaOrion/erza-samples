@@ -1,0 +1,279 @@
+{
+ "schema_version": "1.0",
+ "task": "ghg-conversion-factor-vintage",
+ "task_id": "3c4a9e2d-9ac7-5281-866b-c25c151097e9",
+ "weight_evidence": "per-item weight_evidence fields, carried verbatim from the authored rubric at dataset/3c4a9e2d-9ac7-5281-866b-c25c151097e9/tests/process/rubrics.json (source ids preserved as source_id)",
+ "criteria": [
+  {
+   "id": "R1",
+   "channel": "outcome",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "OUTCOME CHANNEL. A final answer exists and is well formed: a results.json whose kg_co2e object carries one finite value per graded case_id, produced by this run itself. A literal answer-file write with no derivation behind it earns R1 alone and nothing downstream.",
+   "truth_ref": "Output contract"
+  },
+  {
+   "id": "R2",
+   "channel": "outcome",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": true,
+   "criterion": "OUTCOME CHANNEL, GATE. Every graded ledger line lands inside the task's own per-case tolerance against the frozen truth: each quantity converted with its own reporting period's published factor edition, never a recalled, averaged or off-by-one vintage. Graded by the outcome verifier from its archived per-case report, never read from a reward file.",
+   "truth_ref": "Closing properties"
+  },
+  {
+   "id": "R3",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run opened the shipped activity ledger rather than working from the task prose alone. Any route counts: a shell read, a CSV reader, a dataframe load.",
+   "truth_ref": "Step 1 — Inventory what is on disk, and establish what is *not* there",
+   "weight_evidence": "hygiene tier: reading the input is near-universal, carries no measured outcome coupling of its own, and the shipped question file restates the scenario, so a run that leans on that is not thereby wrong. Weight 1 by the doctrine's hygiene tier. Fixture: a solver opening a local filename instead.",
+   "source_id": "d_read_activity_ledger"
+  },
+  {
+   "id": "R4",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run authored the derivation as source - a script, a heredoc, or a `-c` one-liner - rather than typing the answer object out by hand.",
+   "truth_ref": "Step 4 — Compute the answers with executable code, never by hand",
+   "weight_evidence": "outcome-breaking behaviour: each graded value is a product of a metered quantity by a multi-significant-figure factor, judged against a small relative band, so hand arithmetic is not reliable at the precision required; and an asserted answer object cannot be re-derived when one factor or one vintage assignment turns out wrong. Fixture: a hand-written results file with no solver.",
+   "source_id": "d_authored_solver_source"
+  },
+  {
+   "id": "R5",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run executed the solver it authored. A version probe or a directory listing is not execution.",
+   "truth_ref": "Step 4 — Compute the answers with executable code, never by hand",
+   "weight_evidence": "outcome-breaking behaviour: an unexecuted solver means the emitted numbers were asserted, not computed. Fixture: version_only (`python3 --version` beside an authored but never-run script).",
+   "source_id": "d_executed_solver"
+  },
+  {
+   "id": "R6",
+   "channel": "deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The conversion factor applied to a line is bound to that line's own reporting year: the same published row is converted with a different number in each reporting period. One annual factor set applied across the whole ledger does not satisfy it.",
+   "truth_ref": "Step 6a — Bind the factor set to the line's own reporting year",
+   "weight_evidence": "GATE, traced to the TRUTH.md crux sub-step (6a). Measured controls in answer_key.json's control_gaps, every one of them holding the row address, the unit and the arithmetic correct: latest_vintage_everywhere misses every graded case by 14.112 to 1494.8732 tolerances (0 of 14 passed); off_by_one_earlier_vintage by 16.0751 to 1840.64 (0 passed); off_by_one_later_vintage by 14.112 to 1494.8732 (0 passed); vintage_average_factor by 2.9454 to 4878.6828 (0 passed). Precision for the gate flag is CONSTRUCTIVE: the graded set contains the same published row address in both reporting periods, the published sets differ there by far more than the graded band, so a run applying one number to both periods of such a pair cannot pass both cases. Recall is deliberately partial - a run that varies the factor by year but picks the wrong annual set passes this gate and fails the task; that residue is what n_vintage_selected_by_the_reporting_year_rule grades. Recorded-run precision is unmeasured: this bundle has no scored trajectories yet. Fixtures: single_vintage (numeric route), single_vintage_source_only (pattern route), comments_only.",
+   "source_id": "d_factor_bound_to_reporting_year"
+  },
+  {
+   "id": "R7",
+   "channel": "deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The annual factor vintage is named somewhere in the run's code or prose - a vintage, a factor set, a publication year, a year-labelled table.",
+   "truth_ref": "Step 6a — Bind the factor set to the line's own reporting year",
+   "weight_evidence": "narration cap: naming the vintage is evidence, not substance. A run can bind the right annual set without ever writing the word, so this is deliberately weight 1 and the substantive question is carried by the gate (behaviourally) and by n_vintage_selected_by_the_reporting_year_rule (judged). Fixture: a single-table solver that names no vintage.",
+   "source_id": "d_names_the_factor_vintage"
+  },
+  {
+   "id": "R8",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The answer object covers every case_id the shipped question file lists, either demonstrably in the emitted object or by enumerating the cases programmatically.",
+   "truth_ref": "Step 8 — Serialise one number per requested case, at the contract's precision",
+   "weight_evidence": "output-contract violation: grading is one test case per case_id, so a missing key is a lost case outright - CONTINUOUS is cases passed over the number the question file lists. Fixture: a partial answer object with no programmatic enumeration.",
+   "source_id": "d_answer_object_covers_every_case_id"
+  },
+  {
+   "id": "R9",
+   "channel": "deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The per-case values are nested under the contract's named top-level key rather than emitted at the JSON root or under some other wrapper.",
+   "truth_ref": "Step 8 — Serialise one number per requested case, at the contract's precision",
+   "weight_evidence": "output-contract violation that zeroes every case at once: the outcome verifier reads the answers from one named key, so a correct calculation serialised at the root scores nothing anywhere. Fixture: the case map emitted at the JSON root.",
+   "source_id": "d_answer_object_uses_contract_key"
+  },
+  {
+   "id": "R10",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "The run coarsened the reported kilograms to one decimal place or fewer - a precision the graded band cannot absorb on the smaller lines - instead of carrying the value at the precision the output contract asks for.",
+   "truth_ref": "Step 8 — Serialise one number per requested case, at the contract's precision",
+   "weight_evidence": "output-contract violation that zeroes cases: the band is a small relative one, so on the smallest graded line one decimal place is several tolerances wide while on the largest it is invisible - the failure is silent and case-selective. The guardrail deliberately fires at one decimal rather than at the contract's four, so a run emitting two or three is not penalised for a formatting preference it could not have failed on. Fixtures: coarse_values (numeric), round-to-one-decimal on the answer line (pattern); benign near-miss: a one-decimal progress line beside a full-precision answer.",
+   "source_id": "d_emitted_values_rounded_below_tolerance"
+  },
+  {
+   "id": "R11",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "Every conversion factor the run applied is exactly its own three-significant-figure rounding - the figures were recalled to headline precision rather than carried at the precision the published table has.",
+   "truth_ref": "Step 7 — Convert the metered quantity with one multiplication, in the line's own unit",
+   "weight_evidence": "measured control route (recalled_factor_three_sig_figs): carrying the correct vintage's correct row at three significant figures misses every graded case by 2.0298 to 17.0449 tolerances and passes none - it is the strongest recall-only route the build could construct. It follows that no graded line's own factor is three-significant-figure-clean, so this fires only on a rounding policy. Requires every emitted case to be clean, with at least four present, so a table holding one coincidentally round figure stays quiet. Fixture: sig3_values; benign near-miss: one round figure among full-precision ones.",
+   "source_id": "d_factors_carried_at_three_significant_figures"
+  },
+  {
+   "id": "R12",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "Every reported case carries the same number - a constant answer set, whether zeros, a placeholder, or a single guessed value.",
+   "truth_ref": "Step 5 — Decide where the conversion factors come from, and say so",
+   "weight_evidence": "measured control routes: do_nothing_zero misses every graded case by 5000 tolerances, and best_case_tuned_single_constant - a constant swept exhaustively in closed form over the whole range of graded values - reproduces exactly the one case whose value it equals, because the build separates the graded values pairwise by more than two tolerances. A constant answer set is therefore a failure by construction rather than a judgement call. Fixtures: constant_values, all_zeros; benign near-miss: two equal values among distinct ones.",
+   "source_id": "d_degenerate_or_constant_answers"
+  },
+  {
+   "id": "R13",
+   "channel": "deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "The run attempted network access or a package installation in a container declared no-network.",
+   "truth_ref": "Step 10 — Working conditions to respect throughout",
+   "weight_evidence": "condition violation with an outcome cost: the withheld factor set is the whole task, so a fetch attempt is a run spending its budget on a route the environment forecloses (task.md front matter: network_mode no-network; the image is python:3.11-slim with no packages installed). Grading-integrity tier, -3. Fixtures: pip_install, curl_with_flags; benign near-miss: the publisher's URL cited in prose.",
+   "source_id": "d_network_or_package_install"
+  },
+  {
+   "id": "R14",
+   "channel": "deterministic",
+   "weight": -5,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "The run modified, deleted, moved or overwrote something under the shipped input directory rather than copying it out to work on.",
+   "truth_ref": "Step 10 — Working conditions to respect throughout",
+   "weight_evidence": "-5 because firing invalidates THIS verifier's own grading, which is the spec's sole -5 condition: the gate recovers the factor a run applied by dividing its emitted kilograms by the metered quantity read grader-side from the shipped ledger, and d_answer_object_covers_every_case_id reads the shipped case list, so a run that rewrote either would be graded against a file it was not using. Fixtures: rm, overwrite; benign near-miss: a read-direction `cp` out to /tmp plus `cat` and `head`.",
+   "source_id": "d_mutated_input_data"
+  },
+  {
+   "id": "R15",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run established from what is on disk that no conversion factor, no emissions figure, no intensity and no factor table of any kind is shipped - so the governing figures have to come from outside the data - rather than hunting for them in the inputs or assuming they can be derived from the given columns. Any equivalent route to that realisation counts.",
+   "truth_ref": "Step 1 — Inventory what is on disk, and establish what is *not* there",
+   "weight_evidence": "hygiene/orientation tier: the realisation is a precondition for everything downstream, but it leaves no work product distinguishable from a terse correct run that simply proceeded. Capped at 1 for that reason.",
+   "source_id": "n_recognised_factor_set_absent_from_environment"
+  },
+  {
+   "id": "R16",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run treated the scope, category-level, sub-column and unit fields as an address into the publisher's own table rather than as free-text description of the activity.",
+   "truth_ref": "Step 2 — Read the taxonomy columns as the publisher's own row address",
+   "weight_evidence": "orientation tier: the shipped scenario already says the categories match the published taxonomy, so a run that simply uses them correctly is indistinguishable from one that reasoned about it. Weight 1; the substantive half - whether the lookup actually discriminated unit from sub-column - is graded at 3 by n_unit_and_subcolumn_distinguished_in_lookup.",
+   "source_id": "n_read_taxonomy_columns_as_row_address"
+  },
+  {
+   "id": "R17",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run laid out the full chain - reporting period to governing annual set, taxonomy address plus unit to published row, quantity times factor to kilograms - before implementing it, rather than discovering the links one at a time while coding.",
+   "truth_ref": "Step 3 — Name the whole chain before writing any code",
+   "weight_evidence": "narration tier: a plan is a speech act any style-tuned model emits; it is graded because TRUTH.md Step 3 exists, but it may never exceed 1.",
+   "source_id": "n_named_the_chain_before_coding"
+  },
+  {
+   "id": "R18",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run made clear where its factor figures came from and which publication vintage each figure is a memory of, rather than presenting them as self-evident. Confidence expressed per figure counts; a blanket claim of authority does not.",
+   "truth_ref": "Step 5 — Decide where the conversion factors come from, and say so",
+   "weight_evidence": "narration tier, capped at 1: provenance is a statement about the work, not the work. It is graded because the factor table is the entire evidential content of an answer here, and an unattributed table is an answer with no argument attached.",
+   "source_id": "n_factor_provenance_stated_per_vintage"
+  },
+  {
+   "id": "R19",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run recognised that choosing which annual factor set governs each reporting period is the hard part of this task, with the arithmetic downstream of it being one multiplication - as opposed to treating the whole thing as a formula application.",
+   "truth_ref": "Step 6 — Select the conversion factor that governs the line",
+   "weight_evidence": "narration tier: recognising the crux is the pilot's canonical speech act - cheap to emit, invisible when a terse correct run simply does the right thing. Weight 1 by doctrine; the behaviour it gestures at is graded by the deterministic gate.",
+   "source_id": "n_identified_vintage_choice_as_the_crux"
+  },
+  {
+   "id": "R20",
+   "channel": "non_deterministic",
+   "weight": 5,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The annual factor set applied to each line is the set published for that line's reporting year, chosen per reporting period by that rule - not the newest set, not one set carried across the ledger, not an average or interpolation across sets. Any route to the same per-period selection counts, including a table of years to factor sets, provided the selection is per reporting period rather than global.",
+   "truth_ref": "Step 6a — Bind the factor set to the line's own reporting year",
+   "weight_evidence": "weight 5, traced to the TRUTH.md crux sub-step (6a), with the failure mode measured on this bundle's controls: latest_vintage_everywhere - the nearest real competitor, being what a run does when it recalls 'the current published factors' - misses every graded case by 14.112 to 1494.8732 tolerances and passes none; the two off-by-one routes miss by 14.112 to 1840.64; the cross-vintage average misses by 2.9454 to 4878.6828. NOT a gate: the spec permits only deterministic criteria to gate, and the deterministic twin can see that the factor varied by year but cannot see WHICH annual set was chosen without consulting the withheld table, which would convert a process criterion into an outcome check.",
+   "source_id": "n_vintage_selected_by_the_reporting_year_rule"
+  },
+  {
+   "id": "R21",
+   "channel": "non_deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The factor selection discriminates rows that share a category but differ in the line's metered unit or in its sub-column - the calorific-value basis of an energy-metered fuel, the disposal route of a waste stream, the sourcing basis of a purchased material - rather than returning one figure per category name.",
+   "truth_ref": "Step 6b — Address the row at the line's exact unit and sub-column",
+   "weight_evidence": "judged-channel behavioural tier (weight 3): the discrimination leaves a work product - the lookup key in the run's own source, or the distinct figures it applies to two lines of one material. The shipped ledger contains pairs that differ only in the sub-column or only in the unit, so the failure is available on this input rather than hypothetical. Deliberately not 5: the build's control routes hold the row address correct and vary only the vintage, so no measured gap prices this axis.",
+   "source_id": "n_unit_and_subcolumn_distinguished_in_lookup"
+  },
+  {
+   "id": "R22",
+   "channel": "non_deterministic",
+   "weight": 1,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The figure taken from each published row is the headline carbon-dioxide-equivalent value, not one of the single-gas components published beside it at the same address, and not a sum reconstructed from those components.",
+   "truth_ref": "Step 6c — Take the headline CO2e figure, not a single-gas component of it",
+   "weight_evidence": "hygiene tier despite being a real convention the reference derivation pins silently (it filters the greenhouse-gas basis column and keeps only the equivalent figure): a run that never names either the headline value or its components is indistinguishable from a correct one, so the criterion cannot carry more than 1 without punishing terseness.",
+   "source_id": "n_headline_equivalent_not_single_gas"
+  },
+  {
+   "id": "R23",
+   "channel": "non_deterministic",
+   "weight": 3,
+   "is_positive": true,
+   "is_gate": false,
+   "criterion": "The run performed at least one check whose outcome was not already fixed by the factor figures it had chosen - a cross-check of two rows of one fuel through a published physical property, a confirmation that its two annual sets really differ at a shared category, a second independent recollection of a row. Re-running its own arithmetic does not count.",
+   "truth_ref": "Step 9 — Verify with a check that could have disagreed",
+   "weight_evidence": "judged-channel behavioural tier (weight 3): a second construction that can contradict the first is a work product. This task's characteristic failure is a run that is internally consistent and externally wrong - every cheap check passes for it - which is why TRUTH.md Step 9 is written as a table of what can and cannot disagree.",
+   "source_id": "n_verification_that_could_disagree"
+  },
+  {
+   "id": "R24",
+   "channel": "non_deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "The run presented its answers as verified, cross-checked or validated while the only checks it ran could not have contradicted it - recomputing its own products, recovering a factor by dividing its own output by the quantity, confirming the magnitudes look plausible, confirming the two reporting periods differ.",
+   "truth_ref": "Step 9 — Verify with a check that could have disagreed",
+   "weight_evidence": "grading-integrity guardrail at the -3 tier: a false verification claim is the specific way a wrong answer on this task acquires unearned credibility, and the construction guarantees the cheap checks pass - every measured control route produces a well-formed, correctly signed, plausibly sized answer set that reproduces its own arithmetic exactly.",
+   "source_id": "n_claimed_verification_that_cannot_disagree"
+  },
+  {
+   "id": "R25",
+   "channel": "non_deterministic",
+   "weight": -3,
+   "is_positive": false,
+   "is_gate": false,
+   "criterion": "The run manufactured a conversion factor out of the shipped columns or out of another line's result - a transmission category taken as a fixed fraction of its generation category, an upstream category as a fixed uplift on the corresponding direct one, a factor inferred from the quantities - instead of supplying it from outside the data.",
+   "truth_ref": "Step 5 — Decide where the conversion factors come from, and say so",
+   "weight_evidence": "outcome-breaking, with a structural receipt from the build report's determinacy section: the shipped data carries category labels, units and metered quantities only, and no equation over those columns contains a factor - the system is empty, not ill-conditioned. Anything presented as a derivation from them is an invention, and it fails every case that depends on it.",
+   "source_id": "n_factor_manufactured_from_shipped_columns"
+  }
+ ]
+}

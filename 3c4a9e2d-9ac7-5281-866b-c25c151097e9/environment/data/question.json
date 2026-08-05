@@ -1,0 +1,68 @@
+{
+  "cases_to_report": [
+    {
+      "case_id": "co2e-biogas-chp-2024",
+      "line_id": "biogas-chp-2024"
+    },
+    {
+      "case_id": "co2e-board-purchased-2024",
+      "line_id": "board-purchased-2024"
+    },
+    {
+      "case_id": "co2e-elec-td-2025",
+      "line_id": "elec-td-2025"
+    },
+    {
+      "case_id": "co2e-food-compost-2024",
+      "line_id": "food-compost-2024"
+    },
+    {
+      "case_id": "co2e-gas-volume-2024",
+      "line_id": "gas-volume-2024"
+    },
+    {
+      "case_id": "co2e-gas-volume-2025",
+      "line_id": "gas-volume-2025"
+    },
+    {
+      "case_id": "co2e-insulation-landfill-2025",
+      "line_id": "insulation-landfill-2025"
+    },
+    {
+      "case_id": "co2e-pellets-boiler-2024",
+      "line_id": "pellets-boiler-2024"
+    },
+    {
+      "case_id": "co2e-petrol-fleet-2024",
+      "line_id": "petrol-fleet-2024"
+    },
+    {
+      "case_id": "co2e-petrol-fleet-2025",
+      "line_id": "petrol-fleet-2025"
+    },
+    {
+      "case_id": "co2e-plastic-recycling-2025",
+      "line_id": "plastic-recycling-2025"
+    },
+    {
+      "case_id": "co2e-straw-boiler-2025",
+      "line_id": "straw-boiler-2025"
+    },
+    {
+      "case_id": "co2e-water-supply-2024",
+      "line_id": "water-supply-2024"
+    },
+    {
+      "case_id": "co2e-water-treatment-2024",
+      "line_id": "water-treatment-2024"
+    }
+  ],
+  "notes": "Lines not listed in cases_to_report are context and need not be reported. Quantities are exact metered values; no rounding of the inputs is intended. The kWh lines state their calorific-value basis explicitly; volume is metered volume.",
+  "output_contract": {
+    "decimals": "report at least four decimal places",
+    "key": "kg_co2e",
+    "path": "/root/results.json",
+    "value": "for each case_id, the emissions of that ledger line in kilograms of CO2e, as a number"
+  },
+  "scenario": "A UK operator of depots and packing sites is compiling its corporate greenhouse-gas inventory for two reporting periods, calendar year 2024 and calendar year 2025. Each row of activity_ledger.csv is one activity line in one reporting period: a category (matching the taxonomy used in the UK Government's published conversion-factor tables), the unit the activity was metered in, and the metered quantity. Emissions must be computed the way a UK inventory is required to compute them; the specification that governs the conversion is not reproduced here, and must be determined and applied correctly."
+}

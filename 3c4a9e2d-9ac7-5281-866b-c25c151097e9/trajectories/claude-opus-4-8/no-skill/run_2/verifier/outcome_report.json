@@ -1,0 +1,68 @@
+{
+  "task_slug": "ghg-conversion-factor-vintage",
+  "reward": 0.0,
+  "continuous": 0.0,
+  "passed": 0,
+  "total": 14,
+  "answer_key_sha256": "3d10bbbf67b597822407f955e6ea77a6f47864fe7d07d50170d92dcb76e3db2b",
+  "output_path": "/root/results.json",
+  "notes": [],
+  "failures": [
+    {
+      "case_id": "co2e-biogas-chp-2024",
+      "detail": "submitted=2261.8515 golden=2368.305492 |delta|=106.454 tolerance_abs=0.473661 (224.747x tolerance)"
+    },
+    {
+      "case_id": "co2e-board-purchased-2024",
+      "detail": "submitted=280532.168 golden=407858.737776 |delta|=127327 tolerance_abs=81.5717 (1560.915x tolerance)"
+    },
+    {
+      "case_id": "co2e-elec-td-2025",
+      "detail": "submitted=33461.6168 golden=38535.97009 |delta|=5074.35 tolerance_abs=7.70719 (658.392x tolerance)"
+    },
+    {
+      "case_id": "co2e-food-compost-2024",
+      "detail": "submitted=509.5536 golden=508.156792 |delta|=1.39681 tolerance_abs=0.101631 (13.744x tolerance)"
+    },
+    {
+      "case_id": "co2e-gas-volume-2024",
+      "detail": "submitted=438201.5944 golden=438491.00334 |delta|=289.409 tolerance_abs=87.6982 (3.300x tolerance)"
+    },
+    {
+      "case_id": "co2e-gas-volume-2025",
+      "detail": "submitted=400093.9717 golden=410477.45936 |delta|=10383.5 tolerance_abs=82.0955 (126.481x tolerance)"
+    },
+    {
+      "case_id": "co2e-insulation-landfill-2025",
+      "detail": "submitted=25.8375 golden=28.299712 |delta|=2.46221 tolerance_abs=0.00566 (435.020x tolerance)"
+    },
+    {
+      "case_id": "co2e-pellets-boiler-2024",
+      "detail": "submitted=44718.854 golden=44740.707036 |delta|=21.853 tolerance_abs=8.94814 (2.442x tolerance)"
+    },
+    {
+      "case_id": "co2e-petrol-fleet-2024",
+      "detail": "submitted=96785.4033 golden=96547.3236 |delta|=238.08 tolerance_abs=19.3095 (12.330x tolerance)"
+    },
+    {
+      "case_id": "co2e-petrol-fleet-2025",
+      "detail": "submitted=86178.3551 golden=85429.40892 |delta|=748.946 tolerance_abs=17.0859 (43.834x tolerance)"
+    },
+    {
+      "case_id": "co2e-plastic-recycling-2025",
+      "detail": "submitted=1877.4869 golden=413.276976 |delta|=1464.21 tolerance_abs=0.082655 (17714.717x tolerance)"
+    },
+    {
+      "case_id": "co2e-straw-boiler-2025",
+      "detail": "submitted=48201.9 golden=10716.909467 |delta|=37485 tolerance_abs=2.14338 (17488.712x tolerance)"
+    },
+    {
+      "case_id": "co2e-water-supply-2024",
+      "detail": "submitted=12119.0086 golden=10474.40821 |delta|=1644.6 tolerance_abs=2.09488 (785.056x tolerance)"
+    },
+    {
+      "case_id": "co2e-water-treatment-2024",
+      "detail": "submitted=16788.4942 golden=11436.56902 |delta|=5351.93 tolerance_abs=2.28731 (2339.830x tolerance)"
+    }
+  ]
+}

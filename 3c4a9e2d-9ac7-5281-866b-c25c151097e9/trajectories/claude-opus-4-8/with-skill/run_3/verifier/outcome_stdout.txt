@@ -1,0 +1,17 @@
+  PASS  co2e-biogas-chp-2024: submitted=2368.305492 golden=2368.305492 |delta|=0 tolerance_abs=0.473661 (0.000x tolerance)
+  PASS  co2e-board-purchased-2024: submitted=407858.73777600005 golden=407858.737776 |delta|=5.82077e-11 tolerance_abs=81.5717 (0.000x tolerance)
+  PASS  co2e-elec-td-2025: submitted=38535.97009 golden=38535.97009 |delta|=0 tolerance_abs=7.70719 (0.000x tolerance)
+  PASS  co2e-food-compost-2024: submitted=508.15679200000005 golden=508.156792 |delta|=5.68434e-14 tolerance_abs=0.101631 (0.000x tolerance)
+  PASS  co2e-gas-volume-2024: submitted=438491.00334 golden=438491.00334 |delta|=0 tolerance_abs=87.6982 (0.000x tolerance)
+  PASS  co2e-gas-volume-2025: submitted=410477.45936000004 golden=410477.45936 |delta|=5.82077e-11 tolerance_abs=82.0955 (0.000x tolerance)
+  PASS  co2e-insulation-landfill-2025: submitted=28.299711999999996 golden=28.299712 |delta|=3.55271e-15 tolerance_abs=0.00566 (0.000x tolerance)
+  PASS  co2e-pellets-boiler-2024: submitted=44740.707036 golden=44740.707036 |delta|=0 tolerance_abs=8.94814 (0.000x tolerance)
+  PASS  co2e-petrol-fleet-2024: submitted=96547.3236 golden=96547.3236 |delta|=0 tolerance_abs=19.3095 (0.000x tolerance)
+  PASS  co2e-petrol-fleet-2025: submitted=85429.40892 golden=85429.40892 |delta|=0 tolerance_abs=17.0859 (0.000x tolerance)
+  PASS  co2e-plastic-recycling-2025: submitted=413.276976 golden=413.276976 |delta|=0 tolerance_abs=0.082655 (0.000x tolerance)
+  PASS  co2e-straw-boiler-2025: submitted=10716.909467000001 golden=10716.909467 |delta|=1.81899e-12 tolerance_abs=2.14338 (0.000x tolerance)
+  PASS  co2e-water-supply-2024: submitted=10474.40821 golden=10474.40821 |delta|=0 tolerance_abs=2.09488 (0.000x tolerance)
+  PASS  co2e-water-treatment-2024: submitted=11436.569019999999 golden=11436.56902 |delta|=1.81899e-12 tolerance_abs=2.28731 (0.000x tolerance)
+
+outcome cases passed : 14/14
+CONTINUOUS (reward)  : 1.000000

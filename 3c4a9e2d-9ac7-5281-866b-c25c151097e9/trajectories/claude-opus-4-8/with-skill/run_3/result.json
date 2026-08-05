@@ -1,0 +1,117 @@
+{
+  "task_name": "ghg-conversion-factor-vintage",
+  "rollout_name": "ghg-conversion-factor-vintage__f1c3f49a",
+  "agent": "claude-agent-acp",
+  "agent_name": "@agentclientprotocol/claude-agent-acp",
+  "model": "claude-opus-4-8",
+  "skill_mode": "with-skill",
+  "skill_source": "task_bundled",
+  "requested_skills_dir": "/Users/kaustubhbhargava/Erza/erza/.omo/pilot-tasks/ghg-conversion-factor-vintage/environment/skills",
+  "effective_skills_dir": "/var/folders/b0/5pf3p9cj4h94cxl67pppfw0h0000gn/T/benchflow-task-cl4_6yxj/ghg-conversion-factor-vintage/environment/skills",
+  "skills_sandbox_dir": "/skills",
+  "include_task_skills": true,
+  "n_tool_calls": 4,
+  "n_skill_invocations": 0,
+  "n_prompts": 1,
+  "agent_result": {
+    "n_tool_calls": 4,
+    "n_skill_invocations": 0,
+    "n_prompts": 1,
+    "n_input_tokens": 278804,
+    "n_output_tokens": 2659,
+    "n_cache_read_tokens": 129258,
+    "n_cache_creation_tokens": 9290,
+    "total_tokens": 142915,
+    "cost_usd": 0.1977065,
+    "usage_source": "provider_response",
+    "price_source": "litellm"
+  },
+  "final_metrics": {
+    "total_prompt_tokens": 278804,
+    "total_completion_tokens": 2659,
+    "total_cached_tokens": 129258,
+    "total_cost_usd": 0.1977065
+  },
+  "trajectory_summary": {
+    "steps": 12,
+    "tool_call_steps": 4,
+    "user_message_steps": 1,
+    "agent_message_steps": 3,
+    "agent_thought_steps": 4,
+    "other_steps": 0,
+    "event_type_counts": {
+      "user_message": 1,
+      "agent_thought": 4,
+      "tool_call": 4,
+      "agent_message": 3
+    },
+    "tool_call_status_counts": {
+      "completed": 4
+    },
+    "partial_trajectory": false,
+    "trajectory_source": "acp"
+  },
+  "usage_tracking": {
+    "requested": "required",
+    "status": "enabled",
+    "environment": "docker",
+    "endpoint_kind": "host",
+    "usage_source": "provider_response"
+  },
+  "error": null,
+  "error_category": null,
+  "verifier_error": null,
+  "verifier_error_category": null,
+  "export_error": null,
+  "idle_timeout_info": null,
+  "agent_timeout_info": null,
+  "sandbox_startup_info": null,
+  "transport_error_info": null,
+  "verifier_timeout_info": null,
+  "api_error_info": null,
+  "suspected_api_error_info": null,
+  "partial_trajectory": false,
+  "trajectory_source": "acp",
+  "started_at": "2026-07-30 20:01:49.540102",
+  "finished_at": "2026-07-30 20:03:48.314455",
+  "timing": {
+    "environment_setup": 2.3,
+    "agent_setup": 3.9,
+    "agent_execution": 60.0,
+    "verifier": 3.6,
+    "total": 118.8
+  },
+  "scenes": [
+    {
+      "name": "default",
+      "skills_dir": null,
+      "roles": [
+        {
+          "name": "agent",
+          "agent": "claude-agent-acp",
+          "model": "claude-opus-4-8",
+          "reasoning_effort": null,
+          "timeout_sec": null,
+          "idle_timeout_sec": null,
+          "skills_dir": null,
+          "capabilities": null,
+          "env_keys": []
+        }
+      ],
+      "turns": [
+        {
+          "role": "agent",
+          "has_prompt": false
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "strategy": "single-shot"
+  },
+  "task_digest": "sha256:795f9d491801f7d0ec54465fce97d496084c4cb957e4c20c9d813fe09cc27a74",
+  "sandbox_id": null,
+  "scores": {
+    "score": 1.0
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "task_slug": "ghg-conversion-factor-vintage",
+  "reward": 1.0,
+  "continuous": 1.0,
+  "passed": 14,
+  "total": 14,
+  "answer_key_sha256": "3d10bbbf67b597822407f955e6ea77a6f47864fe7d07d50170d92dcb76e3db2b",
+  "output_path": "/root/results.json",
+  "notes": [],
+  "failures": []
+}
