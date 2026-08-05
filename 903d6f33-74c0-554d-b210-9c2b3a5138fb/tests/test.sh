@@ -80,7 +80,8 @@ for c in root.iter("testcase"):
     elif name.startswith("test_selfcheck_") and (bad or skipped):
         selfcheck_failed += 1
 
-score = 1.0 if (total > 0 and passed >= total and selfcheck_failed == 0) else 0.0
+score = (min(passed, total) / total) if (total > 0 and selfcheck_failed == 0) else 0.0
+# FRACTIONAL family: graded cases passed / total; 0.0 fail-closed if a self-check tripped.
 json.dump({"outcome": {"score": score, "cases_passed": passed, "cases_total": total,
                        "selfcheck_failed": selfcheck_failed, "cases": cases}},
           open(OUT, "w"), indent=1)
