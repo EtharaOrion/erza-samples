@@ -66,7 +66,6 @@ erza-samples/
 ├── images/                   # figures and their generators
 │   ├── score_by_tier.png     # with score_by_tier.py
 │   └── cost_by_tier.png      # with cost_by_tier.py
-├── verify_seal.py            # recomputes and checks every canonical_content_hash
 └── <task-id>/                # one directory per task-id (10)
     ├── task.toml instruction.md TRUTH.md environment/ oracle/ tests/
     └── trajectories/claude-opus-4-8/<condition>/run_N/ ...
