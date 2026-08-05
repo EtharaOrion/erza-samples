@@ -259,28 +259,102 @@
   ]
  },
  "deterministic": {
-  "recorded": false,
-  "cases_passed": null,
-  "cases_total": null,
-  "cases": [],
-  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
-  "criteria_unevaluated": [
-   "d_reads_inputs",
-   "d_writes_emitter",
-   "d_executes_emitter",
-   "d_pins_the_declared_length",
-   "d_places_payee_block_at_published_offsets",
-   "d_reserves_the_interior_runs",
-   "d_emits_return_specific_tail",
-   "d_amount_fields_right_justified_zero_filled",
-   "d_sequence_number_zero_filled",
-   "d_converts_amounts_to_cents",
-   "d_reports_contract",
-   "d_g_delimited_output",
-   "d_g_padded_remainder_without_placing",
-   "d_g_grader_path_access",
-   "d_g_network_egress"
-  ]
+  "cases_passed": 14,
+  "cases_total": 15,
+  "cases": [
+   {
+    "name": "test_d_reads_inputs",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_d_writes_emitter",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_executes_emitter",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_pins_the_declared_length",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_places_payee_block_at_published_offsets",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_reserves_the_interior_runs",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_emits_return_specific_tail",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_amount_fields_right_justified_zero_filled",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_sequence_number_zero_filled",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_converts_amounts_to_cents",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_reports_contract",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_delimited_output",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_padded_remainder_without_placing",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_grader_path_access",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_g_network_egress",
+    "classname": "20840ce0-eeb4-5848-afda-c600b281a77a.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -354,5 +428,6 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "pass_at_1": 1
+ "pass_at_1": 1,
+ "criteria_without_verdict": []
 }

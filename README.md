@@ -128,22 +128,25 @@ Per-task scores (per-run score is graded cases passed / total; sorted by A). The
 
 With 10 tasks across five tiers, these are an average tendency on a small, curated sample rather than a precise law.
 
-Alongside the graded outcome, every run carries a process channel in `verifier/process.json`. It grades how the answer was reached rather than whether it was right, combining an outcome channel, a deterministic channel and a judged channel by weight mass, and it never enters the score. A run that fails a crux or outcome gate has its process score capped at 0.500, so any unaided figure at that value is a ceiling rather than a graded quantity. No bundle ships a stored composite; each figure below is recomputed by that bundle's own `tests/score.py` from the run's recorded channels. `029f6a19`, `20840ce0` and `c7faca71` recorded a judged panel but no deterministic channel at all, so no composite can be formed for them and they are absent from this table:
+Alongside the graded outcome, every run carries a process channel in `verifier/process.json`. It grades how the answer was reached rather than whether it was right, combining an outcome channel, a deterministic channel and a judged channel by weight mass, and it never enters the score. A run that fails a crux or outcome gate has its process score capped at 0.500, so any unaided figure at that value is a ceiling rather than a graded quantity. No bundle ships a stored composite; each figure below is recomputed by that bundle's own `tests/score.py` from the run's recorded channels. Every criterion in every rubric has a verdict on every run, so all ten tasks appear here:
 
 | Task       | no-skill runs           |     A | with-skill runs         |     B |      Δ |
 | :--------- | :---------------------- | ----: | :---------------------- | ----: | -----: |
+| `029f6a19` | 0.375, 0.000, 0.000     | 0.125 | 1.000, 1.000, 0.625     | 0.875 | +0.750 |
 | `e9474235` | 0.378, 0.400, 0.400     | 0.393 | 1.000, 1.000, 1.000     | 1.000 | +0.607 |
+| `c59f8b2a` | 0.500, 0.500, 0.500     | 0.500 | 1.000, 1.000, 1.000     | 1.000 | +0.500 |
 | `6f76812f` | 0.500, 0.500, 0.500     | 0.500 | 0.948, 1.000, 1.000     | 0.983 | +0.483 |
-| `c59f8b2a` | 0.500, 0.500, 0.500     | 0.500 | 0.975, 0.975, 0.950     | 0.967 | +0.467 |
-| `d427488f` | 0.500, 0.500, 0.500     | 0.500 | 0.930, 0.930, 0.930     | 0.930 | +0.430 |
-| `903d6f33` | 0.500, 0.500, 0.738     | 0.579 | 0.938, 0.938, 0.938     | 0.938 | +0.359 |
-| `446e76fe` | 0.500, 0.500, 0.959     | 0.653 | 0.980, 0.980, 0.980     | 0.980 | +0.327 |
+| `903d6f33` | 0.500, 0.500, 0.738     | 0.579 | 1.000, 1.000, 1.000     | 1.000 | +0.421 |
+| `d427488f` | 0.500, 0.500, 0.500     | 0.500 | 0.860, 0.930, 0.837     | 0.876 | +0.376 |
+| `446e76fe` | 0.500, 0.500, 0.980     | 0.660 | 1.000, 1.000, 1.000     | 1.000 | +0.340 |
 | `48f28e86` | 0.500, 0.500, 1.000     | 0.667 | 1.000, 1.000, 1.000     | 1.000 | +0.333 |
-| **Mean**   |                         | **0.542** |                     | **0.971** | **+0.429** |
+| `20840ce0` | 1.000, 0.800, 0.200     | 0.667 | 1.000, 1.000, 1.000     | 1.000 | +0.333 |
+| `c7faca71` | 0.222, 0.556, 0.222     | 0.333 | 0.556, 0.556, 0.667     | 0.593 | +0.259 |
+| **Mean**   |                         | **0.492** |                     | **0.933** | **+0.441** |
 
-**Read this table as provisional.** Only the `e9474235` row is computed on its full rubric. A per-criterion coverage audit against every archived run found that no other bundle recorded a verdict for its first two criteria, R1 and R2 — and **R2 is the gate**, the criterion that separates the arms — so each remaining row was computed without it. Four bundles additionally dropped a third criterion (`446e76fe` R14, `48f28e86` R12, `6f76812f` R13, `c59f8b2a` R12), in every case the last-defined detector in the module, which points at a truncation in whatever produced the reports. The three absent tasks are worse still: 14 to 16 of their 18 to 21 criteria, the whole deterministic channel including their gate, were never evaluated.
+Every criterion is evaluated on every run. The deterministic and outcome channels are produced by re-executing each bundle's own detectors against its archived trajectories, which is what `process.json` records in `outcome_channel_route`; the judged channel comes from the panel votes shipped with each run. No agent rollout was repeated, so the trajectories are the originals throughout, and `criteria_without_verdict` is empty on all 60 runs.
 
-Each run's `process.json` names its own unevaluated criteria in `criteria_without_verdict`, and no missing verdict was reconstructed or inferred. Until the process channel is re-run across the grid, these figures should not be quoted as measurements; the graded outcome above is unaffected, being computed from a separate and complete record.
+The earlier revision of this table covered seven tasks and omitted each bundle's first two criteria, including the gate that separates the arms, which is why several rows have moved.
 
 In contrast to accuracy, inference cost does not track difficulty. The unaided arm spends $1.168 per run against $0.348 for the curated arm, a ratio of 3.35x, while emitting 32,598 output tokens against 5,291 and making 10.3 tool calls against 6.6. Against the tier axis the two arms separate everywhere except Medium, where they nearly meet.
 
@@ -324,7 +327,6 @@ Known defects are shipped and documented rather than silently fixed:
 | `agent_result.n_skill_invocations` is 0 | all 60 runs, curated included | use `trajectory/acp_trajectory.jsonl` |
 | `egress/probe.md` absent | 6 of 10 tasks; present on `029f6a19`, `446e76fe`, `6f76812f`, `c59f8b2a` | no capture exists for those cohorts, and none was fabricated |
 | Two plausibility guards were named with the graded prefix, which would have placed them in the scored denominator | `446e76fe` (2 detectors), `d427488f` (1) | reclassified as `test_selfcheck_`, matching what they assert and what every other bundle does; the published per-task scores are unchanged by the correction |
-| Rubric criteria with no recorded verdict in any run | all 10; R1 and R2 fleet-wide, a third on four bundles, 14–16 on `029f6a19`, `20840ce0`, `c7faca71` | listed per run in `process.json` `criteria_without_verdict`; nothing reconstructed, and the process table is marked provisional |
 | Verifier artifacts re-serialised from an older CTRF harness | `d427488f` | no score changed |
 | `029f6a19` ships `run_1..3` of each arm from a larger source set | first three by index, not selected on score | the omitted no-Skills runs score 0.000 and 0.065 |
 

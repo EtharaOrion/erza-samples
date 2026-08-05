@@ -379,29 +379,108 @@
   ]
  },
  "deterministic": {
-  "recorded": false,
-  "cases_passed": null,
-  "cases_total": null,
-  "cases": [],
-  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
-  "criteria_unevaluated": [
-   "d_reads_roster",
-   "d_writes_solver",
-   "d_executes_solver",
-   "d_normalises_to_one_clock",
-   "d_splits_augmented_regime",
-   "d_indexes_matrix_on_both_axes",
-   "d_applies_acclimation_reduction",
-   "d_tests_split_duty_conditions",
-   "d_enumerates_all_limits",
-   "d_includes_pairing_in_rolling_totals",
-   "d_takes_minimum_margin",
-   "d_reports_contract",
-   "d_g_flat_duty_ceiling",
-   "d_g_extension_applied_to_schedule",
-   "d_g_grader_path_access",
-   "d_g_network_egress"
-  ]
+  "cases_passed": 15,
+  "cases_total": 16,
+  "cases": [
+   {
+    "name": "test_d_reads_roster",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.003
+   },
+   {
+    "name": "test_d_writes_solver",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_executes_solver",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_normalises_to_one_clock",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_splits_augmented_regime",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_indexes_matrix_on_both_axes",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_applies_acclimation_reduction",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_tests_split_duty_conditions",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_enumerates_all_limits",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_includes_pairing_in_rolling_totals",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_takes_minimum_margin",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_reports_contract",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_flat_duty_ceiling",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_g_extension_applied_to_schedule",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_g_grader_path_access",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_g_network_egress",
+    "classname": "c7faca71-82cd-5ad3-9dc5-c161793ddb25.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   }
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -511,5 +590,6 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "pass_at_1": 0
+ "pass_at_1": 0,
+ "criteria_without_verdict": []
 }

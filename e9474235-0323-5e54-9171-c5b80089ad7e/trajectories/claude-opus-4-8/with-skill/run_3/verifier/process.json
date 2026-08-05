@@ -106,97 +106,98 @@
   "cases_total": 15,
   "cases": [
    {
-    "name": "test_R1",
-    "classname": "",
-    "status": "passed",
-    "time": 0.635
-   },
-   {
-    "name": "test_R2",
-    "classname": "",
-    "status": "passed",
-    "time": 0.0
-   },
-   {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
-    "time": 0.004
+    "time": 0.003
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R12",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R1",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
+    "status": "passed",
+    "time": 0.257
+   },
+   {
+    "name": "test_R2",
+    "classname": "e9474235-0323-5e54-9171-c5b80089ad7e.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
   ],
-  "outcome_channel_route": "probe re-execution (docker erza-ta-e9474235:latest, cwd=.) from /root/tide.py"
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -288,5 +289,6 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "pass_at_1": 1
+ "pass_at_1": 1,
+ "criteria_without_verdict": []
 }

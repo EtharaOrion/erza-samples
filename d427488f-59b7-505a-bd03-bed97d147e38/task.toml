@@ -31,7 +31,7 @@ timeout_sec = 1800.0
 
 [verifier]
 timeout_sec   = 300.0
-score_family = "binary"
+score_family = "fractional"
 
 [oracle]
 entrypoint = "oracle/solve.sh"

@@ -25,6 +25,7 @@ tags = [
 ]
 
 [verifier]
+score_family = "fractional"
 type = "test-script"
 timeout_sec = 300.0
 

@@ -94,94 +94,108 @@
   "selfcheck_note": "This bundle ships no test_selfcheck_ tests, so the self-check kill-switch was unarmed on this run."
  },
  "deterministic": {
-  "cases_passed": 14,
-  "cases_total": 14,
+  "cases_passed": 16,
+  "cases_total": 16,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
-    "time": 0.008
+    "time": 0.007
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R12",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R16",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R1",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
+    "time": 0.256
+   },
+   {
+    "name": "test_R2",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -216,7 +230,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The trajectory explicitly adopts the skill’s warning that the native-to-celestial rotation is “the task,” carefully handles the absent LONPOLE, and later builds an independent vector-geometry check specifically capable of testing that orientation."
+      "rationale": "The trajectory explicitly adopts the skill\u2019s warning that the native-to-celestial rotation is \u201cthe task,\u201d carefully handles the absent LONPOLE, and later builds an independent vector-geometry check specifically capable of testing that orientation."
      }
     ],
     "rationales": []
@@ -234,7 +248,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "After reading the header, the agent states, “No LONPOLE card, so the standard default φ_p = 180° applies,” and its final explanation evaluates the relevant condition, δ₀ = 67° < θ₀ = 90°."
+      "rationale": "After reading the header, the agent states, \u201cNo LONPOLE card, so the standard default \u03c6_p = 180\u00b0 applies,\u201d and its final explanation evaluates the relevant condition, \u03b4\u2080 = 67\u00b0 < \u03b8\u2080 = 90\u00b0."
      }
     ],
     "rationales": []
@@ -306,7 +320,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The invoked guidance explicitly identifies CRPIX→CRVAL, range checks, and self-round-tripping as non-discriminating; the agent consequently proceeds from the CRPIX sanity check to an independent vector construction rather than treating CRPIX agreement as sufficient verification."
+      "rationale": "The invoked guidance explicitly identifies CRPIX\u2192CRVAL, range checks, and self-round-tripping as non-discriminating; the agent consequently proceeds from the CRPIX sanity check to an independent vector construction rather than treating CRPIX agreement as sufficient verification."
      }
     ],
     "rationales": []
@@ -342,7 +356,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": false,
-      "rationale": "Although the agent reports the CRPIX→CRVAL sanity check, it does not rely on that check for validation; it explicitly performs and cites the independent off-axis vector-geometry comparison as the discriminating verification."
+      "rationale": "Although the agent reports the CRPIX\u2192CRVAL sanity check, it does not rely on that check for validation; it explicitly performs and cites the independent off-axis vector-geometry comparison as the discriminating verification."
      }
     ],
     "rationales": []
@@ -360,7 +374,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": false,
-      "rationale": "The conventions are supported by the invoked Paper II-oriented guidance and by the independent vector check; the pole-longitude default is also derived from the header’s reference latitude rather than merely asserted."
+      "rationale": "The conventions are supported by the invoked Paper II-oriented guidance and by the independent vector check; the pole-longitude default is also derived from the header\u2019s reference latitude rather than merely asserted."
      }
     ],
     "rationales": []
@@ -399,10 +413,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

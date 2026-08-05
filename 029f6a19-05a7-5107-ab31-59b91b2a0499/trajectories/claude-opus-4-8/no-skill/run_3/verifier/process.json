@@ -259,27 +259,96 @@
   ]
  },
  "deterministic": {
-  "recorded": false,
-  "cases_passed": null,
-  "cases_total": null,
-  "cases": [],
-  "note": "UNRECORDED. No deterministic-channel report was archived for this run - this bundle shipped no verifier/process/results.xml - so no per-criterion deterministic verdict exists. The criteria listed below are UNEVALUATED, not failed; absence of a verdict is not a zero.",
-  "criteria_unevaluated": [
-   "d_reads_input",
-   "d_writes_solver",
-   "d_executes_solver",
-   "d_applies_published_coefficients",
-   "d_selects_model_family_per_group",
-   "d_applies_footnoted_transforms",
-   "d_rescales_composite_over_named_categories",
-   "d_caps_age_at_69",
-   "d_reports_contract",
-   "d_g_arithmetic_split",
-   "d_g_single_model_for_every_group",
-   "d_g_orientation_block_echoed",
-   "d_g_grader_path_access",
-   "d_g_network_egress"
-  ]
+  "cases_passed": 8,
+  "cases_total": 14,
+  "cases": [
+   {
+    "name": "test_d_reads_input",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_writes_solver",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_executes_solver",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_applies_published_coefficients",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_selects_model_family_per_group",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.001
+   },
+   {
+    "name": "test_d_applies_footnoted_transforms",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_rescales_composite_over_named_categories",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_caps_age_at_69",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_reports_contract",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_arithmetic_split",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "failed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_g_single_model_for_every_group",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_d_g_orientation_block_echoed",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_grader_path_access",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_d_g_network_egress",
+    "classname": "029f6a19-05a7-5107-ab31-59b91b2a0499.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -371,5 +440,6 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "pass_at_1": 0
+ "pass_at_1": 0,
+ "criteria_without_verdict": []
 }

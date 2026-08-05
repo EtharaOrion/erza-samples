@@ -97,70 +97,90 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 10,
-  "cases_total": 10,
+  "cases_passed": 13,
+  "cases_total": 13,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.004
+    "time": 0.003
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R1",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.341
+   },
+   {
+    "name": "test_R2",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -189,7 +209,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent explicitly contrasted its per-station declinations with “the decoy chart's single 6.5° figure” and stated they were “nothing like” it, showing that the chart value was deliberately set aside."
+      "rationale": "The agent explicitly contrasted its per-station declinations with \u201cthe decoy chart's single 6.5\u00b0 figure\u201d and stated they were \u201cnothing like\u201d it, showing that the chart value was deliberately set aside."
      }
     ],
     "rationales": []
@@ -219,7 +239,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent checked GDS01 using an independent finite-difference scalar-potential gradient route and reported agreement with the analytic synthesis to 1e-4°, in addition to checking the regional sign and rough magnitude."
+      "rationale": "The agent checked GDS01 using an independent finite-difference scalar-potential gradient route and reported agreement with the analytic synthesis to 1e-4\u00b0, in addition to checking the regional sign and rough magnitude."
      }
     ],
     "rationales": []
@@ -240,11 +260,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R12"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

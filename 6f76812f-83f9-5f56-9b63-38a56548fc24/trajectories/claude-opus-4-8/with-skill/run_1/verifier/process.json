@@ -109,100 +109,114 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 13,
-  "cases_total": 15,
+  "cases_passed": 17,
+  "cases_total": 17,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
-    "time": 0.005
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.022
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
-    "status": "failed",
-    "time": 0.001
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
+    "status": "passed",
+    "time": 0.288
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R12",
-    "classname": "verifier.test_trajectory",
-    "status": "failed",
-    "time": 0.001
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
+    "status": "passed",
+    "time": 0.0
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R16",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R17",
-    "classname": "verifier.test_trajectory",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R13",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
-    "name": "test_zz_meta_every_detector_pairs_with_a_rubric_id",
-    "classname": "verifier.test_trajectory",
+    "name": "test_R1",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R2",
+    "classname": "6f76812f-83f9-5f56-9b63-38a56548fc24.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -267,11 +281,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R13"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

@@ -115,82 +115,102 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 7,
-  "cases_total": 12,
+  "cases_passed": 10,
+  "cases_total": 15,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
-    "time": 0.006
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "failed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "failed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "failed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
-    "status": "failed",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "failed",
-    "time": 0.001
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R1",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
+    "time": 0.757
+   },
+   {
+    "name": "test_R2",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "failed",
+    "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -207,7 +227,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The run explicitly states that the correction is fixed by each antenna’s calibration, differs by model, and “is not recoverable from the geometry.”"
+      "rationale": "The run explicitly states that the correction is fixed by each antenna\u2019s calibration, differs by model, and \u201cis not recoverable from the geometry.\u201d"
      }
     ],
     "rationales": []
@@ -225,7 +245,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": false,
-      "rationale": "Although the run recognizes that the nominal reference is “shown for orientation only,” it nevertheless uses those nominal offsets as the direct basis for every computed answer."
+      "rationale": "Although the run recognizes that the nominal reference is \u201cshown for orientation only,\u201d it nevertheless uses those nominal offsets as the direct basis for every computed answer."
      }
     ],
     "rationales": []
@@ -264,11 +284,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R12"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 0
 }

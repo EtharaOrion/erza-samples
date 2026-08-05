@@ -97,70 +97,90 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 8,
-  "cases_total": 10,
+  "cases_passed": 12,
+  "cases_total": 13,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.006
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
-    "status": "failed",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R1",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.383
+   },
+   {
+    "name": "test_R2",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "failed",
     "time": 0.001
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -189,7 +209,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent explicitly stated that the old-chart 6.5° figure in `decoy_reference` was ignored and contrasted it with the modeled station declinations."
+      "rationale": "The agent explicitly stated that the old-chart 6.5\u00b0 figure in `decoy_reference` was ignored and contrasted it with the modeled station declinations."
      }
     ],
     "rationales": []
@@ -240,11 +260,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R12"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 0
 }

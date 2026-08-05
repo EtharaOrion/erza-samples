@@ -94,94 +94,108 @@
   "selfcheck_note": "This bundle ships no test_selfcheck_ tests, so the self-check kill-switch was unarmed on this run."
  },
  "deterministic": {
-  "cases_passed": 11,
-  "cases_total": 14,
+  "cases_passed": 12,
+  "cases_total": 16,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "failed",
-    "time": 0.006
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "failed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "failed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R12",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R16",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
+   },
+   {
+    "name": "test_R1",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
+    "time": 0.367
+   },
+   {
+    "name": "test_R2",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "failed",
+    "time": 0.001
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -360,7 +374,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent labels its bare-`phi` rotation as the “standard formulas” and claims it applies the “exact WCS definition” without deriving or checking the omitted native-pole-longitude convention; the generic attribution does not demonstrate support for that specific choice."
+      "rationale": "The agent labels its bare-`phi` rotation as the \u201cstandard formulas\u201d and claims it applies the \u201cexact WCS definition\u201d without deriving or checking the omitted native-pole-longitude convention; the generic attribution does not demonstrate support for that specific choice."
      }
     ],
     "rationales": []
@@ -399,10 +413,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 0
 }

@@ -17,7 +17,7 @@
 #    training composition (a BUNDLE DEFECT, not an agent failure).
 #  * The script always exits 0. The score file is the verdict.
 #
-# Score family: BINARY
+# Score family: FRACTIONAL
 #
 # Emits, matching the reference sample layout:
 #   /logs/verifier/score.md      the scalar verdict
@@ -26,7 +26,7 @@
 # The full pytest log goes to stdout, which the harness archives as test-stdout.md.
 set -u
 mkdir -p /logs/verifier
-echo "0" > /logs/verifier/score.md
+echo "0.0000" > /logs/verifier/score.md
 
 TESTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export ERZA_BUNDLE_DIR="${ERZA_BUNDLE_DIR:-$(dirname "$TESTS_DIR")}"
@@ -108,8 +108,8 @@ if [ "$TOTAL" -le 0 ]; then
   exit 0
 fi
 
-# BINARY family: score is 1 iff every scored test passed, else 0.
-if [ "$PASSED" -ge "$TOTAL" ]; then SCORE=1; else SCORE=0; fi
+# FRACTIONAL family: score is graded cases passed / graded cases total.
+SCORE=$(python3 -c "print(f'{min($PASSED,$TOTAL)/$TOTAL:.4f}')")
 
 echo "$SCORE" > /logs/verifier/score.md
 echo "test cases passed  : $PASSED/$TOTAL"

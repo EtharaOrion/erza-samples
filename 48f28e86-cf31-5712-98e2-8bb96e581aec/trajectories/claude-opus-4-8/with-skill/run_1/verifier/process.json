@@ -97,70 +97,90 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 10,
-  "cases_total": 10,
+  "cases_passed": 13,
+  "cases_total": 13,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.004
+    "time": 0.006
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.002
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
-    "time": 0.0
+    "time": 0.001
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R12",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.001
+   },
+   {
+    "name": "test_R1",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
+    "status": "passed",
+    "time": 0.301
+   },
+   {
+    "name": "test_R2",
+    "classname": "48f28e86-cf31-5712-98e2-8bb96e581aec.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -189,7 +209,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent explicitly stated that the declinations were far from the decoy chart’s 6.5° figure and that the chart value was “correctly ignored.”"
+      "rationale": "The agent explicitly stated that the declinations were far from the decoy chart\u2019s 6.5\u00b0 figure and that the chart value was \u201ccorrectly ignored.\u201d"
      }
     ],
     "rationales": []
@@ -204,7 +224,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The implementation explicitly converts each station’s WGS84 geodetic latitude and ellipsoidal height into geocentric colatitude and radius before synthesis, then rotates the field back into the geodetic frame."
+      "rationale": "The implementation explicitly converts each station\u2019s WGS84 geodetic latitude and ellipsoidal height into geocentric colatitude and radius before synthesis, then rotates the field back into the geodetic frame."
      }
     ],
     "rationales": []
@@ -240,11 +260,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R12"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

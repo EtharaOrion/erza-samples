@@ -115,82 +115,102 @@
   "source": "verifier/results.xml"
  },
  "deterministic": {
-  "cases_passed": 12,
-  "cases_total": 12,
+  "cases_passed": 15,
+  "cases_total": 15,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
-    "time": 0.006
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
     "status": "passed",
     "time": 0.001
+   },
+   {
+    "name": "test_R12",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
+    "time": 0.002
+   },
+   {
+    "name": "test_R1",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
+    "time": 0.394
+   },
+   {
+    "name": "test_R2",
+    "classname": "c59f8b2a-0606-5f02-bed5-52937e5ab468.tests.test_output",
+    "status": "passed",
+    "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -207,7 +227,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The loaded calibration skill explicitly states that PCO and PCV are properties of the antenna model determined by measurement and that “nothing in the geometry of a line of sight predicts them”; the run consequently loaded each antenna’s own ANTEX block."
+      "rationale": "The loaded calibration skill explicitly states that PCO and PCV are properties of the antenna model determined by measurement and that \u201cnothing in the geometry of a line of sight predicts them\u201d; the run consequently loaded each antenna\u2019s own ANTEX block."
      }
     ],
     "rationales": []
@@ -225,7 +245,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The run displayed `question.json`, where the nominal block is explicitly labeled “Shown for orientation only,” and then based every computation on the antenna-specific ANTEX files rather than that nominal block."
+      "rationale": "The run displayed `question.json`, where the nominal block is explicitly labeled \u201cShown for orientation only,\u201d and then based every computation on the antenna-specific ANTEX files rather than that nominal block."
      }
     ],
     "rationales": []
@@ -243,7 +263,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The run evaluated the same E08 direction using ANT-A, ANT-B, and ANT-C’s distinct blocks and obtained substantially different corrections, directly demonstrating antenna-block sensitivity. It also printed projected-offset and interpolated-PCV terms separately for every requested case and validated the implementation against independent supplied check values."
+      "rationale": "The run evaluated the same E08 direction using ANT-A, ANT-B, and ANT-C\u2019s distinct blocks and obtained substantially different corrections, directly demonstrating antenna-block sensitivity. It also printed projected-offset and interpolated-PCV terms separately for every requested case and validated the implementation against independent supplied check values."
      }
     ],
     "rationales": []
@@ -264,11 +284,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2",
-  "R12"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

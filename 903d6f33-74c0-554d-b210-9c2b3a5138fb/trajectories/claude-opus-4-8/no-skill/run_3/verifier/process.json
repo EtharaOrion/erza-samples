@@ -94,94 +94,108 @@
   "selfcheck_note": "This bundle ships no test_selfcheck_ tests, so the self-check kill-switch was unarmed on this run."
  },
  "deterministic": {
-  "cases_passed": 12,
-  "cases_total": 14,
+  "cases_passed": 15,
+  "cases_total": 16,
   "cases": [
    {
     "name": "test_R3",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "failed",
-    "time": 0.005
+    "time": 0.004
    },
    {
     "name": "test_R4",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R5",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R6",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.001
    },
    {
     "name": "test_R7",
-    "classname": "verifier.test_trajectory",
-    "status": "failed",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R8",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R9",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R10",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R11",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R12",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R13",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
-    "time": 0.001
+    "time": 0.0
    },
    {
     "name": "test_R14",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R15",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    },
    {
     "name": "test_R16",
-    "classname": "verifier.test_trajectory",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_R1",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
+    "status": "passed",
+    "time": 0.376
+   },
+   {
+    "name": "test_R2",
+    "classname": "903d6f33-74c0-554d-b210-9c2b3a5138fb.tests.test_output",
     "status": "passed",
     "time": 0.0
    }
-  ]
+  ],
+  "recorded": true,
+  "outcome_channel_route": "re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated"
  },
  "judged": {
   "criteria": [
@@ -234,7 +248,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": false,
-      "rationale": "Although the code calls 180 degrees the “TAN default,” the agent never explicitly observes that LONPOLE is absent and derives the value using the FITS conditional default rule."
+      "rationale": "Although the code calls 180 degrees the \u201cTAN default,\u201d the agent never explicitly observes that LONPOLE is absent and derives the value using the FITS conditional default rule."
      }
     ],
     "rationales": []
@@ -342,7 +356,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent offers the fact that all results lie within the expected field radius as evidence that the calculation is “consistent,” even though this range/plausibility check cannot distinguish the key rotation convention error."
+      "rationale": "The agent offers the fact that all results lie within the expected field radius as evidence that the calculation is \u201cconsistent,\u201d even though this range/plausibility check cannot distinguish the key rotation convention error."
      }
     ],
     "rationales": []
@@ -360,7 +374,7 @@
       "model": "gpt-5.6-sol",
       "stance": "single",
       "satisfied": true,
-      "rationale": "The agent confidently asserts both `atan2(xr, -er)` and `phi_p = 180°` as Paper II/TAN conventions without deriving them from the standard’s relations or checking them independently; merely naming Paper II does not demonstrate the convention was established."
+      "rationale": "The agent confidently asserts both `atan2(xr, -er)` and `phi_p = 180\u00b0` as Paper II/TAN conventions without deriving them from the standard\u2019s relations or checking them independently; merely naming Paper II does not demonstrate the convention was established."
      }
     ],
     "rationales": []
@@ -399,10 +413,7 @@
    "stability_caveat": "Single-seat panel. No cross-seat disagreement signal exists, so per-criterion stability is unmeasured within a run."
   }
  },
- "criteria_without_verdict": [
-  "R1",
-  "R2"
- ],
+ "criteria_without_verdict": [],
  "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
  "pass_at_1": 1
 }

@@ -31,7 +31,7 @@ timeout_sec = 3600.0
 
 [verifier]
 timeout_sec   = 300.0
-score_family = "binary"
+score_family = "fractional"
 
 [verifier.hardening]
 cleanup_conftests = true
