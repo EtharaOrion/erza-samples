@@ -1,7 +1,2 @@
-HANDOFF.md
-tools/
 __pycache__/
 *.pyc
-author-side/
-rubric-evidence/
-verify_seal.py
