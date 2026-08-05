@@ -1493,3 +1493,106 @@ def test_score_source_position(truth, submission, sid):
         f"{sid}: submitted (ra={ra:.9f}, dec={dec:.9f}) is {sep:.9f} deg from "
         f"the reference position - tolerance is {TOL_DEG} deg "
         f"({sep / TOL_DEG:.1f}x over)")
+
+
+# ---- grader self-checks (NOT scored; excluded from the score by test.sh) ----
+# These audit the grader itself, never the agent's answer. A failure here means
+# the bundle is unfit to grade and trips test.sh's kill-switch, which is why
+# they are named `test_selfcheck_` and carry no scoring weight. Each is built
+# from machinery this bundle already ships - `solve_all`, `ALL_BUGS`,
+# `angular_separation` and `TOL_DEG` - so none of them introduces a new
+# astrometric claim of its own.
+
+@pytest.mark.selfcheck
+def test_selfcheck_frozen_golden_matches_live_recompute():
+    """Freeze guard: the frozen reference reproduces from the shipped inputs.
+
+    The `truth` fixture already asserts this, but a fixture failure surfaces as
+    an error on every graded case, i.e. as an agent failure. Naming it as a
+    self-check makes an edited constant read as a BUNDLE DEFECT instead, which
+    is what it is. It detects drift in expected_values.json or in the shipped
+    header/catalogue; it cannot detect a wrong algorithm, because the verifier
+    and the reference share `wcs_pipeline.py` by construction.
+    """
+    live = solve_all(DATA)
+    with open(os.path.join(HERE, "expected_values.json")) as fh:
+        frozen = json.load(fh)
+    assert set(live) == set(frozen), (
+        f"freeze guard: source set drift {set(live) ^ set(frozen)}")
+    for sid, exp in frozen.items():
+        for key in ("ra_deg", "dec_deg"):
+            assert abs(live[sid][key] - exp[key]) < FREEZE_TOL_DEG, (
+                f"freeze guard: recomputed {sid}.{key} {live[sid][key]!r} != "
+                f"frozen {exp[key]!r}")
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_plausibility_guess_resistance():
+    """The tolerance binds: every catalogued wrong route fails at least once.
+
+    `wcs_pipeline.ALL_BUGS` is this bundle's own catalogue of plausible
+    mis-implementations of the TAN chain. If any of them still landed every
+    source inside TOL_DEG, the task would not discriminate the correct
+    procedure from that shortcut and the graded result would be meaningless.
+    """
+    from wcs_pipeline import ALL_BUGS
+
+    with open(os.path.join(HERE, "expected_values.json")) as fh:
+        frozen = json.load(fh)
+    for bug in ALL_BUGS:
+        wrong = solve_all(DATA, bugs={bug})
+        worst = max(
+            angular_separation(
+                wrong[sid]["ra_deg"], wrong[sid]["dec_deg"],
+                exp["ra_deg"], exp["dec_deg"])
+            for sid, exp in frozen.items())
+        assert worst > TOL_DEG, (
+            f"guess resistance: the '{bug}' route stays within {TOL_DEG} deg on "
+            f"every source (worst {worst:.9f} deg), so the tolerance does not "
+            f"separate it from the correct chain")
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_isomorphic_invariance():
+    """Relabelling and reordering the catalogue must not move any source.
+
+    Writes an isomorphic instance - identical pixel coordinates, renamed source
+    ids, rows reversed - and asserts every position is unchanged. A verifier
+    that keyed on row order or on a source's name rather than on its pixel
+    coordinates would fail here.
+    """
+    import csv as _csv
+    import shutil
+    import tempfile
+
+    with open(os.path.join(DATA, "sources.csv"), newline="") as fh:
+        rows = list(_csv.DictReader(fh))
+    assert rows, "sources.csv is empty"
+    remap = {r["source_id"].strip(): f"Z{i:03d}" for i, r in enumerate(rows)}
+
+    tmp = tempfile.mkdtemp(prefix="erza_iso_")
+    try:
+        shutil.copyfile(os.path.join(DATA, "image.hdr"),
+                        os.path.join(tmp, "image.hdr"))
+        with open(os.path.join(tmp, "sources.csv"), "w", newline="") as fh:
+            w = _csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+            w.writeheader()
+            for r in reversed(rows):
+                out = dict(r)
+                out["source_id"] = remap[r["source_id"].strip()]
+                w.writerow(out)
+        relabelled = solve_all(tmp)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    original = solve_all(DATA)
+    assert len(relabelled) == len(original), (
+        f"isomorphic instance changed the source count: "
+        f"{len(original)} -> {len(relabelled)}")
+    for sid, ref in original.items():
+        got = relabelled[remap[sid]]
+        sep = angular_separation(got["ra_deg"], got["dec_deg"],
+                                 ref["ra_deg"], ref["dec_deg"])
+        assert sep < FREEZE_TOL_DEG, (
+            f"isomorphic invariance: {sid} moved {sep:.12f} deg when the "
+            f"catalogue was relabelled and reordered")

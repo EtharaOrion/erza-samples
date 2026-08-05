@@ -34,7 +34,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "931cabcae6b721c147e0f76b608f6d4d5ce0d332c1903c1122c9a573aecd41fa"
+canonical_content_hash = "0c1955816fdcbf5f5747b064d334dd7b3f605953135fb1c866f051369b819d00"
 source_slug     = "wcs-astrometry-v3"
 source_origin   = "original"
 provenance_date = ""
