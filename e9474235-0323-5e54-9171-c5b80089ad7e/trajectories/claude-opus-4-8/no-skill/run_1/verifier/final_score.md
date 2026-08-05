@@ -9,4 +9,4 @@
 | judged criteria | 4 |
 | pass@1 | 0 |
 
-Outcome-channel criteria (R1, R2) re-derived by LITERAL answer file /root/results.json (run's own final emission).
+Deterministic and outcome channels re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated.

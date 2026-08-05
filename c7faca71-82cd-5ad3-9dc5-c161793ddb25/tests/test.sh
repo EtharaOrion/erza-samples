@@ -40,7 +40,7 @@ trap 'rm -f "$JUNIT" "$PYLOG"' EXIT
 
 # This module registers no pytest markers and its graded set is the whole file,
 # so there is no -m selection here and no conftest.py is required for it.
-python3 -m pytest "$TESTS_DIR/test_outcome.py" -v --tb=short \
+python3 -m pytest "$TESTS_DIR/test_output.py" -v --tb=short \
   -p no:cacheprovider \
   --junitxml="$JUNIT" \
   > "$PYLOG" 2>&1

@@ -2,8 +2,16 @@
 
 Tiers binned on unaided mean score A per task (user-fixed cut-points):
 Expert A=0 exactly | Hard 0<A<0.3 | Medium 0.3-0.6 | Easy 0.6-0.8 | Trivial >0.8
-Scores are graded-cases-passed / total from each run's verifier/pytest_output.txt.
+Scores are graded-cases-passed / total, read from each run's verifier/process.json.
+Nothing is hardcoded, so the figure cannot drift from the data.
+
+Usage: uv run --with matplotlib python3 images/score_by_tier.py
 """
+
+import collections
+import glob
+import json
+from pathlib import Path
 
 import matplotlib
 
@@ -117,6 +125,6 @@ ax.set_axisbelow(True)
 ax.legend(loc="lower left", frameon=True, edgecolor=GRID)
 
 fig.tight_layout()
-fig.savefig("/Users/AgisSpectre/erza-samples/images/score_by_tier.png",
+fig.savefig(Path(__file__).resolve().parent / "score_by_tier.png",
             bbox_inches="tight")
 print("written")

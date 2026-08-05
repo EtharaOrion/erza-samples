@@ -9,4 +9,4 @@
 | judged criteria | 4 |
 | pass@1 | 0 |
 
-Outcome-channel criteria (R1, R2) re-derived by probe re-execution (docker erza-ta-e9474235:latest, cwd=.) from <heredoc-9>.py.
+Deterministic and outcome channels re-derived by re-executing the bundle's own process detectors over the archived trajectory (ERZA_RUN_DIR); no agent rollout was repeated.

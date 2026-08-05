@@ -16,7 +16,7 @@ This module turns that into the views both verifier channels read:
   * `transcript`  - a flat readable rendering, for the LLM judge
 
 Nothing here interprets the task. Task-specific claims live in `rubrics.json`
-and are checked by `test_output.py` (deterministic) or the judge
+and are checked by `test_process.py` (deterministic) or the judge
 (non-deterministic).
 """
 from __future__ import annotations

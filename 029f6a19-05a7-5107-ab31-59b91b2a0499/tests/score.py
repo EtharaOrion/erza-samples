@@ -66,7 +66,7 @@ def version_stamp() -> dict:
         "truth_md": _sha(os.path.join(ROOT, "..", "TRUTH.md")),
         "rubrics_json": _sha(os.path.join(ROOT, "rubrics.json")),
         "checks_py": _sha(os.path.join(ROOT, "checks.py")),
-        "test_output_py": _sha(os.path.join(ROOT, "test_output.py")),
+        "test_process_py": _sha(os.path.join(ROOT, "test_process.py")),
     }
 
 
@@ -106,7 +106,7 @@ _TOP_KEY = {"group": "group_energy_tbtu"}
 def _fetch(res: dict, item: dict):
     """The graded figure this item names, or None if the run did not report it.
 
-    Mirrors test_outcome.py::_fetch, including its accepted key spellings -
+    Mirrors test_output.py::_fetch, including its accepted key spellings -
     the CONTINUOUS number printed here must be the same number the outcome
     verifier scored, not a stricter reading of the contract.
     """

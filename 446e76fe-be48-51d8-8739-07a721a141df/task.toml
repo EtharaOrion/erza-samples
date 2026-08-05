@@ -42,11 +42,34 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "8a53b4bf1e423379909166fba700ad095d8c6d5784cb02c4902ee81233b89bbb"
+canonical_content_hash = "e8ad64b511d61347809095c3ecc17070dac7fb02161904110ed4499d26d223d7"
 source_slug     = "local-magnitude-seismology"
 source_origin   = "original"
 provenance_date = "2026-07-27"
 
-# NOTE: canonical_content_hash is carried over from the v1 layout and does
-# NOT describe the current file set. It must be re-sealed against this layout
-# before the bundle is treated as frozen.
+# canonical_content_hash — RE-SEALED 2026-08-05 against the layout shipped today.
+#
+# Construction: sha256 over the newline-joined "relpath:sha256" lines of this
+# bundle's manifest, sorted by relpath, UTF-8 encoded, no trailing newline.
+# relpath is POSIX-style and relative to this bundle directory, so the hash is
+# path-independent.
+#
+# Scope: every regular file shipped in this bundle (16 files), recursively.
+# Exclusions:
+#   * trajectories/ in full — run records, not task content, and they change
+#     every time the grid is re-run;
+#   * task.toml itself — it carries this hash, so including it would make the
+#     field self-referential and impossible to verify;
+#   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
+#
+# Verify with: python3 verify_seal.py   (at the repository root).
+#
+# STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
+# [task] id, this bundle's directory name and tests/rubrics.json task_id are
+# load-bearing identifiers referenced across the repo and inside the run records
+# under trajectories/. They were minted ONCE, as uuid5(namespace, <the ORIGINAL
+# v1 content hash>), and are deliberately not re-derived on re-seal.
+# uuid5(namespace, canonical_content_hash) therefore does NOT equal the task id
+# and must not be expected to: recomputing the id from this field would rename
+# the task on every byte that changes. The id names the task; the hash certifies
+# the bytes.

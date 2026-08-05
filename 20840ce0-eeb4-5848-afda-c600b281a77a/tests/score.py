@@ -67,7 +67,7 @@ def version_stamp() -> dict:
         "truth_md": _sha(os.path.join(ROOT, "..", "TRUTH.md")),
         "rubrics_json": _sha(os.path.join(ROOT, "rubrics.json")),
         "checks_py": _sha(os.path.join(ROOT, "checks.py")),
-        "test_output_py": _sha(os.path.join(ROOT, "test_output.py")),
+        "test_process_py": _sha(os.path.join(ROOT, "test_process.py")),
     }
 
 
@@ -104,7 +104,7 @@ def score_channel(rows: list[dict]) -> tuple[float | None, float, float, int]:
 def _submitted(res: dict) -> dict:
     """{payee_ref: record} for every well-typed entry the run reported.
 
-    Mirrors test_outcome.py::submitted_records exactly - the CONTINUOUS number
+    Mirrors test_output.py::submitted_records exactly - the CONTINUOUS number
     printed here must be the same number the outcome verifier scored, not a
     stricter reading of the contract.
     """

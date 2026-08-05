@@ -3,7 +3,7 @@
 Each function is a *hypothesis about how a correct run is spelled*. The channel
 pattern-matches the source the agent authored (`agent_code` = file writes plus
 the commands it ran) - strictly weaker than executing the agent's emitter, and
-the largest source of false negatives on unseen runs (see the module docstring of test_output.py). The matchers are
+the largest source of false negatives on unseen runs (see the module docstring of test_process.py). The matchers are
 deliberately multi-spelling, and every one was bound, at authoring time, by a
 fixture in the author-side negative-fixture matrix that was seen to FIRE on a
 planted defect and to stay QUIET on a clean run.
