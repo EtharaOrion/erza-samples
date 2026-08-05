@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11-slim@sha256:a25f6aeb42924b56064742e12e8b563c7eb07f1ef18e49a806784680f32d8cfe
 
 ENV DEBIAN_FRONTEND=noninteractive
 
