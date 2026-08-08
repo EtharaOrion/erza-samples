@@ -1387,3 +1387,59 @@ def test_selfcheck_isomorphic_invariance(truth, expected):
         assert _circular_distance_deg(ref + 360.0, ref) <= tol
         assert _circular_distance_deg(ref - 360.0, ref) <= tol
         assert _circular_distance_deg(ref + 10.0 * tol, ref) > tol
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 12 graded cases must be collected.
+
+    test.sh scores `cases_passed / cases_total` over the `test_score_` prefix,
+    so the DENOMINATOR is whatever pytest happened to collect. This bundle
+    parametrises straight off `expected_values.json`, which means a station
+    quietly dropped from `station_detail` does not fail anything - it simply
+    stops being graded, and the run still reports 1.0 on the stations that
+    remain. Every other self-check iterates that same shortened set, so none of
+    them would notice either. The count is pinned here so a shrunken
+    denominator reads as a BUNDLE DEFECT rather than as a full-marks run.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by the parametrize arguments the decorator was
+    actually handed. The ledger those ids are read from is pinned alongside it,
+    so the guard cannot be satisfied by a decorator that has drifted away from
+    the frozen data.
+    """
+    pinned = 12
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} "
+        f"pinned ({', '.join(scored) or 'no test_score_ callable at all'}) - "
+        f"the score denominator has moved")
+
+    ids = _ids_for_parametrize()
+    assert len(ids) == pinned, (
+        f"collection-count guard: the parametrize ledger yields {len(ids)} "
+        f"stations, {pinned} pinned")
+    with open(os.path.join(HERE, "expected_values.json")) as f:
+        frozen = json.load(f)
+    detail = frozen["station_detail"]
+    assert len(detail) == pinned, (
+        f"collection-count guard: station_detail carries {len(detail)} "
+        f"stations, {pinned} pinned")
+    assert set(detail) == set(ids), (
+        f"collection-count guard: the graded ids and station_detail disagree: "
+        f"{sorted(set(detail) ^ set(ids))}")
+    for sid in ids:
+        for key in (f"ref_{sid}_true_azimuth_deg",
+                    f"tolerance_{sid}_true_azimuth_deg_abs"):
+            assert key in frozen, (
+                f"collection-count guard: {sid} is graded but the frozen "
+                f"reference is missing {key!r}")

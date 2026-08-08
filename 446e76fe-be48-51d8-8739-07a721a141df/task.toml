@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "e8ad64b511d61347809095c3ecc17070dac7fb02161904110ed4499d26d223d7"
+canonical_content_hash = "b8742dedbf5334c6cea904ac6c30b198981fa661e6505594f6b798d0c37909cb"
 source_slug     = "local-magnitude-seismology"
 source_origin   = "original"
 provenance_date = "2026-07-27"
@@ -62,7 +62,8 @@ provenance_date = "2026-07-27"
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

@@ -34,7 +34,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "0c1955816fdcbf5f5747b064d334dd7b3f605953135fb1c866f051369b819d00"
+canonical_content_hash = "7d5d3e5e6d22378addbc32b92abd333536c3ff46002fdb6ec438d26c3170b8fb"
 source_slug     = "wcs-astrometry-v3"
 source_origin   = "original"
 provenance_date = ""
@@ -54,7 +54,8 @@ provenance_date = ""
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

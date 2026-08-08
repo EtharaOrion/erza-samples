@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "benchflow.task_digest.v1+uuid5"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "7a46bfb8c2892f7ae9be172b4a604d1592afd36f97a445d64918292f307cdb33"
+canonical_content_hash = "28b5ff64ef7a1b27576b668503a3cb6f5a6883642ad5abe79b899b9fdd283211"
 source_slug     = ""
 source_origin   = "original"
 provenance_date = ""
@@ -62,7 +62,8 @@ provenance_date = ""
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

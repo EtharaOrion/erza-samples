@@ -11,7 +11,7 @@ category    = "natural-science"
 subcategory = "oceanography"
 category_confidence = "high"
 difficulty  = "hard"
-difficulty_explanation = "Predicting a tide height to a tenth of a metre at a specific instant requires the gauge's harmonic constants - the amplitude and Greenwich phase lag of each tidal constituent. These are empirical, gauge-specific quantities determined from that gauge's own water-level records; they cannot be recalled or estimated to this precision and they differ completely from one gauge to the next (the same constituent can be centimetres at one site and metres at another). The gauges are identified only by opaque labels, so the constants cannot be looked up from any public source - they are supplied only in the reference the skill mounts. Given the constants, the height is a harmonic synthesis over roughly thirty constituents, each carried through its equilibrium argument and 18.6-year nodal correction, plus the datum offset. The naive routes - reporting the single recent water level supplied for orientation, or the long-term mean level - are wrong at every target instant by several times the tolerance (7-8x on average), because the tide swings across its full range between the listed times. Even with the constants there is a load-bearing subtlety: dropping the minor constituents and keeping only the few largest displaces some instants past tolerance, so the full constituent set and the nodal terms are required."
+difficulty_explanation = "Predicting a tide height to a tenth of a metre at a specific instant requires the gauge's harmonic constants - the amplitude and Greenwich phase lag of each tidal constituent. These are empirical, gauge-specific quantities determined from that gauge's own water-level records; they cannot be recalled or estimated to this precision and they differ completely from one gauge to the next (the same constituent can be centimetres at one site and metres at another). The gauges are identified only by opaque labels, so the constants cannot be looked up from any public source - they are supplied only in the reference the skill mounts. Given the constants, the height is a harmonic synthesis over roughly thirty constituents, each carried through its equilibrium argument and 18.6-year nodal correction, plus the datum offset. The naive routes - reporting the single recent water level supplied for orientation, or the long-term mean level - are wrong at every target instant by several times the tolerance (7-8x on average), because the tide swings across its full range between the listed times. Even with the constants there is a load-bearing subtlety: dropping the minor constituents and keeping only the few largest displaces some instants past tolerance, so completeness of the constituent set is required (0.320 m worst gap against a 0.100 m tolerance). The nodal corrections are part of the reference computation and are applied throughout, but omitting them on their own stays inside tolerance on this instance (0.093 m worst gap), which the control ledger in tests/expected_values.json records as a non-lever."
 task_type   = ["calculation", "analysis"]
 modality    = ["csv", "scientific-data"]
 interface   = ["terminal", "python"]
@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "64ee099d1354fa9a108ca4898b8fab8086c662a489e056cbac6abfb59e160b4c"
+canonical_content_hash = "78cd4f63cc489fc1f73cdaf81be32d472bafdb3e0d00f2d57b0c8034b95275df"
 source_slug     = "tidal-harmonic-prediction"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-27"
@@ -62,7 +62,8 @@ provenance_date = "2026-07-27"
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

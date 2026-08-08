@@ -1,5 +1,19 @@
 """Bake the frozen instance for antenna-phase-centre-correction.
 
+AUTHOR-SIDE TOOLING - NOT RE-RUNNABLE FROM THE PUBLISHED SAMPLE, AND IT DOES
+NOT NEED TO BE. This script's raw-input directory - `.omo/igs`, the
+un-anonymised IGS20 ANTEX source it reads its antenna blocks from, located
+through SRC below - is deliberately NOT published, matching this repository's
+practice of withholding author-side material. A consumer therefore cannot
+execute this file: SRC names a path that does not exist in the published
+sample. Nothing is lost by that, because what the script produces is already
+here and frozen: the anonymised calibration blocks shipped in
+`oracle/antennas/`, in `tests/`, and in the skill's `references/`, alongside
+the agent-visible data and the frozen golden. Those exact bytes are what this
+bundle's `canonical_content_hash` seal certifies, so they can be verified
+without re-running anything. This file ships as the readable record of HOW the
+shipped bytes were derived, not as a step anyone downstream is expected to run.
+
 Run once at authoring time, never inside the container. Reads the retrieved IGS20
 ANTEX antenna blocks from .omo/igs/, anonymises them to ANT-A/ANT-B/ANT-C, and
 writes: the agent-visible data, the calibration blocks carried by the skill and by

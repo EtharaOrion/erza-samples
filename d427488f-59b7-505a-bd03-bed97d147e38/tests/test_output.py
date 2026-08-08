@@ -1158,3 +1158,46 @@ def test_selfcheck_isomorphic_invariance(cfg):
     # and the invariant recomputation must agree with the shipped reference
     assert abs(s0 - float(cfg["ref_robust_scale"])) <= 5e-6, "recomputed scale disagrees with stored reference"
     assert abs(z0 - float(cfg["ref_zeta_prime"])) <= 5e-6, "recomputed zeta disagrees with stored reference"
+
+
+# ----------------------- (e) collection-count guard -----------------------
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 2 graded cases must be collected.
+
+    test.sh scores `cases_passed / cases_total` over the `test_score_` prefix,
+    so the DENOMINATOR is whatever pytest happened to collect. This task grades
+    two figures that are NOT interchangeable - the robust scale and the
+    nominated lab's zeta' - and a run that loses one of them still reports 1.0
+    on the other. Losing zeta' in particular would drop the only output that
+    depends on the nominated lab at all, i.e. most of the task, while the score
+    stayed perfect. Nothing else in this file reads the collected set, so the
+    count is pinned here and a moved denominator reads as a BUNDLE DEFECT.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by any parametrize arguments the decorator was
+    handed (there are none here - that is the claim). The frozen references and
+    tolerances the two cases bind to are checked to exist alongside them.
+    """
+    pinned = 2
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} pinned "
+        f"({', '.join(scored) or 'no test_score_ callable at all'}) - the score denominator has moved")
+
+    frozen = json.loads(EXPECTED.read_text())
+    for key in ("ref_robust_scale", "tolerance_robust_scale_abs",
+                "ref_zeta_prime", "tolerance_zeta_prime_abs"):
+        assert key in frozen, (
+            f"collection-count guard: a graded case binds to {key!r}, which the frozen reference does not declare")
+    assert float(frozen["tolerance_robust_scale_abs"]) > 0.0 and float(frozen["tolerance_zeta_prime_abs"]) > 0.0, (
+        "collection-count guard: a graded case carries a non-positive tolerance, so it cannot bind")

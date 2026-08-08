@@ -1255,3 +1255,42 @@ def test_selfcheck_tolerances_are_positive_and_bind():
     tol = EXP["tolerance_arc_mean_vtec_tecu_abs"]
     assert band < tol < gap, "tolerance is not inside the measured band"
     assert variant < tol, "a pinned convention variant would false-fail"
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 12 graded cases must be collected.
+
+    `test_selfcheck_tolerances_are_positive_and_bind` already pins the LEDGER at
+    12 items, but that is a different claim. test.sh scores
+    `cases_passed / cases_total` over the `test_score_` prefix, so the
+    DENOMINATOR is whatever pytest actually collected, and the two can drift
+    apart: a parametrize decorator pointed at a filtered list, or a scored test
+    renamed out of the prefix, leaves the ledger intact at 12 while the score is
+    computed over fewer cases - and still reports 1.0. Every other self-check
+    here iterates ITEMS, so none of them would notice.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by the parametrize arguments the decorator was
+    actually handed, with the ledger those arguments come from re-checked
+    alongside it.
+    """
+    pinned = 12
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append("%s x%d" % (name, cases))
+        collected += cases
+    assert collected == pinned, (
+        "collection-count guard: %d graded cases collected, %d pinned (%s) - "
+        "the score denominator has moved"
+        % (collected, pinned,
+           ", ".join(scored) or "no test_score_ callable at all"))
+    assert len(ITEMS) == pinned, (
+        "collection-count guard: the parametrize ledger carries %d items, "
+        "%d pinned" % (len(ITEMS), pinned))

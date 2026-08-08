@@ -1045,3 +1045,32 @@ def test_selfcheck_isomorphic_invariance():
     assert len(set(keys)) == len(keys) == 12, "item key set malformed"
     for it in ITEMS:
         assert f'ref_{it["station_id"]}_{it["timekey"]}_height_m' in EXP
+
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 12 graded cases must be collected.
+
+    V-09 above pins the LEDGER at 12 keys; this pins what pytest actually COLLECTED.
+    They are different claims: test.sh scores cases_passed/cases_total over the
+    test_score_ prefix, so the denominator is whatever collected, and the two can drift
+    apart - a parametrize pointed at a filtered list, or a scored test renamed out of the
+    prefix, leaves the ledger intact at 12 while the score is computed over fewer cases
+    and still reports 1.0. Every other self-check here iterates ITEMS, so none would
+    notice. Counted the way test.sh counts: every test_score_-named callable in this
+    module, multiplied out by the parametrize arguments the decorator was handed."""
+    pinned = 12
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} pinned "
+        f"({', '.join(scored) or 'no test_score_ callable at all'}) - the score denominator has moved")
+    assert len(ITEMS) == pinned, \
+        f"collection-count guard: the parametrize ledger carries {len(ITEMS)} items, {pinned} pinned"

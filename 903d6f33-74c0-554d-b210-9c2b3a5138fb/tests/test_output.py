@@ -1596,3 +1596,50 @@ def test_selfcheck_isomorphic_invariance():
         assert sep < FREEZE_TOL_DEG, (
             f"isomorphic invariance: {sid} moved {sep:.12f} deg when the "
             f"catalogue was relabelled and reordered")
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 16 graded cases must be collected.
+
+    test.sh scores `cases_passed / cases_total` over the `test_score_` prefix,
+    so the DENOMINATOR is whatever pytest happened to collect. A parametrize
+    list that silently shortens - a truncated catalogue, an edited SOURCE_IDS -
+    still grades 1.0 on the cases that survive, and nothing else in this file
+    would notice: every other self-check iterates the same shortened set. The
+    count is therefore pinned here, so a shrunken denominator reads as a BUNDLE
+    DEFECT rather than as a full-marks run.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by the parametrize arguments the decorator was
+    actually handed. The catalogue those ids come from is pinned alongside it,
+    so the guard cannot be satisfied by a decorator that has drifted away from
+    the frozen data.
+    """
+    pinned = 16
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} "
+        f"pinned ({', '.join(scored) or 'no test_score_ callable at all'}) - "
+        f"the score denominator has moved")
+
+    assert len(SOURCE_IDS) == pinned, (
+        f"collection-count guard: SOURCE_IDS carries {len(SOURCE_IDS)} ids, "
+        f"{pinned} pinned")
+    with open(os.path.join(HERE, "expected_values.json")) as fh:
+        frozen = json.load(fh)
+    assert len(frozen) == pinned, (
+        f"collection-count guard: the frozen catalogue carries {len(frozen)} "
+        f"sources, {pinned} pinned")
+    assert set(frozen) == set(SOURCE_IDS), (
+        f"collection-count guard: the graded ids and the frozen catalogue "
+        f"disagree: {sorted(set(frozen) ^ set(SOURCE_IDS))}")

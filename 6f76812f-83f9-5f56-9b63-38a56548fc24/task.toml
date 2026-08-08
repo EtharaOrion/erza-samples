@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "ef000713719fe857e34acf85878856502005d7b412fd53f5305b71958d9abf86"
+canonical_content_hash = "fb18f47ab6612c9b88e588599bda46fb4586df00ec54cb8be671520f205c9478"
 source_slug     = "ionosphere-arc-vtec-calibration"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-27"
@@ -62,7 +62,8 @@ provenance_date = "2026-07-27"
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

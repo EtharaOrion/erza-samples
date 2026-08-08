@@ -1163,3 +1163,48 @@ def test_selfcheck_isomorphic_invariance(derived):
     scaled = math.log10(_wa_amplitude_mm(scale=k)) + _log_a0(derived["r_km"])
     assert abs((scaled - derived["ml"]) - math.log10(k)) < 1e-6, (
         "ML did not shift by log10(k) under a pure amplitude rescale")
+
+
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 1 graded case must be collected.
+
+    test.sh scores `cases_passed / cases_total` over the `test_score_` prefix,
+    so the DENOMINATOR is whatever pytest happened to collect. This task grades
+    a single figure, which makes the denominator maximally fragile: if the one
+    scored test is renamed, commented out or shadowed, `cases_total` falls to
+    zero and the run grades 0 with no visible cause, and if a second one is
+    added the single graded claim silently becomes a partial-credit average.
+    Neither is detectable from the other self-checks, which read fixtures
+    rather than the collected set. Pinning the count makes either a BUNDLE
+    DEFECT instead.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by any parametrize arguments the decorator was
+    handed (there are none here - that is the claim). The frozen reference and
+    tolerance the one case binds to are checked to exist alongside it.
+    """
+    pinned = 1
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} "
+        f"pinned ({', '.join(scored) or 'no test_score_ callable at all'}) - "
+        f"the score denominator has moved")
+
+    frozen = json.loads(EXPECTED.read_text())
+    for key in ("ref_ml", "tolerance_ml_abs"):
+        assert key in frozen, (
+            f"collection-count guard: the one graded case binds to {key!r}, "
+            f"which the frozen reference does not declare")
+    assert float(frozen["tolerance_ml_abs"]) > 0.0, (
+        "collection-count guard: the one graded case carries a non-positive "
+        "tolerance, so it cannot bind")

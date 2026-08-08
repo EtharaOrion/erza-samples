@@ -87,14 +87,3 @@ def predict_height(station, definitions, dt):
         f, u = _nodal(d["node_factor"], N)
         h += f * c["amplitude_m"] * math.cos(2 * math.pi * V + math.radians(u) - math.radians(c["phase_gmt_deg"]))
     return h
-
-if __name__ == "__main__":
-    defs = load_definitions(); stn = load_stations()
-    TIMES = [datetime(2025,2,10,5), datetime(2025,5,18,16), datetime(2025,8,22,9), datetime(2025,11,14,21)]
-    REF = {'8413320':[1.430,1.281,-0.125,2.140],'9432780':[1.375,0.275,1.784,0.861],'9459450':[-0.258,1.544,2.373,1.921]}
-    mx = 0.0
-    for sid, ref in REF.items():
-        for dt, g in zip(TIMES, ref):
-            h = predict_height(stn[sid], defs, dt); mx = max(mx, abs(h - g))
-            print(f"{sid} {dt:%m-%d %H:%M} h={h:8.4f} ref={g:8.3f} drift={h-g:+.4f}")
-    print("MAX drift vs tide_val reference:", round(mx, 4), "->", "OK" if mx < 0.005 else "CHECK groups")
