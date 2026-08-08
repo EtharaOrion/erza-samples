@@ -109,7 +109,7 @@ for i, v in enumerate(no_skill):
     ax.annotate(f"{v:.0f}%", (i, v), textcoords="offset points",
                 xytext=(0, -16), ha="center", fontsize=9, color=INK)
 for i, v in enumerate(with_skill):
-    ax.annotate("100%", (i, v), textcoords="offset points",
+    ax.annotate(f"{v:.0f}%", (i, v), textcoords="offset points",
                 xytext=(0, 9), ha="center", fontsize=9, color=INK)
 
 ax.set_xticks(list(x), [f"{t}\n(n={len(task_means[t])})" for t in tiers])

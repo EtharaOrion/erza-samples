@@ -1,7 +1,7 @@
 """Mean agent cost per run by difficulty tier, no-skill vs with-skill.
 
 Cost comes from agent_result.cost_usd in each run's result.json. The difficulty
-tier comes from the unaided mean score computed off verifier/pytest_output.txt,
+tier comes from the unaided mean score computed off verifier/process.json,
 using the same cut-points as score_by_tier.py. Nothing is hardcoded, so the
 figure cannot drift from the data.
 
@@ -12,7 +12,6 @@ import collections
 import glob
 import json
 import os
-import re
 import statistics
 from pathlib import Path
 
@@ -28,11 +27,6 @@ INK2 = "#52514e"
 GRID = "#e6e5e1"
 C_NOSKILL = "#2a78d6"
 C_WITHSKILL = "#eb6834"
-
-GUARD = re.compile(
-    r"plausib|isomorphic|invarian|guess_resist|frozen_golden|frozen_reference"
-    r"|tolerances_are|load_bearing|not_the_|wood_anderson_calib|golden_matches"
-)
 
 ORDER = ["Trivial", "Easy", "Medium", "Hard", "Expert"]
 
@@ -51,7 +45,7 @@ plt.rcParams.update(
 )
 
 
-def run_score(task, run_dir):
+def run_score(run_dir):
     """Graded cases passed / total, read from the run's structured report.
 
     The canonical layout ships verifier/process.json, whose `outcome` block
@@ -80,7 +74,7 @@ costs = collections.defaultdict(lambda: collections.defaultdict(list))
 for run in sorted(glob.glob(str(ROOT / "*" / "trajectories" / "*" / "*" / "run_*"))):
     parts = run.split(os.sep)
     task, cond = parts[-5], parts[-2]
-    scores[task][cond].append(run_score(task, run))
+    scores[task][cond].append(run_score(run))
     agent = json.loads((Path(run) / "result.json").read_text()).get("agent_result") or {}
     costs[task][cond].append(agent["cost_usd"])
 
