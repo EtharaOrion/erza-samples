@@ -8,7 +8,7 @@
   "skill_mode": "with-skill",
   "skill_source": "task_bundled",
   "requested_skills_dir": "tasks/bridged-race-population-estimates/environment/skills",
-  "effective_skills_dir": "/var/folders/b0/5pf3p9cj4h94cxl67pppfw0h0000gn/T/benchflow-task-4tqxmkna/bridged-race-population-estimates/environment/skills",
+  "effective_skills_dir": "<dataset-root>/bridged-race-population-estimates/environment/skills",
   "skills_sandbox_dir": "/skills",
   "include_task_skills": true,
   "sandbox_user": "agent",

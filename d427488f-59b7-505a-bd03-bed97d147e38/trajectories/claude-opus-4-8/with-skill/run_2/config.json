@@ -8,7 +8,7 @@
   "skill_mode": "with-skill",
   "skill_source": "task_bundled",
   "requested_skills_dir": "dataset-run/d427488f-59b7-505a-bd03-bed97d147e38/environment/skills",
-  "effective_skills_dir": "/var/folders/01/cw1kbw_93vl3h0xx_5bwyk3r0000gn/T/benchflow-task-ij_f1480/d427488f-59b7-505a-bd03-bed97d147e38/environment/skills",
+  "effective_skills_dir": "<dataset-root>/d427488f-59b7-505a-bd03-bed97d147e38/environment/skills",
   "skills_sandbox_dir": "/skills",
   "include_task_skills": true,
   "sandbox_user": "agent",
