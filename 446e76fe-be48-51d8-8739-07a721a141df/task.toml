@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "b8742dedbf5334c6cea904ac6c30b198981fa661e6505594f6b798d0c37909cb"
+canonical_content_hash = "b90379f164b360b6c9a358fd81468f687fa529dda5d80c67577b6bea4836a474"
 source_slug     = "local-magnitude-seismology"
 source_origin   = "original"
 provenance_date = "2026-07-27"

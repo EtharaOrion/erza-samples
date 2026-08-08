@@ -91,7 +91,7 @@ The 10 tasks are stratified into five tiers by observed difficulty on this sampl
 
 The tier axis is the unaided score itself, so the no-Skills line in the figure above falls across tiers by construction. The measured content is the curated line and the gap: the curated arm scores 1.000 in every tier, so Δ equals the headroom the unaided model leaves, from +11.8 pp on the Trivial tier to +100 pp on Expert.
 
-Per-task figures are derivable directly from the shipped files: per-run scores from each run's structured grader record — `verifier/process.json` on nine tasks, whose `outcome` block separates the graded `cases` from the grader's own `selfchecks`, and the outcome verifier's archived `verifier/outcome_report.json` on `3c4a9e2d` — mirrored in each run's `result.json` `scores.score`.
+Per-task figures are derivable directly from the shipped files: per-run scores from each run's structured grader record — `verifier/process.json` on all ten tasks, whose `outcome` block separates the graded `cases` from the grader's own `selfchecks`; on `3c4a9e2d` that record was derived at migration from the outcome verifier's archived `verifier/outcome_report.json`, which ships unmodified beside it — mirrored in each run's `result.json` `scores.score`.
 
 Per-tier pass rate by condition (fraction of the arm's runs in the tier that passed every graded case, score = 1.0):
 
@@ -130,7 +130,7 @@ Per-task scores (per-run score is graded cases passed / total; sorted by A). The
 
 With 10 tasks across five tiers, these are an average tendency on a small, curated sample rather than a precise law.
 
-Alongside the graded outcome, the nine tasks with canonical run records carry a process channel in `verifier/process.json`. It grades how the answer was reached rather than whether it was right, and it never enters the score. Each rubric splits into a deterministic channel and a judged channel, and on the eight marker-based bundles a third, outcome channel carrying that rubric's two `R1`/`R2` criteria; the channels blend by weight mass. A run that fails a crux or outcome gate — or leaves one unevaluated — has its process score capped at 0.500, so any unaided figure at that value is a ceiling rather than a graded quantity. No bundle ships a stored composite. Each figure below is recomputed by that doctrine from the channels recorded in the run's own `process.json` against that bundle's `rubrics.json`; six bundles' `tests/score.py` reproduces it standalone from the run directory, and the recomputation below matches all 36 of those runs exactly. `20840ce0`, `c7faca71` and `e9474235` ship a `score.py` that cannot read one or both channels out of a run directory and needs them passed in on the command line. `3c4a9e2d` ships the standalone form but has no row below: its rubric's process channel is authored and has never been executed, so its runs record no `process.json` and no panel verdicts.
+Alongside the graded outcome, the nine tasks with canonical run records carry a process channel in `verifier/process.json`. It grades how the answer was reached rather than whether it was right, and it never enters the score. Each rubric splits into a deterministic channel and a judged channel, and on the eight marker-based bundles a third, outcome channel carrying that rubric's two `R1`/`R2` criteria; the channels blend by weight mass. A run that fails a crux or outcome gate — or leaves one unevaluated — has its process score capped at 0.500, so any unaided figure at that value is a ceiling rather than a graded quantity. No bundle ships a stored composite. Each figure below is recomputed by that doctrine from the channels recorded in the run's own `process.json` against that bundle's `rubrics.json`; six bundles' `tests/score.py` reproduces it standalone from the run directory, and the recomputation below matches all 36 of those runs exactly. `20840ce0`, `c7faca71` and `e9474235` ship a `score.py` that cannot read one or both channels out of a run directory and needs them passed in on the command line. `3c4a9e2d` ships the standalone form but has no row below: its rubric's process channel is authored and has never been executed — its runs' `process.json`, derived at migration from the archived outcome records, carries the outcome block alone, lists every process criterion under `criteria_without_verdict`, and records no panel verdicts.
 
 | Task       | no-skill runs           |     A | with-skill runs         |     B |      Δ |
 | :--------- | :---------------------- | ----: | :---------------------- | ----: | -----: |
@@ -231,9 +231,9 @@ trajectories/claude-opus-4-8/<condition>/run_N/   # condition ∈ {no-skill, wit
 └── verifier/              # the graded record; two formats, below
 ```
 
-The verifier record comes in two formats. The 54 canonical-layout runs carry `score.md` (the scalar verdict), `test-stdout.md` (raw grader log), `process.json` (outcome cases, grader self-checks, deterministic and judged channels), `verdicts.jsonl` (per-criterion judge output with rationales) and `final_score.md`, and ship no JUnit XML. The six `3c4a9e2d` runs carry the outcome verifier's own archive instead — `outcome_report.json` (per-case verdicts and failures), `results.xml` (JUnit), `reward.txt`, `outcome_stdout.txt` and `test-stdout.txt` — because they were recorded by the dataset-era harness; they are shipped exactly as recorded rather than reformatted. Every run in both formats carries `result.json`, `config.json`, `prompts.json`, `timing.json` and `scores.jsonl`. Three tasks (`446e76fe`, `6f76812f`, `c59f8b2a`) add an `egress/probe.md` capture and `3c4a9e2d` an `egress/probe.txt`.
+The verifier record comes in two formats. The 54 canonical-layout runs carry `score.md` (the scalar verdict), `test-stdout.md` (raw grader log), `process.json` (outcome cases, grader self-checks, deterministic and judged channels), `verdicts.jsonl` (per-criterion judge output with rationales) and `final_score.md`, and ship no JUnit XML. The six `3c4a9e2d` runs were recorded by the dataset-era harness and ship its archive exactly as recorded — `outcome_report.json` (per-case verdicts and failures), `results.xml` (JUnit), `reward.txt`, `outcome_stdout.txt` and `test-stdout.txt` — plus a `process.json` derived from that archive at migration: its `outcome` block restates the same per-case verdicts under the current `test_score_kg_co2e[<case_id>]` ids (the migration cross-checked all four archived records against each other and refuses on any disagreement), its self-check counts record that no self-checks existed at run time, and every process criterion is listed under `criteria_without_verdict` rather than asserted. Every run in both formats carries `result.json`, `config.json`, `prompts.json`, `timing.json` and `scores.jsonl`. Three tasks (`446e76fe`, `6f76812f`, `c59f8b2a`) add an `egress/probe.md` capture and `3c4a9e2d` an `egress/probe.txt`.
 
-Key `result.json` fields: `scores.score` (the run's score, agrees with the run's own graded record on all 60 runs), `task_digest` (the frozen-bundle-bytes binding), `agent_result` (token usage, `cost_usd`, `n_tool_calls`). The agent budget is not in `result.json`; it is `timeout_sec` in the run's `config.json`. The raw graded record is `verifier/process.json` on nine tasks and `verifier/outcome_report.json` on `3c4a9e2d`, and it is the authoritative scoring source. Do not use `agent_result.n_skill_invocations`, which reads 0 on all 60 runs including every curated one; Skill usage is evidenced in `trajectory/acp_trajectory.jsonl`.
+Key `result.json` fields: `scores.score` (the run's score, agrees with the run's own graded record on all 60 runs), `task_digest` (the frozen-bundle-bytes binding), `agent_result` (token usage, `cost_usd`, `n_tool_calls`). The agent budget is not in `result.json`; it is `timeout_sec` in the run's `config.json`. The raw graded record is `verifier/process.json` on all ten tasks (on `3c4a9e2d` derived at migration from `verifier/outcome_report.json`, the underlying primary archive), and it is the authoritative scoring source. Do not use `agent_result.n_skill_invocations`, which reads 0 on all 60 runs including every curated one; Skill usage is evidenced in `trajectory/acp_trajectory.jsonl`.
 
 ## Scoring methodology
 
@@ -269,29 +269,23 @@ Every task ships anti-shortcut guards, unscored but blocking. Nine assert isomor
 
 ## Reproduction
 
-Image-building, agent execution, and scoring are orchestrated by the Erza harness. The score for every run is in `result.json` (`scores.score`) and its graded record (`verifier/process.json`, or `verifier/outcome_report.json` on `3c4a9e2d`, mirrored in `verifier/score.md` where the format carries one). The figures regenerate from `images/score_by_tier.py` and `images/cost_by_tier.py`, for example `uv run --with matplotlib python3 images/cost_by_tier.py`, which derives every cost and every tier assignment from the shipped runs rather than from stored constants.
+Image-building, agent execution, and scoring are orchestrated by the Erza harness. The score for every run is in `result.json` (`scores.score`) and its graded record (`verifier/process.json`, mirrored in `verifier/score.md` where the format carries one). The figures regenerate from `images/score_by_tier.py` and `images/cost_by_tier.py`, for example `uv run --with matplotlib python3 images/cost_by_tier.py`, which derives every cost and every tier assignment from the shipped runs rather than from stored constants.
 
 ### Recompute the efficacy yourself
 
 No trajectory re-execution is needed. Read the shipped grader records directly:
 
 ```python
-import glob, json, collections, os
+import glob, json, collections
 
 scores = collections.defaultdict(lambda: collections.defaultdict(list))
 
 for run in glob.glob("*/trajectories/*/*/run_*"):
     task, cond = run.split("/")[0], run.split("/")[-2]
-    pj = f"{run}/verifier/process.json"
-    if os.path.exists(pj):
-        # `outcome` separates the graded `cases` from the grader's own `selfchecks`,
-        # so the denominator needs no name-pattern filtering.
-        o = json.load(open(pj))["outcome"]
-        p, t = o["cases_passed"], o["cases_total"]
-    else:  # 3c4a9e2d: the outcome verifier's own archived report
-        o = json.load(open(f"{run}/verifier/outcome_report.json"))
-        p, t = o["passed"], o["total"]
-    scores[task][cond].append(p / t)
+    # `outcome` separates the graded `cases` from the grader's own `selfchecks`,
+    # so the denominator needs no name-pattern filtering.
+    o = json.load(open(f"{run}/verifier/process.json"))["outcome"]
+    scores[task][cond].append(o["cases_passed"] / o["cases_total"])
 
 per_task = {t: {c: sum(v) / len(v) for c, v in arms.items()} for t, arms in scores.items()}
 paired = [s for s in per_task.values() if "with-skill" in s]
@@ -311,7 +305,7 @@ This sample passed a QC gate prior to delivery. Each row states a check, the art
 | :--- | :--- | :--- |
 | Structure | directory tree | 10 tasks, each a full 2 x 3 grid, 60 runs, no gaps |
 | Task identity | `rubrics.json` `task_id` against `task.toml` `[task] id` and the bundle directory | agree on 10 of 10 |
-| Score integrity | the run's graded record against `result.json` `scores.score` | agree on 60 of 60 runs: `score.md` on the 54 canonical runs, `outcome_report.json` on the six `3c4a9e2d` runs |
+| Score integrity | the run's graded record against `result.json` `scores.score` | agree on 60 of 60 runs: `score.md` on the 54 canonical runs, `outcome_report.json` on the six `3c4a9e2d` runs (whose migrated `process.json` restates the same verdicts) |
 | Paired isolation | sha256 of `prompts.json` | one distinct hash per task across both arms, 10 of 10; the Skill is mounted, never injected into the prompt |
 | Skill genuinely used | `trajectory/acp_trajectory.jsonl` | 30 of 30 curated runs show Skill evidence, 0 of 30 unaided runs do |
 | Frozen-bytes binding | `result.json` `task_digest` | one digest per task on 9 of 10; `903d6f33` carries two, split by arm |

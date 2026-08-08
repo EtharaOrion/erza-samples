@@ -99,3 +99,49 @@ def test_selfcheck_output_contract():
     assert out["format"] == "json_nested"
     assert out["path"] == "/root/results.json"
     assert out["value_key"] == "kg_co2e"
+@pytest.mark.selfcheck
+def test_selfcheck_graded_case_count_is_pinned():
+    """Collection-count guard: exactly 14 graded cases must be collected.
+
+    test.sh scores `cases_passed / cases_total` over the `test_score_` prefix,
+    so the DENOMINATOR is whatever pytest happened to collect. This module
+    parametrises straight off `expected_values.json`, which means a case
+    quietly dropped from `cases` does not fail anything - it simply stops
+    being graded, and the run still reports full marks on the cases that
+    remain. The shape self-check above pins the ledger, but a scored test
+    renamed out of the `test_score_` prefix would leave the ledger green while
+    the collected count silently falls to zero. The count is pinned here so a
+    shrunken denominator reads as a BUNDLE DEFECT rather than as a full-marks
+    run.
+
+    Counted the way test.sh counts: every `test_score_`-named callable in this
+    module, multiplied out by the parametrize arguments the decorator was
+    actually handed. The ledger those ids are read from is pinned alongside it,
+    so the guard cannot be satisfied by a decorator that has drifted away from
+    the frozen data.
+    """
+    pinned = 14
+    scored, collected = [], 0
+    for name, obj in sorted(globals().items()):
+        if not name.startswith("test_score_") or not callable(obj):
+            continue
+        cases = 1
+        for mark in getattr(obj, "pytestmark", []):
+            if mark.name == "parametrize":
+                cases *= len(mark.args[1])
+        scored.append(f"{name} x{cases}")
+        collected += cases
+    assert collected == pinned, (
+        f"collection-count guard: {collected} graded cases collected, {pinned} "
+        f"pinned ({', '.join(scored) or 'no test_score_ callable at all'}) - "
+        f"the score denominator has moved")
+
+    assert len(CASE_IDS) == pinned and len(set(CASE_IDS)) == pinned, (
+        f"collection-count guard: the parametrize ledger yields {len(CASE_IDS)} "
+        f"case ids, {pinned} distinct pinned")
+    with open(os.path.join(HERE, "expected_values.json"), encoding="utf-8") as f:
+        frozen = json.load(f)
+    frozen_ids = [c.get("test_id") or c["case_id"] for c in frozen["cases"]]
+    assert frozen_ids == CASE_IDS, (
+        "collection-count guard: the module's CASE_IDS have drifted from the "
+        "frozen expected_values.json cases")

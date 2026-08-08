@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "78cd4f63cc489fc1f73cdaf81be32d472bafdb3e0d00f2d57b0c8034b95275df"
+canonical_content_hash = "acaab7eeff9ad5ccfc28629cb2c4b17d00c2616aa2f1c9f4046f123eb6ec3b2b"
 source_slug     = "tidal-harmonic-prediction"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-27"

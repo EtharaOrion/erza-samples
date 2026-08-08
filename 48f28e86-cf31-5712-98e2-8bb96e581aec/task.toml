@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "benchflow.task_digest.v1+uuid5"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "28b5ff64ef7a1b27576b668503a3cb6f5a6883642ad5abe79b899b9fdd283211"
+canonical_content_hash = "fced0ca4c5b6fc65e46a57120777f5fc7a24bc52a308045f20d5b134bd2cad5b"
 source_slug     = ""
 source_origin   = "original"
 provenance_date = ""

@@ -7,7 +7,7 @@
   "skill_mode": "with-skill",
   "skill_source": "task_bundled",
   "requested_skills_dir": "/Users/kaustubhbhargava/Erza/erza/.omo/pilot-tasks/ghg-conversion-factor-vintage/environment/skills",
-  "effective_skills_dir": "/var/folders/b0/5pf3p9cj4h94cxl67pppfw0h0000gn/T/benchflow-task-cl4_6yxj/ghg-conversion-factor-vintage/environment/skills",
+  "effective_skills_dir": "<dataset-root>/ghg-conversion-factor-vintage/environment/skills",
   "skills_sandbox_dir": "/skills",
   "include_task_skills": true,
   "n_tool_calls": 4,

@@ -43,7 +43,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "erza.task_id.v2"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "b2530d77475867dee8abfaa5168f142ad76cb219d40e1857fc61b882fb18fc98"
+canonical_content_hash = "45bf9f58774059e6f1d248a284c640933bfb006c7ae26662ea38eccbb50264e0"
 source_slug     = "ghg-conversion-factor-vintage"
 source_origin   = "original"
 provenance_date = "2026-08-05"
@@ -67,7 +67,8 @@ task_id_material_sha256 = "dea911e2b57ea2ccc5d4bf637125f3f35a4962235fe35431a2c4a
 #     field self-referential and impossible to verify;
 #   * transient artifacts that are never shipped: __pycache__/, *.pyc, .DS_Store.
 #
-# Verify with: python3 verify_seal.py   (at the repository root).
+# Verify with: python3 verify_seal.py <path to this repository>   (the checker
+# ships with the erza harness, at the harness root).
 #
 # STABLE IDENTIFIER — THE TASK ID IS NOT DERIVED FROM THE VALUE ABOVE.
 # [task] id, this bundle's directory name and tests/rubrics.json task_id are

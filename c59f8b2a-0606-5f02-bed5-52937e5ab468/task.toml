@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "9793dca43ae91fa3722c814097126340562af2adb2d4e8cdc26da5de8dee5290"
+canonical_content_hash = "6115d652d9c9d54ee61f8c3c5028920207a8a301c097a071461f0978d3072ff3"
 source_slug     = "antenna-phase-centre-correction"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-28"

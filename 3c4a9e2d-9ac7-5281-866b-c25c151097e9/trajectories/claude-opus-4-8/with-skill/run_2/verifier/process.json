@@ -1,0 +1,132 @@
+{
+ "run": "with-skill/run_2",
+ "outcome": {
+  "score": 1.0,
+  "cases_passed": 14,
+  "cases_total": 14,
+  "cases": [
+   {
+    "name": "test_score_kg_co2e[co2e-biogas-chp-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-board-purchased-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-elec-td-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-food-compost-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-gas-volume-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-gas-volume-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-insulation-landfill-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-pellets-boiler-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-petrol-fleet-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-petrol-fleet-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-plastic-recycling-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-straw-boiler-2025]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-water-supply-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   },
+   {
+    "name": "test_score_kg_co2e[co2e-water-treatment-2024]",
+    "classname": "",
+    "status": "passed",
+    "time": 0.0
+   }
+  ],
+  "selfchecks_passed": 0,
+  "selfchecks_total": 0,
+  "selfchecks": [],
+  "source": "verifier/test-stdout.txt + verifier/outcome_report.json (dataset-era answer-key checker). Per-case verdicts cross-checked at migration against verifier/results.xml (which names the same cases case_<case_id>) and verifier/reward.txt - all four records agree. Case ids are mapped 1:1 onto the pytest ids test_score_kg_co2e[<case_id>] of tests/test_output.py, which wraps the same grader (from_answer_key.py) that produced these verdicts. Self-checks did not exist when these runs were recorded: selfchecks_total is 0 and the kill-switch was unarmed."
+ },
+ "deterministic": {
+  "cases_passed": 0,
+  "cases_total": 0,
+  "cases": [],
+  "recorded": false,
+  "outcome_channel_route": "not evaluated: the bundle's deterministic process criteria (R3-R14) have no test implementation in tests/, so nothing could be re-executed over the archived trajectory; no value is asserted for them"
+ },
+ "criteria_without_verdict": [
+  "R3",
+  "R4",
+  "R5",
+  "R6",
+  "R7",
+  "R8",
+  "R9",
+  "R10",
+  "R11",
+  "R12",
+  "R13",
+  "R14",
+  "R15",
+  "R16",
+  "R17",
+  "R18",
+  "R19",
+  "R20",
+  "R21",
+  "R22",
+  "R23",
+  "R24",
+  "R25"
+ ],
+ "coverage_note": "Rubric criteria with no verdict in the archived evidence for this run. They were not evaluated; no value is asserted for them.",
+ "pass_at_1": 1
+}

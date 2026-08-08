@@ -42,7 +42,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "fb18f47ab6612c9b88e588599bda46fb4586df00ec54cb8be671520f205c9478"
+canonical_content_hash = "034f41e225d39710c6a9479e17505b58410ec3259618b632086db0cbe04fd90b"
 source_slug     = "ionosphere-arc-vtec-calibration"
 source_origin   = "re-freeze"
 provenance_date = "2026-07-27"

@@ -39,7 +39,7 @@ entrypoint = "oracle/solve.sh"
 [provenance]
 recipe    = "forge.task_id.v1"
 namespace = "c53e8f3b-526f-52c0-a04e-89e2269b237d"
-canonical_content_hash = "110528626bea610913da8e25e3bd34b23384f9dfadaff245b1bcf5cd766511dd"
+canonical_content_hash = "136092a710da89b92e50c5b3ab67cbd5e52868f67ab892c0b88cda39ed038751"
 source_slug     = ""
 source_origin   = "original"
 provenance_date = ""
